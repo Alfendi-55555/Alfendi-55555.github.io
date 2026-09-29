@@ -1,0 +1,53 @@
+/* ============ 랜딩 : 전원을 켜는 화면 ============ */
+#landing{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;
+  padding:30px 22px;background:#04090E;overflow:hidden}
+#landing.on{display:flex}
+#landing::before{content:'';position:absolute;left:50%;bottom:-14%;transform:translateX(-50%);
+  width:min(880px,130%);height:74%;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(48,176,244,.20),transparent 68%)}
+#landing::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.030) 0 1px,transparent 1px 3px)}
+#landing.out{animation:ldout 420ms var(--ease-sheet) forwards}
+@keyframes ldout{to{opacity:0;transform:scale(1.04);visibility:hidden}}
+.ld-in{position:relative;z-index:2;text-align:center;max-width:520px;width:100%}
+.ld-mark{display:inline-flex;align-items:center;gap:14px;color:var(--d-text);margin-bottom:26px;
+  animation:ldup 520ms var(--ease-sheet) both}
+.ld-mark .wm{font-family:var(--font-display);font-size:31px;font-weight:700;letter-spacing:-.02em;
+  line-height:1}
+.ld-mark .wm i{font-style:normal;color:var(--sky)}
+.ld-title{margin:0 0 13px;font-size:20px;font-weight:600;letter-spacing:-.02em;color:var(--d-text);
+  animation:ldup 520ms 70ms var(--ease-sheet) both}
+.ld-sub{margin:0 0 30px;font-size:14px;line-height:1.75;color:var(--d-muted);
+  animation:ldup 520ms 130ms var(--ease-sheet) both}
+.ld-stats{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:36px;
+  animation:ldup 520ms 190ms var(--ease-sheet) both}
+.ld-stat{padding:0 20px;position:relative}
+.ld-stat+.ld-stat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:1px;height:26px;background:var(--d-line)}
+.ld-stat b{display:block;font-family:var(--font-display);font-size:23px;font-weight:700;
+  letter-spacing:-.02em;color:var(--d-text);line-height:1}
+.ld-stat span{display:block;margin-top:7px;font-size:11.5px;color:var(--d-muted-2)}
+.ld-btn{display:inline-flex;align-items:center;gap:11px;padding:15px 30px;border-radius:12px;
+  background:var(--sky);color:#04141F;font-size:15px;font-weight:700;letter-spacing:-.01em;
+  box-shadow:0 0 0 1px rgba(255,255,255,.16),0 8px 26px -8px rgba(48,176,244,.75);
+  animation:ldup 520ms 250ms var(--ease-sheet) both;
+  transition:transform var(--t-focus) var(--ease-focus),box-shadow var(--t-focus) var(--ease-focus)}
+.ld-btn:hover{transform:translateY(-2px);
+  box-shadow:0 0 0 1px rgba(255,255,255,.24),0 14px 34px -10px rgba(48,176,244,.9)}
+.ld-btn:active{transform:translateY(0) scale(.98)}
+.ld-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(48,176,244,.4),0 8px 26px -8px rgba(48,176,244,.75)}
+.ld-hint{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;color:var(--d-muted-2);
+  animation:ldup 520ms 310ms var(--ease-sheet) both}
+.ld-led{width:6px;height:6px;border-radius:999px;background:var(--sky);
+  box-shadow:0 0 9px 2px rgba(48,176,244,.7);animation:blink 1.7s steps(1,end) infinite}
+@keyframes blink{0%,60%{opacity:1}61%,100%{opacity:.18}}
+@keyframes ldup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .ld-mark,.ld-title,.ld-sub,.ld-stats,.ld-btn,.ld-hint{animation:none}
+  .ld-led{animation:none} #landing.out{animation:none;display:none}
+}
+@media (max-width:520px){
+  .ld-mark .wm{font-size:26px} .ld-stat{padding:0 13px} .ld-stat b{font-size:19px}
+  .ld-stat span{font-size:10.5px}
+}

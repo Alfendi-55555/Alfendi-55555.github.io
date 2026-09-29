@@ -1,0 +1,27 @@
+/* ============ 리뷰 시트 ============ */
+#sheetWrap{position:fixed;inset:0;z-index:40;display:none}
+#sheetWrap.on{display:block}
+#dim{position:absolute;inset:0;background:rgba(8,12,20,.52);backdrop-filter:blur(1.5px);opacity:0;
+  transition:opacity 240ms linear}
+#sheetWrap.in #dim{opacity:1}
+#sheet{position:absolute;left:0;right:0;bottom:0;background:var(--d-surface);
+  border-radius:18px 18px 0 0;padding:10px 24px 30px;color:var(--d-text);
+  box-shadow:0 -2px 0 rgba(255,255,255,.06),0 -18px 40px rgba(0,0,0,.5);
+  transform:translateY(100%);transition:transform var(--t-sheet) var(--ease-sheet);
+  max-width:520px;margin:0 auto}
+#sheetWrap.in #sheet{transform:none}
+.grab{width:38px;height:4px;border-radius:999px;background:#3E4C58;margin:0 auto 20px}
+.sh-top{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px}
+.sh-art{width:84px;height:84px;border-radius:12px;flex-shrink:0;box-shadow:0 4px 12px -4px rgba(0,0,0,.6)}
+.sh-name{font-family:var(--font-display);font-size:21px;font-weight:700;letter-spacing:-.01em;
+  line-height:1.25;margin-bottom:7px}
+.sh-rate{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sh-score{font-family:var(--font-display);font-size:15px;font-weight:700}
+.sh-played{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;color:var(--d-muted)}
+.sh-body{margin:0 0 20px;font-size:14px;line-height:1.8;color:#D9E1E9;text-wrap:pretty}
+.sh-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;
+  border-top:1px solid var(--d-line)}
+.sh-link{display:flex;align-items:center;gap:8px;padding:9px 14px 9px 15px;border-radius:10px;
+  background:var(--d-raised);box-shadow:inset 0 0 0 1px #3E4C58;font-size:13px;font-weight:600}
+.sh-link:hover{box-shadow:inset 0 0 0 1px var(--sky)}
+.sh-src{font-size:11px;color:var(--d-muted-2);text-align:right;line-height:1.5}
