@@ -78,4 +78,4 @@ python -m http.server -d _site
 ## 배포
 
 `main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 올린다.
-처음 한 번만 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꾼다.
+처음 한 번만 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꾼다
