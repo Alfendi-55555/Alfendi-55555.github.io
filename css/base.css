@@ -2,7 +2,7 @@
   /* --- 라이트 (홈) : oklch hue 245 --- */
   --bg:#F1F7FD; --surface:#FBFEFF; --sunken:#E6EFF7; --line:#D0DCE7;
   --line-soft:#DDE6EE; --text:#17232D; --muted:#6A7681; --muted-2:#94A0AA; --muted-3:#B8C4CE;
-  --ink-soft:#3F4C57;
+  --ink-soft:#3F4C57; --mut:#5F6B76; --ground:#EDF2F7; --shell-line:#C9D5E0;
   /* --- 다크 (삽입 / 라이브러리) : 같은 hue 245 --- */
   --d-bg:#0D161D; --d-surface:#1A252F; --d-raised:#26323D; --d-line:#34424E;
   --d-text:#EDF2F7; --d-muted:#8F9BA5; --d-muted-2:#656F7A; --d-deep:#131E27;
@@ -39,45 +39,9 @@
 }
 *{box-sizing:border-box}
 img{max-width:100%}
-body{margin:0;font-family:var(--font-ui);background:var(--bg);color:var(--text);
+body{margin:0;font-family:var(--font-ui);background:var(--ground);color:var(--text);
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
 a{color:var(--sky-deep)} a:hover{color:#0F6296}
 .mono{font-family:var(--font-mono)}
-.sys{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.16em}
-
-/* ============ 화면 전환 ============ */
-.screen{display:none;min-height:100vh;flex-direction:column}
-.screen.on{display:flex}
-
-/* ============ 상단 바 ============ */
-.topbar{height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
-  padding:0 22px;background:var(--bg);border-bottom:1px solid var(--line)}
-.topbar.dark{background:var(--d-bg);border-bottom-color:var(--d-line)}
-.tb-l{display:flex;align-items:center;gap:11px;min-width:0}
-.tb-r{display:flex;align-items:center;gap:16px;flex-shrink:0}
-.avatar{width:30px;height:30px;border-radius:999px;flex-shrink:0;
-  background:linear-gradient(145deg,var(--sky),var(--sky-deep));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 2px rgba(13,22,29,.2)}
-.tb-name{font-size:14px;font-weight:600;letter-spacing:-.01em}
-.topbar.dark .tb-name{color:var(--d-text)}
-.tb-div{width:1px;height:16px;background:var(--d-line);margin:0 5px;flex-shrink:0}
-.tb-ctx{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--d-muted);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.clock{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.08em}
-.topbar.dark .clock{color:var(--d-text)}
-.ico{width:18px;height:18px;display:block}
-
-/* ============ 하단 힌트 바 ============ */
-.hintbar{height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-end;
-  gap:20px;padding:0 22px;background:var(--sunken);border-top:1px solid var(--line);
-  position:sticky;bottom:0;z-index:20}
-.hintbar.dark{background:var(--d-deep);border-top-color:var(--d-line)}
-.hint{display:flex;align-items:center;gap:7px}
-.hint span{font-size:12px;font-weight:500;color:var(--ink-soft)}
-.hintbar.dark .hint span{color:#C0CAD4}
-.key{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;
-  background:var(--muted-3);flex-shrink:0}
-.key.primary{background:var(--text)}
-.hintbar.dark .key{background:#3E4C58}
-.hintbar.dark .key.primary{background:var(--d-text)}
+.sys{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.08em}

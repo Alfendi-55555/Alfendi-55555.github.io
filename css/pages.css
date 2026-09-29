@@ -46,9 +46,9 @@
   color:var(--muted-2)}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:7px 13px;border-radius:999px;background:var(--sunken);font-size:12.5px;
+#about .chip{padding:7px 13px;border-radius:999px;background:var(--sunken);font-size:12.5px;
   font-weight:500;color:var(--ink-soft)}
-.chip i{font-style:normal;font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);
+#about .chip i{font-style:normal;font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);
   margin-left:6px}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:26px}

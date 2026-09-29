@@ -1,0 +1,49 @@
+/* ============ 카트리지 삽입 : 밝은 화면, 두께를 감안한 슬롯 ============ */
+#insert{background:repeating-linear-gradient(180deg,#EFF3F7 0 3px,#EAEFF4 3px 6px)}
+.ins-bar{height:52px;box-sizing:border-box;padding:0 48px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line-soft)}
+.ins-bar .sys{color:var(--mut)}
+.ins-back,.ins-skip{display:flex;align-items:center;gap:10px;height:44px;padding:0 12px;border-radius:12px;color:var(--mut);
+  text-decoration:none;font-size:14px;font-weight:500;cursor:pointer}
+.ins-back:hover,.ins-skip:hover{color:var(--text);background:rgba(13,22,29,.05)}
+.stage{--cw:200px;flex-grow:1;display:flex;flex-direction:column;align-items:center;padding:34px 20px 56px}
+.stage-hd{text-align:center}
+.stage-hd h2{margin:0 0 8px;font-family:var(--font-display);font-size:26px;font-weight:700;letter-spacing:-.01em}
+.stage-hd p{margin:0;font-size:14px;color:var(--mut)}
+/* arena 아래 경계 = 슬롯 구멍의 한가운데. 카트리지는 여기서 잘리며 들어간다 */
+.arena{position:relative;z-index:2;width:100%;max-width:560px;height:330px;overflow:hidden;margin-top:18px;touch-action:none}
+.drag{position:absolute;left:0;top:0;cursor:grab;transform-origin:50% 50%;outline:none;border-radius:12px}
+.drag .cart{--w:var(--cw)}
+.drag.grabbing{cursor:grabbing}
+.drag.settling{transition:left var(--t-snap) var(--ease-snap),top var(--t-snap) var(--ease-snap),transform var(--t-snap) var(--ease-snap)}
+.drag.sinking{transition:top 300ms cubic-bezier(.3,1.25,.5,1)}
+.drag.returning{transition:left 260ms var(--ease-sheet),top 260ms var(--ease-sheet),transform 260ms var(--ease-sheet)}
+.drag:focus-visible .cart{box-shadow:0 0 0 3px var(--sky),0 12px 22px -10px rgba(13,22,29,.4)}
+.deck{position:relative;z-index:1;margin-top:-19px;width:480px;max-width:calc(100% - 20px);display:flex;flex-direction:column;
+  filter:drop-shadow(0 22px 26px rgba(13,22,29,.22))}
+.deck-top{height:46px;border-radius:16px 16px 0 0;background:linear-gradient(180deg,#F3F6F9 0%,#E2E9EF 100%);
+  box-shadow:inset 0 1px 0 #fff;display:flex;justify-content:center}
+.slot{margin-top:11px;width:calc(var(--cw) + 20px);height:16px;border-radius:5px;background:#2A3540;
+  box-shadow:inset 0 4px 5px rgba(0,0,0,.65),0 1px 0 rgba(255,255,255,.9);transition:box-shadow 160ms}
+.slot.hot{box-shadow:inset 0 4px 5px rgba(0,0,0,.65),0 0 0 3px rgba(48,176,244,.45)}
+.deck-front{height:100px;box-sizing:border-box;border-radius:0 0 24px 24px;padding:20px 34px;display:flex;flex-direction:column;
+  justify-content:space-between;background:linear-gradient(180deg,#D3DCE4 0%,#C3CDD7 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -3px 0 rgba(13,22,29,.10)}
+.deck-row{display:flex;justify-content:space-between;align-items:center}
+.deck-row .sys{color:var(--mut)}
+.led{width:9px;height:9px;border-radius:50%;background:#B8C4CE;box-shadow:inset 0 1px 1px rgba(13,22,29,.25);transition:background 200ms,box-shadow 200ms}
+.led.on{background:var(--sky);box-shadow:0 0 8px 2px rgba(48,176,244,.55)}
+.vents{display:flex;gap:6px;justify-content:center}
+.vents i{width:28px;height:3px;border-radius:2px;background:rgba(62,74,86,.22);box-shadow:0 1px 0 rgba(255,255,255,.6)}
+.auto-check{margin-top:34px;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 14px;border-radius:16px;
+  background:var(--surface);border:1px solid var(--line);cursor:pointer;
+  box-shadow:0 1px 2px rgba(13,22,29,.08),0 10px 20px -14px rgba(13,22,29,.30)}
+.auto-check input{width:20px;height:20px;margin:0;accent-color:var(--sky-deep);cursor:pointer}
+.auto-check b{display:block;font-size:15px;font-weight:600}
+.auto-check small{display:block;font-size:12.5px;color:var(--mut)}
+@media (max-width:720px){
+  .ins-bar{padding:0 8px}
+  .stage{--cw:170px}
+  .arena{height:300px}
+  .deck-front{height:84px;padding:16px 24px}
+}

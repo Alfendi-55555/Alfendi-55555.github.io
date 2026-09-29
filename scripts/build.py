@@ -102,23 +102,37 @@ def reading_min(blocks):
     return max(1, round(chars / CHARS_PER_MIN))
 
 # ---------------- 조립 ----------------
-def art_css(g):
-    if g.get('art'):
-        return f'url("{g["art"]}") center/cover'
-    return g.get('gradient') or f'linear-gradient(152deg,{g["color"]},#000)'
+def load_json(name, default=None):
+    p = ROOT / 'content' / name
+    if not p.exists():
+        return default
+    return json.loads(p.read_text(encoding='utf-8'))
 
-def load_json(name):
-    return json.loads((ROOT / 'content' / name).read_text(encoding='utf-8'))
+def check_review(g):
+    r = g.get('review')
+    if r is None:
+        return None
+    for k in ('rating', 'text'):
+        if k not in r:
+            errors.append(f'content/games.json: {g["id"]} 의 review 에 {k} 가 없습니다')
+    return {'rating': r.get('rating'), 'year': r.get('year'), 'hours': r.get('hours'),
+            'text': r.get('text', '')}
 
 def build():
-    games_meta = load_json('games.json')
-    known = {g['id'] for g in games_meta}
+    games_meta = load_json('games.json', [])
+    ids = [g['id'] for g in games_meta]
+    dup = {i for i in ids if ids.count(i) > 1}
+    if dup:
+        errors.append(f'content/games.json: 겹치는 id → {", ".join(sorted(dup))}')
+    known = set(ids)
     for d in sorted((ROOT / 'posts').iterdir()):
         if d.is_dir() and d.name not in known:
             errors.append(f'posts/{d.name}/ : content/games.json에 없는 게임 id입니다')
 
     games = []
     for g in games_meta:
+        if g.get('art') and not (ROOT / g['art']).exists():
+            errors.append(f'content/games.json: {g["id"]} 의 art 파일이 없습니다 → {g["art"]}')
         posts = []
         for md in sorted((ROOT / 'posts' / g['id']).glob('*/index.md')):
             meta, body = read_post(md)
@@ -143,16 +157,26 @@ def build():
             })
         posts = [p for p in posts if not p.pop('draft')]
         posts.sort(key=lambda p: p['d'], reverse=True)          # 최신 글이 위
+        img = g.get('art')
         games.append({'id': g['id'], 'name': g['name'], 'skin': g.get('skin', 'base'),
-                      'color': g['color'], 'art': art_css(g), 'cover': g.get('cover'),
-                      'posts': posts})
+                      'color': g['color'], 'img': img,
+                      'art': f'url("{img}") center/cover' if img else g['color'],
+                      'review': check_review(g), 'posts': posts})
 
-    reviews = [{'name': r['name'], 'color': r['color'], 'art': art_css(r), 'r': r['rating'],
-                'y': r['year'], 'h': r['hours'], 'rev': r['review']}
-               for r in load_json('reviews.json')]
+    names = {g['id'] for g in games}
+    music = []
+    for i, m in enumerate(load_json('music.json', [])):
+        for k in ('title', 'game'):
+            if k not in m:
+                errors.append(f'content/music.json: {i + 1}번째 곡에 {k} 가 없습니다')
+        if m.get('game') and m['game'] not in names:
+            errors.append(f'content/music.json: {m.get("title")} 의 game "{m["game"]}" 이 games.json에 없습니다')
+        music.append({'title': m.get('title', ''), 'game': m.get('game'), 'composer': m.get('composer', ''),
+                      'youtube': m.get('youtube', ''), 'tags': m.get('tags') or [], 'note': m.get('note', '')})
+
     guest = [{'n': x['name'], 'd': x['date'].replace('-', '.'), 'm': x['message'],
               **({'re': x['reply']} if x.get('reply') else {})}
-             for x in load_json('guestbook.json')]
+             for x in load_json('guestbook.json', [])]
 
     if errors:
         print('빌드 실패 — 아래를 고쳐 주세요:', file=sys.stderr)
@@ -174,12 +198,13 @@ def build():
             shutil.copy2(f, dst)
     (OUT / 'data').mkdir()
     (OUT / 'data' / 'site.json').write_text(
-        json.dumps({'games': games, 'reviews': reviews, 'guestbook': guest},
+        json.dumps({'games': games, 'music': music, 'guestbook': guest},
                    ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     (OUT / '.nojekyll').touch()
 
     n_posts = sum(len(g['posts']) for g in games)
-    print(f'완료: 게임 {len(games)}개, 글 {n_posts}편, 한줄 리뷰 {len(reviews)}개 → _site/')
+    n_rev = sum(1 for g in games if g['review'])
+    print(f'완료: 게임 {len(games)}개, 글 {n_posts}편, 한줄 리뷰 {n_rev}개, 음악 {len(music)}곡 → _site/')
 
 if __name__ == '__main__':
     build()

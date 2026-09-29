@@ -8,11 +8,18 @@
 index.html            화면 뼈대 (마크업만)
 css/                  스타일. index.html의 <link> 순서가 곧 우선순위
   skins/              게임별 스킨 (base / playlog / metaphor)
-js/app.js             화면 동작. 데이터는 data/site.json에서 읽는다
+js/                   화면 동작. 화면마다 모듈 하나
+  app.js              진입점 · 주소(#/...) → 화면
+  store.js            data/site.json 을 읽어 모두에게 나눠 준다
+  home.js             홈 채널 메뉴와 독
+  library.js          라이브러리 : 최근 꺼낸 게임 선반 · 케이스 · 펼친 케이스
+  insert.js           카트리지 삽입
+  game.js             카트리지를 꽂은 뒤의 게임별 기록 · 글 읽기
+  posts.js music.js about.js guest.js landing.js settings.js
 assets/               사이트 공용 이미지 (아바타, 게임 아트)
 content/
-  games.json          카트리지(글이 있는 게임) 목록과 순서
-  reviews.json        한줄 리뷰만 있는 게임
+  games.json          모든 게임. 한줄 리뷰는 게임마다 선택 항목
+  music.json          오늘의 게임 음악 후보
   guestbook.json      방명록 (임시 — 나중에 댓글 서비스로 교체 예정)
 posts/<게임id>/<날짜-제목>/
   index.md            글 본문
@@ -21,10 +28,44 @@ scripts/build.py      content + posts → _site/ 로 조립
 .github/workflows/    main에 push하면 자동 빌드·배포
 ```
 
+## 화면과 주소
+
+| 주소 | 화면 |
+|---|---|
+| `#/` | 홈 (채널 메뉴) |
+| `#/library` | 라이브러리 |
+| `#/posts` | 전체 글 |
+| `#/music` | 음악 |
+| `#/about` · `#/guest` | 소개 · 방명록 |
+| `#/game/<게임id>` | 카트리지를 꽂은 뒤의 게임별 기록 |
+
+라이브러리에서 게임(케이스)을 누르면 펼친 케이스가 열리고, 기록이 있으면 카트리지를 꽂아 게임 화면으로 들어갑니다.
+
+## 게임 추가 · 한줄 리뷰
+
+`content/games.json`에 항목을 추가합니다. 모든 게임이 같은 목록에 있고, 한줄 리뷰는 있어도 되고 없어도 됩니다.
+
+```json
+{
+  "id": "celeste",
+  "name": "Celeste",
+  "color": "#B8567A",
+  "art": "assets/games/celeste/art.jpg",
+  "skin": "base",
+  "review": { "rating": 4.5, "year": 2024, "hours": 12, "text": "한 줄로 남기는 감상." }
+}
+```
+
+- `id`는 영문 소문자와 `-`. 글 폴더 이름(`posts/<id>/`)과 같아야 합니다.
+- `art`가 없으면 `color` 단색으로 보입니다.
+- `skin`은 카트리지를 꽂았을 때의 화면 스킨 (`base` · `playlog` · `metaphor`). 없으면 `base`.
+- `review`의 `rating`과 `text`는 필수, `year`와 `hours`는 선택.
+- 나중에 이 게임에 글을 쓰면 `posts/<id>/`에 넣기만 하면 됩니다. 케이스에 카트리지가 생기고 "최근 꺼낸 게임"에 올라옵니다.
+
 ## 글 쓰기
 
-`posts/<게임id>/` 아래에 폴더를 하나 만들고 `index.md`를 넣는다.
-폴더 이름은 `2026-10-01-boss-rush`처럼 날짜로 시작하면 정리가 편하다.
+`posts/<게임id>/` 아래에 폴더를 하나 만들고 `index.md`를 넣습니다.
+폴더 이름은 `2026-10-01-boss-rush`처럼 날짜로 시작하면 정리가 편합니다.
 
 ```markdown
 ---
@@ -42,27 +83,37 @@ draft: true            # 선택. true면 사이트에 안 나온다
 빈 줄을 넣으면 새 문단.
 
 ![이미지 캡션](./01.jpg)
-
-![](./02.jpg)
 ```
 
-- 이미지는 **한 줄에 하나씩**, 앞뒤로 빈 줄을 둔다. 캡션이 없으면 `![]`.
-- 읽는 시간은 본문 길이로 자동 계산된다.
-- 같은 게임의 글은 날짜 최신순으로 정렬된다.
-- 아직 굵게·링크 같은 인라인 문법은 화면에 반영되지 않는다(글자 그대로 보임).
+- 이미지는 **한 줄에 하나씩**, 앞뒤로 빈 줄을 둡니다. 캡션이 없으면 `![]`.
+- 읽는 시간은 본문 길이로 자동 계산됩니다.
+- 굵게·링크 같은 인라인 문법은 아직 화면에 반영되지 않습니다(글자 그대로 보임).
 
-## 게임 추가
+## 오늘의 게임 음악
 
-1. `content/games.json`에 항목 추가 (배열 순서 = 홈에 나오는 순서)
-   ```json
-   { "id": "celeste", "name": "Celeste", "skin": "base", "color": "#B8567A",
-     "art": "assets/games/celeste/art.jpg" }
-   ```
-   이미지가 없으면 `"art"` 대신 `"gradient": "linear-gradient(...)"`.
-2. `posts/celeste/` 폴더를 만들고 글을 넣는다.
+`content/music.json`에 곡을 추가합니다. 날짜마다 한 곡씩 돌아가며 홈과 음악 페이지에 나옵니다(모든 방문자에게 같은 곡).
 
-`"sample": true`가 붙은 항목은 프로토타입용 가상 데이터다. 실제 기록이 쌓이면
-`content/*.json`에서 그 항목들을, `posts/`에서 해당 폴더(so, nw, pr, ch, lb)를 지우면 된다.
+```json
+{ "title": "In the Blood", "game": "hades", "composer": "Darren Korb",
+  "youtube": "https://www.youtube.com/watch?v=...", "tags": ["보컬곡"], "note": "추천 한 줄" }
+```
+
+- `game`은 `games.json`의 `id`. 그 게임의 아트가 곡 이미지로 쓰입니다.
+- `youtube`가 비어 있으면 "YouTube에서 듣기" 버튼 대신 준비 중 문구가 나옵니다.
+- `tags`는 음악 페이지의 필터가 됩니다.
+
+## 설정 (방문자별)
+
+상단 바의 톱니 아이콘. 이 브라우저의 localStorage에만 저장됩니다.
+
+- **카트리지 자동으로 꽂기** — 삽입 화면의 체크박스와 같은 값
+- **첫 화면 인트로** — 처음만 / 끄기. 주소 끝에 `?intro`를 붙이면 언제든 다시 볼 수 있습니다.
+- **화면 테마** — 준비 중
+
+## 샘플 데이터
+
+`"sample": true`가 붙은 항목은 프로토타입용 가상 데이터입니다. 실제 기록이 쌓이면
+`content/*.json`에서 그 항목들을, `posts/`에서 해당 폴더(so, nw, pr, ch, lb)를 지우면 됩니다.
 
 ## 로컬에서 보기
 
@@ -72,10 +123,10 @@ python -m http.server -d _site
 ```
 → http://localhost:8000
 
-`index.html`을 더블클릭해서 열면 데이터를 불러오지 못한다(브라우저 보안 정책).
-빌드가 실패하면 어느 파일 몇 번째 줄이 문제인지 알려준다.
+`index.html`을 더블클릭해서 열면 데이터를 불러오지 못합니다(브라우저 보안 정책).
+빌드가 실패하면 어느 파일의 무엇이 문제인지 알려줍니다.
 
 ## 배포
 
-`main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 올린다.
-처음 한 번만 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꾼다
+`main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 올립니다.
+처음 한 번만 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꿉니다.

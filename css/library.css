@@ -56,3 +56,5 @@
 .rd figcaption{margin-top:10px}
 .rd .end{margin-top:46px;padding-top:18px;display:flex;align-items:center;
   justify-content:space-between}
+/* 기록이 없는 게임 */
+.save-empty{margin:0;padding:40px 20px;text-align:center;font-size:14px;opacity:.7;border:1.5px dashed currentColor;border-radius:14px}

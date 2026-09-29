@@ -1,79 +1,108 @@
-/* ============ 홈 ============ */
-.home-body{flex-grow:1;padding:26px 22px 40px;max-width:1180px;margin:0 auto;width:100%}
+/* ============ 홈 : 채널 메뉴 ============ */
+#home{background:repeating-linear-gradient(180deg,#EFF3F7 0 3px,#EAEFF4 3px 6px)}
+.home-body{padding-bottom:28px}
+.channels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.chan{display:block;box-sizing:border-box;height:200px;width:100%;min-width:0;padding:7px;border-radius:24px;
+  background:var(--surface);border:1px solid var(--line);color:var(--text);text-align:left;text-decoration:none;
+  box-shadow:0 1px 2px rgba(13,22,29,.10),0 10px 20px -12px rgba(13,22,29,.30);cursor:pointer}
+.chan:hover{color:var(--text)}
+.chan .scr{position:relative;box-sizing:border-box;height:100%;border-radius:17px;overflow:hidden;
+  padding:16px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface)}
+.chan.empty{background:transparent;border:1.5px dashed #D3DCE5;box-shadow:none;cursor:default}
+.chan.soon{cursor:default}
+.lbl{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.08em;color:var(--mut)}
+.meta-line{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;color:var(--mut)}
+.row-sb{display:flex;justify-content:space-between;align-items:center;gap:10px}
 
-/* 블로그 타이틀 */
-.home-hd{padding:14px 4px 34px}
-.home-hd h1{margin:0 0 9px;font-family:var(--font-display);font-size:34px;font-weight:700;
-  letter-spacing:-.025em;line-height:1.15}
-.home-hd p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
+/* LATEST */
+.chan.latest .scr{background:#0D161D;justify-content:flex-end}
+.chan.latest .bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.chan.latest .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,0) 35%,rgba(8,12,20,.35) 62%,rgba(8,12,20,.84) 100%)}
+.chan.latest .cap{position:relative;display:flex;flex-direction:column;gap:4px;color:#EDF2F7}
+.chan.latest .lbl,.chan.latest .meta-line{color:#C0CAD4}
+.chan.latest b{font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
 
-/* 섹션 제목 */
-.sec-head{display:flex;align-items:flex-end;gap:14px;margin-bottom:14px}
-.st{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
-.st .sys{color:var(--muted);letter-spacing:.18em;line-height:1}
-.sec-ko{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1}
-.sec-rule{flex-grow:1;height:1px;background:var(--line-soft);margin-bottom:6px}
-.cart-badge{display:flex;align-items:center;gap:5px;padding:3px 9px 3px 7px;border-radius:999px;
-  background:var(--sunken);font-family:var(--font-mono);font-size:10.5px;color:var(--muted);
-  margin-bottom:2px}
-.count{font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);margin-bottom:5px}
-.sortchip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;
-  background:var(--sunken);font-size:12px;font-weight:500;color:var(--ink-soft)}
+/* TODAY'S TRACK */
+.disc{width:76px;height:76px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  background:repeating-radial-gradient(circle at 50% 50%,#1A252F 0 2px,#26323D 2px 4px);
+  box-shadow:0 8px 18px -8px rgba(13,22,29,.6)}
+.disc::before{content:'';width:36%;height:36%;border-radius:50%;background:var(--amber) radial-gradient(circle,#1A252F 0 3px,transparent 3.5px)}
+.chan.music .body{display:flex;align-items:center;gap:14px}
+.t-col{display:flex;flex-direction:column;gap:3px;min-width:0}
+.t-col b{font-size:18px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-col span{font-size:13px;color:var(--mut)}
+.playdot{width:40px;height:40px;border-radius:50%;background:var(--text);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.playdot::before{content:'';border-left:12px solid var(--surface);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
 
-/* 가로 레일 — 스크롤바 없이 좌우 버튼으로 */
-.rail-wrap{position:relative;margin:0 -4px 26px}
-.rail{display:flex;gap:20px;overflow-x:auto;padding:8px 4px 10px;scroll-snap-type:x mandatory;
-  scrollbar-width:none;-ms-overflow-style:none}
-.rail::-webkit-scrollbar{display:none}
-.rail-wrap::before,.rail-wrap::after{content:'';position:absolute;top:0;bottom:0;width:64px;
-  pointer-events:none;z-index:4;opacity:0;transition:opacity 180ms linear}
-.rail-wrap::before{left:0;background:linear-gradient(90deg,var(--bg) 18%,transparent)}
-.rail-wrap::after{right:0;background:linear-gradient(270deg,var(--bg) 18%,transparent)}
-.rail-wrap.can-prev::before,.rail-wrap.can-next::after{opacity:1}
-.rail-btn{position:absolute;top:115px;transform:translateY(-50%);width:42px;height:42px;
-  border-radius:999px;display:flex;align-items:center;justify-content:center;z-index:5;
-  background:var(--surface);box-shadow:var(--e1),inset 0 0 0 1px var(--line);color:var(--ink-soft);
-  transition:transform var(--t-focus) var(--ease-focus),opacity 180ms linear,
-    box-shadow var(--t-focus) var(--ease-focus)}
-.rail-btn:hover{transform:translateY(-50%) scale(1.09);box-shadow:var(--e2),inset 0 0 0 1px var(--line)}
-.rail-btn:active{transform:translateY(-50%) scale(.96)}
-.rail-btn.prev{left:2px} .rail-btn.next{right:2px}
-.rail-btn[disabled]{opacity:0;pointer-events:none}
-@media (pointer:coarse){ .rail-btn{display:none} .rail-wrap::before,.rail-wrap::after{width:34px} }
+/* NEWS */
+.chan.news .body{display:flex;flex-direction:column;gap:10px}
+.news-row{display:flex;gap:10px;align-items:flex-start}
+.news-row .sw{width:8px;height:8px;margin-top:6px;border-radius:2px;flex-shrink:0}
+.news-row b{display:block;font-size:14px;font-weight:600}
+.news-row span{display:block;font-size:12px;color:var(--mut)}
+.chan.news .soon-txt{font-size:14px;color:var(--mut);line-height:1.6}
 
-.tile{position:relative;width:212px;height:212px;flex-shrink:0;border-radius:18px;overflow:hidden;
-  box-shadow:var(--e1);scroll-snap-align:start;cursor:pointer;
+/* LIBRARY */
+.chan.lib .scr{background:#E3EAF1}
+.chan.lib .carts{display:flex;gap:12px;align-items:flex-end}
+
+/* NOW PLAYING */
+.chan.playing .body{display:flex;gap:12px;align-items:center}
+.chan.playing .th{width:64px;height:64px;border-radius:12px;flex-shrink:0;background-size:cover;background-position:center}
+.chan.playing .t-col b{font-size:16px}
+.chan.playing .t-col span{font-size:12.5px}
+.pbar{display:flex;align-items:center;gap:10px}
+.pbar .tr{flex-grow:1;height:6px;border-radius:3px;background:#E6EFF7;overflow:hidden}
+.pbar .tr i{display:block;height:100%}
+.pbar b{font-family:var(--font-display);font-weight:700;font-size:13px}
+
+/* ONE-LINE REVIEW */
+.chan.review q{font-size:15px;line-height:1.55;font-weight:500;quotes:none;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chan.review .nm{font-size:13px;font-weight:600}
+.stars{display:inline-flex;gap:2px;vertical-align:middle}
+
+/* ============ 독 : 소개 · 시계 · 방명록 ============ */
+.dock{position:relative;height:170px;margin-top:auto;flex-shrink:0}
+.dock-curve{position:absolute;inset:0;width:100%;height:100%}
+.dock-curve path{fill:#E1E8EF;stroke:var(--shell-line);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.dock-btn{position:absolute;top:-6px;display:flex;flex-direction:column;align-items:center;gap:1px;
+  text-decoration:none;color:var(--text)}
+.dock-btn.left{left:6%} .dock-btn.right{right:6%}
+.dock-btn .ring{position:relative;width:88px;height:88px;border-radius:50%;background:var(--surface);
+  border:3px solid var(--sky);box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);margin-bottom:8px;
+  box-shadow:0 2px 4px rgba(13,22,29,.12),0 12px 22px -12px rgba(13,22,29,.4);
   transition:transform var(--t-focus) var(--ease-focus),box-shadow var(--t-focus) var(--ease-focus)}
-.tile .art{position:absolute;inset:0;filter:saturate(.72) contrast(1.04)}
-.tile .tint{position:absolute;inset:0;background:var(--amber);opacity:.07}
-.tile .scrim{position:absolute;inset:0;background:var(--scrim);
-  transition:background var(--t-focus) var(--ease-focus)}
-.tile .meta{position:absolute;left:16px;right:16px;bottom:15px;display:flex;flex-direction:column;
-  gap:8px;align-items:flex-start}
-.tile .pill{display:flex;align-items:center;gap:5px;padding:4px 9px 4px 7px;border-radius:999px;
-  background:rgba(8,12,20,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);
-  font-family:var(--font-mono);font-size:10.5px;color:var(--label-paper)}
-.tile .name{font-family:var(--font-display);font-size:19px;font-weight:700;letter-spacing:-.01em;
-  color:#fff;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.4);text-align:left}
-.tile:hover,.tile:focus-visible{transform:scale(1.05);box-shadow:var(--e2);outline:none}
-.tile:hover .scrim,.tile:focus-visible .scrim{background:var(--scrim-focus)}
-.tile:focus-visible{box-shadow:0 0 0 3px var(--sky),0 0 0 7px rgba(48,176,244,.20),var(--e2)}
+.dock-btn .ring svg{width:30px;height:30px}
+.dock-btn:hover{color:var(--text)}
+.dock-btn:hover .ring,.dock-btn:focus-visible .ring{transform:translateY(-3px);box-shadow:0 0 0 3px rgba(48,176,244,.3),0 16px 26px -12px rgba(13,22,29,.45)}
+.dock-btn:focus-visible{outline:none}
+.dock-btn .badge{top:2px;right:2px;min-width:22px;height:22px;border-radius:11px;font-size:12px}
+.dock-btn .lb{font-size:14px;font-weight:600}
+.dock-btn .sub{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--mut)}
+.dock-clock{position:absolute;left:0;right:0;top:92px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.dock-clock b{font-family:var(--font-display);font-weight:500;font-size:44px;letter-spacing:.02em;color:var(--ink-soft);line-height:1}
+.dock-clock span{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--mut)}
 
-.grid-wrap{background:var(--sunken);border-radius:16px;padding:20px;
-  box-shadow:inset 0 1px 3px rgba(13,22,29,.10)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:13px}
-.atile{position:relative;aspect-ratio:1;border-radius:11px;overflow:hidden;cursor:pointer;
-  box-shadow:inset 0 0 0 1px rgba(13,22,29,.10);
-  transition:transform var(--t-focus) var(--ease-focus),box-shadow var(--t-focus) var(--ease-focus)}
-.atile .art{position:absolute;inset:0;filter:saturate(.72) contrast(1.04)}
-.atile .tint{position:absolute;inset:0;background:var(--amber);opacity:.07}
-.atile .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,0) 46%,rgba(8,12,20,.68) 100%);
-  transition:background var(--t-focus) var(--ease-focus)}
-.atile .stars{position:absolute;left:9px;bottom:8px;display:flex;gap:1px}
-.atile .an{position:absolute;left:9px;right:9px;bottom:26px;font-size:11px;font-weight:600;color:#fff;
-  line-height:1.3;text-shadow:0 1px 2px rgba(0,0,0,.6);opacity:0;text-align:left;
-  transition:opacity var(--t-focus) var(--ease-focus)}
-.atile:hover,.atile:focus-visible{transform:translateY(-3px);
-  box-shadow:0 0 0 2px var(--text),0 6px 14px -6px rgba(13,22,29,.5);outline:none}
-.atile:hover .an,.atile:focus-visible .an{opacity:1}
-.atile:hover .scrim,.atile:focus-visible .scrim{background:linear-gradient(180deg,rgba(8,12,20,0) 52%,rgba(8,12,20,.58) 100%)}
+@media (max-width:1100px){ .channels{grid-template-columns:repeat(3,minmax(0,1fr))} .chan.empty{display:none} }
+@media (max-width:720px){
+  .channels{grid-template-columns:minmax(0,1fr);gap:16px}
+  .chan{height:auto;padding:5px;border-radius:22px}
+  .chan .scr{padding:14px 16px}
+  .chan.latest{order:1} .chan.latest .scr{height:210px}
+  .chan.music{order:2} .chan.music .scr{height:112px;flex-direction:row;align-items:center;gap:14px}
+  .chan.music .scr>.row-sb{display:none}
+  .chan.music .body{flex-grow:1}
+  .chan.music .disc{width:70px;height:70px}
+  .chan.playing{order:3} .chan.playing .scr{height:124px}
+  .chan.playing .th{width:44px;height:44px;border-radius:10px}
+  .chan.news{order:4} .chan.news .scr{height:128px}
+  .chan.review{order:5} .chan.review .scr{height:124px}
+  .chan.lib{order:6} .chan.lib .scr{height:108px;flex-direction:row;align-items:center}
+  .chan.lib .carts{gap:8px}
+  .chan.lib .row-sb{flex-direction:column;align-items:flex-start;gap:4px}
+  .dock{display:none}
+}
+.chan.music .music-lbl{display:none}
+@media (max-width:720px){ .chan.music .music-lbl{display:block} }

@@ -1,19 +1,5 @@
-/* ============ 반응형 ============ */
+/* ============ 게임 화면 · 글 읽기 : 좁은 화면 ============ */
 @media (max-width:640px){
-  .home-body{padding:18px 14px 32px}
-  .home-hd{padding:8px 2px 26px}
-  .home-hd h1{font-size:27px}
-  .home-hd p{font-size:13px}
-  .sec-ko{font-size:15.5px}
-  .rail-btn{top:92px}
-  .tile{width:168px;height:168px}
-  .tile .name{font-size:17px}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px}
-  .grid-wrap{padding:14px;border-radius:13px}
-  .hintbar{gap:14px;padding:0 14px}
-  .hint span{font-size:11px}
-  .stage{padding:18px 12px 0}
-  .arena{min-height:380px}
   .lib-body{padding:22px 14px 32px}
   .lib-hd h2{font-size:24px}
   .save{padding:13px 14px 13px 15px;gap:12px}
@@ -26,12 +12,12 @@
   .hero .cov{width:100%;opacity:.30}
   [data-skin="metaphor"] .hero .cov{opacity:.42}
   .hero .compass{display:none!important}
+  .page{padding:22px 16px 40px}
 }
 
 /* ============ 접근성 ============ */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
-    transition-duration:.001ms!important}
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
 :focus-visible{outline:2px solid var(--sky);outline-offset:2px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

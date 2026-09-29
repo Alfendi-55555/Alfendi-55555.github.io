@@ -1,0 +1,23 @@
+/* ============ 설정 ============ */
+.settings{position:relative;width:min(412px,calc(100vw - 24px));box-sizing:border-box;padding:22px 24px;border-radius:24px;
+  background:var(--surface);border:1px solid var(--line);animation:pop 220ms var(--ease-sheet);
+  box-shadow:0 3px 6px rgba(13,22,29,.10),0 22px 34px -14px rgba(13,22,29,.35)}
+.st-hd{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px}
+.st-hd .sys{color:var(--mut)}
+.st-hd h2{margin:2px 0 0;font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.02em}
+.st-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #E6EFF7}
+.st-row b{display:block;font-size:15px;font-weight:600}
+.st-row p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--mut)}
+.switch{position:relative;flex-shrink:0;width:48px;height:28px;cursor:pointer}
+.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.switch span{position:absolute;inset:0;border-radius:14px;background:#C9D3DC;transition:background 160ms}
+.switch span::after{content:'';position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;
+  box-shadow:0 1px 3px rgba(13,22,29,.3);transition:transform 160ms var(--ease-focus)}
+.switch input:checked+span{background:var(--sky-deep)}
+.switch input:checked+span::after{transform:translateX(20px)}
+.switch input:focus-visible+span{box-shadow:0 0 0 3px rgba(48,176,244,.45)}
+.seg{display:flex;padding:3px;border-radius:12px;background:#E6EFF7;flex-shrink:0}
+.seg button{height:36px;padding:0 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--mut);cursor:pointer}
+.seg button[aria-checked="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(13,22,29,.18)}
+.pill{padding:6px 10px;border-radius:999px;background:#E6EFF7;font-size:12px;font-weight:600;color:var(--mut);flex-shrink:0}
+.st-foot{margin:0;padding-top:16px;border-top:1px solid #E6EFF7;font-size:12.5px;line-height:1.6;color:var(--mut)}

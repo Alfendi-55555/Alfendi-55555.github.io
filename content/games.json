@@ -2,62 +2,266 @@
   {
     "id": "hades",
     "name": "Hades",
-    "skin": "base",
     "color": "#C4643E",
     "art": "assets/games/hades/art.jpg"
   },
   {
     "id": "metaphor",
     "name": "Metaphor: ReFantazio",
-    "skin": "metaphor",
     "color": "#C13C4F",
+    "skin": "metaphor",
     "art": "assets/games/metaphor/art.jpg"
   },
   {
     "id": "playlog",
     "name": "PLAYLOG",
-    "skin": "playlog",
     "color": "#1D9E75",
-    "gradient": "linear-gradient(152deg,#1D9E75 0%,#146B50 52%,#0C3D2E 100%)"
+    "skin": "playlog"
   },
   {
     "id": "so",
     "name": "Silent Orchard",
-    "skin": "base",
     "color": "#6E8A5F",
-    "gradient": "linear-gradient(152deg,#6E8A5F 0%,#47603E 52%,#24331F 100%)",
     "sample": true
   },
   {
     "id": "nw",
     "name": "Northwind",
-    "skin": "base",
     "color": "#7E93B8",
-    "gradient": "linear-gradient(152deg,#7E93B8 0%,#405480 52%,#2B3A57 100%)",
     "sample": true
   },
   {
     "id": "pr",
     "name": "Pale Route",
-    "skin": "base",
     "color": "#C08A6A",
-    "gradient": "linear-gradient(152deg,#C08A6A 0%,#8A5843 52%,#56342A 100%)",
     "sample": true
   },
   {
     "id": "ch",
     "name": "Cold Harbor",
-    "skin": "base",
     "color": "#8FA89C",
-    "gradient": "linear-gradient(152deg,#8FA89C 0%,#57705F 52%,#33453A 100%)",
     "sample": true
   },
   {
     "id": "lb",
     "name": "Lantern Bay",
-    "skin": "base",
     "color": "#B8A26E",
-    "gradient": "linear-gradient(152deg,#B8A26E 0%,#7C6A3E 52%,#4E4224 100%)",
+    "sample": true
+  },
+  {
+    "id": "vermilion-hour",
+    "name": "Vermilion Hour",
+    "color": "#A97FB8",
+    "review": {
+      "rating": 3,
+      "year": 2024,
+      "hours": 22,
+      "text": "첫 세 시간이 이 게임의 전부다. 도시가 무너지는 장면까지는 완벽한데, 그 뒤로는 같은 골목을 계속 다시 걷는다. 엔딩을 봤지만 추천할 자신은 없다."
+    },
+    "sample": true
+  },
+  {
+    "id": "glasshouse",
+    "name": "Glasshouse",
+    "color": "#7FB8A9",
+    "review": {
+      "rating": 4.5,
+      "year": 2025,
+      "hours": 14,
+      "text": "퍼즐 하나하나가 짧고 정확하다. 막히면 답답한 게 아니라 궁금해진다. 그 차이를 만드는 게 뭔지 아직도 분석 중이다."
+    },
+    "sample": true
+  },
+  {
+    "id": "dust-provider",
+    "name": "Dust Provider",
+    "color": "#B87F7F",
+    "review": {
+      "rating": 2,
+      "year": 2023,
+      "hours": 6,
+      "text": "아이디어는 좋은데 손에 안 붙는다. 조작이 한 박자씩 늦어서 뭘 해도 내 탓 같지 않았다. 여섯 시간 만에 접었다."
+    },
+    "sample": true
+  },
+  {
+    "id": "foxglove",
+    "name": "Foxglove",
+    "color": "#C4A15E",
+    "review": {
+      "rating": 4,
+      "year": 2025,
+      "hours": 31,
+      "text": "예상보다 훨씬 길었고 예상보다 훨씬 좋았다. 중반의 늘어짐만 없었으면 만점 줬을 것 같다."
+    },
+    "sample": true
+  },
+  {
+    "id": "blue-terminal",
+    "name": "Blue Terminal",
+    "color": "#6E8FB8",
+    "review": {
+      "rating": 5,
+      "year": 2024,
+      "hours": 9,
+      "text": "아홉 시간짜리 게임인데 일 년째 생각난다. 짧은 게임이 왜 짧으면 안 되는지 모르겠다."
+    },
+    "sample": true
+  },
+  {
+    "id": "marrow",
+    "name": "Marrow",
+    "color": "#8A7FB8",
+    "review": {
+      "rating": 3.5,
+      "year": 2023,
+      "hours": 18,
+      "text": "분위기는 최고인데 전투가 발목을 잡는다. 이야기만 보러 왔다면 난이도를 낮추고 하는 걸 권한다."
+    },
+    "sample": true
+  },
+  {
+    "id": "ninth-tide",
+    "name": "Ninth Tide",
+    "color": "#5EA8C4",
+    "review": {
+      "rating": 4,
+      "year": 2025,
+      "hours": 26,
+      "text": "바다를 이렇게 무섭게 만든 게임은 처음이다. 깊은 곳으로 내려갈수록 소리가 줄어드는 연출이 오래 남았다."
+    },
+    "sample": true
+  },
+  {
+    "id": "paper-wolves",
+    "name": "Paper Wolves",
+    "color": "#B8956E",
+    "review": {
+      "rating": 2.5,
+      "year": 2022,
+      "hours": 11,
+      "text": "설정만 놓고 보면 내 취향인데 실행이 아쉽다. 선택지가 많아 보이지만 결과는 대체로 같다."
+    },
+    "sample": true
+  },
+  {
+    "id": "quiet-machines",
+    "name": "Quiet Machines",
+    "color": "#9BA8B8",
+    "review": {
+      "rating": 4.5,
+      "year": 2024,
+      "hours": 40,
+      "text": "공장을 짓다 보면 네 시간이 지나 있다. 위험한 게임이다. 좋은 뜻으로."
+    },
+    "sample": true
+  },
+  {
+    "id": "ember-field",
+    "name": "Ember Field",
+    "color": "#C47F5E",
+    "review": {
+      "rating": 3,
+      "year": 2023,
+      "hours": 15,
+      "text": "전투는 신나는데 그 사이를 채우는 게 별로 없다. 두 시간마다 한 번씩 좋고 나머지는 견디는 시간."
+    },
+    "sample": true
+  },
+  {
+    "id": "hollow-signal",
+    "name": "Hollow Signal",
+    "color": "#7F8FB8",
+    "review": {
+      "rating": 5,
+      "year": 2025,
+      "hours": 20,
+      "text": "올해 최고. 더 쓸 말이 많아서 곧 카트리지로 옮길 예정이다."
+    },
+    "sample": true
+  },
+  {
+    "id": "tinbox-garden",
+    "name": "Tinbox Garden",
+    "color": "#8FB87F",
+    "review": {
+      "rating": 4,
+      "year": 2024,
+      "hours": 12,
+      "text": "작고 착한 게임. 두 시간이면 끝나는데 그 두 시간이 아깝지 않다."
+    },
+    "sample": true
+  },
+  {
+    "id": "salt-chapel",
+    "name": "Salt Chapel",
+    "color": "#B8B8B8",
+    "review": {
+      "rating": 3.5,
+      "year": 2022,
+      "hours": 8,
+      "text": "흑백 화면으로 끝까지 밀어붙인 뚝심은 인정. 다만 후반부는 눈이 아팠다."
+    },
+    "sample": true
+  },
+  {
+    "id": "longwater",
+    "name": "Longwater",
+    "color": "#5EB8A1",
+    "review": {
+      "rating": 4,
+      "year": 2023,
+      "hours": 33,
+      "text": "낚시만 해도 되는 게임. 실제로 낚시만 했다. 후회 없다."
+    },
+    "sample": true
+  },
+  {
+    "id": "iron-lullaby",
+    "name": "Iron Lullaby",
+    "color": "#A88F7F",
+    "review": {
+      "rating": 2,
+      "year": 2022,
+      "hours": 4,
+      "text": "튜토리얼에서 이미 지쳤다. 나랑 안 맞는 게임도 있는 법이다."
+    },
+    "sample": true
+  },
+  {
+    "id": "waking-static",
+    "name": "Waking Static",
+    "color": "#B85E8F",
+    "review": {
+      "rating": 4.5,
+      "year": 2025,
+      "hours": 17,
+      "text": "공포 게임인데 점프 스케어가 거의 없다. 대신 계속 불편하다. 그게 훨씬 무섭다."
+    },
+    "sample": true
+  },
+  {
+    "id": "copper-lanes",
+    "name": "Copper Lanes",
+    "color": "#C4995E",
+    "review": {
+      "rating": 3,
+      "year": 2024,
+      "hours": 10,
+      "text": "레이싱은 좋은데 그 외 모든 메뉴가 불편하다. 게임 밖의 설계도 게임의 일부다."
+    },
+    "sample": true
+  },
+  {
+    "id": "nettle",
+    "name": "Nettle",
+    "color": "#7FB85E",
+    "review": {
+      "rating": 3.5,
+      "year": 2023,
+      "hours": 23,
+      "text": "농사 게임 중에는 상위권. 다만 이 장르가 이미 포화라 특별히 기억에 남지는 않는다."
+    },
     "sample": true
   }
 ]

@@ -4,136 +4,174 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLAYLOG — 수의 플레이 기록</title>
+<meta name="description" content="끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo:ital,wght@0,400..900;1,400..900&family=Noto+Sans+KR:wght@400;700;900&family=Bitter:ital,wght@0,400..900;1,400..900&family=Noto+Serif+KR:wght@400;700;900&display=swap">
-<!-- 순서가 곧 우선순위다. 원래 한 파일이던 순서를 그대로 지킨다. -->
+<!-- 순서가 곧 우선순위다 -->
 <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/shell.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/cartridge.css">
+<link rel="stylesheet" href="css/case.css">
 <link rel="stylesheet" href="css/library.css">
+<link rel="stylesheet" href="css/insert.css">
 <link rel="stylesheet" href="css/skins/base.css">
 <link rel="stylesheet" href="css/skins/playlog.css">
 <link rel="stylesheet" href="css/skins/metaphor.css">
-<link rel="stylesheet" href="css/sheet.css">
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/tabs.css">
+<link rel="stylesheet" href="css/posts.css">
+<link rel="stylesheet" href="css/music.css">
 <link rel="stylesheet" href="css/pages.css">
-<link rel="stylesheet" href="css/logo.css">
+<link rel="stylesheet" href="css/settings.css">
 <link rel="stylesheet" href="css/landing.css">
+<link rel="stylesheet" href="css/responsive.css">
 <script type="module" src="js/app.js"></script>
 </head>
-<body>
+<body data-screen="home">
 
-<!-- ==================== 홈 ==================== -->
-<section id="home" class="screen on">
-  <div class="tabs" data-tabs></div>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
-  <div class="home-body">
-    <div class="home-hd">
-      <h1>수의 플레이 기록</h1>
+<!-- ==================== 상단 바 ==================== -->
+<header class="hdr" id="hdr">
+  <a class="logo" href="#/" aria-label="PLAYLOG 홈"><svg width="16" height="19" viewBox="0 0 11 13" fill="none" aria-hidden="true"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width="1.05" stroke-linejoin="round"/><path d="M3.3 3.5h4.4v2.9H3.3z" fill="currentColor" opacity=".55"/></svg><span class="wm">PLAY<i>LOG</i></span></a>
+  <nav class="hdr-nav" id="hdrNav" aria-label="주 메뉴">
+    <a href="#/" data-nav="home">홈</a>
+    <a href="#/library" data-nav="library">라이브러리</a>
+    <a href="#/posts" data-nav="posts">글</a>
+    <a href="#/music" data-nav="music">음악</a>
+  </nav>
+  <div class="hdr-tools">
+    <span class="hdr-ctx" id="hdrCtx"></span>
+    <a class="icon-btn" href="#/about" data-nav="about" aria-label="소개" title="소개"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 17.5c.9-2 2.5-3 4.5-3s3.6 1 4.5 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a>
+    <a class="icon-btn" href="#/guest" data-nav="guest" aria-label="방명록" title="방명록"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="badge" id="guestBadge" hidden></span></a>
+    <button class="icon-btn" id="settingsBtn" type="button" aria-label="설정" title="설정" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
+    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hdrNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+
+<div id="main">
+
+<!-- ==================== 홈 : 채널 메뉴 ==================== -->
+<section id="home" class="screen on" aria-labelledby="homeTitle">
+  <div class="wrap home-body">
+    <div class="page-hd">
+      <h1 id="homeTitle">수의 플레이 기록</h1>
       <p>끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.</p>
     </div>
-
-    <div class="sec-head">
-      <span class="st">
-        <span class="sys">PLAYING</span>
-        <span class="sec-ko">글을 남긴 게임</span>
-      </span>
-      <span class="cart-badge">
-        <svg width="10" height="12" viewBox="0 0 11 13" fill="none" style="color:var(--muted)"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width="1.05" stroke-linejoin="round"/></svg>
-        <span id="featCount">0</span>
-      </span>
-      <span class="sec-rule"></span>
-    </div>
-    <div class="rail-wrap" id="railWrap">
-      <div class="rail" id="rail"></div>
-      <button class="rail-btn prev" id="railPrev" aria-label="이전 게임">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M14.5 5 8 12l6.5 7" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="rail-btn next" id="railNext" aria-label="다음 게임">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9.5 5 16 12l-6.5 7" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-
-    <div class="sec-head">
-      <span class="st">
-        <span class="sys">ALL SOFTWARE</span>
-        <span class="sec-ko">플레이한 모든 게임</span>
-      </span>
-      <span class="count" id="archCount">0</span>
-      <span class="sec-rule"></span>
-      <span class="sortchip">최근 플레이순
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#6A7681" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-    </div>
-    <div class="grid-wrap"><div class="grid" id="grid"></div></div>
+    <div class="channels" id="channels"></div>
   </div>
-
-  <footer class="hintbar">
-    <div class="hint"><span class="key primary"><svg width="9" height="9" viewBox="0 0 12 12" fill="#F1F7FD"><path d="M6 .8 11.2 6 6 11.2.8 6Z"/></svg></span><span>선택</span></div>
-    <div class="hint"><span class="key"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 3.2h8M2 6h8M2 8.8h5" stroke="#F1F7FD" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>정렬</span></div>
-  </footer>
+  <div class="dock" aria-label="바로가기">
+    <svg class="dock-curve" viewBox="0 0 1280 170" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 150 34, 220 72, 360 72 L 920 72 C 1060 72, 1130 34, 1280 34 L 1280 170 L 0 170 Z"/></svg>
+    <a class="dock-btn left" href="#/about"><span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 17.5c.9-2 2.5-3 4.5-3s3.6 1 4.5 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="lb">소개</span><span class="sub">SYSTEM INFO</span></a>
+    <div class="dock-clock" aria-hidden="true"><b id="clock">--:--</b><span id="clockDate"></span></div>
+    <a class="dock-btn right" href="#/guest"><span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="badge" id="dockBadge" hidden></span></span><span class="lb">방명록</span><span class="sub">MESSAGE BOARD</span></a>
+  </div>
 </section>
 
-<!-- ==================== 삽입 ==================== -->
-<section id="insert" class="screen">
-  <div class="tabs dark" data-tabs></div>
+<!-- ==================== 라이브러리 ==================== -->
+<section id="library" class="screen" aria-labelledby="libTitle">
+  <div class="wrap">
+    <div class="page-hd row">
+      <div class="ttl"><h1 id="libTitle">라이브러리</h1><span class="cnt" id="libCount"></span></div>
+      <p>케이스를 열면 리뷰와 기록이 들어 있어요</p>
+    </div>
 
+    <section class="block" aria-labelledby="recentLb">
+      <div class="sec-line"><span class="sys" id="recentLb">RECENT</span><span class="ko">최근 꺼낸 게임</span><span class="rule"></span><span class="ko">최근 기록순</span></div>
+      <div class="shelf" id="shelf">
+        <button class="shelf-btn prev" type="button" aria-label="이전 카트리지"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.5 5 8 12l6.5 7" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="shelf-view"><div class="shelf-track" id="shelfTrack"></div></div>
+        <button class="shelf-btn next" type="button" aria-label="다음 카트리지"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.5 5 16 12l-6.5 7" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="allLb">
+      <div class="sec-line"><span class="sys" id="allLb">ALL GAMES</span><span class="ko">전체 라이브러리</span><span class="rule"></span></div>
+      <div class="toolbar">
+        <div class="chips" role="group" aria-label="거르기" id="libFilter"></div>
+        <div class="chips" role="group" aria-label="정렬" id="libSort"></div>
+      </div>
+      <div class="cases" id="cases"></div>
+      <button class="btn-ghost" type="button" id="casesMore" hidden></button>
+    </section>
+  </div>
+</section>
+
+<!-- ==================== 전체 글 ==================== -->
+<section id="posts" class="screen" aria-labelledby="postsTitle">
+  <div class="wrap posts-layout">
+    <div class="page-hd row full">
+      <div class="ttl"><h1 id="postsTitle">전체 글</h1><span class="cnt" id="postsCount"></span></div>
+    </div>
+    <aside class="posts-side">
+      <div class="side-grp"><span class="sys">게임</span><div id="postsGames" class="side-list"></div></div>
+      <div class="side-grp"><span class="sys">태그</span><div id="postsTags" class="chips wrap-chips"></div></div>
+    </aside>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ==================== 음악 ==================== -->
+<section id="music" class="screen" aria-labelledby="musicTitle">
+  <div class="wrap">
+    <h1 class="sr" id="musicTitle">음악 채널</h1>
+    <div class="today" id="today"></div>
+    <section class="block" aria-labelledby="trackLb">
+      <div class="page-hd row slim">
+        <div class="ttl"><h2 id="trackLb">추천곡 전체</h2><span class="cnt" id="trackCount"></span></div>
+      </div>
+      <div class="chips" role="group" aria-label="태그로 거르기" id="musicTags"></div>
+      <div class="tunes" id="tracks"></div>
+    </section>
+  </div>
+</section>
+
+<!-- ==================== 카트리지 삽입 ==================== -->
+<section id="insert" class="screen" aria-labelledby="insTitle">
+  <div class="ins-bar">
+    <a class="ins-back" href="#/library"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.6 1.6 3.2 6l4.4 4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>라이브러리</a>
+    <span class="sys" id="insCtx">SLOT 1</span>
+    <button class="ins-skip" type="button" id="skipBtn">건너뛰기</button>
+  </div>
   <div class="stage">
-    <button class="skip" id="skipBtn">건너뛰기</button>
     <div class="stage-hd">
       <h2 id="insTitle">카트리지를 꽂아 주세요</h2>
       <p id="insHelp">아래 슬롯으로 끌어다 놓으세요. 그냥 눌러도 꽂힙니다.</p>
     </div>
     <div class="arena" id="arena">
-      <div class="cart" id="dragCart" role="button" tabindex="0" aria-label="카트리지를 슬롯에 꽂기">
-        <div class="grip"></div>
-        <div class="label">
-          <div class="plate"><b id="cartTitle"></b></div>
-          <div class="win" id="cartWin"></div>
-          <div class="band" id="cartBand"></div>
-        </div>
-        <div class="conn"><i></i></div>
-      </div>
-      <div class="deck">
-        <div class="slot" id="slot"></div>
-        <div class="deck-lip">SLOT 1</div>
-        <div class="led" id="led"></div>
-        <div class="vent"></div>
+      <div class="drag" id="dragCart" role="button" tabindex="0" aria-label="카트리지를 슬롯에 꽂기"></div>
+    </div>
+    <div class="deck" aria-hidden="true">
+      <div class="deck-top"><div class="slot" id="slot"></div></div>
+      <div class="deck-front">
+        <div class="deck-row"><span class="sys">SLOT 1</span><span class="led" id="led"></span></div>
+        <div class="vents"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div>
     </div>
+    <label class="auto-check">
+      <input type="checkbox" id="autoInsert">
+      <span><b>다음부터 자동으로 꽂기</b><small>설정에서 언제든 되돌릴 수 있어요</small></span>
+    </label>
   </div>
-
-  <footer class="hintbar dark">
-    <div class="hint"><span class="key primary"><svg width="9" height="9" viewBox="0 0 12 12" fill="#0D161D"><path d="M6 .8 11.2 6 6 11.2.8 6Z"/></svg></span><span>꽂기</span></div>
-    <div class="hint"><span class="key" data-back="home"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M7.6 1.6 3.2 6l4.4 4.4" stroke="#EDF2F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>뒤로</span></div>
-  </footer>
 </section>
 
-<!-- ==================== 라이브러리 ==================== -->
-<section id="library" class="screen" data-skin="base">
-  <div class="tabs" data-tabs></div>
+<!-- ==================== 게임별 기록 (카트리지를 꽂은 뒤) ==================== -->
+<section id="game" class="screen" data-skin="base">
   <div class="orn"><div id="mq"></div><div class="rule"></div></div>
   <div class="lib-body">
     <div class="lib-hd">
-      <button class="eject" id="ejectBtn" aria-label="카트리지 빼기 — 홈으로" title="카트리지 빼기">
+      <button class="eject" id="ejectBtn" aria-label="카트리지 빼기 — 라이브러리로" title="카트리지 빼기">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 4.8 19.2 14H4.8L12 4.8Z" fill="currentColor"/><rect x="4.8" y="16.4" width="14.4" height="2.6" rx="1.3" fill="currentColor"/></svg>
       </button>
       <h2 id="libName"></h2><span class="cnt" id="libN"></span>
     </div>
     <div class="slots" id="slots"></div>
   </div>
-  <footer class="hintbar dark">
-    <div class="hint"><span class="key primary"><svg width="9" height="9" viewBox="0 0 12 12" fill="#0D161D"><path d="M6 .8 11.2 6 6 11.2.8 6Z"/></svg></span><span>읽기</span></div>
-    <div class="hint"><span class="key" data-back="home"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M7.6 1.6 3.2 6l4.4 4.4" stroke="#EDF2F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>카트리지 빼기</span></div>
-  </footer>
 </section>
 
-
-<!-- ==================== 자기소개 ==================== -->
+<!-- ==================== 소개 ==================== -->
 <section id="about" class="screen">
-  <div class="tabs" data-tabs></div>
 
   <div class="page">
     <div class="home-hd">
@@ -207,15 +245,10 @@
     </div>
     <div class="mini" id="mini"></div>
   </div>
-
-  <footer class="hintbar">
-    <div class="hint"><span class="key primary"><svg width="9" height="9" viewBox="0 0 12 12" fill="#F1F7FD"><path d="M6 .8 11.2 6 6 11.2.8 6Z"/></svg></span><span>카트리지 꽂기</span></div>
-  </footer>
 </section>
 
 <!-- ==================== 방명록 ==================== -->
 <section id="guest" class="screen">
-  <div class="tabs" data-tabs></div>
 
   <div class="page narrow">
     <div class="home-hd">
@@ -234,7 +267,7 @@
 
     <div class="note">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.9"/><path d="M12 7.6v5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="16.4" r="1.1" fill="currentColor"/></svg>
-      <span><b>프로토타입 안내</b> — 지금은 메모리에만 저장돼서 새로고침하면 새로 쓴 글이 사라집니다. 실제 저장(댓글 서비스 / 백엔드)은 아직 정하지 않은 상태예요.</span>
+      <span><b>안내</b> — 아직 방명록 저장소가 없어서 여기 남긴 글은 이 화면에만 잠깐 보이고, 새로고침하면 사라집니다. 댓글 서비스를 붙이면 실제로 저장됩니다.</span>
     </div>
 
     <div class="panel">
@@ -259,35 +292,59 @@
     </div>
     <div class="gs" id="gList"></div>
   </div>
-
-  <footer class="hintbar">
-    <div class="hint"><span class="key primary"><svg width="9" height="9" viewBox="0 0 12 12" fill="#F1F7FD"><path d="M6 .8 11.2 6 6 11.2.8 6Z"/></svg></span><span>저장</span></div>
-  </footer>
 </section>
 
-<!-- ==================== 랜딩 : 최초 접속 시에만 ==================== -->
-<div id="landing">
-  <div class="ld-in">
-    <div class="ld-mark">
-      <svg width="30" height="35" viewBox="0 0 11 13" fill="none"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width=".95" stroke-linejoin="round"/><path d="M3.3 3.5h4.4v2.9H3.3z" fill="currentColor" opacity=".55"/></svg>
-      <span class="wm">PLAY<i>LOG</i></span>
+</div>
+
+<!-- ==================== 펼친 케이스 ==================== -->
+<div id="caseWrap" class="overlay" hidden>
+  <div class="dim" data-close></div>
+  <div class="case-dlg" role="dialog" aria-modal="true" aria-labelledby="caseName">
+    <button class="close-btn" type="button" data-close aria-label="케이스 닫기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button>
+    <div class="case-open" id="caseOpen"></div>
+  </div>
+</div>
+
+<!-- ==================== 설정 ==================== -->
+<div id="settingsWrap" class="overlay" hidden>
+  <div class="dim" data-close></div>
+  <div class="settings" role="dialog" aria-modal="true" aria-labelledby="stTitle">
+    <div class="st-hd">
+      <div><span class="sys">SETTINGS</span><h2 id="stTitle">설정</h2></div>
+      <button class="close-btn flat" type="button" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button>
     </div>
-    <h1 class="ld-title">수의 플레이 기록</h1>
-    <p class="ld-sub">끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.<br>카트리지를 꽂으면 그 게임의 기록이 열립니다.</p>
-    <div class="ld-stats" id="ldStats"></div>
-    <button class="ld-btn" id="ldStart">
-      <svg width="13" height="13" viewBox="0 0 12 12" fill="currentColor"><path d="M2.4 1.3 10 6l-7.6 4.7Z"/></svg>
-      전원 켜기
-    </button>
-    <div class="ld-hint"><span class="ld-led"></span><span>PRESS START</span></div>
+    <div class="st-row">
+      <div><b>카트리지 자동으로 꽂기</b><p>라이브러리에서 게임을 고르면 꽂는 연출 없이 바로 기록을 엽니다.</p></div>
+      <label class="switch"><input type="checkbox" role="switch" id="stAuto" aria-label="카트리지 자동으로 꽂기"><span></span></label>
+    </div>
+    <div class="st-row">
+      <div><b>첫 화면 인트로</b><p>처음 방문했을 때만 보여 주거나, 아예 끌 수 있어요.</p></div>
+      <div class="seg" role="radiogroup" aria-label="첫 화면 인트로" id="stIntro">
+        <button type="button" role="radio" data-v="once">처음만</button>
+        <button type="button" role="radio" data-v="off">끄기</button>
+      </div>
+    </div>
+    <div class="st-row">
+      <div><b>화면 테마</b><p>시스템 설정을 따라갑니다.</p></div>
+      <span class="pill">준비 중</span>
+    </div>
+    <p class="st-foot">설정은 이 브라우저에만 저장됩니다. 다른 기기에서는 따로 정해 주세요.</p>
+  </div>
+</div>
+
+<!-- ==================== 첫 화면 인트로 ==================== -->
+<div id="landing" aria-hidden="true">
+  <div class="ld-in">
+    <p class="ld-sub"><span id="ldTyped"></span><span class="caret" id="ldCaret"></span><span class="ghost" id="ldRest"></span></p>
+    <div class="ld-mark" id="ldMark">
+      <div class="ld-logo"><svg width="34" height="40" viewBox="0 0 11 13" fill="none" aria-hidden="true"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width=".9" stroke-linejoin="round"/><path d="M3.3 3.5h4.4v2.9H3.3z" fill="currentColor" opacity=".55"/></svg><span class="wm">PLAY<i>LOG</i></span></div>
+      <span class="sys">수의 플레이 기록</span>
+    </div>
   </div>
 </div>
 
 <!-- ==================== 글 읽기 ==================== -->
 <div id="reader" data-skin="base"><div class="rd-bar" id="rdBar"></div><div class="rd" id="rd"></div></div>
-
-<!-- ==================== 리뷰 시트 ==================== -->
-<div id="sheetWrap"><div id="dim"></div><div id="sheet"></div></div>
 
 <!-- ==================== 부팅 ==================== -->
 <div id="boot"><div class="boot-txt" id="bootTxt">READING</div><div class="boot-bar"><i></i></div></div>
