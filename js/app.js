@@ -10,7 +10,7 @@ import './home.js';
 import './library.js';
 import './posts.js';
 import './music.js';
-import './about.js';
+import { aboutShown } from './about.js';
 import './guest.js';
 import { renderGame, readerOpen, closeReader } from './game.js';
 import { maybeShowLanding } from './landing.js';
@@ -22,11 +22,23 @@ function route() {
   openOverlays().forEach(closeOverlay);
   const [head, arg] = location.hash.replace(/^#\/?/, '').split('/');
   if (head === 'game' && arg) renderGame(decodeURIComponent(arg));
-  else if (SIMPLE.includes(head)) showScreen(head);
+  else if (SIMPLE.includes(head)) { showScreen(head); if (head === 'about') aboutShown(); }
   else showScreen('home');
 }
 addEventListener('hashchange', route);
 route();
+
+/* ---------- / : 지금 화면의 검색창으로 ---------- */
+addEventListener('keydown', e => {
+  if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+  const t = e.target;
+  if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+  if (readerOpen() || openOverlays().length) return;
+  const box = { library: '#libQ', posts: '#postQ' }[currentScreen()];
+  if (!box) return;
+  e.preventDefault();
+  document.querySelector(box).focus();
+});
 
 /* ---------- ESC : 가장 위에 있는 것부터 닫는다 ---------- */
 addEventListener('keydown', e => {

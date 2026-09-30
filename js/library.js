@@ -70,7 +70,10 @@ export function caseHTML(g) {
 </button>`;
 }
 
-const state = { filter: 'all', sort: 'recent', all: false };
+const state = { filter: 'all', sort: 'recent', all: false, q: '' };
+/* 대소문자 · 띄어쓰기 무시. 이름과 별칭(aliases)에서 찾는다 */
+export const norm = s => String(s || '').toLowerCase().replace(/\s+/g, '');
+const matches = (g, q) => !q || [g.name, ...(g.aliases || [])].some(x => norm(x).includes(q));
 const PAGE = 12;
 const recency = g => lastDate(g) || (g.review && g.review.year ? String(g.review.year) : '');
 const SORTS = {
@@ -87,17 +90,30 @@ function chips(host, items, key) {
 function renderCases() {
   chips($('#libFilter'), [['all', `전체<i>${GAMES.length}</i>`], ['rec', `기록 있음<i>${nRec}</i>`]], 'filter');
   chips($('#libSort'), [['recent', '최근순'], ['rating', '별점순'], ['name', '이름순']], 'sort');
-  let list = GAMES.filter(g => state.filter === 'all' || g.posts.length).sort(SORTS[state.sort]);
+  const q = norm(state.q);
+  let list = GAMES.filter(g => (state.filter === 'all' || g.posts.length) && matches(g, q)).sort(SORTS[state.sort]);
   const total = list.length;
-  if (!state.all) list = list.slice(0, PAGE);
+  if (!state.all && !q) list = list.slice(0, PAGE);
+  $('#casesShown').textContent = q ? `${total}개 찾음` : '';
+  const empty = $('#casesEmpty');
+  empty.hidden = total > 0;
+  empty.textContent = `‘${state.q.trim()}’와 맞는 게임이 없어요. 영문 이름이나 한글 이름으로 찾아보세요.`;
   const host = $('#cases');
   host.innerHTML = list.map(caseHTML).join('');
   $$('.case-card', host).forEach(b => b.addEventListener('click', () => openCase(GAMES.find(g => g.id === b.dataset.id), b)));
   const more = $('#casesMore');
-  more.hidden = state.all || total <= PAGE;
+  more.hidden = state.all || !!q || total <= PAGE;
   more.textContent = `${total}개 모두 보기`;
 }
 $('#casesMore').addEventListener('click', () => { state.all = true; renderCases(); });
+export function bindSearch(input, onChange) {
+  const box = input.closest('.search'), clear = box.querySelector('.s-clear');
+  const sync = () => { const has = !!input.value; box.classList.toggle('has', has); clear.hidden = !has; };
+  input.addEventListener('input', () => { sync(); onChange(input.value); });
+  input.addEventListener('keydown', e => { if (e.key === 'Escape' && input.value) { e.stopPropagation(); input.value = ''; sync(); onChange(''); } });
+  clear.addEventListener('click', () => { input.value = ''; sync(); onChange(''); input.focus(); });
+}
+bindSearch($('#libQ'), v => { state.q = v; renderCases(); });
 renderCases();
 
 /* ---------- 펼친 케이스 ---------- */
@@ -137,9 +153,21 @@ export function openCase(g, opener) {
       <div class="seat"><div class="hole">${HOLE}</div></div>
       <div><b>아직 기록이 없어요</b><span>이 게임은 한줄 리뷰만 남겨 두었어요</span></div>
     </div></div>`;
-  open.innerHTML = left + '<div class="co-hinge" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' + right;
+  const front = `<div class="co-front shell" aria-hidden="true"><span class="ridge"></span>
+    <div class="fband"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
+    <div class="fcov${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
+      ${n ? `<span class="saves">${n} SAVES</span>` : ''}${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
+      <b>${esc(g.name)}</b></div><span class="gloss"></span></div>`;
+  open.innerHTML = `<div class="co-flip"><div class="co-in shell">${left}</div>${front}</div>`
+    + `<div class="co-tray shell"><div class="co-hinge" aria-hidden="true"><i></i><i></i><i></i><i></i></div>${right}</div>`;
   $$('[data-act="insert"]', open).forEach(b => b.addEventListener('click', () => { closeOverlay(wrap); startInsert(g); }));
   $$('[data-post]', open).forEach(b => b.addEventListener('click', () => openReader(posts[+b.dataset.post])));
+  /* 닫힌 케이스로 나타났다가 표지가 경첩을 축으로 넘어간다 (넓은 화면에서만) */
+  clearTimeout(flipT);
+  const animate = !reduced && innerWidth > 720;
+  open.classList.toggle('closed', animate);
   openOverlay(wrap, opener);
+  if (animate) flipT = setTimeout(() => open.classList.remove('closed'), 320);
 }
+let flipT = 0;
 export const closeCase = () => closeOverlay(wrap);

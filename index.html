@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLAYLOG — 수의 플레이 기록</title>
-<meta name="description" content="끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.">
+<meta name="description" content="%TAGLINE%">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo:ital,wght@0,400..900;1,400..900&family=Noto+Sans+KR:wght@400;700;900&family=Bitter:ital,wght@0,400..900;1,400..900&family=Noto+Serif+KR:wght@400;700;900&display=swap">
@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="css/posts.css">
 <link rel="stylesheet" href="css/music.css">
 <link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/about.css">
 <link rel="stylesheet" href="css/settings.css">
 <link rel="stylesheet" href="css/landing.css">
 <link rel="stylesheet" href="css/responsive.css">
@@ -40,14 +41,13 @@
     <a href="#/library" data-nav="library">라이브러리</a>
     <a href="#/posts" data-nav="posts">글</a>
     <a href="#/music" data-nav="music">음악</a>
-  </nav>
-  <div class="hdr-tools">
+    <a href="#/about" data-nav="about">소개</a>
+    <a href="#/guest" data-nav="guest">방명록</a>
+    <span class="nav-sep" aria-hidden="true"></span>
     <span class="hdr-ctx" id="hdrCtx"></span>
-    <a class="icon-btn" href="#/about" data-nav="about" aria-label="소개" title="소개"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 17.5c.9-2 2.5-3 4.5-3s3.6 1 4.5 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a>
-    <a class="icon-btn" href="#/guest" data-nav="guest" aria-label="방명록" title="방명록"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="badge" id="guestBadge" hidden></span></a>
-    <button class="icon-btn" id="settingsBtn" type="button" aria-label="설정" title="설정" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
-    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hdrNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-  </div>
+    <button type="button" class="nav-btn" id="settingsBtn" aria-haspopup="dialog">설정</button>
+  </nav>
+  <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hdrNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 </header>
 
 <div id="main">
@@ -57,15 +57,14 @@
   <div class="wrap home-body">
     <div class="page-hd">
       <h1 id="homeTitle">수의 플레이 기록</h1>
-      <p>끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.</p>
+      <p id="homeTag">%TAGLINE%</p>
     </div>
     <div class="channels" id="channels"></div>
   </div>
-  <div class="dock" aria-label="바로가기">
-    <svg class="dock-curve" viewBox="0 0 1280 170" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 150 34, 220 72, 360 72 L 920 72 C 1060 72, 1130 34, 1280 34 L 1280 170 L 0 170 Z"/></svg>
-    <a class="dock-btn left" href="#/about"><span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 17.5c.9-2 2.5-3 4.5-3s3.6 1 4.5 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="lb">소개</span><span class="sub">SYSTEM INFO</span></a>
+  <div class="dock">
+    <span class="sys">CHANNEL MENU</span>
     <div class="dock-clock" aria-hidden="true"><b id="clock">--:--</b><span id="clockDate"></span></div>
-    <a class="dock-btn right" href="#/guest"><span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="badge" id="dockBadge" hidden></span></span><span class="lb">방명록</span><span class="sub">MESSAGE BOARD</span></a>
+    <span class="sys" id="chanCount"></span>
   </div>
 </section>
 
@@ -87,12 +86,13 @@
     </section>
 
     <section class="block" aria-labelledby="allLb">
-      <div class="sec-line"><span class="sys" id="allLb">ALL GAMES</span><span class="ko">전체 라이브러리</span><span class="rule"></span></div>
+      <div class="sec-line"><span class="sys" id="allLb">ALL GAMES</span><span class="ko">전체 라이브러리</span><span class="rule"></span><span class="ko" id="casesShown" aria-live="polite"></span></div>
       <div class="toolbar">
         <div class="chips" role="group" aria-label="거르기" id="libFilter"></div>
-        <div class="chips" role="group" aria-label="정렬" id="libSort"></div>
+        <div class="tb-right"><div class="chips" role="group" aria-label="정렬" id="libSort"></div><div class="search" role="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="libQ" placeholder="게임 이름으로 찾기" aria-label="라이브러리에서 게임 찾기" autocomplete="off" spellcheck="false"><button type="button" class="s-clear" aria-label="검색어 지우기" hidden><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button><kbd aria-hidden="true">/</kbd></div></div>
       </div>
       <div class="cases" id="cases"></div>
+      <p class="empty-note" id="casesEmpty" hidden></p>
       <button class="btn-ghost" type="button" id="casesMore" hidden></button>
     </section>
   </div>
@@ -102,7 +102,8 @@
 <section id="posts" class="screen" aria-labelledby="postsTitle">
   <div class="wrap posts-layout">
     <div class="page-hd row full">
-      <div class="ttl"><h1 id="postsTitle">전체 글</h1><span class="cnt" id="postsCount"></span></div>
+      <div class="ttl"><h1 id="postsTitle">전체 글</h1><span class="cnt" id="postsCount" aria-live="polite"></span></div>
+      <div class="search" role="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="postQ" placeholder="제목·본문·태그로 찾기" aria-label="전체 글에서 찾기" autocomplete="off" spellcheck="false"><button type="button" class="s-clear" aria-label="검색어 지우기" hidden><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button><kbd aria-hidden="true">/</kbd></div>
     </div>
     <aside class="posts-side">
       <div class="side-grp"><span class="sys">게임</span><div id="postsGames" class="side-list"></div></div>
@@ -164,88 +165,14 @@
       <button class="eject" id="ejectBtn" aria-label="카트리지 빼기 — 라이브러리로" title="카트리지 빼기">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 4.8 19.2 14H4.8L12 4.8Z" fill="currentColor"/><rect x="4.8" y="16.4" width="14.4" height="2.6" rx="1.3" fill="currentColor"/></svg>
       </button>
-      <h2 id="libName"></h2><span class="cnt" id="libN"></span>
+      <h2 id="libName"></h2><span class="cnt" id="libN"></span><span class="lib-cart" id="libCart"></span>
     </div>
     <div class="slots" id="slots"></div>
   </div>
 </section>
 
 <!-- ==================== 소개 ==================== -->
-<section id="about" class="screen">
-
-  <div class="page">
-    <div class="home-hd">
-      <h1>본체 정보</h1>
-      <p>이 블로그를 쓰는 사람에 대해서. 숫자는 아래 기록에서 자동으로 계산됩니다.</p>
-    </div>
-
-    <div class="panel pc">
-      <div class="pc-av"><img src="assets/img/avatar.jpg" alt="수의 프로필 이미지"></div>
-      <div class="pc-main">
-        <div class="pc-name">수</div>
-        <div class="pc-tagline mono">OWNER · @su · SINCE 2022</div>
-        <p class="pc-bio">끝까지 한 게임과 끝내지 못한 게임에 대해 씁니다. 클리어를 목표로 하지는 않고, 대신 왜 손을 놓았는지를 남기려고 해요. 주로 하는 건 액션 로그라이크와 JRPG, 가끔 관리 시뮬레이션. 리뷰는 점수보다 문장을 믿는 편이고, 공략은 제가 헤맸던 지점 위주로 적습니다. 오프라인 행사도 다니고 있어서 부스 후기나 굿즈 개봉기도 여기 올라옵니다.</p>
-      </div>
-      <div class="spec">
-        <div class="sprow"><span class="k">MODEL</span><span class="v" id="spModel">PLAYLOG-01</span></div>
-        <div class="sprow"><span class="k">REGION</span><span class="v">KR / NTSC-J</span></div>
-        <div class="sprow"><span class="k">SLOTS</span><span class="v" id="spSlots">—</span></div>
-        <div class="sprow"><span class="k">SAVES</span><span class="v" id="spSaves">—</span></div>
-        <div class="sprow"><span class="k">LAST BOOT</span><span class="v" id="spBoot">—</span></div>
-      </div>
-    </div>
-
-    <div class="stats" id="stats"></div>
-
-    <div class="two">
-      <div class="panel">
-        <div class="plabel"><span class="sys">RATING</span><span class="ko">별점을 이렇게 줍니다</span></div>
-        <div class="dist" id="dist"></div>
-      </div>
-      <div class="panel">
-        <div class="plabel"><span class="sys">TAGS</span><span class="ko">자주 쓰는 태그</span></div>
-        <div class="chips" id="tagChips"></div>
-      </div>
-    </div>
-
-    <div class="two">
-      <div class="panel">
-        <div class="plabel"><span class="sys">LIKES</span><span class="ko">좋아하는 것</span></div>
-        <ul class="ul">
-          <li>설명 대신 배치로 가르치는 초반 30분</li>
-          <li>실패가 설계에 포함되어 있는 시스템</li>
-          <li>소리를 더하지 않고 빼는 사운드 디자인</li>
-          <li>짧고 정확한 게임. 열 시간이면 충분한 이야기</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <div class="plabel"><span class="sys">DISLIKES</span><span class="ko">잘 안 맞는 것</span></div>
-        <ul class="ul no">
-          <li>선택지가 많아 보이지만 결과가 같은 분기</li>
-          <li>메뉴와 로딩이 게임보다 긴 구조</li>
-          <li>한 박자 늦게 반응하는 조작</li>
-          <li>다 설명하고 끝나는 결말</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="plabel"><span class="sys">HARDWARE</span><span class="ko">플레이 환경</span></div>
-      <div class="hw">
-        <div class="hwrow"><span class="hw-ic">PC</span><span class="hw-nm">데스크톱 · RTX 4070 / 32GB</span><span class="hw-mt">주력</span></div>
-        <div class="hwrow"><span class="hw-ic">NS</span><span class="hw-nm">Nintendo Switch 2</span><span class="hw-mt">휴대</span></div>
-        <div class="hwrow"><span class="hw-ic">PS</span><span class="hw-nm">PlayStation 5</span><span class="hw-mt">독점작용</span></div>
-        <div class="hwrow"><span class="hw-ic">CAP</span><span class="hw-nm">캡처보드 · 실황 녹화용</span><span class="hw-mt">가끔</span></div>
-      </div>
-    </div>
-
-    <div class="sec-head">
-      <span class="st"><span class="sys">RECENT</span><span class="sec-ko">최근에 꽂은 카트리지</span></span>
-      <span class="sec-rule"></span>
-    </div>
-    <div class="mini" id="mini"></div>
-  </div>
-</section>
+<section id="about" class="screen" aria-labelledby="abTitle"><div id="aboutRoot"></div></section>
 
 <!-- ==================== 방명록 ==================== -->
 <section id="guest" class="screen">
@@ -347,7 +274,7 @@
 <div id="reader" data-skin="base"><div class="rd-bar" id="rdBar"></div><div class="rd" id="rd"></div></div>
 
 <!-- ==================== 부팅 ==================== -->
-<div id="boot"><div class="boot-txt" id="bootTxt">READING</div><div class="boot-bar"><i></i></div></div>
+<div id="boot" aria-hidden="true"><div class="boot-cart" id="bootCart"></div><div class="boot-txt" id="bootTxt">READING</div><div class="boot-bar"><i></i></div></div>
 
 </body>
 </html>

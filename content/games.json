@@ -2,12 +2,19 @@
   {
     "id": "hades",
     "name": "Hades",
+    "aliases": [
+      "하데스"
+    ],
     "color": "#C4643E",
     "art": "assets/games/hades/art.jpg"
   },
   {
     "id": "metaphor",
     "name": "Metaphor: ReFantazio",
+    "aliases": [
+      "메타포",
+      "메타포 리판타지오"
+    ],
     "color": "#C13C4F",
     "skin": "metaphor",
     "art": "assets/games/metaphor/art.jpg"
@@ -15,6 +22,9 @@
   {
     "id": "playlog",
     "name": "PLAYLOG",
+    "aliases": [
+      "플레이로그"
+    ],
     "color": "#1D9E75",
     "skin": "playlog"
   },

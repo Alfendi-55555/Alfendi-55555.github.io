@@ -1,7 +1,6 @@
 ---
 title: 음악이 멈추는 순간들
 date: 2025-07-11
-progress: 0
 tags: []
 ---
 

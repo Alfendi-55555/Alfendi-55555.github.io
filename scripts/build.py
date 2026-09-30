@@ -149,7 +149,6 @@ def build():
                 't': meta.get('title', md.parent.name),
                 'd': str(meta.get('date', '')).replace('-', '.'),
                 'min': reading_min(blocks),
-                'pct': int(meta.get('progress', 0)),
                 'tags': meta.get('tags') or [],
                 'cover': resolve(cover, folder_url, md) if cover else None,
                 'blocks': blocks,
@@ -158,7 +157,8 @@ def build():
         posts = [p for p in posts if not p.pop('draft')]
         posts.sort(key=lambda p: p['d'], reverse=True)          # 최신 글이 위
         img = g.get('art')
-        games.append({'id': g['id'], 'name': g['name'], 'skin': g.get('skin', 'base'),
+        games.append({'id': g['id'], 'name': g['name'], 'aliases': g.get('aliases') or [],
+                      'skin': g.get('skin', 'base'),
                       'color': g['color'], 'img': img,
                       'art': f'url("{img}") center/cover' if img else g['color'],
                       'review': check_review(g), 'posts': posts})
@@ -173,6 +173,14 @@ def build():
             errors.append(f'content/music.json: {m.get("title")} 의 game "{m["game"]}" 이 games.json에 없습니다')
         music.append({'title': m.get('title', ''), 'game': m.get('game'), 'composer': m.get('composer', ''),
                       'youtube': m.get('youtube', ''), 'tags': m.get('tags') or [], 'note': m.get('note', '')})
+
+    profile = load_json('profile.json', {})
+    for k in ('name', 'tagline'):
+        if k not in profile:
+            errors.append(f'content/profile.json: {k} 가 없습니다')
+    fav = profile.get('favorite')
+    if fav and fav.get('game') and fav['game'] not in names:
+        errors.append(f'content/profile.json: favorite.game "{fav["game"]}" 이 games.json에 없습니다')
 
     guest = [{'n': x['name'], 'd': x['date'].replace('-', '.'), 'm': x['message'],
               **({'re': x['reply']} if x.get('reply') else {})}
@@ -196,9 +204,12 @@ def build():
             dst = OUT / f.relative_to(ROOT)
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(f, dst)
+    html = (OUT / 'index.html').read_text(encoding='utf-8')
+    tl = profile.get('tagline', '').replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
+    (OUT / 'index.html').write_text(html.replace('%TAGLINE%', tl), encoding='utf-8')
     (OUT / 'data').mkdir()
     (OUT / 'data' / 'site.json').write_text(
-        json.dumps({'games': games, 'music': music, 'guestbook': guest},
+        json.dumps({'games': games, 'music': music, 'guestbook': guest, 'profile': profile},
                    ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     (OUT / '.nojekyll').touch()
 

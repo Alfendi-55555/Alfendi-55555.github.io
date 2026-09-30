@@ -1,7 +1,6 @@
 ---
 title: 하데스 첫 탈출
 date: 2026-08-06
-progress: 72
 tags: [Hades, 로그라이크]
 cover: ./01.jpg
 ---

@@ -1,7 +1,6 @@
 ---
 title: 결말에 대해 한 마디만
 date: 2025-05-14
-progress: 0
 tags: []
 ---
 

@@ -1,45 +1,38 @@
-/* ============ SKIN: base — 기본 콘솔 ============ */
-[data-skin="base"]{background:var(--d-bg);color:var(--d-text);font-family:var(--font-ui)}
+/* ============ SKIN: base — 기본 스킨. 홈·라이브러리와 같은 밝은 재질 ============ */
+[data-skin="base"]{background:var(--ground);color:var(--text);font-family:var(--font-ui)}
 [data-skin="base"] .orn{display:none}
 [data-skin="base"] .lib-hd h2{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em}
-[data-skin="base"] .lib-hd .cnt{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;
-  color:var(--d-muted)}
-[data-skin="base"] .eject{border-radius:999px;background:var(--d-surface);color:var(--d-muted);
-  box-shadow:inset 0 0 0 1px var(--d-line)}
-[data-skin="base"] .eject:hover,[data-skin="base"] .eject:focus-visible{background:var(--d-raised);
-  color:var(--d-text);box-shadow:inset 0 0 0 1px #435463,var(--e2d);transform:translateY(-2px)}
-[data-skin="base"] .save{border-radius:12px;background:var(--d-surface);
-  box-shadow:inset 0 0 0 1px var(--d-line)}
-[data-skin="base"] .save:hover,[data-skin="base"] .save:focus-visible{transform:translateY(-2px);
-  background:var(--d-raised);box-shadow:inset 0 0 0 1px #435463,var(--e2d)}
-[data-skin="base"] .save .thumb{border-radius:7px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
-[data-skin="base"] .save .n{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;
-  color:var(--d-muted-2)}
-[data-skin="base"] .save .t{font-size:16px;font-weight:600;letter-spacing:-.01em;color:var(--d-text)}
-[data-skin="base"] .save .m{font-size:12.5px;color:var(--d-muted)}
-[data-skin="base"] .save .pct{font-family:var(--font-display);font-size:15px;font-weight:700;
-  color:var(--d-muted)}
-[data-skin="base"] .save .track{height:3px;border-radius:999px;background:var(--d-line)}
-[data-skin="base"] .save .track i{border-radius:999px}
-[data-skin="base"] .save:hover .pct{color:var(--d-text)}
-[data-skin="base"] .rd-bar{background:var(--sky)}
-[data-skin="base"] .rd-back{border-radius:9px;background:var(--d-surface);color:var(--d-muted);
-  font-size:13px;font-weight:500;box-shadow:inset 0 0 0 1px var(--d-line)}
-[data-skin="base"] .rd-back:hover{color:var(--d-text)}
-[data-skin="base"] .hero{border-radius:14px;background:var(--d-surface)}
-[data-skin="base"] .hero .frame{border-radius:14px;box-shadow:inset 0 0 0 1px var(--d-line)}
-[data-skin="base"] .hero .cov{opacity:.60;filter:saturate(.72) contrast(1.04)}
-[data-skin="base"] .hero .glow{background:linear-gradient(90deg,var(--d-surface) 6%,
-  rgba(26,37,47,.62) 44%,transparent 80%)}
-[data-skin="base"] .rd h1{font-size:27px;font-weight:700;letter-spacing:-.015em;line-height:1.35;
-  color:var(--d-text)}
-[data-skin="base"] .rd .rmeta{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
-  color:var(--d-muted)}
-[data-skin="base"] .rd p{font-size:15px;line-height:1.85;color:#D9E1E9}
-[data-skin="base"] .rd figure img{border-radius:10px}
-[data-skin="base"] .rd figcaption{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;
-  color:var(--d-muted-2)}
-[data-skin="base"] .rd .end{box-shadow:inset 0 1px 0 var(--d-line);font-family:var(--font-mono);
-  font-size:10.5px;letter-spacing:.2em;color:var(--d-muted-2)}
-[data-skin="base"] .rd .end b{font-family:var(--font-display);font-size:15px;color:var(--sky);
-  letter-spacing:0}
+[data-skin="base"] .lib-hd .cnt{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;color:var(--mut)}
+[data-skin="base"] .eject{border-radius:999px;background:var(--surface);color:var(--mut);
+  box-shadow:inset 0 0 0 1px var(--line),0 1px 2px rgba(13,22,29,.10)}
+[data-skin="base"] .eject:hover,[data-skin="base"] .eject:focus-visible{color:var(--text);transform:translateY(-2px);
+  box-shadow:0 0 0 3px var(--sky),0 10px 18px -10px rgba(13,22,29,.4)}
+[data-skin="base"] .save{border-radius:18px;background:var(--surface);
+  box-shadow:inset 0 0 0 1px var(--line),0 1px 2px rgba(13,22,29,.08),0 10px 20px -14px rgba(13,22,29,.3)}
+[data-skin="base"] .save .bar{width:4px}
+[data-skin="base"] .save:hover,[data-skin="base"] .save:focus-visible{transform:translateY(-3px);
+  box-shadow:0 0 0 3px var(--sky),0 16px 28px -14px rgba(13,22,29,.45)}
+[data-skin="base"] .save .thumb{border-radius:10px}
+[data-skin="base"] .save .n{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--mut)}
+[data-skin="base"] .save .t{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+[data-skin="base"] .save .m{font-size:12.5px;color:var(--mut)}
+
+[data-skin="base"] .rd-bar{background:var(--sky);height:3px}
+[data-skin="base"] .rd-back{border-radius:20px;background:var(--surface);color:var(--mut);height:40px;box-sizing:border-box;
+  padding:0 16px 0 12px;font-size:14px;font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
+[data-skin="base"] .rd-back:hover{color:var(--text)}
+[data-skin="base"] .hero{border-radius:24px;background:var(--surface);
+  box-shadow:inset 0 0 0 7px var(--surface),inset 0 0 0 8px var(--line),0 1px 2px rgba(13,22,29,.10),0 12px 24px -14px rgba(13,22,29,.3)}
+[data-skin="base"] .hero .cov{top:8px;right:8px;bottom:8px;height:calc(100% - 16px);border-radius:0 16px 16px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.35) 26%,#000 70%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.35) 26%,#000 70%)}
+[data-skin="base"] .rd h1{font-family:var(--font-display);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.25;color:var(--text)}
+[data-skin="base"] .rd .rmeta{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.06em;color:var(--mut)}
+[data-skin="base"] .rd p{font-size:16px;line-height:1.85;color:#26323D}
+[data-skin="base"] .rd figure img{border-radius:14px;box-shadow:0 1px 2px rgba(13,22,29,.10),0 14px 26px -16px rgba(13,22,29,.4)}
+[data-skin="base"] .rd figcaption{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;color:var(--mut)}
+[data-skin="base"] .rd .end{box-shadow:inset 0 1px 0 var(--line);font-family:var(--font-mono);
+  font-size:12.5px;letter-spacing:.14em;color:var(--mut)}
+[data-skin="base"] .rd .end b{font-family:var(--font-display);font-size:15px;color:var(--text);letter-spacing:0}
+[data-skin="base"] .rd .end b i{font-style:normal;color:var(--sky-deep)}
+#reader[data-skin="base"]{background:var(--ground)}

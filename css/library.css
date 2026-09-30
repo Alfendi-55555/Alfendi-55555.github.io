@@ -22,9 +22,6 @@
 .save .mid{flex-grow:1;min-width:0;position:relative;z-index:2}
 .save .n{margin-bottom:5px}
 .save .t{margin-bottom:7px;line-height:1.3}
-.save .prog{width:64px;flex-shrink:0;text-align:right;position:relative;z-index:2}
-.save .track{margin-top:7px;overflow:hidden}
-.save .track i{display:block;height:100%}
 .save:focus-visible{outline:none}
 .slots.boot .save{opacity:0;animation:up 240ms var(--ease-sheet) forwards}
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -58,3 +55,15 @@
   justify-content:space-between}
 /* 기록이 없는 게임 */
 .save-empty{margin:0;padding:40px 20px;text-align:center;font-size:14px;opacity:.7;border:1.5px dashed currentColor;border-radius:14px}
+.lib-cart{margin-left:auto;display:flex}
+.lib-cart:empty{display:none}
+.rd-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.rd-nav button{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:14px;text-align:left;
+  background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);color:var(--text);cursor:pointer}
+.rd-nav button.next{text-align:right;align-items:flex-end}
+.rd-nav button:disabled{visibility:hidden}
+.rd-nav button span{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--mut)}
+.rd-nav button b{font-size:14.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.rd-nav button:hover{box-shadow:0 0 0 3px var(--sky)}
+[data-skin="playlog"] .rd-nav button,[data-skin="metaphor"] .rd-nav button{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+[data-skin="playlog"] .rd-nav button span,[data-skin="metaphor"] .rd-nav button span{color:inherit;opacity:.7}

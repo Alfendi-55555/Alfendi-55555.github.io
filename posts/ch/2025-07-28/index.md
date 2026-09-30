@@ -1,7 +1,6 @@
 ---
 title: 숫자가 이야기를 만들 때
 date: 2025-07-28
-progress: 0
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: 느린 게임을 견디는 법
 date: 2025-10-22
-progress: 34
 tags: []
 ---
 

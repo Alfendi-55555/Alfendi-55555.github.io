@@ -37,8 +37,16 @@ function resetCart() {
 }
 addEventListener('resize', () => { if (currentScreen() === 'insert' && !dragging && !busy) resetCart(); });
 
-/* ---------- 끌기 ---------- */
-const SNAP = 70;
+/* ---------- 끌기 ----------
+   판정은 넉넉하게 : 카트리지 가운데가 슬롯 가로 폭(양옆 여유 포함) 안에 있고,
+   카트리지 아래 끝이 슬롯 위 110px 안쪽이거나 그보다 깊이 들어가 있으면 꽂힌다. */
+const SNAP = 70, REACH_UP = 110, SIDE_SLACK = 50;
+function inZone(x, y) {
+  const a = A(), c = size();
+  const cx = x + c.w / 2, bottom = y + c.h;
+  const half = slot.getBoundingClientRect().width / 2 + SIDE_SLACK;
+  return Math.abs(cx - a.width / 2) < half && bottom >= a.height - REACH_UP;
+}
 let dragging = false, busy = false, gx = 0, gy = 0, moved = 0;
 drag.addEventListener('pointerdown', e => {
   if (busy) return;
@@ -55,12 +63,12 @@ drag.addEventListener('pointermove', e => {
   const x = e.clientX - a.left - gx, y = e.clientY - a.top - gy;
   moved += Math.abs(e.movementX || 0) + Math.abs(e.movementY || 0);
   place({ x, y });
-  const t = preSeat(), d = Math.hypot(x - t.x, y - t.y), near = d < SNAP;
+  const t = preSeat(), d = Math.hypot(x - t.x, y - t.y), near = inZone(x, y);
   slot.classList.toggle('hot', near);
   /* 가로 변위를 rotateY ±18도까지만. 슬롯 근처에선 0도로 수렴 */
   const c = size(), mid = a.width / 2;
   let ry = Math.max(-18, Math.min(18, (x + c.w / 2 - mid) / mid * 18));
-  if (near) ry *= Math.max(0, (d - 14) / (SNAP - 14));
+  if (near) ry *= Math.max(0, Math.min(1, (d - 14) / (SNAP - 14)));
   drag.style.transform = `perspective(950px) rotateY(${ry.toFixed(1)}deg) rotateX(3deg)`;
 });
 function endDrag() {
@@ -68,7 +76,7 @@ function endDrag() {
   dragging = false;
   const a = A(), r = drag.getBoundingClientRect(), t = preSeat();
   const x = r.left - a.left, y = r.top - a.top;
-  if (moved < 6 || Math.hypot(x - t.x, y - t.y) < SNAP) { insertNow(); return; }
+  if (moved < 6 || inZone(x, y)) { insertNow(); return; }
   drag.className = 'drag returning'; drag.style.transform = '';
   place(restPos()); slot.classList.remove('hot');
   setTimeout(() => { drag.className = 'drag'; }, reduced ? 0 : 270);
@@ -102,8 +110,9 @@ function boot() {
     else location.hash = to;
   };
   $('#bootTxt').textContent = 'READING  ' + g.name.toUpperCase();
+  $('#bootCart').innerHTML = cart(g, 96);
   if (reduced) { go(); return; }
   b.classList.add('on');
   requestAnimationFrame(() => b.classList.add('run'));
-  setTimeout(() => { go(); b.classList.remove('on', 'run'); }, 560);
+  setTimeout(() => { go(); b.classList.remove('on', 'run'); }, 820);
 }

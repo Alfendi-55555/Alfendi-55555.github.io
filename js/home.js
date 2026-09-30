@@ -1,11 +1,18 @@
-/* 홈 : 채널 메뉴 */
-import { $, $$, h, esc, stars, cart, artStyle, imgStyle, md } from './util.js';
-import { POSTS, RECENT, REVIEWED, MUSIC, GUEST, BY_ID, pickOfDay } from './store.js';
+/* 홈 : 채널 메뉴 — 소개가 첫 채널, 방명록이 마지막 채널 */
+import { $, h, esc, stars, cart, artStyle, imgStyle, md } from './util.js';
+import { POSTS, RECENT, REVIEWED, MUSIC, GUEST, BY_ID, PROFILE, pickOfDay } from './store.js';
 import { openCase } from './library.js';
 import { openReader } from './game.js';
 
 const host = $('#channels');
 const chans = [];
+const P = PROFILE;
+
+/* ABOUT */
+chans.push(h(`<a href="#/about" class="chan about ch"><span class="scr">
+  <span class="row-sb"><span class="lbl">ABOUT</span>${P.since ? `<span class="meta-line">SINCE ${esc(P.since)}</span>` : ''}</span>
+  <span class="who">${P.avatar ? `<img src="${esc(P.avatar)}" alt="">` : ''}<span><b>${esc(P.name || '')}</b><span>OWNER${P.handle ? ' · ' + esc(P.handle) : ''}</span></span></span>
+  <span class="bio">${esc(P.bio || P.tagline || '')}</span></span></a>`));
 
 /* LATEST : 가장 최근 글 */
 const latest = POSTS[0];
@@ -37,7 +44,7 @@ chans.push(h(`<div class="chan news soon"><span class="scr">
 
 /* LIBRARY */
 chans.push(h(`<a href="#/library" class="chan lib ch"><span class="scr">
-  <span class="row-sb"><span class="lbl">LIBRARY</span><span class="meta-line lib-n">${RECENT.length} CARTRIDGES</span></span>
+  <span class="row-sb"><span class="lbl">LIBRARY</span><span class="meta-line">${RECENT.length} CARTRIDGES</span></span>
   <span class="carts">${RECENT.slice(0, 3).map(g => cart(g, 60)).join('')}</span></span></a>`));
 
 /* NOW PLAYING : 가장 최근에 기록한 게임 */
@@ -47,8 +54,8 @@ if (playing) {
   const b = h(`<button type="button" class="chan playing ch"><span class="scr">
     <span class="lbl">NOW PLAYING</span>
     <span class="body"><span class="th" style="${artStyle(playing)}"></span><span class="t-col">
-      <b>${esc(playing.name)}</b><span>글 ${playing.posts.length}편 · 마지막 기록 ${md(p.d)}</span></span></span>
-    <span class="pbar"><span class="tr"><i style="width:${p.pct}%;background:${playing.color}"></i></span><b>${p.pct}%</b></span>
+      <b>${esc(playing.name)}</b><span>기록 ${playing.posts.length}편</span></span></span>
+    <span class="last"><span>LAST SAVE · ${md(p.d)}</span><b>${esc(p.t)}</b></span>
   </span></button>`);
   b.addEventListener('click', () => openCase(playing, b));
   chans.push(b);
@@ -65,18 +72,25 @@ if (rv) {
   chans.push(b);
 }
 
-chans.forEach(c => host.appendChild(c));
-/* 빈 슬롯 : 채널이 더 들어올 자리 */
-for (let i = chans.length; i < 8; i++) host.appendChild(h('<div class="chan empty" aria-hidden="true"></div>'));
+/* MESSAGE BOARD : 가장 최근 방명록 */
+const guestChan = h('<a href="#/guest" class="chan guest ch"><span class="scr"></span></a>');
+chans.push(guestChan);
+export function syncGuestBadges() {
+  const m = GUEST[0];
+  guestChan.querySelector('.scr').innerHTML = `
+    <span class="row-sb"><span class="lbl">MESSAGE BOARD</span>${GUEST.length ? `<span class="cnt-b" aria-label="방명록 ${GUEST.length}개">${GUEST.length}</span>` : ''}</span>
+    <span class="msg">${m ? `<b>${esc(m.n)}<span>${esc(m.d.slice(5))}</span></b><p>${esc(m.m)}</p>` : '<p>아직 남겨진 글이 없어요. 첫 번째로 남겨 주세요.</p>'}</span>
+    <span class="go">방명록 남기기 →</span>`;
+}
+syncGuestBadges();
 
-/* 독 : 시계 · 방명록 수 */
+chans.forEach(c => host.appendChild(c));
+$('#chanCount').textContent = chans.length + ' CHANNELS';
+
+/* 독의 시계 */
 function tick() {
   const d = new Date(), pad = n => String(n).padStart(2, '0');
   $('#clock').textContent = pad(d.getHours()) + ':' + pad(d.getMinutes());
   $('#clockDate').textContent = `${d.getMonth() + 1}/${d.getDate()} (${'일월화수목금토'[d.getDay()]})`;
 }
 tick(); setInterval(tick, 10000);
-export function syncGuestBadges() {
-  $$('#guestBadge,#dockBadge').forEach(b => { b.textContent = GUEST.length; b.hidden = !GUEST.length; });
-}
-syncGuestBadges();

@@ -1,7 +1,6 @@
 ---
 title: 날씨가 시스템일 때
 date: 2025-06-30
-progress: 100
 tags: []
 ---
 

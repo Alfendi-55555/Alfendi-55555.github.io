@@ -1,7 +1,6 @@
 ---
 title: Metaphor test
 date: 2026-09-01
-progress: 35
 tags: []
 cover: ./cover.jpg
 ---

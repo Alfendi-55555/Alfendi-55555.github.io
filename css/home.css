@@ -10,8 +10,8 @@
   padding:16px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface)}
 .chan.empty{background:transparent;border:1.5px dashed #D3DCE5;box-shadow:none;cursor:default}
 .chan.soon{cursor:default}
-.lbl{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.08em;color:var(--mut)}
-.meta-line{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;color:var(--mut)}
+.lbl{font-family:var(--font-mono);font-size:14px;font-weight:500;letter-spacing:.07em;color:var(--mut)}
+.meta-line{font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;color:var(--mut)}
 .row-sb{display:flex;justify-content:space-between;align-items:center;gap:10px}
 
 /* LATEST */
@@ -51,10 +51,6 @@
 .chan.playing .th{width:64px;height:64px;border-radius:12px;flex-shrink:0;background-size:cover;background-position:center}
 .chan.playing .t-col b{font-size:16px}
 .chan.playing .t-col span{font-size:12.5px}
-.pbar{display:flex;align-items:center;gap:10px}
-.pbar .tr{flex-grow:1;height:6px;border-radius:3px;background:#E6EFF7;overflow:hidden}
-.pbar .tr i{display:block;height:100%}
-.pbar b{font-family:var(--font-display);font-weight:700;font-size:13px}
 
 /* ONE-LINE REVIEW */
 .chan.review q{font-size:15px;line-height:1.55;font-weight:500;quotes:none;display:-webkit-box;
@@ -62,46 +58,49 @@
 .chan.review .nm{font-size:13px;font-weight:600}
 .stars{display:inline-flex;gap:2px;vertical-align:middle}
 
-/* ============ 독 : 소개 · 시계 · 방명록 ============ */
-.dock{position:relative;height:170px;margin-top:auto;flex-shrink:0}
-.dock-curve{position:absolute;inset:0;width:100%;height:100%}
-.dock-curve path{fill:#E1E8EF;stroke:var(--shell-line);stroke-width:1.5;vector-effect:non-scaling-stroke}
-.dock-btn{position:absolute;top:-6px;display:flex;flex-direction:column;align-items:center;gap:1px;
-  text-decoration:none;color:var(--text)}
-.dock-btn.left{left:6%} .dock-btn.right{right:6%}
-.dock-btn .ring{position:relative;width:88px;height:88px;border-radius:50%;background:var(--surface);
-  border:3px solid var(--sky);box-sizing:border-box;display:flex;align-items:center;justify-content:center;
-  color:var(--ink-soft);margin-bottom:8px;
-  box-shadow:0 2px 4px rgba(13,22,29,.12),0 12px 22px -12px rgba(13,22,29,.4);
-  transition:transform var(--t-focus) var(--ease-focus),box-shadow var(--t-focus) var(--ease-focus)}
-.dock-btn .ring svg{width:30px;height:30px}
-.dock-btn:hover{color:var(--text)}
-.dock-btn:hover .ring,.dock-btn:focus-visible .ring{transform:translateY(-3px);box-shadow:0 0 0 3px rgba(48,176,244,.3),0 16px 26px -12px rgba(13,22,29,.45)}
-.dock-btn:focus-visible{outline:none}
-.dock-btn .badge{top:2px;right:2px;min-width:22px;height:22px;border-radius:11px;font-size:12px}
-.dock-btn .lb{font-size:14px;font-weight:600}
-.dock-btn .sub{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--mut)}
-.dock-clock{position:absolute;left:0;right:0;top:92px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.dock-clock b{font-family:var(--font-display);font-weight:500;font-size:44px;letter-spacing:.02em;color:var(--ink-soft);line-height:1}
+/* ============ 독 : 직선 띠, 가운데 시계 ============ */
+.dock{margin-top:auto;flex-shrink:0;height:108px;box-sizing:border-box;padding:0 64px;display:flex;align-items:center;
+  justify-content:space-between;background:#E1E8EF;border-top:1.5px solid var(--shell-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.dock .sys{color:var(--mut);min-width:140px}
+.dock .sys:last-child{text-align:right}
+.dock-clock{display:flex;flex-direction:column;align-items:center;gap:4px}
+.dock-clock b{font-family:var(--font-display);font-weight:500;font-size:40px;letter-spacing:.02em;color:var(--ink-soft);line-height:1}
 .dock-clock span{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--mut)}
+
+/* ABOUT */
+.chan.about .who{display:flex;align-items:center;gap:12px}
+.chan.about img{width:52px;height:52px;border-radius:16px;object-fit:cover;box-shadow:inset 0 0 0 1px rgba(13,22,29,.12)}
+.chan.about .who b{display:block;font-family:var(--font-display);font-weight:700;font-size:20px}
+.chan.about .who span{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;color:var(--mut)}
+.chan.about .bio{font-size:13px;line-height:1.55;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* MESSAGE BOARD */
+.chan.guest .cnt-b{min-width:22px;height:22px;padding:0 7px;box-sizing:border-box;border-radius:11px;background:#C4621C;color:#fff;
+  font-family:var(--font-mono);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.chan.guest .msg b{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.chan.guest .msg b span{font-family:var(--font-mono);font-weight:400;font-size:12px;color:var(--mut);margin-left:4px}
+.chan.guest .msg p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chan.guest .go{font-size:13px;font-weight:600;color:#15699C}
+/* NOW PLAYING : 마지막 기록 제목 */
+.chan.playing .last{display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px solid #E6EFF7}
+.chan.playing .last span{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;color:var(--mut)}
+.chan.playing .last b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 @media (max-width:1100px){ .channels{grid-template-columns:repeat(3,minmax(0,1fr))} .chan.empty{display:none} }
 @media (max-width:720px){
   .channels{grid-template-columns:minmax(0,1fr);gap:16px}
   .chan{height:auto;padding:5px;border-radius:22px}
-  .chan .scr{padding:14px 16px}
-  .chan.latest{order:1} .chan.latest .scr{height:210px}
-  .chan.music{order:2} .chan.music .scr{height:112px;flex-direction:row;align-items:center;gap:14px}
+  .chan .scr{padding:14px 16px;gap:12px}
+  .chan.latest .scr{height:210px}
+  .chan.music .scr{height:112px;flex-direction:row;align-items:center;gap:14px}
   .chan.music .scr>.row-sb{display:none}
   .chan.music .body{flex-grow:1}
   .chan.music .disc{width:70px;height:70px}
-  .chan.playing{order:3} .chan.playing .scr{height:124px}
   .chan.playing .th{width:44px;height:44px;border-radius:10px}
-  .chan.news{order:4} .chan.news .scr{height:128px}
-  .chan.review{order:5} .chan.review .scr{height:124px}
-  .chan.lib{order:6} .chan.lib .scr{height:108px;flex-direction:row;align-items:center}
+  .chan.lib .scr{height:108px;flex-direction:row;align-items:center}
   .chan.lib .carts{gap:8px}
   .chan.lib .row-sb{flex-direction:column;align-items:flex-start;gap:4px}
+  .chan.news .scr{min-height:120px}
+  .lbl{font-size:13px}
   .dock{display:none}
 }
 .chan.music .music-lbl{display:none}

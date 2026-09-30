@@ -2,14 +2,15 @@
    설정의 '첫 화면 인트로'가 '처음만'이면 이 브라우저에서 처음 한 번만. 주소 끝에 ?intro 를 붙이면 언제든 다시 볼 수 있다. */
 import { $, reduced } from './util.js';
 import { settings } from './settings.js';
+import { PROFILE } from './store.js';
 
-const FULL = '끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.';
+const FULL = PROFILE.tagline || '';
 const land = $('#landing'), typed = $('#ldTyped'), rest = $('#ldRest'), caret = $('#ldCaret'), mark = $('#ldMark');
 let t = 0, done = false;
 
 export function maybeShowLanding() {
   const forced = new URLSearchParams(location.search).has('intro');
-  if (!forced && (settings.intro === 'off' || settings.seen)) return;
+  if (!FULL || (!forced && (settings.intro === 'off' || settings.seen))) return;
   land.classList.add('on');
   if (reduced) {
     typed.textContent = FULL; caret.classList.add('off'); mark.classList.add('on');

@@ -1,0 +1,30 @@
+{
+  "name": "수",
+  "handle": "@su",
+  "since": 2022,
+  "model": "PLAYLOG-01",
+  "region": "KR / NTSC-J",
+  "avatar": "assets/img/avatar.jpg",
+  "tagline": "끝까지 한 게임과, 끝내지 못한 게임에 대해 씁니다.",
+  "headline": "끝까지 한 게임과,\n*끝내지 못한 게임*에\n대해 씁니다.",
+  "bio": "클리어를 목표로 하지는 않고, 대신 왜 손을 놓았는지를 남기려고 해요. 주로 하는 건 액션 로그라이크와 JRPG, 가끔 관리 시뮬레이션. 리뷰는 점수보다 문장을 믿는 편이고, 공략은 제가 헤맸던 지점 위주로 적습니다.",
+  "favorite": null,
+  "likes": [
+    "설명 대신 배치로 가르치는 초반 30분",
+    "실패가 설계에 포함되어 있는 시스템",
+    "소리를 더하지 않고 빼는 사운드 디자인",
+    "짧고 정확한 게임. 열 시간이면 충분한 이야기"
+  ],
+  "dislikes": [
+    "선택지가 많아 보이지만 결과가 같은 분기",
+    "메뉴와 로딩이 게임보다 긴 구조",
+    "한 박자 늦게 반응하는 조작",
+    "다 설명하고 끝나는 결말"
+  ],
+  "hardware": [
+    { "badge": "PC", "name": "데스크톱", "detail": "RTX 4070 / 32GB", "note": "주력" },
+    { "badge": "NS", "name": "Nintendo Switch 2", "detail": "휴대용으로", "note": "휴대" },
+    { "badge": "PS", "name": "PlayStation 5", "detail": "독점작을 위해", "note": "독점작용" },
+    { "badge": "CAP", "name": "캡처보드", "detail": "실황 녹화용", "note": "가끔" }
+  ]
+}

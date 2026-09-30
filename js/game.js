@@ -1,5 +1,5 @@
 /* 게임별 기록 화면 (카트리지를 꽂은 뒤) · 글 읽기 — 게임 스킨이 화면을 가져간다 */
-import { $, el, reduced } from './util.js';
+import { $, el, reduced, cart, esc } from './util.js';
 import { BY_ID } from './store.js';
 import { showScreen } from './shell.js';
 
@@ -16,6 +16,7 @@ export function renderGame(id) {
   $('#reader').dataset.skin = skin;
   $('#libName').textContent = g.name;
   $('#libN').textContent = g.posts.length + ' SAVES';
+  $('#libCart').innerHTML = skin === 'base' ? cart(g, 40) : '';
   slots.innerHTML = ''; slots.classList.remove('boot');
   if (!g.posts.length) {
     const p = el('p', 'save-empty'); p.textContent = '아직 이 게임의 기록이 없어요.';
@@ -31,31 +32,27 @@ export function renderGame(id) {
     const n = el('div', 'n'); n.textContent = 'SAVE ' + String(g.posts.length - i).padStart(2, '0');
     const t = el('div', 't'); t.textContent = p.t;
     const m = el('div', 'm');
-    m.textContent = p.d + ' · 읽는 데 ' + p.min + '분'
-      + (p.tags && p.tags.length ? '  ·  ' + p.tags.map(x => '#' + x).join(' ') : '');
+    /* 읽는 시간은 3분 이상일 때만 — 짧은 글마다 같은 말이 반복되지 않게 */
+    m.textContent = [p.d, p.min >= 3 ? '읽는 데 ' + p.min + '분' : '', p.tags && p.tags.length ? p.tags.map(x => '#' + x).join(' ') : '']
+      .filter(Boolean).join('  ·  ');
     mid.append(n, t, m);
-    const pr = el('div', 'prog');
-    const pc = el('div', 'pct'); pc.textContent = p.pct + '%';
-    const tr = el('div', 'track'); const fi = el('i');
-    fi.style.width = p.pct + '%'; fi.style.background = g.color; tr.appendChild(fi);
-    pr.append(pc, tr);
-    b.append(bar, th, mid, pr);
+    b.append(bar, th, mid);
     b.style.animationDelay = (i * 40) + 'ms';
-    b.onclick = () => openReader(p, { fill: fi, pctEl: pc });
+    b.onclick = () => openReader(p);
     slots.appendChild(b);
   });
   showScreen('game', { ctx: g.name.toUpperCase(), skin });
   if (!reduced) requestAnimationFrame(() => slots.classList.add('boot'));
 }
 
-/* ---------- 글 읽기 : 진행률은 실제로 읽은 만큼 ---------- */
+/* ---------- 글 읽기 : 위쪽 막대는 지금 이 글을 얼마나 읽었는지만 보여준다 ---------- */
 const reader = $('#reader'), rd = $('#rd'), rdBar = $('#rdBar');
 let cur = null;
 export const readerOpen = () => reader.classList.contains('on');
 
-export function openReader(p, ui = {}) {
+export function openReader(p) {
   const g = p.game;
-  cur = { p, ...ui, opener: document.activeElement };
+  cur = { p, opener: cur ? cur.opener : document.activeElement };
   reader.dataset.skin = g.skin || 'base';
   rd.innerHTML = '';
   const back = el('button', 'rd-back');
@@ -69,7 +66,7 @@ export function openReader(p, ui = {}) {
   const comp = el('div', 'compass'); comp.innerHTML = '<i></i><span>N</span>'; hero.appendChild(comp);
   const hin = el('div', 'hin');
   const h = el('h1'); h.textContent = p.t;
-  const m = el('div', 'rmeta'); m.textContent = g.name + ' · ' + p.d + ' · 읽는 데 ' + p.min + '분';
+  const m = el('div', 'rmeta'); m.textContent = [g.name, p.d, p.min >= 3 ? '읽는 데 ' + p.min + '분' : ''].filter(Boolean).join(' · ');
   hin.append(h, m); hero.appendChild(hin); rd.appendChild(hero);
   (p.blocks || []).forEach(b => {
     if (b.type === 'text') { const q = el('p'); q.textContent = b.text; rd.appendChild(q); }
@@ -84,7 +81,18 @@ export function openReader(p, ui = {}) {
   const es = el('span'); es.textContent = 'END OF LOG';
   const eb = el('b'); eb.innerHTML = 'PLAY<i>LOG</i>';
   endl.append(es, eb); rd.appendChild(endl);
-  const pad = el('div'); pad.style.height = '40vh'; rd.appendChild(pad);
+  /* 같은 게임의 이전 · 다음 기록 */
+  const i = g.posts.indexOf(p), older = g.posts[i + 1], newer = g.posts[i - 1];
+  const nav = el('div', 'rd-nav');
+  const mk = (q, cls, lab) => {
+    const b = el('button', cls); b.type = 'button';
+    if (q) { b.innerHTML = `<span>${lab}</span><b>${esc(q.t)}</b>`; b.onclick = () => openReader(q); }
+    else b.disabled = true;
+    return b;
+  };
+  nav.append(mk(older, 'prev', '← 이전 기록'), mk(newer, 'next', '다음 기록 →'));
+  if (older || newer) rd.appendChild(nav);
+  const pad = el('div'); pad.style.height = '20vh'; rd.appendChild(pad);
   reader.setAttribute('role', 'dialog'); reader.setAttribute('aria-modal', 'true'); reader.setAttribute('aria-label', p.t);
   reader.classList.add('on'); reader.scrollTop = 0;
   document.body.style.overflow = 'hidden';
@@ -103,9 +111,5 @@ function updateProgress() {
   const max = reader.scrollHeight - reader.clientHeight;
   const pct = max <= 0 ? 100 : Math.min(100, Math.round(reader.scrollTop / max * 100));
   rdBar.style.width = pct + '%';
-  if (pct > cur.p.pct) {
-    cur.p.pct = pct;
-    if (cur.fill) { cur.fill.style.width = pct + '%'; cur.pctEl.textContent = pct + '%'; }
-  }
 }
 reader.addEventListener('scroll', updateProgress, { passive: true });

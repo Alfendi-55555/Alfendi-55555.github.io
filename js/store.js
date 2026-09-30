@@ -20,6 +20,7 @@ export const BY_ID = new Map(GAMES.map(g => [g.id, g]));
 export const POSTS = GAMES.flatMap(g => g.posts).sort((a, b) => b.d.localeCompare(a.d));
 export const MUSIC = site.music || [];
 export const GUEST = site.guestbook || [];
+export const PROFILE = site.profile || {};
 
 export const lastDate = g => (g.posts[0] ? g.posts[0].d : '');
 /* 최근 꺼낸 게임 = 기록이 있는 게임을 마지막 기록 날짜순으로 */

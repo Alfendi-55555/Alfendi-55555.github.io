@@ -23,6 +23,7 @@ export function showScreen(id, { ctx = '', skin = '' } = {}) {
 /* 모바일 메뉴 */
 const nav = $('#hdrNav'), menuBtn = $('#menuBtn');
 function closeMenu() { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.setAttribute('aria-label', '메뉴 열기'); }
+$('#settingsBtn').addEventListener('click', () => closeMenu());
 menuBtn.addEventListener('click', () => {
   const open = !nav.classList.contains('open');
   nav.classList.toggle('open', open);
