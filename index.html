@@ -122,7 +122,10 @@
       <div class="page-hd row slim">
         <div class="ttl"><h2 id="trackLb">추천곡 전체</h2><span class="cnt" id="trackCount"></span></div>
       </div>
-      <div class="chips" role="group" aria-label="태그로 거르기" id="musicTags"></div>
+      <div class="toolbar">
+        <div class="chips" role="group" aria-label="태그로 거르기" id="musicTags"></div>
+        <div class="search" role="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="musicQ" placeholder="곡·게임·작곡가로 찾기" aria-label="추천곡에서 찾기" autocomplete="off" spellcheck="false"><button type="button" class="s-clear" aria-label="검색어 지우기" hidden><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button><kbd aria-hidden="true">/</kbd></div>
+      </div>
       <div class="tunes" id="tracks"></div>
     </section>
   </div>

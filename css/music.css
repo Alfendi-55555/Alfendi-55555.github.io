@@ -1,7 +1,7 @@
 /* ============ 음악 ============ */
-.today{height:430px;box-sizing:border-box;padding:10px;border-radius:32px;background:var(--surface);border:1px solid var(--line);
+.today{min-height:430px;display:flex;box-sizing:border-box;padding:10px;border-radius:32px;background:var(--surface);border:1px solid var(--line);
   box-shadow:0 3px 6px rgba(13,22,29,.10),0 22px 34px -18px rgba(13,22,29,.40)}
-.today .in{height:100%;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#0D161D}
+.today .in{flex:1;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#0D161D}
 .today .art{position:relative;background-size:cover;background-position:center}
 .today .art::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,22,29,0) 55%,#0D161D 100%)}
 .today .info{padding:44px 56px 44px 24px;display:flex;flex-direction:column;justify-content:center;gap:16px;color:#EDF2F7}
@@ -16,10 +16,35 @@
 .yt:hover{color:var(--text);background:#fff}
 .yt .playdot{width:34px;height:34px}
 .yt-none{font-size:13px;color:#8F9BA5}
+.listen{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.yt-sub{display:flex;align-items:center;height:44px;padding:0 18px;box-sizing:border-box;border-radius:22px;
+  border:1px solid #3A4753;color:#EDF2F7;text-decoration:none;font-size:14px;font-weight:600}
+.yt-sub:hover{color:#fff;border-color:#8F9BA5}
+.today .art-name{position:absolute;left:28px;bottom:28px;z-index:1;font-family:var(--font-display);font-size:26px;font-weight:700;color:#C0CAD4}
+.by-game{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#5A6774}
+.by-game:hover{color:#fff}
+.by-game:focus-visible,.sim:focus-visible{outline:2px solid #EDF2F7;outline-offset:2px;border-radius:4px}
+.today .similar{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:#C0CAD4}
+.today .similar .sys{margin-right:4px}
+.sim{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#5A6774}
+.sim:hover{color:#fff}
+.tune .pf{margin-left:8px;padding:2px 6px;border-radius:6px;border:1px solid var(--line);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em}
 .tunes{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.tune{display:grid;grid-template-columns:72px 56px minmax(0,1fr) auto 44px;gap:16px;align-items:center;padding:10px 14px 10px 18px;
-  border-radius:16px;background:var(--surface);border:1px solid var(--line);color:var(--text);text-decoration:none}
-.tune:hover{color:var(--text)}
+.tune{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:16px;align-items:center;padding:0 14px 0 0;
+  border-radius:16px;background:var(--surface);border:1px solid var(--line);color:var(--text)}
+.tune .pick{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:72px 56px minmax(0,1fr) auto;gap:16px;
+  align-items:center;padding:10px 0 10px 18px;border-radius:16px 0 0 16px;min-width:0}
+.tune:hover{border-color:#C0CAD4}
+.tune.on{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
+.tune .pick:focus-visible,.tune .play:focus-visible,.back-today:focus-visible{outline:2px solid var(--sky,#3B82C4);outline-offset:2px}
+.tune .play{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;text-decoration:none}
+a.play:hover .playdot{transform:scale(1.08)}
+.tune .playdot{transition:transform .15s}
+.pick-lbl{display:flex;align-items:center}
+.today h2:focus{outline:none}
+#music .toolbar{margin:0}
+.back-today{all:unset;cursor:pointer;padding:4px 10px;border-radius:999px;border:1px solid #3A4753;color:#C0CAD4;font-size:12px;letter-spacing:0}
+.back-today:hover{color:#fff;border-color:#8F9BA5}
 .tune .dt{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;color:var(--mut)}
 .tune .th{width:56px;height:42px;border-radius:8px;background-size:cover;background-position:center}
 .tune .t{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -35,7 +60,8 @@
   .today .art::after{background:linear-gradient(180deg,rgba(13,22,29,0) 50%,#0D161D 100%)}
   .today .info{padding:8px 22px 26px}
   .today h2{font-size:36px}
-  .tune{grid-template-columns:48px minmax(0,1fr) 36px;gap:12px;padding:10px 12px}
+  .tune{grid-template-columns:minmax(0,1fr) 44px;gap:8px;padding:0 8px 0 0}
+  .tune .pick{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:10px 0 10px 12px}
   .tune .dt,.tune .tg{display:none}
   .tune .th{width:48px;height:36px}
 }

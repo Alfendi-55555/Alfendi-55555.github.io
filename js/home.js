@@ -33,7 +33,7 @@ const now = new Date();
 chans.push(h(`<a href="#/music" class="chan music ch"><span class="scr">
   <span class="row-sb"><span class="lbl">TODAY'S TRACK</span><span class="meta-line">${now.getMonth() + 1}/${now.getDate()}</span></span>
   <span class="body"><span class="disc" aria-hidden="true"></span><span class="t-col">
-  ${track ? `<span class="lbl music-lbl">TODAY'S TRACK</span><b>${esc(track.title)}</b><span>${esc([BY_ID.get(track.game)?.name, track.composer].filter(Boolean).join(' · '))}</span>`
+  ${track ? `<span class="lbl music-lbl">TODAY'S TRACK</span><b>${esc(track.title)}</b><span>${esc([track.gameName, track.composer].filter(Boolean).join(' · '))}</span>`
           : '<b>곧 시작해요</b><span>추천곡을 고르는 중</span>'}
   </span></span></span></a>`));
 

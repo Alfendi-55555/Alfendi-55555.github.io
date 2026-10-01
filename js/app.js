@@ -34,7 +34,7 @@ addEventListener('keydown', e => {
   const t = e.target;
   if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
   if (readerOpen() || openOverlays().length) return;
-  const box = { library: '#libQ', posts: '#postQ' }[currentScreen()];
+  const box = { library: '#libQ', posts: '#postQ', music: '#musicQ' }[currentScreen()];
   if (!box) return;
   e.preventDefault();
   document.querySelector(box).focus();

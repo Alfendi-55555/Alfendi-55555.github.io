@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Build site
+        env:
+          # 저장소 Settings → Secrets and variables → Actions → Variables (비어 있으면 content/music.json)
+          MUSICLIST_CSV: ${{ vars.MUSICLIST_CSV }}
         run: python scripts/build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
