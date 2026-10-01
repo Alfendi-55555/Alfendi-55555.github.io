@@ -57,6 +57,7 @@ body[data-hskin="metaphor"] .hdr-ctx{color:var(--mp-gold)}
   #main{min-height:calc(100vh - 56px)}
   .menu-btn{display:flex}
   .nav-sep,.hdr-ctx{display:none}
+  .nav-sep.grp{display:block;width:auto;height:10px;background:none}   /* 모바일 메뉴에서는 묶음 사이 간격 */
   .hdr-nav{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;
     margin:0;padding:6px 20px 14px;background:#F4F8FB;border-bottom:1px solid var(--line);
     box-shadow:0 18px 30px -18px rgba(13,22,29,.35);display:none}

@@ -15,18 +15,18 @@ js/                   화면 동작. 화면마다 모듈 하나
   library.js          라이브러리 : 최근 꺼낸 게임 선반 · 케이스 · 펼친 케이스
   insert.js           카트리지 삽입
   game.js             카트리지를 꽂은 뒤의 게임별 기록 · 글 읽기
-  posts.js music.js about.js guest.js landing.js settings.js
+  posts.js music.js news.js about.js guest.js landing.js settings.js
 assets/               사이트 공용 이미지 (아바타, 게임 아트)
 content/
   profile.json        소개 페이지 내용과 사이트 소개 문장(tagline)
   games.json          모든 게임. 한줄 리뷰는 게임마다 선택 항목
-  music.json          오늘의 게임 음악 후보
+  music.json          오늘의 게임 음악 후보 (음악 시트를 연결하기 전·로컬용)
   guestbook.json      방명록 (임시 — 나중에 댓글 서비스로 교체 예정)
 posts/<게임id>/<날짜-제목>/
   index.md            글 본문
   01.jpg …            그 글에 들어가는 이미지
-scripts/build.py      content + posts → _site/ 로 조립
-.github/workflows/    main에 push하면 자동 빌드·배포
+scripts/build.py      content + posts + 음악 시트 + 게임 소식 → _site/ 로 조립
+.github/workflows/    main에 push하거나 하루 두 번 자동 빌드·배포
 ```
 
 ## 화면과 주소
@@ -37,6 +37,7 @@ scripts/build.py      content + posts → _site/ 로 조립
 | `#/library` | 라이브러리 |
 | `#/posts` | 전체 글 |
 | `#/music` | 음악 |
+| `#/news` | 게임 소식 |
 | `#/about` · `#/guest` | 소개 · 방명록 |
 | `#/game/<게임id>` | 카트리지를 꽂은 뒤의 게임별 기록 |
 
@@ -54,6 +55,7 @@ scripts/build.py      content + posts → _site/ 로 조립
   "color": "#B8567A",
   "art": "assets/games/celeste/art.jpg",
   "skin": "base",
+  "steam": "504230",
   "review": { "rating": 4.5, "year": 2024, "hours": 12, "text": "한 줄로 남기는 감상." }
 }
 ```
@@ -63,6 +65,8 @@ scripts/build.py      content + posts → _site/ 로 조립
 - `art`가 없으면 `color` 단색으로 보입니다.
 - `skin`은 카트리지를 꽂았을 때의 화면 스킨 (`base` · `playlog` · `metaphor`). 없으면 `base`.
 - `review`의 `rating`과 `text`는 필수, `year`와 `hours`는 선택.
+- `steam`은 선택. Steam 상점 주소(`store.steampowered.com/app/<숫자>/…`)의 숫자를 넣으면 그 게임의 공식 공지가 게임 소식에 들어옵니다.
+- 닌텐도 게임은 `aliases`에 **한국어 이름**을 넣어 두세요. 닌텐도 코리아 소식의 『』 안 이름과 맞춰 게임을 연결합니다.
 - 나중에 이 게임에 글을 쓰면 `posts/<id>/`에 넣기만 하면 됩니다. 케이스에 카트리지가 생기고 "최근 꺼낸 게임"에 올라옵니다.
 
 ## 글 쓰기
@@ -94,16 +98,27 @@ draft: true            # 선택. true면 사이트에 안 나온다
 
 ## 오늘의 게임 음악
 
-`content/music.json`에 곡을 추가합니다. 날짜마다 한 곡씩 돌아가며 홈과 음악 페이지에 나옵니다(모든 방문자에게 같은 곡).
+곡 목록은 **구글 시트**에서 관리합니다. 시트를 '웹에 게시(CSV)'한 주소를 저장소 변수 `MUSICLIST_CSV`
+(Settings → Secrets and variables → Actions → Variables)에 넣으면 빌드할 때 읽습니다.
+변수가 없으면 `content/music.json`을 읽습니다(로컬 확인용).
 
-```json
-{ "title": "In the Blood", "game": "hades", "composer": "Darren Korb",
-  "youtube": "https://www.youtube.com/watch?v=...", "tags": ["보컬곡"], "note": "추천 한 줄" }
-```
+시트 1행의 열 이름: `제목, 게임, 작곡가, 태그, 한마디, 비슷한 곡, 링크, 썸네일, 공개`
 
-- `game`은 `games.json`의 `id`. 그 게임의 아트가 곡 이미지로 쓰입니다.
-- `youtube`가 비어 있으면 "YouTube에서 듣기" 버튼 대신 준비 중 문구가 나옵니다.
-- `tags`는 음악 페이지의 필터가 됩니다.
+- `제목`·`게임`·`공개`는 필수. `공개`가 `Y`인 행만 사이트에 나옵니다.
+- `게임`은 라이브러리 게임의 id·이름·별칭 중 아무거나. 맞으면 그 게임 아트가 곡 이미지가 되고 펼친 케이스로 연결됩니다. 라이브러리에 없는 게임도 적을 수 있습니다(글자로만 표시).
+- `태그`·`비슷한 곡`·`링크`는 쉼표로 여러 개. 링크는 **앞에 적은 것이 기본**(목록의 재생 버튼). YouTube·YouTube Music·Spotify·Apple Music·Nintendo Music은 자동으로 알아보고, 주소의 추적용 값(`?si=` 등)은 빌드할 때 지웁니다.
+- `썸네일`은 라이브러리에 없는 게임일 때만. 비우면 라이브러리 게임은 게임 아트, 아니면 게임 이름 판이 나옵니다.
+
+오늘의 곡은 날짜마다 한 곡씩 돌아갑니다(모든 방문자에게 같은 곡). 시트를 고친 뒤에는 Actions에서 **Run workflow**를 누르거나 다음 예약 실행을 기다리면 반영됩니다.
+
+## 게임 소식
+
+빌드할 때마다 공식 소식을 모아 최근 50개를 보여 줍니다. 하루 두 번(한국시간 오전·오후 8시 17분쯤) 예약 실행됩니다.
+
+- **Nintendo** — 닌텐도 코리아 뉴스 전체. 『』「」 안 게임 이름이 라이브러리 게임의 이름·별칭을 포함하면 그 게임으로 연결합니다(DLC·에디션 이름도 포함). 3글자 미만 별칭은 매칭에 쓰지 않습니다.
+- **Steam** — `games.json`에 `steam`이 있는 게임의 공식 공지. 한국어 공지가 있으면 한국어로 받습니다.
+- 출처 하나가 실패해도 빌드는 멈추지 않고, 지금 배포된 사이트에 있던 그 출처의 소식을 그대로 씁니다. Actions 로그에 `경고:`로 남습니다. 닌텐도 페이지는 구조가 바뀌면 읽지 못하니 경고가 계속되면 `scripts/build.py`의 `NINTENDO_ITEM`을 고칩니다.
+- 홈 NEWS 채널의 `n NEW`와 소식 페이지의 NEW 표시는 방문자 브라우저에 저장된 '마지막으로 본 소식' 기준입니다.
 
 ## 소개 페이지 · 사이트 소개 문장
 
@@ -128,8 +143,8 @@ draft: true            # 선택. true면 사이트에 안 나온다
 
 ## 검색
 
-라이브러리와 전체 글 오른쪽 위에 검색창이 있습니다. 키보드 `/`로 바로 이동합니다.
-라이브러리는 게임 이름과 별칭을, 전체 글은 제목·본문 전체·게임 이름과 별칭·태그를 찾습니다. 띄어쓰기와 대소문자는 무시합니다.
+라이브러리·전체 글·음악·게임 소식에 검색창이 있습니다. 키보드 `/`로 바로 이동합니다.
+라이브러리는 게임 이름과 별칭을, 전체 글은 제목·본문 전체·게임 이름과 별칭·태그를, 음악은 곡·게임·작곡가·태그를, 게임 소식은 제목·요약·게임 이름을 찾습니다. 띄어쓰기와 대소문자는 무시합니다.
 
 ## 설정 (방문자별)
 
@@ -153,9 +168,10 @@ python -m http.server -d _site
 → http://localhost:8000
 
 `index.html`을 더블클릭해서 열면 데이터를 불러오지 못합니다(브라우저 보안 정책).
+로컬 빌드도 게임 소식을 인터넷에서 모아 옵니다. 건너뛰려면 `NEWS_OFFLINE=1 python scripts/build.py`.
 빌드가 실패하면 어느 파일의 무엇이 문제인지 알려줍니다.
 
 ## 배포
 
-`main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 올립니다.
+`main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 올립니다. 하루 두 번 예약 실행되고, Actions 탭의 **Run workflow**로 언제든 다시 돌릴 수 있습니다.
 처음 한 번만 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꿉니다.

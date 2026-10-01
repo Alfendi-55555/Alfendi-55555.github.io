@@ -14,8 +14,16 @@ PLAYLOG 빌드 스크립트 (파이썬 표준 라이브러리만 사용)
 
 음악 목록은 환경 변수 MUSICLIST_CSV(구글 시트 '웹에 게시' CSV 주소)가 있으면 시트에서,
 없으면 content/music.json 에서 읽는다.
+
+게임 소식은 빌드할 때마다 모아 온다.
+  Steam    : games.json 에 "steam"(앱 ID)이 있는 게임의 공식 공지 RSS (한국어 공지가 있으면 한국어)
+  Nintendo : 닌텐도 코리아 뉴스 목록 페이지
+출처 하나가 실패해도 빌드는 멈추지 않고, 지금 배포된 사이트에 있던 그 출처의 소식을 다시 쓴다.
+NEWS_OFFLINE=1 이면 수집하지 않는다(로컬 빌드용).
 """
-import csv, io, json, os, re, shutil, sys
+import csv, email.utils, html, io, json, os, re, shutil, sys
+import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 from urllib.request import Request, urlopen
@@ -153,10 +161,13 @@ def clean_link(url, where):
     query = urlencode([(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k not in TRACKING])
     return {'url': urlunsplit(parts._replace(query=query)), 'label': label, 'short': short}
 
-def fetch_csv(url):
-    req = Request(url, headers={'User-Agent': 'playlog-build'})
+def fetch_text(url):
+    req = Request(url, headers={'User-Agent': 'playlog-build (+https://alfendi-55555.github.io/)',
+                                'Accept-Language': 'ko-KR,ko;q=0.9'})
     with urlopen(req, timeout=20) as res:
         return res.read().decode('utf-8-sig')
+
+fetch_csv = fetch_text
 
 def music_rows():
     """시트(또는 music.json)를 시트 열 이름 기준의 dict 목록으로."""
@@ -214,6 +225,101 @@ def build_music(games):
         print(f'참고: 라이브러리에 없는 게임(텍스트로만 표시) → {", ".join(sorted(unknown))}')
     return music
 
+# ---------------- 게임 소식 ----------------
+NEWS_MAX = 50
+KST = timezone(timedelta(hours=9))
+NINTENDO_NEWS = 'https://www.nintendo.com/kr/news'
+STEAM_RSS = 'https://store.steampowered.com/feeds/news/app/{appid}/?l=koreana'
+STEAM_HEADER = 'https://cdn.akamai.steamstatic.com/steam/apps/{appid}/header.jpg'
+PREV_SITE = 'https://alfendi-55555.github.io/data/site.json'   # 수집 실패 시 기댈 지난 결과
+SUB_LEN = 110
+
+def plain(s, n=None):
+    s = re.sub(r'<[^>]+>', ' ', html.unescape(s or ''))
+    s = re.sub(r'\s+', ' ', s).strip()
+    return s[:n - 1] + '…' if n and len(s) > n else s
+
+def name_key(s):
+    """게임 이름 비교용: 소문자, 띄어쓰기·기호 제거."""
+    return re.sub(r'[\W_]+', '', s.lower())
+
+def fetch_steam(appid, gid):
+    root = ET.fromstring(fetch_text(STEAM_RSS.format(appid=appid)))
+    out = []
+    for it in root.iter('item'):
+        enc = it.find('enclosure')
+        when = email.utils.parsedate_to_datetime(it.findtext('pubDate')).astimezone(KST)
+        out.append({'src': 'steam', 'srcName': 'Steam', 'game': gid,
+                    't': plain(it.findtext('title')), 'sub': plain(it.findtext('description'), SUB_LEN),
+                    'url': it.findtext('link', '').strip(), 'd': when.strftime('%Y.%m.%d'), 'ts': when.strftime('%H:%M'),
+                    'img': enc.get('url') if enc is not None else STEAM_HEADER.format(appid=appid)})
+    return out
+
+NINTENDO_ITEM = re.compile(
+    r'<a href="([^"]+)" class="ncmn-u-linkbox">.*?background-image:url\(([^)]+)\)'
+    r'.*?ncmn-softUnit__name">(.*?)</div>.*?ncmn-softUnit__release">([\d.]+)</div>', re.S)
+
+def fetch_nintendo(keys):
+    out = []
+    for href, img, name, d in NINTENDO_ITEM.findall(fetch_text(NINTENDO_NEWS)):
+        t = plain(name)
+        y, m, dd = d.split('.')
+        url = html.unescape(href)
+        out.append({'src': 'nintendo', 'srcName': 'Nintendo', 'game': match_game(t, keys),
+                    't': t, 'sub': '', 'url': 'https://www.nintendo.com' + url if url.startswith('/') else url,
+                    'd': f'{y}.{int(m):02d}.{int(dd):02d}', 'ts': '', 'img': html.unescape(img)})
+    if not out:
+        raise ValueError('뉴스 항목을 하나도 찾지 못했습니다(페이지 구조가 바뀌었을 수 있음)')
+    return out
+
+def match_game(title, keys):
+    """『』「」 안의 이름에 라이브러리 게임 이름·별칭이 들어 있으면 그 게임.
+    DLC·에디션처럼 이름이 길어진 경우도 잡히고, 여러 개면 가장 긴 이름이 이긴다."""
+    for quoted in re.findall(r'[『「](.+?)[』」]', title):
+        q = name_key(quoted)
+        for key, gid in keys:
+            if key in q:
+                return gid
+    return None
+
+def previous_news():
+    try:
+        return json.loads(fetch_text(PREV_SITE)).get('news') or []
+    except Exception:
+        return []
+
+def build_news(games, games_meta):
+    if os.environ.get('NEWS_OFFLINE'):
+        print('참고: NEWS_OFFLINE — 게임 소식을 모으지 않았습니다')
+        return []
+    by_id = {g['id']: g for g in games}
+    keys = sorted({(name_key(k), g['id']) for g in games for k in [g['name'], *g['aliases']]
+                   if len(name_key(k)) >= 3}, key=lambda x: -len(x[0]))       # 너무 짧은 별칭은 오연결 방지로 제외
+    jobs = [('Nintendo', lambda: fetch_nintendo(keys), lambda n: n['src'] == 'nintendo')]
+    for g in games_meta:
+        if g.get('steam'):
+            jobs.append((f'Steam · {g["name"]}', lambda a=str(g['steam']), i=g['id']: fetch_steam(a, i),
+                         lambda n, i=g['id']: n['src'] == 'steam' and n.get('game') == i))
+    news, prev = [], None
+    for label, job, mine in jobs:
+        try:
+            got = job()
+            print(f'소식: {label} {len(got)}건')
+        except Exception as e:
+            if prev is None:
+                prev = previous_news()
+            got = [n for n in prev if mine(n)]
+            print(f'경고: {label} 소식을 모으지 못해 지난 결과 {len(got)}건을 씁니다 → {e}')
+        news += got
+    seen, uniq = set(), []
+    for n in sorted(news, key=lambda n: (n['d'], n.get('ts', '')), reverse=True):
+        if n['url'] and n['url'] not in seen:
+            seen.add(n['url'])
+            n['gameName'] = by_id[n['game']]['name'] if n.get('game') in by_id else ''
+            n.pop('ts', None)
+            uniq.append(n)
+    return uniq[:NEWS_MAX]
+
 def build():
     games_meta = load_json('games.json', [])
     ids = [g['id'] for g in games_meta]
@@ -261,6 +367,9 @@ def build():
 
     names = {g['id'] for g in games}
     music = build_music(games)
+    for g in games_meta:
+        if g.get('steam') and not re.fullmatch(r'\d+', str(g['steam'])):
+            errors.append(f'content/games.json: {g["id"]} 의 steam 은 숫자 앱 ID여야 합니다 → {g["steam"]}')
 
     profile = load_json('profile.json', {})
     for k in ('name', 'tagline'):
@@ -280,6 +389,8 @@ def build():
             print('  ·', e, file=sys.stderr)
         sys.exit(1)
 
+    news = build_news(games, games_meta)        # 실패해도 빌드는 계속 (경고만)
+
     # 출력
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -297,13 +408,15 @@ def build():
     (OUT / 'index.html').write_text(html.replace('%TAGLINE%', tl), encoding='utf-8')
     (OUT / 'data').mkdir()
     (OUT / 'data' / 'site.json').write_text(
-        json.dumps({'games': games, 'music': music, 'guestbook': guest, 'profile': profile},
+        json.dumps({'games': games, 'music': music, 'news': news, 'newsMax': NEWS_MAX,
+                    'newsUpdated': datetime.now(KST).strftime('%Y.%m.%d %H:%M') if news else '',
+                    'guestbook': guest, 'profile': profile},
                    ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     (OUT / '.nojekyll').touch()
 
     n_posts = sum(len(g['posts']) for g in games)
     n_rev = sum(1 for g in games if g['review'])
-    print(f'완료: 게임 {len(games)}개, 글 {n_posts}편, 한줄 리뷰 {n_rev}개, 음악 {len(music)}곡 → _site/')
+    print(f'완료: 게임 {len(games)}개, 글 {n_posts}편, 한줄 리뷰 {n_rev}개, 음악 {len(music)}곡, 소식 {len(news)}건 → _site/')
 
 if __name__ == '__main__':
     build()

@@ -10,13 +10,14 @@ import './home.js';
 import './library.js';
 import './posts.js';
 import './music.js';
+import './news.js';
 import { aboutShown } from './about.js';
 import './guest.js';
 import { renderGame, readerOpen, closeReader } from './game.js';
 import { maybeShowLanding } from './landing.js';
 
 /* ---------- 주소 → 화면 : #/ · #/library · #/posts · #/music · #/about · #/guest · #/game/<id> ---------- */
-const SIMPLE = ['library', 'posts', 'music', 'about', 'guest'];
+const SIMPLE = ['library', 'posts', 'music', 'news', 'about', 'guest'];
 function route() {
   closeReader();
   openOverlays().forEach(closeOverlay);
@@ -34,7 +35,7 @@ addEventListener('keydown', e => {
   const t = e.target;
   if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
   if (readerOpen() || openOverlays().length) return;
-  const box = { library: '#libQ', posts: '#postQ', music: '#musicQ' }[currentScreen()];
+  const box = { library: '#libQ', posts: '#postQ', music: '#musicQ', news: '#newsQ' }[currentScreen()];
   if (!box) return;
   e.preventDefault();
   document.querySelector(box).focus();

@@ -3,6 +3,8 @@ import { $, h, esc, stars, cart, artStyle, imgStyle, md } from './util.js';
 import { POSTS, RECENT, REVIEWED, MUSIC, GUEST, BY_ID, PROFILE, pickOfDay } from './store.js';
 import { openCase } from './library.js';
 import { openReader } from './game.js';
+import { NEWS, NEWS_UPDATED } from './store.js';
+import { newsColor, newsWho, newCount } from './news.js';
 
 const host = $('#channels');
 const chans = [];
@@ -37,10 +39,23 @@ chans.push(h(`<a href="#/music" class="chan music ch"><span class="scr">
           : '<b>곧 시작해요</b><span>추천곡을 고르는 중</span>'}
   </span></span></span></a>`));
 
-/* NEWS : 아직 준비 중 */
-chans.push(h(`<div class="chan news soon"><span class="scr">
-  <span class="row-sb"><span class="lbl">NEWS</span><span class="meta-line">COMING SOON</span></span>
-  <span class="soon-txt">게임 소식 채널은 준비 중이에요.<br>기록한 게임의 공식 공지를 모아 올 예정이에요.</span></span></div>`));
+/* NEWS : 윗줄 = 가장 최신 소식, 아랫줄 = 그와 겹치지 않는 라이브러리 게임의 최신 소식(없으면 다음 최신) */
+const top = NEWS[0];
+const second = NEWS.find(n => n !== top && n.game) || NEWS.find(n => n !== top);
+const headline = [top, second].filter(Boolean);
+const newsMeta = () => {
+  const n = newCount();
+  return n ? `<span class="cnt-b new" aria-label="새 소식 ${n}개">${n} NEW</span>`
+    : `<span class="meta-line">${esc(NEWS_UPDATED.slice(5).replace('.', '/'))}</span>`;
+};
+chans.push(h(headline.length ? `<a href="#/news" class="chan news ch"><span class="scr">
+  <span class="row-sb"><span class="lbl">NEWS</span><span class="news-meta">${newsMeta()}</span></span>
+  <span class="body">${headline.map(n => `<span class="news-row"><span class="sw" style="background:${newsColor(n)}"></span>
+    <span><span>${esc(newsWho(n))} · ${esc(n.d.slice(5).replace('.', '/'))}</span><b>${esc(n.t)}</b></span></span>`).join('<span class="rule"></span>')}</span>
+  </span></a>`
+  : `<div class="chan news soon"><span class="scr">
+  <span class="row-sb"><span class="lbl">NEWS</span></span>
+  <span class="soon-txt">아직 모아 온 소식이 없어요.</span></span></div>`));
 
 /* LIBRARY */
 chans.push(h(`<a href="#/library" class="chan lib ch"><span class="scr">
@@ -85,6 +100,7 @@ export function syncGuestBadges() {
 syncGuestBadges();
 
 chans.forEach(c => host.appendChild(c));
+addEventListener('newsseen', () => { const m = host.querySelector('.news-meta'); if (m) m.innerHTML = newsMeta(); });
 $('#chanCount').textContent = chans.length + ' CHANNELS';
 
 /* 독의 시계 */

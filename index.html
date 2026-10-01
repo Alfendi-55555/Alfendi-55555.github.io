@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="css/skins/metaphor.css">
 <link rel="stylesheet" href="css/posts.css">
 <link rel="stylesheet" href="css/music.css">
+<link rel="stylesheet" href="css/news.css">
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/about.css">
 <link rel="stylesheet" href="css/settings.css">
@@ -38,9 +39,12 @@
   <a class="logo" href="#/" aria-label="PLAYLOG 홈"><svg width="16" height="19" viewBox="0 0 11 13" fill="none" aria-hidden="true"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width="1.05" stroke-linejoin="round"/><path d="M3.3 3.5h4.4v2.9H3.3z" fill="currentColor" opacity=".55"/></svg><span class="wm">PLAY<i>LOG</i></span></a>
   <nav class="hdr-nav" id="hdrNav" aria-label="주 메뉴">
     <a href="#/" data-nav="home">홈</a>
+    <span class="nav-sep grp" aria-hidden="true"></span>
     <a href="#/library" data-nav="library">라이브러리</a>
     <a href="#/posts" data-nav="posts">글</a>
     <a href="#/music" data-nav="music">음악</a>
+    <a href="#/news" data-nav="news">소식</a>
+    <span class="nav-sep grp" aria-hidden="true"></span>
     <a href="#/about" data-nav="about">소개</a>
     <a href="#/guest" data-nav="guest">방명록</a>
     <span class="nav-sep" aria-hidden="true"></span>
@@ -128,6 +132,29 @@
       </div>
       <div class="tunes" id="tracks"></div>
     </section>
+  </div>
+</section>
+
+<!-- ==================== 게임 소식 ==================== -->
+<section id="news" class="screen" aria-labelledby="newsTitle">
+  <div class="wrap posts-layout">
+    <div class="page-hd row full">
+      <div class="ttl"><h1 id="newsTitle">게임 소식</h1><span class="cnt" id="newsCount" aria-live="polite"></span></div>
+      <div class="search" role="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="newsQ" placeholder="제목·게임 이름으로 찾기" aria-label="게임 소식에서 찾기" autocomplete="off" spellcheck="false"><button type="button" class="s-clear" aria-label="검색어 지우기" hidden><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button><kbd aria-hidden="true">/</kbd></div>
+    </div>
+    <aside class="posts-side news-side">
+      <button type="button" class="filter-tog" id="newsFilterTog" aria-expanded="false" aria-controls="newsFilters">
+        <span class="ft-l">필터</span><span class="ft-sum" id="newsFilterSum"></span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="news-filters" id="newsFilters">
+        <div class="side-grp"><span class="sys">보기</span><div id="newsScope" class="side-list"></div></div>
+        <div class="side-grp"><span class="sys">출처</span><div id="newsSrc" class="side-list"></div></div>
+        <div class="side-grp"><span class="sys">게임</span><div id="newsGames" class="side-list"></div></div>
+        <div class="news-upd" id="newsUpd"></div>
+      </div>
+    </aside>
+    <div class="timeline" id="newsList"></div>
   </div>
 </section>
 

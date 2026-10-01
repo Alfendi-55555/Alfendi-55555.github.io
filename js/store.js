@@ -20,6 +20,9 @@ export const BY_ID = new Map(GAMES.map(g => [g.id, g]));
 export const POSTS = GAMES.flatMap(g => g.posts).sort((a, b) => b.d.localeCompare(a.d));
 export const MUSIC = site.music || [];
 export const GUEST = site.guestbook || [];
+export const NEWS = site.news || [];
+export const NEWS_UPDATED = site.newsUpdated || '';
+export const NEWS_MAX = site.newsMax || 50;
 export const PROFILE = site.profile || {};
 
 export const lastDate = g => (g.posts[0] ? g.posts[0].d : '');

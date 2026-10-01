@@ -1,0 +1,46 @@
+/* ============ 게임 소식 ============ */
+.news-item{color:var(--text);text-decoration:none}
+.news-item:hover{color:var(--text)}
+.news-item .t{font-size:16.5px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-item .th{height:84px;background-color:#E3EAF1}
+.news-item .src-b{padding:1px 7px;border-radius:6px;border:1px solid var(--line);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em}
+.news-upd{display:flex;flex-direction:column;gap:4px;margin:0 12px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.55;color:var(--mut)}
+.news-upd b{display:inline-block;min-width:62px;font-weight:600;color:var(--ink-soft)}
+.news-upd .upd{margin-bottom:6px;font-family:var(--font-mono);font-size:12px;color:var(--text)}
+.news-upd .upd b{font-family:var(--font-ui);font-size:12.5px}
+.year-mark{display:flex;align-items:center;gap:14px;margin-top:30px}
+.year-mark:first-child{margin-top:0}
+.year-mark b{font-family:var(--font-mono);font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--text);
+  padding:3px 10px;border-radius:999px;background:#E3EAF1}
+.year-mark span{flex-grow:1;height:2px;background:var(--line)}
+.year-mark+.month{margin-top:10px}
+@media (max-width:720px){ .news-upd{margin:0;padding-top:12px} }
+/* 필터 : 넓은 화면은 늘 펼침, 좁은 화면은 '필터' 버튼으로 접고 편다 */
+.news-filters{display:flex;flex-direction:column;gap:28px}
+.filter-tog{display:none}
+#newsGames .side-item[aria-pressed="true"] .c::after{content:'✕';margin-left:8px;font-size:11px;color:var(--mut)}
+.side-more{all:unset;box-sizing:border-box;cursor:pointer;padding:8px 12px;border-radius:12px;font-size:13px;font-weight:600;color:var(--sky-deep)}
+.side-more:hover{background:rgba(13,22,29,.04)}
+.side-more:focus-visible,.filter-tog:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+@media (max-width:860px){
+  .news-side{gap:12px}
+  .filter-tog{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;height:44px;padding:0 16px;border-radius:14px;
+    border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:14px;cursor:pointer}
+  .filter-tog .ft-l{font-weight:600}
+  .filter-tog .ft-sum{flex-grow:1;min-width:0;text-align:left;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .filter-tog.on .ft-sum{color:var(--sky-deep);font-weight:600}
+  .filter-tog svg{flex-shrink:0;transition:transform .2s}
+  .filter-tog[aria-expanded="true"] svg{transform:rotate(180deg)}
+  .news-filters{display:none;gap:14px}
+  .news-filters.open{display:flex}
+  .side-more{flex-shrink:0;border:1px dashed var(--line)}
+  #newsGames{flex-wrap:wrap;overflow:visible}
+}
+.news-item .new-b,.chan.news .cnt-b.new{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:10px;
+  background:#C4621C;color:#fff;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.05em}
+.news-item .new-b{margin-left:6px}
+/* 홈 채널 */
+.chan.news .news-row{min-width:0}
+.chan.news .news-row div{min-width:0}
+.chan.news .news-row b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chan.news .rule{height:1px;background:#E6EFF7}

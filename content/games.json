@@ -6,7 +6,8 @@
       "하데스"
     ],
     "color": "#C4643E",
-    "art": "assets/games/hades/art.jpg"
+    "art": "assets/games/hades/art.jpg",
+    "steam": "1145360"
   },
   {
     "id": "metaphor",
@@ -17,7 +18,8 @@
     ],
     "color": "#C13C4F",
     "skin": "metaphor",
-    "art": "assets/games/metaphor/art.jpg"
+    "art": "assets/games/metaphor/art.jpg",
+    "steam": "2679460"
   },
   {
     "id": "playlog",
