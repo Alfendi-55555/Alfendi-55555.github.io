@@ -10,7 +10,7 @@ const listeners = new Set();
 export const settings = {
   get auto() { return get(K.auto, '0') === '1'; },
   set auto(v) { put(K.auto, v ? '1' : '0'); listeners.forEach(f => f()); },
-  get intro() { return get(K.intro, 'once'); },
+  get intro() { return get(K.intro, 'always'); },     /* always(기본) · once · off */
   set intro(v) { put(K.intro, v); listeners.forEach(f => f()); },
   get seen() { return get(K.seen, '0') === '1'; },
   markSeen() { put(K.seen, '1'); },
