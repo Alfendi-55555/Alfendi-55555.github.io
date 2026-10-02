@@ -1,6 +1,6 @@
 /* 소개 : 랜딩 페이지처럼. 글은 content/profile.json, 숫자는 실제 기록에서 계산 */
 import { $, $$, h, esc, cart, artStyle, darken, reduced } from './util.js';
-import { GAMES, POSTS, RECENT, REVIEWED, GUEST, PROFILE, BY_ID } from './store.js';
+import { GAMES, POSTS, RECENT, REVIEWED, PROFILE, BY_ID } from './store.js';
 import { openCase } from './library.js';
 
 const P = PROFILE;
@@ -86,8 +86,11 @@ const row = RECENT.map(g => `<button type="button" class="shelf-item lift" data-
 const marq = RECENT.length ? `<section class="ab-marq">${sec('RECENT', '최근 꺼낸 카트리지')}
   <div class="marq-wrap"><div class="marq" id="abMarq">${row}<span class="dup" aria-hidden="true" style="display:contents">${row}</span></div></div></section>` : '';
 
-const cta = `<div class="wrap" style="padding-top:0"><div class="ab-cta"><span class="sys">MESSAGE BOARD · ${GUEST.length} SAVES</span>
+const cta = `<div class="wrap" style="padding-top:0"><div class="ab-cta"><span class="sys">MESSAGE BOARD<span id="abGuestCnt"></span></span>
   <h2>다녀간 흔적을 남겨 주세요</h2><p>궁금한 게임, 같이 하고 싶은 이야기, 무엇이든요.</p><a href="#/guest">방명록으로</a></div></div>`;
+
+/* 방명록 글 수는 guest.js 가 불러오면 채운다 */
+addEventListener('guestdata', e => { const c = $('#abGuestCnt'); if (c) c.textContent = ` · ${e.detail.total} NOTES`; });
 
 const root = $('#aboutRoot');
 root.innerHTML = hero + stats + body + marq + cta;

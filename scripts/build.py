@@ -379,9 +379,14 @@ def build():
     if fav and fav.get('game') and fav['game'] not in names:
         errors.append(f'content/profile.json: favorite.game "{fav["game"]}" 이 games.json에 없습니다')
 
-    guest = [{'n': x['name'], 'd': x['date'].replace('-', '.'), 'm': x['message'],
-              **({'re': x['reply']} if x.get('reply') else {})}
-             for x in load_json('guestbook.json', [])]
+    # 방명록: GUESTBOOK_API(Apps Script 웹앱 주소)가 있으면 화면이 거기서 바로 읽고 쓴다.
+    # 없으면 content/guestbook.json 샘플만 읽기 전용으로 보여 준다(로컬 미리보기).
+    guest_api = os.environ.get('GUESTBOOK_API', '').strip()
+    if guest_api and not re.fullmatch(r'https://script\.google\.com/macros/s/[\w-]+/exec', guest_api):
+        errors.append(f'GUESTBOOK_API: Apps Script 웹앱 주소(https://script.google.com/macros/s/…/exec)가 아닙니다 → {guest_api}')
+    guest = [] if guest_api else [
+        {'n': x['name'], 'd': x['date'].replace('-', '.'), 'm': x['message'], **({'re': x['reply']} if x.get('reply') else {})}
+        for x in load_json('guestbook.json', [])]
 
     if errors:
         print('빌드 실패 — 아래를 고쳐 주세요:', file=sys.stderr)
@@ -410,7 +415,7 @@ def build():
     (OUT / 'data' / 'site.json').write_text(
         json.dumps({'games': games, 'music': music, 'news': news, 'newsMax': NEWS_MAX,
                     'newsUpdated': datetime.now(KST).strftime('%Y.%m.%d %H:%M') if news else '',
-                    'guestbook': guest, 'profile': profile},
+                    'guestbook': guest, 'guestbookApi': guest_api, 'profile': profile},
                    ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     (OUT / '.nojekyll').touch()
 

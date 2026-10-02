@@ -19,7 +19,8 @@ GAMES.forEach(g => g.posts.forEach(p => { p.game = g; }));
 export const BY_ID = new Map(GAMES.map(g => [g.id, g]));
 export const POSTS = GAMES.flatMap(g => g.posts).sort((a, b) => b.d.localeCompare(a.d));
 export const MUSIC = site.music || [];
-export const GUEST = site.guestbook || [];
+export const GUEST = site.guestbook || [];          // 방명록 서버가 없을 때(로컬) 보여 줄 샘플
+export const GUEST_API = site.guestbookApi || '';    // Apps Script 웹앱 주소 — 있으면 방명록이 실시간으로 읽고 쓴다
 export const NEWS = site.news || [];
 export const NEWS_UPDATED = site.newsUpdated || '';
 export const NEWS_MAX = site.newsMax || 50;

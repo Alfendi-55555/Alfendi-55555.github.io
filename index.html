@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="css/posts.css">
 <link rel="stylesheet" href="css/music.css">
 <link rel="stylesheet" href="css/news.css">
-<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/guest.css">
 <link rel="stylesheet" href="css/about.css">
 <link rel="stylesheet" href="css/settings.css">
 <link rel="stylesheet" href="css/landing.css">
@@ -205,49 +205,43 @@
 <section id="about" class="screen" aria-labelledby="abTitle"><div id="aboutRoot"></div></section>
 
 <!-- ==================== 방명록 ==================== -->
-<section id="guest" class="screen">
-
-  <div class="page narrow">
-    <div class="home-hd">
-      <h1>방명록</h1>
-      <p>메모리 카드 2번 슬롯. 남기고 간 세이브는 여기에 쌓입니다.</p>
+<section id="guest" class="screen" aria-labelledby="gTitle">
+  <div class="wrap guest-layout">
+    <div class="page-hd row g-full">
+      <div class="ttl"><h1 id="gTitle">방명록</h1><span class="cnt" id="gCount" aria-live="polite"></span></div>
     </div>
 
-    <div class="mc">
-      <div class="mc-card"><span class="lb"></span><span class="ct"></span></div>
-      <div class="mc-info">
-        <div class="mc-ttl">MEMORY CARD · SLOT 2</div>
-        <div class="mc-blocks" id="mcBlocks"></div>
-      </div>
-      <div class="mc-cnt"><b id="mcUsed">0</b><span>/ 24 BLOCKS</span></div>
-    </div>
+    <aside class="g-side">
+      <form class="g-form" id="gForm" novalidate>
+        <div class="g-form-hd"><span class="sys">NEW NOTE</span><b>한 마디 남기기</b></div>
+        <div class="g-field">
+          <label for="gName">닉네임</label>
+          <input class="g-inp" id="gName" maxlength="16" autocomplete="nickname" placeholder="16자까지">
+        </div>
+        <div class="g-field">
+          <label for="gMsg">내용</label>
+          <textarea class="g-inp" id="gMsg" maxlength="300" placeholder="어떤 글을 보고 오셨나요? 궁금한 게임이나 하고 싶은 말을 적어 주세요."></textarea>
+        </div>
+        <!-- 사람에게는 보이지 않는 칸 : 채워져 있으면 봇 -->
+        <div class="g-hp" aria-hidden="true"><label>홈페이지 <input id="gHp" tabindex="-1" autocomplete="off"></label></div>
+        <p class="g-err" id="gErr" role="alert" hidden></p>
+        <div class="g-form-ft">
+          <span class="g-cnt" id="gCnt">0 / 300</span>
+          <button class="g-save" type="submit" id="gSave" disabled>남기기</button>
+        </div>
+      </form>
+      <ul class="g-rules">
+        <li>남긴 글은 바로 공개돼요. 부적절한 글은 숨겨질 수 있어요.</li>
+        <li>링크(주소)는 남길 수 없어요.</li>
+        <li>같은 브라우저에서는 1분에 한 번 남길 수 있어요.</li>
+        <li>내가 쓴 글은 이 브라우저에서 수정·삭제할 수 있어요. 답글이 달린 글은 삭제만 돼요.</li>
+      </ul>
+    </aside>
 
-    <div class="note">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.9"/><path d="M12 7.6v5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="16.4" r="1.1" fill="currentColor"/></svg>
-      <span><b>안내</b> — 아직 방명록 저장소가 없어서 여기 남긴 글은 이 화면에만 잠깐 보이고, 새로고침하면 사라집니다. 댓글 서비스를 붙이면 실제로 저장됩니다.</span>
-    </div>
-
-    <div class="panel">
-      <div class="plabel"><span class="sys">NEW SAVE</span><span class="ko">한 마디 남기기</span></div>
-      <div class="gf-row">
-        <input class="inp nick" id="gName" maxlength="16" placeholder="닉네임" aria-label="닉네임">
-      </div>
-      <textarea class="inp" id="gMsg" maxlength="300" placeholder="어떤 글을 보고 오셨나요? 궁금한 게임이나 하고 싶은 말을 적어주세요." aria-label="방명록 내용"></textarea>
-      <div class="gf-foot">
-        <span class="gf-cnt" id="gCnt">0 / 300</span>
-        <button class="btn" id="gSave" disabled>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 4.6h11L19.4 8v11.4a.6.6 0 0 1-.6.6H5a.6.6 0 0 1-.6-.6V5.2a.6.6 0 0 1 .6-.6Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M8.4 4.6v4.2h6V4.6M8.4 20v-4.8h7.2V20" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
-          이 슬롯에 저장
-        </button>
-      </div>
-    </div>
-
-    <div class="sec-head">
-      <span class="st"><span class="sys">SAVED</span><span class="sec-ko">남겨진 세이브</span></span>
-      <span class="count" id="gCount">0</span>
-      <span class="sec-rule"></span>
-    </div>
-    <div class="gs" id="gList"></div>
+    <section class="g-main" aria-label="남겨진 글">
+      <div class="g-list" id="gList"></div>
+      <nav class="g-pager" id="gPager" aria-label="방명록 페이지"></nav>
+    </section>
   </div>
 </section>
 
