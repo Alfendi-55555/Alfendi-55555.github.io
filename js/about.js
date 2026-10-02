@@ -34,7 +34,8 @@ const STATS = [
   { v: GAMES.length, u: '개', l: '라이브러리의 게임' },
   { v: POSTS.length, u: '편', l: '게임별 기록' },
   { v: avg, u: '', l: '한줄 리뷰 평균 별점', dec: 1 },
-  { v: hours, u: '시간', l: '리뷰한 게임 누적 플레이' }
+  /* 리뷰 시트에 플레이 시간을 하나도 안 적었으면 0시간 대신 리뷰 수를 보인다 */
+  hours ? { v: hours, u: '시간', l: '리뷰한 게임 누적 플레이' } : { v: REVIEWED.length, u: '개', l: '한줄 리뷰' }
 ];
 const stats = `<div class="wrap" style="padding-top:0;padding-bottom:0"><div class="rise" ${d(300)}>${bez(STATS.map((s, i) =>
   `<div class="ab-stat"><b><span data-n="${i}">0</span>${s.u ? `<small>${s.u}</small>` : ''}</b><span>${s.l}</span></div>`).join(''), 'ab-stats')}</div></div>`;

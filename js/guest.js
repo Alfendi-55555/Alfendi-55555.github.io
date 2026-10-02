@@ -31,7 +31,11 @@ async function call(url, opts = {}) {
     clearTimeout(t);
   }
 }
-const apiGet = page => call(`${GUEST_API}?page=${page}&per=${PER}`, { cache: 'no-store' });
+/* Apps Script는 가끔 한 번씩 오류 페이지를 돌려준다 — 읽기는 한 번 더 시도해 본다 */
+const apiGet = page => {
+  const get = () => call(`${GUEST_API}?page=${page}&per=${PER}`, { cache: 'no-store' });
+  return get().catch(() => new Promise(r => setTimeout(r, 1500)).then(get));
+};
 /* text/plain 이면 브라우저가 사전 요청(CORS preflight)을 보내지 않는다 — Apps Script는 그걸 못 받는다 */
 const apiPost = body => call(GUEST_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
 const SAMPLE = GUEST.map((g, i) => ({ id: 'sample' + i, n: g.n, d: g.d, m: g.m, re: g.re || '' }));

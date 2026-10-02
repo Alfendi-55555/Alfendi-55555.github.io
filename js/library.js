@@ -151,7 +151,7 @@ export function openCase(g, opener) {
       <button type="button" class="btn-dark" data-act="insert" data-autofocus>카트리지 꽂기</button></div>
   </div>` : `<div class="co-right"><div class="co-none">
       <div class="seat"><div class="hole">${HOLE}</div></div>
-      <div><b>아직 기록이 없어요</b><span>이 게임은 한줄 리뷰만 남겨 두었어요</span></div>
+      <div><b>아직 기록이 없어요</b><span>${r ? '이 게임은 한줄 리뷰만 남겨 두었어요' : '라이브러리에 꽂아 두고 기록을 준비하고 있어요'}</span></div>
     </div></div>`;
   const front = `<div class="co-front shell" aria-hidden="true"><span class="ridge"></span>
     <div class="fband"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>

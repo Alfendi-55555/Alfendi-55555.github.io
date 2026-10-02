@@ -31,6 +31,8 @@ jobs:
         env:
           # 저장소 Settings → Secrets and variables → Actions → Variables (비어 있으면 content/music.json)
           MUSICLIST_CSV: ${{ vars.MUSICLIST_CSV }}
+          # 한줄 리뷰 시트(리뷰 탭) 게시 주소 (비어 있으면 games.json 의 review 만)
+          REVIEWS_CSV: ${{ vars.REVIEWS_CSV }}
           # 방명록 Apps Script 웹앱 주소 (비어 있으면 content/guestbook.json 샘플만 보임)
           GUESTBOOK_API: ${{ vars.GUESTBOOK_API }}
         run: python scripts/build.py

@@ -169,10 +169,32 @@ def fetch_text(url):
 
 fetch_csv = fetch_text
 
+def sheet_rows(env, cols):
+    """환경 변수 env 의 '웹에 게시' CSV 주소를 읽어 열 이름 기준 dict 목록으로. 주소가 없으면 None."""
+    url = os.environ.get(env, '').strip()
+    if not url:
+        return None
+    try:
+        text = fetch_csv(url)
+    except Exception as e:
+        errors.append(f'{env}: 시트를 읽지 못했습니다 → {e}')
+        return []
+    reader = csv.DictReader(io.StringIO(text))
+    head = [h.strip() for h in (reader.fieldnames or [])]
+    missing = [c for c in cols if c not in head]
+    if missing:
+        errors.append(f'{env}: 1행에 열이 없습니다 → {", ".join(missing)} (지금 1행: {", ".join(head)})')
+        return []
+    return [{(k or '').strip(): (v or '').strip() for k, v in r.items()} for r in reader]
+
+def game_lookup(games):
+    """id · 영문 이름 · 별칭(대소문자 무시) → 게임 id"""
+    return {key.strip().lower(): g['id'] for g in games for key in [g['id'], g['name'], *g['aliases']]}
+
 def music_rows():
     """시트(또는 music.json)를 시트 열 이름 기준의 dict 목록으로."""
-    url = os.environ.get('MUSICLIST_CSV', '').strip()
-    if not url:
+    rows = sheet_rows('MUSICLIST_CSV', MUSIC_COLS)
+    if rows is None:
         rows = []
         for m in load_json('music.json', []):
             rows.append({'제목': m.get('title', ''), '게임': m.get('game', ''), '작곡가': m.get('composer', ''),
@@ -181,24 +203,10 @@ def music_rows():
                          '링크': ', '.join(m.get('links') or ([m['youtube']] if m.get('youtube') else [])),
                          '썸네일': m.get('thumb', ''), '공개': 'Y'})
         return 'content/music.json', rows
-    try:
-        text = fetch_csv(url)
-    except Exception as e:
-        errors.append(f'MUSICLIST_CSV: 시트를 읽지 못했습니다 → {e}')
-        return 'MUSICLIST_CSV', []
-    reader = csv.DictReader(io.StringIO(text))
-    head = [h.strip() for h in (reader.fieldnames or [])]
-    missing = [c for c in MUSIC_COLS if c not in head]
-    if missing:
-        errors.append(f'MUSICLIST_CSV: 1행에 열이 없습니다 → {", ".join(missing)} (지금 1행: {", ".join(head)})')
-        return 'MUSICLIST_CSV', []
-    return '음악 시트', [{(k or '').strip(): (v or '').strip() for k, v in r.items()} for r in reader]
+    return '음악 시트', rows
 
 def build_music(games):
-    lookup = {}
-    for g in games:
-        for key in [g['id'], g['name'], *g['aliases']]:
-            lookup[key.strip().lower()] = g['id']
+    lookup = game_lookup(games)
     src, rows = music_rows()
     music, unknown = [], set()
     for n, r in enumerate(rows, 2):
@@ -224,6 +232,49 @@ def build_music(games):
     if unknown:
         print(f'참고: 라이브러리에 없는 게임(텍스트로만 표시) → {", ".join(sorted(unknown))}')
     return music
+
+# ---------------- 한줄 리뷰 (시트) ----------------
+REVIEW_COLS = ['게임', '별점', '연도', '시간', '한줄 리뷰', '공개']
+
+def apply_reviews(games):
+    """REVIEWS_CSV(리뷰 탭) 의 공개 행을 게임에 붙인다. 시트에 있는 게임은 games.json 의 review 보다 시트가 우선."""
+    rows = sheet_rows('REVIEWS_CSV', REVIEW_COLS)
+    if rows is None:
+        return
+    lookup, by_id, seen = game_lookup(games), {g['id']: g for g in games}, set()
+    for n, r in enumerate(rows, 2):
+        if r.get('공개', '').upper() != 'Y':
+            continue
+        where = f'리뷰 시트 {n}행'
+        gid = lookup.get(r.get('게임', '').lower())
+        if not gid:
+            errors.append(f'{where}: 라이브러리에 없는 게임입니다 → {r.get("게임")} (games.json의 id·이름·별칭 중 하나로)')
+            continue
+        if gid in seen:
+            errors.append(f'{where}: {by_id[gid]["name"]} 리뷰가 시트에 두 번 있습니다')
+            continue
+        try:
+            rating = float(r['별점'])
+        except ValueError:
+            rating = -1
+        if not (0.5 <= rating <= 5 and rating * 2 == int(rating * 2)):
+            errors.append(f'{where}: 별점은 0.5 ~ 5, 0.5 단위로 → {r["별점"]}')
+            continue
+        if not r.get('한줄 리뷰'):
+            errors.append(f'{where}: 한줄 리뷰가 비어 있습니다')
+            continue
+        year, hours = r.get('연도', ''), r.get('시간', '')
+        if year and not re.fullmatch(r'(19|20)\d\d', year):
+            errors.append(f'{where}: 연도는 2024처럼 네 자리로 → {year}')
+            continue
+        if hours and not re.fullmatch(r'\d+(\.\d+)?', hours):
+            errors.append(f'{where}: 시간은 숫자만 → {hours}')
+            continue
+        seen.add(gid)
+        by_id[gid]['review'] = {'rating': rating, 'year': int(year) if year else None,
+                                'hours': (float(hours) if '.' in hours else int(hours)) if hours else None,
+                                'text': r['한줄 리뷰']}
+    print(f'리뷰 시트: {len(seen)}개')
 
 # ---------------- 게임 소식 ----------------
 NEWS_MAX = 50
@@ -366,6 +417,7 @@ def build():
                       'review': check_review(g), 'posts': posts})
 
     names = {g['id'] for g in games}
+    apply_reviews(games)
     music = build_music(games)
     for g in games_meta:
         if g.get('steam') and not re.fullmatch(r'\d+', str(g['steam'])):
