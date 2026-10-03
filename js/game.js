@@ -3,8 +3,6 @@ import { $, el, reduced, cart, esc } from './util.js';
 import { BY_ID } from './store.js';
 import { showScreen } from './shell.js';
 
-$('#mq').innerHTML = Array(8).fill('<span>PLAY</span><span>◆</span><span>RECORD</span>'
-  + '<span>◆</span><span>TALK</span><span>◆</span><span>REPEAT</span><span>◆</span>').join('');
 $('#ejectBtn').onclick = () => { location.hash = '#/library'; };
 
 const slots = $('#slots');

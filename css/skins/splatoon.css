@@ -14,8 +14,7 @@
 
 /* ---------- 위쪽 띠 : 노란 잉크가 아래로 흘러내린다 ---------- */
 [data-skin="splatoon"] .orn{display:block;background:var(--sp-yellow);border-bottom:3px solid var(--sp-ink);overflow:visible}
-[data-skin="splatoon"] .orn div{display:flex;gap:30px;padding:9px 20px;white-space:nowrap;overflow:hidden;
-  animation:mq 22s linear infinite;font-family:var(--sp-font);font-size:13px;letter-spacing:.12em;color:var(--sp-ink)}
+[data-skin="splatoon"] .orn div{height:14px}   /* 글자 없는 노란 띠 — 아래로 잉크가 흘러내린다 */
 [data-skin="splatoon"] .orn .rule{display:none}
 [data-skin="splatoon"] .orn::after{content:'';position:absolute;left:0;right:0;top:100%;height:22px;pointer-events:none;
   background:

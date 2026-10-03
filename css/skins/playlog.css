@@ -3,11 +3,8 @@
   font-family:'Noto Sans KR',sans-serif}
 [data-skin="playlog"] .orn{display:flex;overflow:hidden;background:var(--pl-green);
   border-bottom:4px solid var(--pl-ink)}
-[data-skin="playlog"] .orn div{display:flex;gap:36px;padding:9px 20px;white-space:nowrap;
-  animation:mq 24s linear infinite;font-family:var(--font-mono);font-weight:600;font-size:12px;
-  letter-spacing:.3em;color:var(--pl-ink)}
+[data-skin="playlog"] .orn div{height:12px}   /* 글자 없는 초록 띠 */
 [data-skin="playlog"] .orn .rule{display:none}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 [data-skin="playlog"] .lib-hd h2{font-family:Archivo,sans-serif;font-weight:900;font-style:italic;
   letter-spacing:-.03em;transform:skewX(-8deg)}
 [data-skin="playlog"] .lib-hd .cnt{font-family:var(--font-mono);font-size:11px;font-weight:600;
