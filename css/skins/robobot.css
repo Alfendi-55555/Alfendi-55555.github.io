@@ -1,19 +1,19 @@
-/* ============ SKIN: robobot — 커비의 귀여움 + 기계 회사의 공장 : 강철 패널, 회로, 분홍, 경고 줄무늬 ============
-   회로 · 별 · 나사 · 줄무늬는 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
+/* ============ SKIN: robobot — 기계화된 별 : 남색 화면과 주사선, 하늘색 회로, 강철 패널, 분홍 · 노랑 ============
+   회로 · 나사 · 줄무늬는 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
 :root{
   --rb-steel:#DCE3EA; --rb-steel-2:#C3CDD7; --rb-machine:#232A36; --rb-pink:#FF6FA8; --rb-pink-2:#E2457F;
   --rb-cyan:#3FE0FF; --rb-warn:#FFD23F; --rb-ink:#1B2029;
   --rb-font:'Fredoka','Do Hyeon','Noto Sans KR',sans-serif;   /* 영문은 둥근 Fredoka, 한글은 반듯한 Do Hyeon */
 }
-[data-skin="robobot"]{color:var(--rb-ink);font-family:'Noto Sans KR',sans-serif;
+[data-skin="robobot"]{color:#EAF0FF;font-family:'Noto Sans KR',sans-serif;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 62 36 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 36Z' fill='%23FF8FB8' fill-opacity='.55' stroke='%23E2457F' stroke-opacity='.4' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") right 6% top 90px/70px auto no-repeat,
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 62 36 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 36Z' fill='%23FF8FB8' fill-opacity='.55' stroke='%23E2457F' stroke-opacity='.4' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") right 14% top 210px/34px auto no-repeat,
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 62 36 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 36Z' fill='%23FF8FB8' fill-opacity='.55' stroke='%23E2457F' stroke-opacity='.4' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") left 4% bottom 12%/48px auto no-repeat,
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%233FB8E0' stroke-opacity='.28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 30H40L60 50H110'/%3E%3Cpath d='M140 0V30L120 50V90'/%3E%3Cpath d='M0 120H30L50 100H90L110 120H160'/%3E%3Cpath d='M70 160V130'/%3E%3Cpath d='M160 70H130'/%3E%3C/g%3E%3Cg fill='%233FB8E0' fill-opacity='.35'%3E%3Ccircle cx='110' cy='50' r='4'/%3E%3Ccircle cx='120' cy='90' r='4'/%3E%3Ccircle cx='70' cy='130' r='4'/%3E%3Ccircle cx='130' cy='70' r='4'/%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,
-    linear-gradient(180deg,#E6EBF0 0%,#CFD8E1 100%);
+    repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%235FD8FF' stroke-opacity='.22' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 30H40L58 48H100L118 30H160'/%3E%3Cpath d='M0 120H30L48 102H88L106 120H160'/%3E%3Cpath d='M140 0V58L126 72V136L140 150V160'/%3E%3Cpath d='M10 0V12M10 148V160'/%3E%3Cpath d='M10 12L22 24V30'/%3E%3Cpath d='M10 148L22 136V120'/%3E%3Cpath d='M78 48V80H104'/%3E%3Cpath d='M58 102V86'/%3E%3C/g%3E%3Cg fill='%235FD8FF' fill-opacity='.32'%3E%3Ccircle cx='140' cy='30' r='3.6'/%3E%3Ccircle cx='126' cy='120' r='3.6'/%3E%3Ccircle cx='22' cy='30' r='3'/%3E%3Ccircle cx='22' cy='120' r='3'/%3E%3Ccircle cx='104' cy='80' r='5'/%3E%3Ccircle cx='58' cy='86' r='5'/%3E%3Ccircle cx='78' cy='48' r='3'/%3E%3C/g%3E%3Cg fill='none' stroke='%235FD8FF' stroke-opacity='.3' stroke-width='2'%3E%3Ccircle cx='104' cy='80' r='8.5'/%3E%3Ccircle cx='58' cy='86' r='8.5'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,
+    radial-gradient(40% 32% at 88% 18%,rgba(190,90,255,.38),transparent 70%),
+    radial-gradient(36% 30% at 8% 86%,rgba(255,111,168,.22),transparent 70%),
+    linear-gradient(180deg,#2236B8 0%,#18238A 55%,#111866 100%);
   background-attachment:fixed}
-#reader[data-skin="robobot"]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%233FB8E0' stroke-opacity='.28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 30H40L60 50H110'/%3E%3Cpath d='M140 0V30L120 50V90'/%3E%3Cpath d='M0 120H30L50 100H90L110 120H160'/%3E%3Cpath d='M70 160V130'/%3E%3Cpath d='M160 70H130'/%3E%3C/g%3E%3Cg fill='%233FB8E0' fill-opacity='.35'%3E%3Ccircle cx='110' cy='50' r='4'/%3E%3Ccircle cx='120' cy='90' r='4'/%3E%3Ccircle cx='70' cy='130' r='4'/%3E%3Ccircle cx='130' cy='70' r='4'/%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,linear-gradient(180deg,#E6EBF0 0%,#CFD8E1 100%);background-attachment:fixed}
+#reader[data-skin="robobot"]{background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%235FD8FF' stroke-opacity='.22' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 30H40L58 48H100L118 30H160'/%3E%3Cpath d='M0 120H30L48 102H88L106 120H160'/%3E%3Cpath d='M140 0V58L126 72V136L140 150V160'/%3E%3Cpath d='M10 0V12M10 148V160'/%3E%3Cpath d='M10 12L22 24V30'/%3E%3Cpath d='M10 148L22 136V120'/%3E%3Cpath d='M78 48V80H104'/%3E%3Cpath d='M58 102V86'/%3E%3C/g%3E%3Cg fill='%235FD8FF' fill-opacity='.32'%3E%3Ccircle cx='140' cy='30' r='3.6'/%3E%3Ccircle cx='126' cy='120' r='3.6'/%3E%3Ccircle cx='22' cy='30' r='3'/%3E%3Ccircle cx='22' cy='120' r='3'/%3E%3Ccircle cx='104' cy='80' r='5'/%3E%3Ccircle cx='58' cy='86' r='5'/%3E%3Ccircle cx='78' cy='48' r='3'/%3E%3C/g%3E%3Cg fill='none' stroke='%235FD8FF' stroke-opacity='.3' stroke-width='2'%3E%3Ccircle cx='104' cy='80' r='8.5'/%3E%3Ccircle cx='58' cy='86' r='8.5'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,linear-gradient(180deg,#2236B8 0%,#18238A 55%,#111866 100%);background-attachment:fixed}
 
 /* ---------- 위쪽 띠 : 공장의 노랑·검정 경고 줄무늬 ---------- */
 [data-skin="robobot"] .orn{display:block;border-bottom:3px solid var(--rb-ink);
@@ -46,7 +46,7 @@
   color:var(--rb-cyan);background:var(--rb-machine);padding:2px 8px;border-radius:4px;text-shadow:0 0 6px rgba(63,224,255,.7)}
 [data-skin="robobot"] .save .t{font-family:'Do Hyeon','Noto Sans KR',sans-serif;font-weight:400;font-size:21px}
 [data-skin="robobot"] .save .m{font-size:12.5px;color:rgba(27,32,41,.6)}
-[data-skin="robobot"] .save-empty{border-color:#7D8896}
+[data-skin="robobot"] .save-empty{border-color:rgba(95,216,255,.5);color:#EAF0FF}
 
 /* ---------- 글 읽기 : 모니터 화면 같은 표지, 강철 액자 ---------- */
 [data-skin="robobot"] .rd-bar{height:6px;background:repeating-linear-gradient(-45deg,var(--rb-warn) 0 8px,var(--rb-ink) 8px 16px)}
@@ -67,17 +67,17 @@
 [data-skin="robobot"] .rd h1{font-family:'Do Hyeon','Fredoka','Noto Sans KR',sans-serif;font-weight:400;font-size:36px;line-height:1.25;color:#FFC2DA;
   text-shadow:0 0 14px rgba(255,111,168,.55)}
 [data-skin="robobot"] .rd .rmeta{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--rb-cyan)}
-[data-skin="robobot"] .rd p{font-size:16.5px;line-height:1.9;color:#2A303B}
-[data-skin="robobot"] .rd h2,[data-skin="robobot"] .rd h3{font-family:'Do Hyeon','Noto Sans KR',sans-serif;font-weight:400;color:var(--rb-pink-2)}
-[data-skin="robobot"] .rd a{text-decoration-color:var(--rb-pink);text-decoration-thickness:2px}
-[data-skin="robobot"] .rd blockquote{background:rgba(255,255,255,.6);border:2px solid #8C97A4;border-left:6px solid var(--rb-pink)}
+[data-skin="robobot"] .rd p{font-size:16.5px;line-height:1.9;color:#E4EAFF}
+[data-skin="robobot"] .rd h2,[data-skin="robobot"] .rd h3{font-family:'Do Hyeon','Noto Sans KR',sans-serif;font-weight:400;color:#FF9CC4}
+[data-skin="robobot"] .rd a{color:#fff;text-decoration-color:var(--rb-pink);text-decoration-thickness:2px}
+[data-skin="robobot"] .rd blockquote{background:rgba(10,16,70,.5);border:2px solid rgba(95,216,255,.45);border-left:6px solid var(--rb-pink)}
 [data-skin="robobot"] .rd figure img,[data-skin="robobot"] .rd-yt{border-radius:12px;border:6px solid #8C97A4;outline:2px solid var(--rb-ink);outline-offset:0;
   box-shadow:0 6px 0 var(--rb-ink)}
 [data-skin="robobot"] .rd figcaption{display:table;margin:16px auto 0;padding:6px 14px;border-radius:6px;background:var(--rb-machine);
   color:var(--rb-cyan);font-family:var(--font-mono);font-size:12.5px;letter-spacing:.06em;text-shadow:0 0 6px rgba(63,224,255,.6)}
-[data-skin="robobot"] .rd .end{box-shadow:inset 0 3px 0 #8C97A4;font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:rgba(27,32,41,.5)}
-[data-skin="robobot"] .rd .end b{font-family:var(--rb-font);font-weight:700;font-size:18px;color:var(--rb-ink)}
-[data-skin="robobot"] .rd .end b i{font-style:normal;color:var(--rb-pink-2)}
+[data-skin="robobot"] .rd .end{box-shadow:inset 0 3px 0 rgba(95,216,255,.5);font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:rgba(234,240,255,.55)}
+[data-skin="robobot"] .rd .end b{font-family:var(--rb-font);font-weight:700;font-size:18px;color:#fff}
+[data-skin="robobot"] .rd .end b i{font-style:normal;color:var(--rb-pink)}
 [data-skin="robobot"] .rd-nav button{background:linear-gradient(180deg,#F2F5F8,var(--rb-steel-2));color:var(--rb-ink);border:2px solid #7D8896;border-radius:14px;box-shadow:0 4px 0 #8C97A4}
 [data-skin="robobot"] .rd-nav button span{color:var(--rb-pink-2)}
 
