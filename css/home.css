@@ -1,5 +1,5 @@
 /* ============ 홈 : 채널 메뉴 ============ */
-#home{background:repeating-linear-gradient(180deg,#EFF3F7 0 3px,#EAEFF4 3px 6px)}
+#home{background:repeating-linear-gradient(180deg,var(--stripe-a) 0 3px,var(--stripe-b) 3px 6px)}
 .home-body{padding-bottom:28px}
 .channels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .chan{display:block;box-sizing:border-box;height:200px;width:100%;min-width:0;padding:7px;border-radius:24px;
@@ -8,7 +8,7 @@
 .chan:hover{color:var(--text)}
 .chan .scr{position:relative;box-sizing:border-box;height:100%;border-radius:17px;overflow:hidden;
   padding:16px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface)}
-.chan.empty{background:transparent;border:1.5px dashed #D3DCE5;box-shadow:none;cursor:default}
+.chan.empty{background:transparent;border:1.5px dashed var(--line);box-shadow:none;cursor:default}
 .chan.soon{cursor:default}
 .lbl{font-family:var(--font-mono);font-size:14px;font-weight:500;letter-spacing:.07em;color:var(--mut)}
 .meta-line{font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;color:var(--mut)}
@@ -43,7 +43,7 @@
 .chan.news .soon-txt{font-size:14px;color:var(--mut);line-height:1.6}
 
 /* LIBRARY */
-.chan.lib .scr{background:#E3EAF1}
+.chan.lib .scr{background:var(--fill-2)}
 .chan.lib .carts{display:flex;gap:12px;align-items:flex-end}
 
 /* NOW PLAYING */
@@ -60,7 +60,7 @@
 
 /* ============ 독 : 직선 띠, 가운데 시계 ============ */
 .dock{margin-top:auto;flex-shrink:0;height:108px;box-sizing:border-box;padding:0 64px;display:flex;align-items:center;
-  justify-content:space-between;background:#E1E8EF;border-top:1.5px solid var(--shell-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+  justify-content:space-between;background:var(--dock);border-top:1.5px solid var(--shell-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
 .dock .sys{color:var(--mut);min-width:140px}
 .dock .sys:last-child{text-align:right}
 .dock-clock{display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -79,9 +79,9 @@
 .chan.guest .msg b{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
 .chan.guest .msg b span{font-family:var(--font-mono);font-weight:400;font-size:12px;color:var(--mut);margin-left:4px}
 .chan.guest .msg p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.chan.guest .go{font-size:13px;font-weight:600;color:#15699C}
+.chan.guest .go{font-size:13px;font-weight:600;color:var(--link-2)}
 /* NOW PLAYING : 마지막 기록 제목 */
-.chan.playing .last{display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px solid #E6EFF7}
+.chan.playing .last{display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px solid var(--rule)}
 .chan.playing .last span{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;color:var(--mut)}
 .chan.playing .last b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 

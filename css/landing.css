@@ -1,6 +1,6 @@
 /* ============ 첫 화면 인트로 : 부제가 한 글자씩, 그 아래 로고 ============ */
 #landing{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:24px;cursor:pointer;
-  background:repeating-linear-gradient(180deg,#EFF3F7 0 3px,#EAEFF4 3px 6px)}
+  background:repeating-linear-gradient(180deg,var(--stripe-a) 0 3px,var(--stripe-b) 3px 6px)}
 #landing.on{display:flex}
 #landing.out{opacity:0;transition:opacity 700ms ease}
 .ld-in{display:flex;flex-direction:column;align-items:center;gap:44px;text-align:center}
@@ -14,6 +14,6 @@
 .ld-mark.on{opacity:1;transform:none}
 .ld-logo{display:flex;align-items:center;gap:14px;color:var(--text)}
 .ld-logo .wm{font-family:var(--font-display);font-weight:700;font-size:52px;letter-spacing:-.02em}
-.ld-logo .wm i{font-style:normal;color:var(--sky-deep)}
+.ld-logo .wm i{font-style:normal;color:var(--link)}
 .ld-mark .sys{color:var(--mut)}
 @media (max-width:720px){ .ld-sub{font-size:19px} .ld-logo .wm{font-size:40px} .ld-in{gap:34px} }

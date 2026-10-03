@@ -19,16 +19,16 @@
 .chip{padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);
   color:var(--ink-soft);font-size:13px;font-weight:500;cursor:pointer;
   transition:background 140ms,color 140ms,border-color 140ms}
-.chip:hover{border-color:#B8C4CE}
+.chip:hover{border-color:var(--hover-line)}
 .chip[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--surface)}
 .chip i{font-style:normal;font-family:var(--font-mono);font-size:11.5px;margin-left:5px;opacity:.7}
 
 .btn-ghost{display:block;margin:28px auto 0;height:44px;padding:0 22px;border-radius:22px;
   border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:600;cursor:pointer}
-.btn-ghost:hover{border-color:#B8C4CE}
+.btn-ghost:hover{border-color:var(--hover-line)}
 .btn-dark{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:25px;
   background:var(--text);color:var(--surface);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer}
-.btn-dark:hover{color:var(--surface);background:#26323D}
+.btn-dark:hover{color:var(--surface);background:var(--text-hover)}
 
 /* 채널·케이스·타일 공용 포커스 : 하늘색 링 */
 .ch{transition:transform var(--t-focus) var(--ease-focus),box-shadow var(--t-focus) var(--ease-focus)}
@@ -69,7 +69,7 @@
 .search input{width:100%;height:42px;box-sizing:border-box;padding:0 44px 0 40px;border-radius:21px;border:1px solid var(--line);
   background:var(--surface);font:inherit;font-size:14px;color:var(--text);outline:none;-webkit-appearance:none;appearance:none;
   box-shadow:inset 0 1px 2px rgba(13,22,29,.05);transition:border-color 140ms,box-shadow 140ms}
-.search input::placeholder{color:#7C8894}
+.search input::placeholder{color:var(--placeholder)}
 .search input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(48,176,244,.25)}
 .search input::-webkit-search-cancel-button{display:none}
 .search kbd{position:absolute;right:12px;top:50%;transform:translateY(-50%);min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;
@@ -77,9 +77,9 @@
   display:flex;align-items:center;justify-content:center;pointer-events:none}
 .search.has kbd{display:none}
 .s-clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;
-  background:#E6EFF7;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;cursor:pointer}
+  background:var(--fill);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;cursor:pointer}
 .s-clear[hidden]{display:none}
-.s-clear:hover{background:#D8E3EE}
+.s-clear:hover{background:var(--fill-hover)}
 mark{background:rgba(48,176,244,.22);color:inherit;border-radius:3px;padding:0 1px}
 @media (pointer:coarse){ .search kbd{display:none} }
 @media (max-width:720px){

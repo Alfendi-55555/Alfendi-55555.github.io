@@ -1,11 +1,11 @@
 /* ============ 상단 바 : 메뉴는 전부 텍스트 ============ */
 .hdr{position:sticky;top:0;z-index:30;height:64px;box-sizing:border-box;padding:0 64px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;
-  background:#F4F8FB;border-bottom:1px solid var(--line)}
+  background:var(--hdr);border-bottom:1px solid var(--line)}
 .logo{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;flex-shrink:0}
 .logo:hover{color:var(--text)}
 .logo .wm{font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-.01em}
-.logo .wm i{font-style:normal;color:var(--sky-deep)}
+.logo .wm i{font-style:normal;color:var(--link)}
 .hdr-nav{display:flex;align-items:center;gap:26px;margin-left:auto;font-size:14px;font-weight:500}
 .hdr-nav a,.nav-btn{color:var(--mut);text-decoration:none;padding:12px 0;box-shadow:inset 0 -2px 0 transparent;
   transition:color 140ms,box-shadow 140ms;font-size:14px;font-weight:500}
@@ -59,10 +59,10 @@ body[data-hskin="metaphor"] .hdr-ctx{color:var(--mp-gold)}
   .nav-sep,.hdr-ctx{display:none}
   .nav-sep.grp{display:block;width:auto;height:10px;background:none}   /* 모바일 메뉴에서는 묶음 사이 간격 */
   .hdr-nav{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;
-    margin:0;padding:6px 20px 14px;background:#F4F8FB;border-bottom:1px solid var(--line);
+    margin:0;padding:6px 20px 14px;background:var(--hdr);border-bottom:1px solid var(--line);
     box-shadow:0 18px 30px -18px rgba(13,22,29,.35);display:none}
   .hdr-nav.open{display:flex}
-  .hdr-nav a,.nav-btn{padding:14px 2px;font-size:16px;border-bottom:1px solid #E6EFF7;box-shadow:none;text-align:left}
+  .hdr-nav a,.nav-btn{padding:14px 2px;font-size:16px;border-bottom:1px solid var(--rule);box-shadow:none;text-align:left}
   .nav-btn{border-bottom:0}
   .hdr-nav a[aria-current="page"]{box-shadow:inset 3px 0 0 var(--sky);padding-left:12px}
   body[data-hskin="playlog"] .hdr-nav{background:var(--pl-paper)}

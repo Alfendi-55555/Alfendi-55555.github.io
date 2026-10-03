@@ -1,8 +1,38 @@
-:root{
-  /* --- 라이트 (홈) : oklch hue 245 --- */
+/* ---------- 화면 색 : 라이트 (기본) ----------
+   다크 테마에서도 글 화면 · 카트리지 삽입 · 게임별 기록 · 펼친 케이스는 이 라이트 값으로 되돌린다
+   (그쪽은 게임 스킨의 세계라 테마를 따르지 않는다). 케이스 · 카트리지 같은 '물건'도 원래 색 그대로 */
+:root,
+:root[data-theme="dark"] :is(#reader, #caseWrap, .case, .cart, .fav-case),
+:root[data-theme="dark"] body:is([data-screen="game"], [data-screen="insert"]){
+  color-scheme:light;
   --bg:#F1F7FD; --surface:#FBFEFF; --sunken:#E6EFF7; --line:#D0DCE7;
   --line-soft:#DDE6EE; --text:#17232D; --muted:#6A7681; --muted-2:#94A0AA; --muted-3:#B8C4CE;
   --ink-soft:#3F4C57; --mut:#5F6B76; --ground:#EDF2F7; --shell-line:#C9D5E0;
+  --hdr:#F4F8FB; --rule:#E6EFF7; --fill:#E6EFF7; --fill-hover:#D8E3EE; --fill-2:#E3EAF1;
+  --stripe-a:#EFF3F7; --stripe-b:#EAEFF4; --dock:#E1E8EF; --hover-line:#B8C4CE; --placeholder:#7C8894;
+  --input:#FFFFFF; --body-ink:#26323D; --panel-soft:#EEF4F9; --text-hover:#0D161D; --switch-off:#C9D3DC;
+  --link:#1B84C4; --link-hover:#0F6296; --link-2:#15699C; --ink-box:#1A252F; --ink-box-line:#1A252F;
+  --warn-bg:#FBEDE4; --warn:#9A3F12; --info-bg:#E3F4FD; --info:#15699C; --ok-bg:#DDF3EA; --ok:#1D7A5C;
+  --e1:0 1px 2px rgba(13,22,29,.14), 0 12px 22px -10px rgba(13,22,29,.34);
+  --e2:0 3px 6px rgba(13,22,29,.16), 0 22px 34px -14px rgba(13,22,29,.44);
+  --e3:0 6px 10px rgba(13,22,29,.18), 0 38px 54px -20px rgba(13,22,29,.50);
+}
+/* ---------- 화면 색 : 다크 — 같은 hue 245, 라이브러리 삽입 화면의 남색 팔레트에서 ---------- */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101A22; --surface:#18232D; --sunken:#121C25; --line:#2C3946;
+  --line-soft:#24303B; --text:#E8EEF4; --muted:#8F9BA5; --muted-2:#6B7783; --muted-3:#4F5B66;
+  --ink-soft:#C0CAD4; --mut:#93A0AB; --ground:#0D161D; --shell-line:#2C3946;
+  --hdr:#111C24; --rule:#24303B; --fill:#24303B; --fill-hover:#2E3C48; --fill-2:#1F2A34;
+  --stripe-a:#0E171E; --stripe-b:#0C151B; --dock:#111C24; --hover-line:#4F5B66; --placeholder:#6B7783;
+  --input:#121C25; --body-ink:#D3DCE4; --panel-soft:#1F2B36; --text-hover:#FFFFFF; --switch-off:#3A4753;
+  --link:#5CBDF2; --link-hover:#8FD3F7; --link-2:#6CC4F5; --ink-box:#22303B; --ink-box-line:#2E3C48;
+  --warn-bg:#3A2419; --warn:#F2B08A; --info-bg:#13324A; --info:#8FD0F7; --ok-bg:#153A2E; --ok:#7FD9B5;
+  --e1:0 1px 2px rgba(0,0,0,.40), 0 12px 22px -10px rgba(0,0,0,.62);
+  --e2:0 3px 6px rgba(0,0,0,.46), 0 22px 34px -14px rgba(0,0,0,.72);
+  --e3:0 6px 10px rgba(0,0,0,.52), 0 38px 54px -20px rgba(0,0,0,.82);
+}
+:root{
   /* --- 다크 (삽입 / 라이브러리) : 같은 hue 245 --- */
   --d-bg:#0D161D; --d-surface:#1A252F; --d-raised:#26323D; --d-line:#34424E;
   --d-text:#EDF2F7; --d-muted:#8F9BA5; --d-muted-2:#656F7A; --d-deep:#131E27;
@@ -13,9 +43,6 @@
   --shell-lo:#5F5B4C; --shell-dk:#464236; --shell-side:#5A5648; --contact:#CDB760;
   --label-paper:#EFEAE1; --recess:#2A2721;
   /* --- 고도 : 접촉 그림자 + 확산 그림자, 언제나 두 겹 --- */
-  --e1:0 1px 2px rgba(13,22,29,.14), 0 12px 22px -10px rgba(13,22,29,.34);
-  --e2:0 3px 6px rgba(13,22,29,.16), 0 22px 34px -14px rgba(13,22,29,.44);
-  --e3:0 6px 10px rgba(13,22,29,.18), 0 38px 54px -20px rgba(13,22,29,.50);
   --e1d:0 1px 2px rgba(0,0,0,.40), 0 12px 22px -10px rgba(0,0,0,.62);
   --e2d:0 3px 6px rgba(0,0,0,.46), 0 22px 34px -14px rgba(0,0,0,.72);
   --e3d:0 6px 10px rgba(0,0,0,.52), 0 38px 54px -20px rgba(0,0,0,.82);
@@ -42,6 +69,6 @@ img{max-width:100%}
 body{margin:0;font-family:var(--font-ui);background:var(--ground);color:var(--text);
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
-a{color:var(--sky-deep)} a:hover{color:#0F6296}
+a{color:var(--link)} a:hover{color:var(--link-hover)}
 .mono{font-family:var(--font-mono)}
 .sys{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.08em}

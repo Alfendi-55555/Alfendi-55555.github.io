@@ -38,7 +38,7 @@
 .auto-check{margin-top:34px;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 14px;border-radius:16px;
   background:var(--surface);border:1px solid var(--line);cursor:pointer;
   box-shadow:0 1px 2px rgba(13,22,29,.08),0 10px 20px -14px rgba(13,22,29,.30)}
-.auto-check input{width:20px;height:20px;margin:0;accent-color:var(--sky-deep);cursor:pointer}
+.auto-check input{width:20px;height:20px;margin:0;accent-color:var(--link);cursor:pointer}
 .auto-check b{display:block;font-size:15px;font-weight:600}
 .auto-check small{display:block;font-size:12.5px;color:var(--mut)}
 @media (max-width:720px){
