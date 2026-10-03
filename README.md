@@ -7,7 +7,7 @@
 ```
 index.html            화면 뼈대 (마크업만)
 css/                  스타일. index.html의 <link> 순서가 곧 우선순위
-  skins/              게임별 스킨 (base / playlog / metaphor)
+  skins/              게임별 스킨 (base · playlog · metaphor · splatoon · raiders · robobot · rhythm · hades · katamari · botw · tomodachi)
 js/                   화면 동작. 화면마다 모듈 하나
   app.js              진입점 · 주소(#/...) → 화면
   store.js            data/site.json 을 읽어 모두에게 나눠 준다
@@ -64,7 +64,7 @@ scripts/build.py      content + posts + 음악 시트 + 게임 소식 → _site/
 - `id`는 영문 소문자와 `-`. 글 폴더 이름(`posts/<id>/`)과 같아야 합니다.
 - `aliases`는 선택. 라이브러리·전체 글 검색에서 이 이름으로도 찾아집니다(예: "하데스"로 Hades).
 - `art`가 없으면 `color` 단색으로 보입니다.
-- `skin`은 카트리지를 꽂았을 때의 화면 스킨 (`base` · `playlog` · `metaphor`). 없으면 `base`.
+- `skin`은 카트리지를 꽂았을 때의 화면 스킨 (`css/skins/` 의 파일 이름, 예: `metaphor` · `splatoon`). 없으면 `base`. 설정의 「게임별 테마」를 끄면 모두 `base`로 보인다.
 - `steam`은 선택. Steam 상점 주소(`store.steampowered.com/app/<숫자>/…`)의 숫자를 넣으면 그 게임의 공식 공지가 게임 소식에 들어옵니다.
 - 닌텐도 게임은 `aliases`에 **한국어 이름**을 넣어 두세요. 닌텐도 코리아 소식의 『』 안 이름과 맞춰 게임을 연결합니다.
 - 리뷰 시트를 쓰지 않을 때는 `"review": { "rating": 4.5, "year": 2024, "hours": 12, "text": "…" }`를 직접 넣어도 됩니다. 같은 게임이 시트에도 있으면 시트가 우선입니다.

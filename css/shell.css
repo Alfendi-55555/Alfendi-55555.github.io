@@ -34,12 +34,6 @@ body[data-hskin="playlog"] .logo .wm{font-family:Archivo,sans-serif;font-weight:
 body[data-hskin="playlog"] .logo .wm i{color:var(--pl-green)}
 body[data-hskin="playlog"] .hdr-nav a,body[data-hskin="playlog"] .nav-btn{color:rgba(20,19,16,.55);font-weight:700}
 body[data-hskin="playlog"] .hdr-nav a[aria-current="page"],body[data-hskin="playlog"] .hdr-nav a:hover{color:var(--pl-ink)}
-body[data-hskin="metaphor"] .hdr{background:var(--mp-plate);border-bottom:2px solid var(--mp-gold)}
-body[data-hskin="metaphor"] .logo .wm{font-family:Bitter,'Noto Serif KR',serif;font-weight:900}
-body[data-hskin="metaphor"] .logo .wm i{color:var(--mp-crimson)}
-body[data-hskin="metaphor"] .hdr-nav a,body[data-hskin="metaphor"] .nav-btn{color:rgba(51,40,28,.55);font-family:Bitter,'Noto Serif KR',serif}
-body[data-hskin="metaphor"] .hdr-nav a[aria-current="page"],body[data-hskin="metaphor"] .hdr-nav a:hover{color:var(--mp-ink)}
-body[data-hskin="metaphor"] .hdr-ctx{color:var(--mp-gold)}
 
 /* ============ 오버레이 공용 (케이스 · 설정) ============ */
 .overlay{position:fixed;inset:0;z-index:45;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -66,5 +60,4 @@ body[data-hskin="metaphor"] .hdr-ctx{color:var(--mp-gold)}
   .nav-btn{border-bottom:0}
   .hdr-nav a[aria-current="page"]{box-shadow:inset 3px 0 0 var(--sky);padding-left:12px}
   body[data-hskin="playlog"] .hdr-nav{background:var(--pl-paper)}
-  body[data-hskin="metaphor"] .hdr-nav{background:var(--mp-plate)}
 }
