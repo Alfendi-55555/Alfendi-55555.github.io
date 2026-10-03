@@ -72,8 +72,8 @@
 [data-skin="metaphor"] .rd p{font-size:17px;line-height:1.95;color:var(--mp-ink)}
 [data-skin="metaphor"] .rd figure img{outline:1px solid rgba(138,106,46,.55);outline-offset:-1px}
 [data-skin="metaphor"] .rd figcaption{font-family:Bitter,'Noto Serif KR',serif;font-size:13px;
-  color:#F1E6CE;background:rgba(24,19,12,.82);display:inline-block;padding:7px 20px;
-  transform:skewX(-12deg);margin-left:12px}
+  color:#F1E6CE;background:rgba(24,19,12,.82);display:table;padding:7px 20px;
+  transform:skewX(-12deg);margin:10px auto 0}
 [data-skin="metaphor"] .rd figcaption span{display:inline-block;transform:skewX(12deg)}
 [data-skin="metaphor"] .rd .end{box-shadow:inset 0 1px 0 rgba(138,106,46,.5);
   font-family:Archivo,sans-serif;font-size:10px;font-weight:700;letter-spacing:.32em;
