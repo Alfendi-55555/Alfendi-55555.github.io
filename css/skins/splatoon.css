@@ -40,11 +40,9 @@
 /* ---------- 세이브 : 비뚤게 붙인 스티커 ---------- */
 [data-skin="splatoon"] .slots{gap:18px}
 [data-skin="splatoon"] .save{background:var(--sp-paper);color:var(--sp-ink);border:3px solid var(--sp-ink);border-radius:18px;
-  padding:12px 16px 12px 12px;box-shadow:4px 4px 0 var(--sp-ink);transition:rotate 160ms var(--ease-snap),translate 160ms var(--ease-snap),box-shadow 160ms}
-/* 등장 애니메이션이 transform 을 쥐고 있으므로 기울기·들썩임은 rotate·translate 속성으로 따로 준다 */
-[data-skin="splatoon"] .save:nth-child(odd){rotate:-.7deg}
-[data-skin="splatoon"] .save:nth-child(even){rotate:.7deg}
-[data-skin="splatoon"] .save:hover,[data-skin="splatoon"] .save:focus-visible{rotate:0deg;translate:-2px -3px;
+  padding:12px 16px 12px 12px;box-shadow:4px 4px 0 var(--sp-ink);transition:translate 160ms var(--ease-snap),box-shadow 160ms}
+/* 목록은 읽기 쉽게 반듯하게. 들썩임은 등장 애니메이션이 transform 을 쥐고 있으므로 translate 속성으로 */
+[data-skin="splatoon"] .save:hover,[data-skin="splatoon"] .save:focus-visible{translate:-2px -3px;
   box-shadow:7px 7px 0 var(--sp-yellow),7px 7px 0 3px var(--sp-ink)}
 [data-skin="splatoon"] .save .bar{width:0}
 [data-skin="splatoon"] .save .thumb{border-radius:10px;outline:3px solid var(--sp-ink);outline-offset:-3px}
@@ -105,4 +103,4 @@ body[data-hskin="splatoon"] .menu-btn{color:var(--sp-paper)}
     background-position:0 0,right -60px top 70px,right 120px top 230px,left -50px bottom -30px,0 0}
   [data-skin="splatoon"] .lib-hd h2{font-size:28px}
 }
-@media (prefers-reduced-motion:reduce){ [data-skin="splatoon"] .save{rotate:0deg!important;translate:none!important} }
+@media (prefers-reduced-motion:reduce){ [data-skin="splatoon"] .save{translate:none!important} }
