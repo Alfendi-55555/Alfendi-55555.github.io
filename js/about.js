@@ -40,6 +40,21 @@ const STATS = [
 const stats = `<div class="wrap" style="padding-top:0;padding-bottom:0"><div class="rise" ${d(300)}>${bez(STATS.map((s, i) =>
   `<div class="ab-stat"><b><span data-n="${i}">0</span>${s.u ? `<small>${s.u}</small>` : ''}</b><span>${s.l}</span></div>`).join(''), 'ab-stats')}</div></div>`;
 
+/* ---------- 이 사이트는 : 목적 · 이런 분께 · 메뉴 안내 (profile.json 의 purpose) ---------- */
+function purpose() {
+  const u = P.purpose; if (!u) return '';
+  const who = u.for && u.for.length ? `<div class="pp-for"><span class="sys">FOR</span><b>이런 분께</b>
+    <ul class="lst">${u.for.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
+  const menu = u.menu && u.menu.length ? `<nav class="pp-menu" aria-label="사이트 안내">${u.menu.map(m =>
+    `<a href="${esc(m.href)}"><b>${esc(m.name)}</b><span>${esc(m.text)}</span><i aria-hidden="true">→</i></a>`).join('')}</nav>` : '';
+  return `<section class="ab-sec">${sec('ABOUT THIS SITE', '이 사이트는')}<div class="two-col wide">
+    <div>${bez(`<p class="pp-text">${esc(u.text || '')}</p>${who}`)}</div><div>${bez(menu, 'pp-nav')}</div></div></section>`;
+}
+
+/* ---------- 게임과 함께한 길 (profile.json 의 history) ---------- */
+const history = P.history && P.history.length ? `<section class="ab-sec">${sec('HISTORY', '게임과 함께한 길')}${bez(`<ol class="tl">${P.history.map((x, i) =>
+  `<li><span class="tl-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div><span class="tl-l">${esc(x.label || '')}</span><b>${esc(x.title || '')}</b>${x.text ? `<p>${esc(x.text)}</p>` : ''}</div></li>`).join('')}</ol>`)}</section>` : '';
+
 /* ---------- 가장 좋아하는 게임 (profile.json 의 favorite 가 있을 때만) ---------- */
 function favorite() {
   const f = P.favorite; if (!f) return '';
@@ -57,8 +72,8 @@ function favorite() {
 /* ---------- 좋아하는 것 / 잘 안 맞는 것 ---------- */
 const list = (k, t, items, no) => bez(`<div class="lst-hd"><span class="sys">${k}</span><b>${t}</b></div>
   <ul class="lst${no ? ' no' : ''}">${items.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`);
-const style = (P.likes && P.likes.length) || (P.dislikes && P.dislikes.length) ? `<section class="ab-sec">${sec('PLAY STYLE', '이렇게 플레이해요')}
-  <div class="two-col">${P.likes && P.likes.length ? `<div>${list('LIKES', '좋아하는 것', P.likes)}</div>` : ''}${P.dislikes && P.dislikes.length ? `<div>${list('DISLIKES', '잘 안 맞는 것', P.dislikes, true)}</div>` : ''}</div></section>` : '';
+const style = (P.likes && P.likes.length) || (P.dislikes && P.dislikes.length) ? `<section class="ab-sec">${sec('INTERESTS', '관심 분야')}
+  <div class="two-col">${P.likes && P.likes.length ? `<div>${list('LIKES', '좋아하는 게임', P.likes)}</div>` : ''}${P.dislikes && P.dislikes.length ? `<div>${list('DISLIKES', '잘 안 맞는 게임', P.dislikes, true)}</div>` : ''}</div></section>` : '';
 
 /* ---------- 별점 분포 · 태그 ---------- */
 const bucket = [0, 0, 0, 0, 0];
@@ -80,7 +95,7 @@ const hw = P.hardware && P.hardware.length ? `<section class="ab-sec">${sec('HAR
   <div class="top"><span class="bd">${esc(x.badge || '')}</span>${x.note ? `<span class="nt">${esc(x.note)}</span>` : ''}</div>
   <div><b>${esc(x.name || '')}</b>${x.detail ? `<small>${esc(x.detail)}</small>` : ''}</div>`)).join('')}</div></section>` : '';
 
-const body = `<div class="wrap" style="padding-top:0;padding-bottom:0">${favorite()}${style}${rating}${hw}</div>`;
+const body = `<div class="wrap" style="padding-top:0;padding-bottom:0">${purpose()}${history}${favorite()}${style}${rating}${hw}</div>`;
 
 /* ---------- 최근 꺼낸 카트리지 : 끝없이 흐른다 (보일 때만) ---------- */
 const row = RECENT.map(g => `<button type="button" class="shelf-item lift" data-id="${esc(g.id)}" aria-label="${esc(g.name)} 케이스 열기">${cart(g, 120)}<span class="tx"><span class="nm">${esc(g.name)}</span><span class="sv">${g.posts.length} SAVES</span></span></button>`).join('');
