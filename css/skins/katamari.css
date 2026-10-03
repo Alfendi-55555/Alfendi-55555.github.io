@@ -1,0 +1,91 @@
+/* ============ SKIN: katamari — 굴리면 붙는 덩어리 : 크림 바탕, 무지개 띠, 색종이 별, 통통한 글씨 ============
+   덩어리 · 별 · 무지개는 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
+:root{
+  --km-cream:#FFF6E4; --km-ink:#2A1E3B; --km-pink:#FF4F7B; --km-orange:#FF9F1C; --km-yellow:#FFD23F; --km-green:#3CCB7F;
+  --km-blue:#3FA7F5; --km-purple:#9B6CF0;
+  --km-font:'Bagel Fat One','Jua','Noto Sans KR',sans-serif;
+}
+[data-skin="katamari"]{color:var(--km-ink);font-family:'Noto Sans KR',sans-serif;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Ccircle cx='90' cy='90' r='62' fill='%23FFE8F2' stroke='%232A1E3B' stroke-width='3'/%3E%3Crect x='82' y='135' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F' transform='rotate%28320 94 138%29'/%3E%3Crect x='34' y='62' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8' transform='rotate%28132 46 65%29'/%3E%3Crect x='43' y='76' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28276 55 79%29'/%3E%3Crect x='107' y='44' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28118 114 50%29'/%3E%3Crect x='39' y='42' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%287 51 45%29'/%3E%3Ccircle cx='75' cy='62' r='8' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8'/%3E%3Crect x='95' y='52' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%28218 107 55%29'/%3E%3Crect x='38' y='119' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%233CCB7F' transform='rotate%28187 45 125%29'/%3E%3Cpath d='M118 101l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF9F1C' transform='rotate%28344 118 110%29'/%3E%3Crect x='31' y='107' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F' transform='rotate%28259 43 110%29'/%3E%3Crect x='103' y='44' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%28299 115 47%29'/%3E%3Cpath d='M95 122l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF4F7B' transform='rotate%28310 95 131%29'/%3E%3Cpath d='M73 50l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8' transform='rotate%28277 73 59%29'/%3E%3Crect x='124' y='56' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28324 131 62%29'/%3E%3Ccircle cx='114' cy='47' r='7' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F'/%3E%3Ccircle cx='60' cy='54' r='9' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F'/%3E%3Ccircle cx='134' cy='96' r='7' stroke='%232A1E3B' stroke-width='1.6' fill='%233CCB7F'/%3E%3Cpath d='M93 38l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%28282 93 47%29'/%3E%3Crect x='129' y='41' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%2818 136 47%29'/%3E%3Ccircle cx='78' cy='120' r='9' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5'/%3E%3Ccircle cx='80' cy='128' r='6' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0'/%3E%3Crect x='136' y='71' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%233CCB7F' transform='rotate%28235 148 74%29'/%3E%3Ccircle cx='120' cy='59' r='9' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8'/%3E%3Crect x='98' y='48' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28154 105 54%29'/%3E%3Cpath d='M54 96l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F' transform='rotate%285 54 105%29'/%3E%3Ccircle cx='105' cy='28' r='7' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F'/%3E%3Cpath d='M68 57l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28238 68 66%29'/%3E%3Cpath d='M53 130l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%28250 53 139%29'/%3E%3Ccircle cx='122' cy='94' r='6' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0'/%3E%3Crect x='35' y='98' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%23FFD23F' transform='rotate%28186 42 104%29'/%3E%3Cpath d='M112 132l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8' transform='rotate%28153 112 141%29'/%3E%3Ccircle cx='98' cy='57' r='8' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8'/%3E%3Cpath d='M122 116l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28122 122 125%29'/%3E%3Ccircle cx='65' cy='137' r='7' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0'/%3E%3Crect x='128' y='70' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF9F1C' transform='rotate%2886 140 73%29'/%3E%3Crect x='126' y='114' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF9F1C' transform='rotate%28138 138 117%29'/%3E%3Crect x='88' y='118' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%233FA7F5' transform='rotate%28161 95 124%29'/%3E%3Cpath d='M110 26l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF9F1C' transform='rotate%28174 110 35%29'/%3E%3Cpath d='M108 32l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8' transform='rotate%28301 108 41%29'/%3E%3Cpath d='M117 110l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8' transform='rotate%28237 117 119%29'/%3E%3Crect x='53' y='123' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%233CCB7F' transform='rotate%2818 65 126%29'/%3E%3Crect x='109' y='70' width='24' height='6' rx='3' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF4F7B' transform='rotate%28318 121 73%29'/%3E%3Crect x='128' y='80' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%2816 135 86%29'/%3E%3Cpath d='M88 23l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%239B6CF0' transform='rotate%28278 88 32%29'/%3E%3Cpath d='M70 113l8 14h-16z' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF4F7B' transform='rotate%2861 70 122%29'/%3E%3Crect x='95' y='55' width='14' height='12' rx='2' stroke='%232A1E3B' stroke-width='1.6' fill='%23FF7AC8' transform='rotate%28220 102 61%29'/%3E%3Crect x='140' y='30' width='34' height='9' rx='4' fill='%233FA7F5' stroke='%232A1E3B' stroke-width='2.5' transform='rotate%28-35 150 40%29'/%3E%3Ccircle cx='28' cy='60' r='12' fill='%23FFD23F' stroke='%232A1E3B' stroke-width='2.5'/%3E%3Cpath d='M140 150l18 4-6 18z' fill='%23FF4F7B' stroke='%232A1E3B' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M52 60a50 50 0 0 1 30-20' stroke='%23fff' stroke-width='6' stroke-linecap='round' fill='none' opacity='.8'/%3E%3C/svg%3E") right -50px bottom -40px/260px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg opacity='.55'%3E%3Cpath d='M137 5Q137 13 145 13Q137 13 137 21Q137 13 129 13Q137 13 137 5Z' fill='%23FF4F7B'/%3E%3Cpath d='M48 68Q48 76 56 76Q48 76 48 84Q48 76 40 76Q48 76 48 68Z' fill='%23FF4F7B'/%3E%3Cpath d='M125 93Q125 101 133 101Q125 101 125 109Q125 101 117 101Q125 101 125 93Z' fill='%23FF4F7B'/%3E%3Cpath d='M85 58Q85 66 93 66Q85 66 85 74Q85 66 77 66Q85 66 85 58Z' fill='%233CCB7F'/%3E%3Cpath d='M189 20Q189 24 193 24Q189 24 189 28Q189 24 185 24Q189 24 189 20Z' fill='%23FF9F1C'/%3E%3Cpath d='M37 201Q37 205 41 205Q37 205 37 209Q37 205 33 205Q37 205 37 201Z' fill='%23FF9F1C'/%3E%3Cpath d='M63 66Q63 70 67 70Q63 70 63 74Q63 70 59 70Q63 70 63 66Z' fill='%23FF7AC8'/%3E%3Cpath d='M213 109Q213 117 221 117Q213 117 213 125Q213 117 205 117Q213 117 213 109Z' fill='%23FF7AC8'/%3E%3Cpath d='M98 172Q98 176 102 176Q98 176 98 180Q98 176 94 176Q98 176 98 172Z' fill='%23FFD23F'/%3E%3Ccircle cx='148' cy='125' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='113' cy='186' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='206' cy='186' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='30' cy='16' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='205' cy='21' r='2.5' fill='%233FA7F5'/%3E%3Ccircle cx='118' cy='38' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='84' cy='155' r='2.5' fill='%233FA7F5'/%3E%3Ccircle cx='73' cy='64' r='2.5' fill='%23FFD23F'/%3E%3Ccircle cx='103' cy='31' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='172' cy='91' r='2.5' fill='%23FF4F7B'/%3E%3C/g%3E%3C/svg%3E") 0 0/380px 380px,
+    radial-gradient(60% 50% at 10% 0,#FFE3EE 0%,transparent 70%),
+    radial-gradient(60% 50% at 100% 30%,#E3F1FF 0%,transparent 70%),
+    var(--km-cream);
+  background-attachment:fixed}
+#reader[data-skin="katamari"]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg opacity='.55'%3E%3Cpath d='M137 5Q137 13 145 13Q137 13 137 21Q137 13 129 13Q137 13 137 5Z' fill='%23FF4F7B'/%3E%3Cpath d='M48 68Q48 76 56 76Q48 76 48 84Q48 76 40 76Q48 76 48 68Z' fill='%23FF4F7B'/%3E%3Cpath d='M125 93Q125 101 133 101Q125 101 125 109Q125 101 117 101Q125 101 125 93Z' fill='%23FF4F7B'/%3E%3Cpath d='M85 58Q85 66 93 66Q85 66 85 74Q85 66 77 66Q85 66 85 58Z' fill='%233CCB7F'/%3E%3Cpath d='M189 20Q189 24 193 24Q189 24 189 28Q189 24 185 24Q189 24 189 20Z' fill='%23FF9F1C'/%3E%3Cpath d='M37 201Q37 205 41 205Q37 205 37 209Q37 205 33 205Q37 205 37 201Z' fill='%23FF9F1C'/%3E%3Cpath d='M63 66Q63 70 67 70Q63 70 63 74Q63 70 59 70Q63 70 63 66Z' fill='%23FF7AC8'/%3E%3Cpath d='M213 109Q213 117 221 117Q213 117 213 125Q213 117 205 117Q213 117 213 109Z' fill='%23FF7AC8'/%3E%3Cpath d='M98 172Q98 176 102 176Q98 176 98 180Q98 176 94 176Q98 176 98 172Z' fill='%23FFD23F'/%3E%3Ccircle cx='148' cy='125' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='113' cy='186' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='206' cy='186' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='30' cy='16' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='205' cy='21' r='2.5' fill='%233FA7F5'/%3E%3Ccircle cx='118' cy='38' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='84' cy='155' r='2.5' fill='%233FA7F5'/%3E%3Ccircle cx='73' cy='64' r='2.5' fill='%23FFD23F'/%3E%3Ccircle cx='103' cy='31' r='2.5' fill='%23FF4F7B'/%3E%3Ccircle cx='172' cy='91' r='2.5' fill='%23FF4F7B'/%3E%3C/g%3E%3C/svg%3E") 0 0/260px 260px,var(--km-cream);background-attachment:fixed}
+
+/* ---------- 위쪽 띠 : 무지개 ---------- */
+[data-skin="katamari"] .orn{display:block;background:linear-gradient(180deg,#FF4F7B 0.00% 16.67%,#FF9F1C 16.67% 33.33%,#FFD23F 33.33% 50.00%,#3CCB7F 50.00% 66.67%,#3FA7F5 66.67% 83.33%,#9B6CF0 83.33% 100.00%);border-bottom:3px solid var(--km-ink)}
+[data-skin="katamari"] .orn div{height:24px}
+[data-skin="katamari"] .orn .rule{display:none}
+
+/* ---------- 게임별 기록 ---------- */
+[data-skin="katamari"] .lib-hd h2{font-family:var(--km-font);font-weight:400;font-size:34px;letter-spacing:.03em;color:var(--km-pink);
+  -webkit-text-stroke:1.5px var(--km-ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--km-ink)}
+[data-skin="katamari"] .lib-hd .cnt{font-family:var(--km-font);font-size:12px;color:#fff;background:var(--km-blue);padding:4px 12px;border-radius:999px;
+  border:2.5px solid var(--km-ink);rotate:4deg}
+[data-skin="katamari"] .eject{border-radius:50%;background:var(--km-yellow);color:var(--km-ink);border:3px solid var(--km-ink);box-shadow:0 4px 0 var(--km-ink)}
+[data-skin="katamari"] .eject:hover,[data-skin="katamari"] .eject:focus-visible{rotate:-90deg;transition:rotate 300ms}
+
+/* ---------- 세이브 : 통통한 흰 알약, 누르면 데굴 ---------- */
+[data-skin="katamari"] .slots{gap:16px}
+[data-skin="katamari"] .save{color:var(--km-ink);background:#fff;border:3px solid var(--km-ink);border-radius:999px;padding:12px 26px 12px 12px;
+  box-shadow:0 5px 0 var(--km-ink);transition:translate 160ms,box-shadow 160ms}
+[data-skin="katamari"] .save:nth-child(6n+1){box-shadow:0 5px 0 var(--km-ink),inset 0 -6px 0 var(--km-pink)}
+[data-skin="katamari"] .save:nth-child(6n+2){box-shadow:0 5px 0 var(--km-ink),inset 0 -6px 0 var(--km-orange)}
+[data-skin="katamari"] .save:nth-child(6n+3){box-shadow:0 5px 0 var(--km-ink),inset 0 -6px 0 var(--km-yellow)}
+[data-skin="katamari"] .save:nth-child(6n+4){box-shadow:0 5px 0 var(--km-ink),inset 0 -6px 0 var(--km-green)}
+[data-skin="katamari"] .save:nth-child(6n+5){box-shadow:0 5px 0 var(--km-ink),inset 0 -6px 0 var(--km-blue)}
+[data-skin="katamari"] .save:nth-child(6n){box-shadow:0 5px 0 var(--km-ink),inset 0 -6px 0 var(--km-purple)}
+[data-skin="katamari"] .save:hover,[data-skin="katamari"] .save:focus-visible{translate:0 -3px}
+[data-skin="katamari"] .save .bar{width:0}
+[data-skin="katamari"] .save .thumb{border-radius:18px;outline:3px solid var(--km-ink);outline-offset:-3px;transition:rotate 420ms cubic-bezier(.3,1.5,.5,1)}
+[data-skin="katamari"] .save:hover .thumb,[data-skin="katamari"] .save:focus-visible .thumb{rotate:360deg}
+[data-skin="katamari"] .save .n{display:inline-block;font-family:var(--km-font);font-size:11px;letter-spacing:.06em;color:#fff;background:var(--km-purple);
+  padding:2px 10px;border-radius:999px}
+[data-skin="katamari"] .save .t{font-family:var(--km-font);font-weight:400;font-size:20px}
+[data-skin="katamari"] .save .m{font-size:12.5px;color:rgba(42,30,59,.6)}
+[data-skin="katamari"] .save-empty{border-color:var(--km-ink)}
+
+/* ---------- 글 읽기 ---------- */
+[data-skin="katamari"] .rd-bar{background:linear-gradient(90deg,var(--km-pink),var(--km-orange),var(--km-yellow),var(--km-green),var(--km-blue),var(--km-purple));height:6px}
+[data-skin="katamari"] .rd-back{background:var(--km-yellow);color:var(--km-ink);border:3px solid var(--km-ink);border-radius:999px;
+  font-family:var(--km-font);font-size:14px;box-shadow:0 4px 0 var(--km-ink)}
+[data-skin="katamari"] .rd-back:hover{background:var(--km-pink);color:#fff}
+[data-skin="katamari"] .hero{border-radius:28px;border:3px solid var(--km-ink);box-shadow:0 6px 0 var(--km-ink);
+  background:repeating-linear-gradient(-45deg,#FFE3EE 0 18px,#FFF1C9 18px 36px,#DDF5E8 36px 54px,#E0EEFF 54px 72px)}
+[data-skin="katamari"] .hero .cov{border-radius:0 25px 25px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%)}
+[data-skin="katamari"] .hero .glow{background:linear-gradient(90deg,#FFF6E4 12%,#FFF6E48C 46%,transparent 76%)}
+[data-skin="katamari"] .rd h1{font-family:var(--km-font);font-weight:400;font-size:36px;line-height:1.25;color:var(--km-ink);
+  text-shadow:3px 3px 0 #fff}
+[data-skin="katamari"] .rd .rmeta{font-family:var(--km-font);font-size:13px;color:var(--km-purple)}
+[data-skin="katamari"] .rd p{font-size:16.5px;line-height:1.9;color:#3A2E4B}
+[data-skin="katamari"] .rd h2,[data-skin="katamari"] .rd h3{font-family:var(--km-font);font-weight:400;color:var(--km-pink)}
+[data-skin="katamari"] .rd a{text-decoration-color:var(--km-blue);text-decoration-thickness:3px}
+[data-skin="katamari"] .rd blockquote{background:#fff;border:3px solid var(--km-ink);border-radius:22px;box-shadow:4px 4px 0 var(--km-green)}
+[data-skin="katamari"] .rd figure img,[data-skin="katamari"] .rd-yt{border-radius:24px;border:3px solid var(--km-ink);box-shadow:6px 6px 0 var(--km-yellow),6px 6px 0 3px var(--km-ink)}
+[data-skin="katamari"] .rd figcaption{display:table;margin:18px auto 0;padding:5px 16px;border-radius:999px;background:var(--km-ink);color:#fff;
+  font-family:var(--km-font);font-size:13px}
+[data-skin="katamari"] .rd .end{box-shadow:inset 0 4px 0 var(--km-ink);font-family:var(--km-font);font-size:12px;color:rgba(42,30,59,.5)}
+[data-skin="katamari"] .rd .end b{font-family:var(--km-font);font-weight:400;font-size:20px;color:var(--km-ink)}
+[data-skin="katamari"] .rd .end b i{font-style:normal;color:var(--km-pink)}
+[data-skin="katamari"] .rd-nav button{background:#fff;color:var(--km-ink);border:3px solid var(--km-ink);border-radius:22px;box-shadow:0 4px 0 var(--km-ink)}
+[data-skin="katamari"] .rd-nav button span{color:var(--km-pink);font-family:var(--km-font)}
+
+/* ---------- 이 스킨일 때 위쪽 메뉴 ---------- */
+body[data-hskin="katamari"] .hdr{background:var(--km-cream);border-bottom:3px solid var(--km-ink)}
+body[data-hskin="katamari"] .logo{color:var(--km-ink)}
+body[data-hskin="katamari"] .logo .wm i{color:var(--km-pink)}
+body[data-hskin="katamari"] .hdr-nav a,body[data-hskin="katamari"] .nav-btn{color:rgba(42,30,59,.6)}
+body[data-hskin="katamari"] .hdr-nav a[aria-current="page"],body[data-hskin="katamari"] .hdr-nav a:hover,body[data-hskin="katamari"] .nav-btn:hover{color:var(--km-pink)}
+body[data-hskin="katamari"] .hdr-nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--km-pink)}
+body[data-hskin="katamari"] .hdr-ctx{color:var(--km-pink);font-family:var(--km-font)}
+body[data-hskin="katamari"] .nav-sep{background:rgba(42,30,59,.6);opacity:.35}
+body[data-hskin="katamari"] .menu-btn{color:var(--km-ink)}
+@media (max-width:980px){ body[data-hskin="katamari"] .hdr-nav{background:var(--km-cream)} }
+body[data-hskin="katamari"] .logo .wm{font-family:var(--km-font);font-weight:400}
+@media (max-width:720px){ [data-skin="katamari"]{background-size:170px auto,220px 220px,auto,auto,auto} [data-skin="katamari"] .lib-hd h2{font-size:28px} }
+@media (prefers-reduced-motion:reduce){ [data-skin="katamari"] .save .thumb,[data-skin="katamari"] .eject{transition:none} }

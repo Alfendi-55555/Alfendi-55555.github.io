@@ -1,0 +1,91 @@
+/* ============ SKIN: hades — 저승의 돌방 : 검붉은 돌, 핏빛 불빛, 금빛 뇌문, 불티 ============
+   뇌문 · 불티 · 기둥은 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
+:root{
+  --hd-black:#120A0B; --hd-stone:#22151A; --hd-blood:#B3202A; --hd-fire:#FF6A2B; --hd-gold:#D9A441; --hd-gold-2:#F2CF7A;
+  --hd-text:#EFE3D2;
+  --hd-font:'Cinzel','Noto Serif KR',serif;
+}
+[data-skin="hades"]{color:var(--hd-text);font-family:'Noto Serif KR',serif;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 300'%3E%3Cg fill='%232A1517' stroke='%230A0405' stroke-width='3' stroke-linejoin='round'%3E%3Cpath d='M18 300V78L24 70H96L102 78V300Z'/%3E%3Cpath d='M8 70H112V56H8Z'/%3E%3Cpath d='M14 56 30 40H90L106 56Z'/%3E%3Cpath d='M24 40 34 22 52 30 64 12 78 26 90 40Z'/%3E%3C/g%3E%3Cg stroke='%23140A0B' stroke-width='3'%3E%3Cpath d='M38 82V300M60 82V300M82 82V300'/%3E%3C/g%3E%3Cpath d='M30 120 44 150 36 190' stroke='%23D9A441' stroke-opacity='.35' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") left -10px bottom -40px/110px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Ccircle cx='78' cy='36' r='1' fill='%23FF7A2E' fill-opacity='0.54'/%3E%3Ccircle cx='23' cy='140' r='1.2' fill='%23FF7A2E' fill-opacity='0.28'/%3E%3Ccircle cx='100' cy='58' r='2.2' fill='%23FF7A2E' fill-opacity='0.54'/%3E%3Ccircle cx='30' cy='54' r='1' fill='%23FF4A3A' fill-opacity='0.45'/%3E%3Ccircle cx='12' cy='53' r='1.2' fill='%23FFB347' fill-opacity='0.40'/%3E%3Ccircle cx='130' cy='137' r='1.2' fill='%23FF7A2E' fill-opacity='0.45'/%3E%3Ccircle cx='153' cy='89' r='1' fill='%23FF4A3A' fill-opacity='0.27'/%3E%3Ccircle cx='49' cy='163' r='2.2' fill='%23FFB347' fill-opacity='0.41'/%3E%3Ccircle cx='222' cy='87' r='1.2' fill='%23FF7A2E' fill-opacity='0.49'/%3E%3Ccircle cx='59' cy='138' r='2.2' fill='%23FFB347' fill-opacity='0.51'/%3E%3Ccircle cx='69' cy='235' r='1' fill='%23FF4A3A' fill-opacity='0.40'/%3E%3Ccircle cx='182' cy='36' r='2.2' fill='%23FFB347' fill-opacity='0.26'/%3E%3Ccircle cx='160' cy='183' r='1.6' fill='%23FFB347' fill-opacity='0.49'/%3E%3Ccircle cx='143' cy='139' r='2.2' fill='%23FF7A2E' fill-opacity='0.54'/%3E%3Ccircle cx='227' cy='114' r='1' fill='%23FF7A2E' fill-opacity='0.51'/%3E%3Ccircle cx='74' cy='139' r='2.2' fill='%23FFB347' fill-opacity='0.50'/%3E%3Ccircle cx='213' cy='83' r='2.2' fill='%23FFB347' fill-opacity='0.31'/%3E%3Ccircle cx='28' cy='14' r='1.6' fill='%23FF7A2E' fill-opacity='0.51'/%3E%3Ccircle cx='95' cy='220' r='2.2' fill='%23FF7A2E' fill-opacity='0.31'/%3E%3Ccircle cx='96' cy='67' r='1.2' fill='%23FFB347' fill-opacity='0.55'/%3E%3Ccircle cx='67' cy='100' r='1.6' fill='%23FF4A3A' fill-opacity='0.56'/%3E%3Ccircle cx='230' cy='36' r='1.2' fill='%23FF7A2E' fill-opacity='0.33'/%3E%3Ccircle cx='56' cy='116' r='1.2' fill='%23FFB347' fill-opacity='0.35'/%3E%3Ccircle cx='35' cy='128' r='1.6' fill='%23FF7A2E' fill-opacity='0.49'/%3E%3Ccircle cx='124' cy='148' r='1' fill='%23FFB347' fill-opacity='0.56'/%3E%3Ccircle cx='187' cy='210' r='2.2' fill='%23FFB347' fill-opacity='0.39'/%3E%3C/svg%3E") 0 0/240px 240px,
+    radial-gradient(80% 45% at 50% 115%,rgba(255,90,40,.42),transparent 70%),
+    radial-gradient(70% 60% at 50% 0,#2B1418 0%,var(--hd-black) 70%);
+  background-attachment:fixed}
+#reader[data-skin="hades"]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Ccircle cx='78' cy='36' r='1' fill='%23FF7A2E' fill-opacity='0.54'/%3E%3Ccircle cx='23' cy='140' r='1.2' fill='%23FF7A2E' fill-opacity='0.28'/%3E%3Ccircle cx='100' cy='58' r='2.2' fill='%23FF7A2E' fill-opacity='0.54'/%3E%3Ccircle cx='30' cy='54' r='1' fill='%23FF4A3A' fill-opacity='0.45'/%3E%3Ccircle cx='12' cy='53' r='1.2' fill='%23FFB347' fill-opacity='0.40'/%3E%3Ccircle cx='130' cy='137' r='1.2' fill='%23FF7A2E' fill-opacity='0.45'/%3E%3Ccircle cx='153' cy='89' r='1' fill='%23FF4A3A' fill-opacity='0.27'/%3E%3Ccircle cx='49' cy='163' r='2.2' fill='%23FFB347' fill-opacity='0.41'/%3E%3Ccircle cx='222' cy='87' r='1.2' fill='%23FF7A2E' fill-opacity='0.49'/%3E%3Ccircle cx='59' cy='138' r='2.2' fill='%23FFB347' fill-opacity='0.51'/%3E%3Ccircle cx='69' cy='235' r='1' fill='%23FF4A3A' fill-opacity='0.40'/%3E%3Ccircle cx='182' cy='36' r='2.2' fill='%23FFB347' fill-opacity='0.26'/%3E%3Ccircle cx='160' cy='183' r='1.6' fill='%23FFB347' fill-opacity='0.49'/%3E%3Ccircle cx='143' cy='139' r='2.2' fill='%23FF7A2E' fill-opacity='0.54'/%3E%3Ccircle cx='227' cy='114' r='1' fill='%23FF7A2E' fill-opacity='0.51'/%3E%3Ccircle cx='74' cy='139' r='2.2' fill='%23FFB347' fill-opacity='0.50'/%3E%3Ccircle cx='213' cy='83' r='2.2' fill='%23FFB347' fill-opacity='0.31'/%3E%3Ccircle cx='28' cy='14' r='1.6' fill='%23FF7A2E' fill-opacity='0.51'/%3E%3Ccircle cx='95' cy='220' r='2.2' fill='%23FF7A2E' fill-opacity='0.31'/%3E%3Ccircle cx='96' cy='67' r='1.2' fill='%23FFB347' fill-opacity='0.55'/%3E%3Ccircle cx='67' cy='100' r='1.6' fill='%23FF4A3A' fill-opacity='0.56'/%3E%3Ccircle cx='230' cy='36' r='1.2' fill='%23FF7A2E' fill-opacity='0.33'/%3E%3Ccircle cx='56' cy='116' r='1.2' fill='%23FFB347' fill-opacity='0.35'/%3E%3Ccircle cx='35' cy='128' r='1.6' fill='%23FF7A2E' fill-opacity='0.49'/%3E%3Ccircle cx='124' cy='148' r='1' fill='%23FFB347' fill-opacity='0.56'/%3E%3Ccircle cx='187' cy='210' r='2.2' fill='%23FFB347' fill-opacity='0.39'/%3E%3C/svg%3E") 0 0/240px 240px,radial-gradient(80% 45% at 50% 115%,rgba(255,90,40,.28),transparent 70%),
+  radial-gradient(70% 60% at 50% 0,#2B1418 0%,var(--hd-black) 70%);background-attachment:fixed}
+
+/* ---------- 위쪽 띠 : 금빛 뇌문 ---------- */
+[data-skin="hades"] .orn{display:block;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 26'%3E%3Cg fill='none' stroke='%23D9A441' stroke-width='2.2' stroke-linecap='square'%3E%3Cpath d='M0 1.5H24M0 24.5H24'/%3E%3Cpath d='M3 24.5V5.5H20V19H8.5V10.5H15V14.5'/%3E%3C/g%3E%3C/svg%3E") 0 50%/24px 26px repeat-x,#3A0F14;border-bottom:1px solid var(--hd-gold)}
+[data-skin="hades"] .orn div{height:34px}
+[data-skin="hades"] .orn .rule{display:none}
+
+/* ---------- 게임별 기록 ---------- */
+[data-skin="hades"] .lib-hd h2{font-family:var(--hd-font);font-weight:800;font-size:34px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--hd-gold-2);text-shadow:0 0 18px rgba(255,106,43,.45),0 2px 0 #000}
+[data-skin="hades"] .lib-hd .cnt{font-family:var(--hd-font);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--hd-gold);
+  border:1px solid var(--hd-gold);padding:4px 10px}
+[data-skin="hades"] .eject{margin-left:8px;border-radius:0;background:transparent;color:var(--hd-gold);border:1px solid var(--hd-gold);rotate:45deg}
+[data-skin="hades"] .eject svg{rotate:-45deg}
+[data-skin="hades"] .eject:hover,[data-skin="hades"] .eject:focus-visible{background:var(--hd-blood);color:#fff}
+
+/* ---------- 세이브 : 금테 두른 검은 돌판 ---------- */
+[data-skin="hades"] .slots{gap:14px}
+[data-skin="hades"] .save{color:var(--hd-text);border:1px solid rgba(217,164,65,.55);border-radius:2px;padding:14px 18px 14px 14px;
+  background:linear-gradient(180deg,#2A191E 0%,var(--hd-stone) 100%);
+  box-shadow:inset 0 0 0 4px #1A0F12,inset 0 0 0 5px rgba(217,164,65,.28),0 10px 24px -12px #000;transition:box-shadow 160ms,translate 160ms}
+[data-skin="hades"] .save:hover,[data-skin="hades"] .save:focus-visible{translate:0 -2px;border-color:var(--hd-gold);
+  box-shadow:inset 0 0 0 4px #1A0F12,inset 0 0 0 5px rgba(217,164,65,.55),0 0 22px -4px rgba(255,106,43,.55),0 10px 24px -12px #000}
+[data-skin="hades"] .save .bar{width:0}
+[data-skin="hades"] .save .thumb{border-radius:0;outline:1px solid var(--hd-gold);outline-offset:3px}
+[data-skin="hades"] .save .n{font-family:var(--hd-font);font-weight:600;font-size:11px;letter-spacing:.22em;color:var(--hd-fire)}
+[data-skin="hades"] .save .t{font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;color:#fff}
+[data-skin="hades"] .save .m{font-size:12.5px;color:rgba(239,227,210,.55)}
+[data-skin="hades"] .save-empty{border-color:var(--hd-gold)}
+
+/* ---------- 글 읽기 ---------- */
+[data-skin="hades"] .rd-bar{background:linear-gradient(90deg,var(--hd-blood),var(--hd-fire));height:3px}
+[data-skin="hades"] .rd-back{background:transparent;color:var(--hd-gold);border:1px solid var(--hd-gold);border-radius:0;
+  font-family:var(--hd-font);font-weight:600;font-size:13px;letter-spacing:.14em}
+[data-skin="hades"] .rd-back:hover{background:var(--hd-blood);color:#fff}
+[data-skin="hades"] .hero{border-radius:2px;border:1px solid var(--hd-gold);
+  box-shadow:inset 0 0 0 5px var(--hd-black),inset 0 0 0 6px rgba(217,164,65,.4),0 0 40px -10px rgba(255,90,40,.5);
+  background:radial-gradient(70% 90% at 80% 100%,rgba(255,90,40,.35),transparent 70%),linear-gradient(160deg,#3A1218,#160A0C)}
+[data-skin="hades"] .hero .cov{border-radius:0 2px 2px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%)}
+[data-skin="hades"] .hero .glow{background:linear-gradient(90deg,#1C0B0E 12%,#1C0B0E8C 46%,transparent 76%)}
+[data-skin="hades"] .hero .brk{display:block;width:26px;height:26px}
+[data-skin="hades"] .hero .brk.tl{border-left:2px solid var(--hd-gold);border-top:2px solid var(--hd-gold)}
+[data-skin="hades"] .hero .brk.tr{border-right:2px solid var(--hd-gold);border-top:2px solid var(--hd-gold)}
+[data-skin="hades"] .hero .brk.bl{border-left:2px solid var(--hd-gold);border-bottom:2px solid var(--hd-gold)}
+[data-skin="hades"] .hero .brk.br{border-right:2px solid var(--hd-gold);border-bottom:2px solid var(--hd-gold)}
+[data-skin="hades"] .rd h1{font-family:'Noto Serif KR',serif;font-weight:900;font-size:34px;line-height:1.3;color:#fff;text-shadow:0 0 20px rgba(255,106,43,.45)}
+[data-skin="hades"] .rd .rmeta{font-family:var(--hd-font);font-weight:600;font-size:12px;letter-spacing:.18em;color:var(--hd-gold)}
+[data-skin="hades"] .rd p{font-size:16.5px;line-height:1.95;color:var(--hd-text)}
+[data-skin="hades"] .rd h2,[data-skin="hades"] .rd h3{font-family:'Noto Serif KR',serif;font-weight:900;color:var(--hd-gold-2)}
+[data-skin="hades"] .rd a{color:var(--hd-gold-2);text-decoration-color:var(--hd-blood);text-decoration-thickness:2px}
+[data-skin="hades"] .rd blockquote{background:rgba(179,32,42,.12);border-left:3px solid var(--hd-blood);border-radius:0}
+[data-skin="hades"] .rd figure img,[data-skin="hades"] .rd-yt{border-radius:0;border:1px solid var(--hd-gold);box-shadow:0 0 0 5px var(--hd-black),0 0 0 6px rgba(217,164,65,.4)}
+[data-skin="hades"] .rd figcaption{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:18px;
+  font-family:'Noto Serif KR',serif;font-size:13.5px;color:rgba(239,227,210,.75)}
+[data-skin="hades"] .rd figcaption::before,[data-skin="hades"] .rd figcaption::after{content:'';width:34px;height:1px;background:var(--hd-gold)}
+[data-skin="hades"] .rd .end{box-shadow:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 26'%3E%3Cg fill='none' stroke='%23D9A441' stroke-width='2.2' stroke-linecap='square'%3E%3Cpath d='M0 1.5H24M0 24.5H24'/%3E%3Cpath d='M3 24.5V5.5H20V19H8.5V10.5H15V14.5'/%3E%3C/g%3E%3C/svg%3E") 50% 0/24px 26px repeat-x;padding-top:44px;font-family:var(--hd-font);font-size:11px;letter-spacing:.24em;color:rgba(239,227,210,.5)}
+[data-skin="hades"] .rd .end b{font-family:var(--hd-font);font-weight:800;font-size:18px;color:var(--hd-gold-2)}
+[data-skin="hades"] .rd .end b i{font-style:normal;color:var(--hd-fire)}
+[data-skin="hades"] .rd-nav button{background:var(--hd-stone);color:var(--hd-text);border:1px solid rgba(217,164,65,.5);border-radius:2px}
+[data-skin="hades"] .rd-nav button span{color:var(--hd-gold);font-family:var(--hd-font)}
+
+/* ---------- 이 스킨일 때 위쪽 메뉴 ---------- */
+body[data-hskin="hades"] .hdr{background:var(--hd-black);border-bottom:1px solid var(--hd-gold)}
+body[data-hskin="hades"] .logo{color:var(--hd-text)}
+body[data-hskin="hades"] .logo .wm i{color:var(--hd-gold-2)}
+body[data-hskin="hades"] .hdr-nav a,body[data-hskin="hades"] .nav-btn{color:rgba(239,227,210,.6)}
+body[data-hskin="hades"] .hdr-nav a[aria-current="page"],body[data-hskin="hades"] .hdr-nav a:hover,body[data-hskin="hades"] .nav-btn:hover{color:var(--hd-gold-2)}
+body[data-hskin="hades"] .hdr-nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--hd-gold-2)}
+body[data-hskin="hades"] .hdr-ctx{color:var(--hd-gold-2);font-family:var(--hd-font)}
+body[data-hskin="hades"] .nav-sep{background:rgba(239,227,210,.6);opacity:.35}
+body[data-hskin="hades"] .menu-btn{color:var(--hd-text)}
+@media (max-width:980px){ body[data-hskin="hades"] .hdr-nav{background:var(--hd-black)} }
+body[data-hskin="hades"] .logo .wm{font-family:var(--hd-font);font-weight:800;letter-spacing:.1em}
+@media (max-width:720px){ [data-skin="hades"]{background-size:70px auto,240px 240px,auto,auto} [data-skin="hades"] .lib-hd h2{font-size:26px} }

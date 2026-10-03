@@ -1,0 +1,92 @@
+/* ============ SKIN: tomodachi — 섬 마을의 하루 : 하늘색, 흰 구름, 말풍선, 연두 잔디, 노란 표지 ============
+   구름 · 말풍선 · 마을은 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
+:root{
+  --tm-sky:#BFE9FF; --tm-grass:#8BD34E; --tm-yellow:#FFE14D; --tm-red:#FF5A4E; --tm-blue:#3FA7F5; --tm-ink:#1D1D1D; --tm-paper:#FFFFFF;
+  --tm-font:'Baloo 2','Dongle','Noto Sans KR',sans-serif; --tm-ko:'Dongle','Noto Sans KR',sans-serif;
+}
+[data-skin="tomodachi"]{color:var(--tm-ink);font-family:'Noto Sans KR',sans-serif;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 90'%3E%3Cpath d='M30 80C8 80 6 54 26 50C22 26 52 18 64 34C72 10 112 8 120 34C134 20 162 28 158 50C184 50 188 80 164 80Z' fill='%23fff' stroke='%231D1D1D' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") right 4% top 70px/170px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 90'%3E%3Cpath d='M30 80C8 80 6 54 26 50C22 26 52 18 64 34C72 10 112 8 120 34C134 20 162 28 158 50C184 50 188 80 164 80Z' fill='%23fff' stroke='%231D1D1D' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") left -40px top 260px/130px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120'%3E%3Cpath d='M0 70C60 40 120 60 200 50C280 40 340 56 400 44V120H0Z' fill='%238BD34E' stroke='%231D1D1D' stroke-width='3'/%3E%3Cg stroke='%231D1D1D' stroke-width='3' stroke-linejoin='round'%3E%3Crect x='60' y='40' width='34' height='30' fill='%23FFF3C9'/%3E%3Cpath d='M54 42 77 22 100 42Z' fill='%23FF5A4E'/%3E%3Crect x='250' y='28' width='40' height='32' fill='%23E6F4FF'/%3E%3Cpath d='M244 30 270 10 296 30Z' fill='%233FA7F5'/%3E%3Crect x='320' y='38' width='26' height='22' fill='%23FFE3EE'/%3E%3Cpath d='M316 40 333 26 350 40Z' fill='%23FFB800'/%3E%3C/g%3E%3Cg fill='%231D1D1D'%3E%3Crect x='70' y='50' width='8' height='8'/%3E%3Crect x='262' y='38' width='8' height='8'/%3E%3Crect x='276' y='38' width='8' height='8'/%3E%3C/g%3E%3C/svg%3E") center bottom/max(100%,900px) auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='10' cy='10' r='3.4' fill='%23fff' fill-opacity='.55'/%3E%3Ccircle cx='30' cy='30' r='3.4' fill='%23fff' fill-opacity='.55'/%3E%3C/svg%3E") 0 0/40px 40px,
+    linear-gradient(180deg,#9EDCFF 0%,var(--tm-sky) 60%,#E3F6FF 100%);
+  background-attachment:fixed}
+#reader[data-skin="tomodachi"]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='10' cy='10' r='3.4' fill='%23fff' fill-opacity='.55'/%3E%3Ccircle cx='30' cy='30' r='3.4' fill='%23fff' fill-opacity='.55'/%3E%3C/svg%3E") 0 0/40px 40px,linear-gradient(180deg,#9EDCFF 0%,var(--tm-sky) 60%,#E3F6FF 100%);background-attachment:fixed}
+
+/* ---------- 위쪽 띠 : 가게 차양 같은 연두 · 흰 줄무늬, 아래는 동글동글 ---------- */
+[data-skin="tomodachi"] .orn{display:block;overflow:visible;border-bottom:0;
+  background:repeating-linear-gradient(90deg,var(--tm-grass) 0 28px,#fff 28px 56px)}
+[data-skin="tomodachi"] .orn div{height:16px}
+[data-skin="tomodachi"] .orn .rule{display:none}
+[data-skin="tomodachi"] .orn::after{content:'';position:absolute;left:0;right:0;top:100%;height:14px;pointer-events:none;
+  background:radial-gradient(circle at 14px 0,var(--tm-grass) 13px,var(--tm-ink) 13px 15.5px,transparent 16px) 0 0/56px 16px repeat-x,
+             radial-gradient(circle at 42px 0,#fff 13px,var(--tm-ink) 13px 15.5px,transparent 16px) 0 0/56px 16px repeat-x}
+[data-skin="tomodachi"] .lib-body{padding-top:40px}
+
+/* ---------- 게임별 기록 ---------- */
+[data-skin="tomodachi"] .lib-hd h2{font-family:var(--tm-font);font-weight:800;font-size:34px;line-height:1.1;color:var(--tm-ink);
+  background:var(--tm-yellow);padding:6px 18px 2px;border:3px solid var(--tm-ink);border-radius:26px 18px 30px 16px / 20px 26px 18px 28px;rotate:-1.5deg}
+[data-skin="tomodachi"] .lib-hd .cnt{font-family:var(--tm-font);font-weight:800;font-size:12px;color:#fff;background:var(--tm-red);padding:2px 12px;border-radius:999px;
+  border:2.5px solid var(--tm-ink)}
+[data-skin="tomodachi"] .eject{border-radius:50%;background:#fff;color:var(--tm-ink);border:3px solid var(--tm-ink);box-shadow:0 4px 0 var(--tm-ink)}
+[data-skin="tomodachi"] .eject:hover,[data-skin="tomodachi"] .eject:focus-visible{background:var(--tm-yellow)}
+
+/* ---------- 세이브 : 꼬리 달린 흰 말풍선 ---------- */
+[data-skin="tomodachi"] .slots{gap:26px}
+[data-skin="tomodachi"] .save{position:relative;overflow:visible;color:var(--tm-ink);background:var(--tm-paper);border:3px solid var(--tm-ink);border-radius:26px;
+  padding:14px 20px 14px 14px;box-shadow:0 5px 0 rgba(29,29,29,.18);transition:translate 160ms}
+[data-skin="tomodachi"] .save::after{content:'';position:absolute;left:38px;bottom:-15px;width:22px;height:16px;background:var(--tm-paper);
+  border:3px solid var(--tm-ink);border-top:0;border-right:0;border-radius:0 0 0 100%;transform:skewX(28deg);pointer-events:none}
+[data-skin="tomodachi"] .save::before{content:'';position:absolute;left:41px;bottom:-1px;width:24px;height:4px;background:var(--tm-paper);z-index:1}
+[data-skin="tomodachi"] .save:hover,[data-skin="tomodachi"] .save:focus-visible{translate:0 -3px;animation:tm-bob 600ms ease-in-out}
+@keyframes tm-bob{ 0%,100%{rotate:0deg} 30%{rotate:-1deg} 70%{rotate:1deg} }
+[data-skin="tomodachi"] .save .bar{width:0}
+[data-skin="tomodachi"] .save .thumb{border-radius:18px;outline:3px solid var(--tm-ink);outline-offset:-3px}
+[data-skin="tomodachi"] .save .n{display:inline-block;font-family:var(--tm-font);font-weight:800;font-size:12px;color:var(--tm-ink);background:var(--tm-grass);
+  padding:0 10px;border-radius:999px;border:2px solid var(--tm-ink)}
+[data-skin="tomodachi"] .save .t{font-family:var(--tm-ko);font-weight:700;font-size:30px;line-height:1.05}
+[data-skin="tomodachi"] .save .m{font-size:12.5px;color:rgba(29,29,29,.55)}
+[data-skin="tomodachi"] .save-empty{border-color:var(--tm-ink)}
+
+/* ---------- 글 읽기 : 흰 종이, 말풍선 캡션 ---------- */
+[data-skin="tomodachi"] .rd-bar{background:var(--tm-red);height:5px}
+[data-skin="tomodachi"] .rd-back{background:#fff;color:var(--tm-ink);border:3px solid var(--tm-ink);border-radius:999px;
+  font-family:var(--tm-font);font-weight:800;font-size:14px;box-shadow:0 4px 0 var(--tm-ink)}
+[data-skin="tomodachi"] .rd-back:hover{background:var(--tm-yellow)}
+[data-skin="tomodachi"] .hero{border-radius:30px;border:3px solid var(--tm-ink);box-shadow:0 6px 0 var(--tm-ink);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'%3E%3Cg fill='%23fff' stroke='%231D1D1D' stroke-width='3'%3E%3Cellipse cx='66' cy='40' rx='48' ry='32'/%3E%3Ccircle cx='22' cy='80' r='8'/%3E%3Ccircle cx='8' cy='94' r='4.5'/%3E%3C/g%3E%3Cg fill='%231D1D1D'%3E%3Ccircle cx='48' cy='40' r='5'/%3E%3Ccircle cx='66' cy='40' r='5'/%3E%3Ccircle cx='84' cy='40' r='5'/%3E%3C/g%3E%3C/svg%3E") right 6% top 20px/120px auto no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='10' cy='10' r='3.4' fill='%23fff' fill-opacity='.55'/%3E%3Ccircle cx='30' cy='30' r='3.4' fill='%23fff' fill-opacity='.55'/%3E%3C/svg%3E") 0 0/32px 32px,linear-gradient(180deg,#FFE97A,var(--tm-yellow))}
+[data-skin="tomodachi"] .hero .cov{border-radius:0 27px 27px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%)}
+[data-skin="tomodachi"] .hero .glow{background:linear-gradient(90deg,#FFE14D 12%,#FFE14D8C 46%,transparent 76%)}
+[data-skin="tomodachi"] .rd h1{font-family:var(--tm-ko);font-weight:700;font-size:48px;line-height:1.05;color:var(--tm-ink)}
+[data-skin="tomodachi"] .rd .rmeta{font-family:var(--tm-font);font-weight:700;font-size:13px;color:rgba(29,29,29,.7)}
+[data-skin="tomodachi"] .rd{background:#fff;border:3px solid var(--tm-ink);border-radius:30px;padding-left:clamp(18px,4vw,40px);padding-right:clamp(18px,4vw,40px)}
+[data-skin="tomodachi"] .rd p{font-size:16.5px;line-height:1.9;color:#2B2B2B}
+[data-skin="tomodachi"] .rd h2,[data-skin="tomodachi"] .rd h3{font-family:var(--tm-ko);font-weight:700;font-size:38px;line-height:1.1;color:var(--tm-red)}
+[data-skin="tomodachi"] .rd a{text-decoration-color:var(--tm-blue);text-decoration-thickness:3px}
+[data-skin="tomodachi"] .rd blockquote{background:#F2FAFF;border:3px solid var(--tm-ink);border-radius:24px}
+[data-skin="tomodachi"] .rd figure img,[data-skin="tomodachi"] .rd-yt{border-radius:22px;border:3px solid var(--tm-ink)}
+[data-skin="tomodachi"] .rd figcaption{position:relative;display:table;margin:20px auto 0;padding:6px 18px;background:#fff;border:3px solid var(--tm-ink);border-radius:999px;
+  font-family:var(--tm-ko);font-size:22px;line-height:1.1}
+[data-skin="tomodachi"] .rd .end{box-shadow:inset 0 3px 0 var(--tm-ink);font-family:var(--tm-font);font-weight:700;font-size:12px;color:rgba(29,29,29,.45)}
+[data-skin="tomodachi"] .rd .end b{font-family:var(--tm-font);font-weight:800;font-size:20px;color:var(--tm-ink)}
+[data-skin="tomodachi"] .rd .end b i{font-style:normal;color:var(--tm-red)}
+[data-skin="tomodachi"] .rd-nav button{background:#fff;color:var(--tm-ink);border:3px solid var(--tm-ink);border-radius:22px;box-shadow:0 4px 0 var(--tm-ink)}
+[data-skin="tomodachi"] .rd-nav button span{color:var(--tm-red);font-family:var(--tm-font);font-weight:800}
+
+/* ---------- 이 스킨일 때 위쪽 메뉴 ---------- */
+body[data-hskin="tomodachi"] .hdr{background:#fff;border-bottom:3px solid var(--tm-ink)}
+body[data-hskin="tomodachi"] .logo{color:var(--tm-ink)}
+body[data-hskin="tomodachi"] .logo .wm i{color:var(--tm-red)}
+body[data-hskin="tomodachi"] .hdr-nav a,body[data-hskin="tomodachi"] .nav-btn{color:rgba(29,29,29,.6)}
+body[data-hskin="tomodachi"] .hdr-nav a[aria-current="page"],body[data-hskin="tomodachi"] .hdr-nav a:hover,body[data-hskin="tomodachi"] .nav-btn:hover{color:var(--tm-red)}
+body[data-hskin="tomodachi"] .hdr-nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--tm-red)}
+body[data-hskin="tomodachi"] .hdr-ctx{color:var(--tm-red);font-family:var(--tm-font)}
+body[data-hskin="tomodachi"] .nav-sep{background:rgba(29,29,29,.6);opacity:.35}
+body[data-hskin="tomodachi"] .menu-btn{color:var(--tm-ink)}
+@media (max-width:980px){ body[data-hskin="tomodachi"] .hdr-nav{background:#fff} }
+body[data-hskin="tomodachi"] .logo .wm{font-family:var(--tm-font);font-weight:800}
+@media (max-width:720px){ [data-skin="tomodachi"]{background-size:110px auto,90px auto,max(100%,700px) auto,40px 40px,auto} [data-skin="tomodachi"] .lib-hd h2{font-size:26px} }
+@media (prefers-reduced-motion:reduce){ [data-skin="tomodachi"] .save:hover{animation:none} }
