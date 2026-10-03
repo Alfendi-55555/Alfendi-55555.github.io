@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>미리보기</title>
+<style>
+  /* 사이트의 글 읽기 화면을 그대로 띄운다. 스타일은 에디터가 사이트 index.html 목록대로 넣어 준다 */
+  html,body{margin:0;height:100%}
+  #reader{display:block!important}
+  .pv-empty{font:14px/1.6 'IBM Plex Sans KR',sans-serif;color:#7A8794;padding:60px 24px;text-align:center}
+</style>
+</head>
+<body>
+<div id="reader" class="on" data-skin="base"><div class="rd-bar" id="rdBar" style="width:0"></div><div class="rd" id="rd"><p class="pv-empty">왼쪽에 쓰면 여기에 사이트와 같은 모양으로 보여요.</p></div></div>
+<script>
+/* 사이트 js/game.js 의 openReader 와 같은 마크업 (바꾸면 같이 바꿀 것) */
+const $ = s => document.querySelector(s);
+const el = (t, c) => { const e = document.createElement(t); if (c) e.className = c; return e; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let styled = false;
+function addStyles(list) {
+  if (styled || !list.length) return; styled = true;
+  list.forEach(h => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = h; document.head.appendChild(l); });
+}
+function render(d) {
+  addStyles(d.styles || []);
+  const reader = $('#reader'), rd = $('#rd');
+  const keep = reader.scrollTop;          /* 글자를 칠 때마다 다시 그려도 보던 자리를 지킨다 */
+  reader.dataset.skin = d.skin || 'base';
+  rd.style.minHeight = rd.offsetHeight + 'px';
+  rd.innerHTML = '';
+  const back = el('button', 'rd-back'); back.type = 'button';
+  back.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.6 1.6 3.2 6l4.4 4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>닫기';
+  rd.appendChild(back);
+  const hero = el('div', 'hero');
+  if (d.cover) { const im = new Image(); im.className = 'cov'; im.src = d.cover; im.alt = ''; hero.appendChild(im); }
+  hero.append(el('div', 'tex'), el('div', 'glow'), el('div', 'frame'));
+  ['tl', 'tr', 'bl', 'br'].forEach(k => hero.appendChild(el('span', 'brk ' + k)));
+  const comp = el('div', 'compass'); comp.innerHTML = '<i></i><span>N</span>'; hero.appendChild(comp);
+  const hin = el('div', 'hin');
+  const h = el('h1'); h.textContent = d.title || '제목';
+  const m = el('div', 'rmeta'); m.textContent = [d.gameName, (d.date || '').replace(/-/g, '.'), d.min >= 3 ? '읽는 데 ' + d.min + '분' : ''].filter(Boolean).join(' · ');
+  hin.append(h, m); hero.appendChild(hin); rd.appendChild(hero);
+  if (d.spoiler != null) {
+    const w = el('div', 'rd-spoil');
+    w.innerHTML = `<b>스포일러 주의</b><span>${d.spoiler ? esc(d.spoiler) + '에 대한 내용이 있어요.' : '게임 내용이 드러나는 기록이에요.'}</span>`;
+    rd.appendChild(w);
+  }
+  (d.blocks || []).forEach(b => {
+    let n;
+    if (b.type === 'text') { n = el('p'); n.innerHTML = b.html; }
+    else if (b.type === 'h') { n = el(b.level === 3 ? 'h3' : 'h2'); n.innerHTML = b.html; }
+    else if (b.type === 'quote') { n = el('blockquote'); n.innerHTML = b.html; }
+    else if (b.type === 'list') { n = el(b.ordered ? 'ol' : 'ul'); n.innerHTML = b.items.map(i => `<li>${i}</li>`).join(''); }
+    else if (b.type === 'youtube') {
+      n = el('div', 'rd-yt');
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(b.id)}${b.start ? '?start=' + b.start : ''}`;
+      f.title = 'YouTube 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
+      n.appendChild(f);
+    } else {
+      n = el('figure'); const im = new Image(); im.src = b.src; im.alt = b.alt || b.caption || ''; n.appendChild(im);
+      if (b.caption) { const cp = el('figcaption'); const sp = el('span'); sp.textContent = b.caption; cp.appendChild(sp); n.appendChild(cp); }
+    }
+    rd.appendChild(n);
+  });
+  const endl = el('div', 'end');
+  const es = el('span'); es.textContent = 'END OF LOG';
+  const eb = el('b'); eb.innerHTML = 'PLAY<i>LOG</i>';
+  endl.append(es, eb); rd.appendChild(endl);
+  const pad = el('div'); pad.style.height = '12vh'; rd.appendChild(pad);
+  rd.style.minHeight = '';
+  reader.scrollTop = d.scrollEnd ? reader.scrollHeight : keep;
+}
+/* 스포일러는 사이트처럼 눌러서 열고 닫는다 */
+document.addEventListener('click', e => { const s = e.target.closest('.spoiler'); if (s) s.classList.toggle('open'); });
+addEventListener('message', e => { if (e.origin === location.origin && e.data && e.data.type === 'render') render(e.data); });
+parent.postMessage({ type: 'preview-ready' }, location.origin);
+</script>
+</body>
+</html>

@@ -53,7 +53,7 @@ python -m http.server -d _site
 
 | 하고 싶은 일 | 고칠 곳 |
 |---|---|
-| 글 쓰기 · 고치기 | `posts/<게임id>/<날짜-제목>/index.md` — 자세한 방법은 [WRITING.md](WRITING.md) |
+| 기록 쓰기 · 고치기 | `글쓰기.bat` 을 더블클릭하면 열리는 글쓰기 에디터(이 컴퓨터에서만). 파일로 직접 쓰는 방법은 [WRITING.md](WRITING.md) |
 | 게임 추가 | `content/games.json` |
 | 소개 페이지 문장 | `content/profile.json` |
 | 오늘의 게임 음악 · 한줄 리뷰 | 구글 시트 (저장소 변수 `MUSICLIST_CSV`, `REVIEWS_CSV`) |

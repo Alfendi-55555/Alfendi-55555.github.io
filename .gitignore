@@ -3,3 +3,6 @@ _site/
 __pycache__/
 .DS_Store
 Thumbs.db
+
+# 글쓰기 에디터가 잠깐 쓰는 사진 (저장하면 기록 폴더로 옮겨진다)
+tools/editor/.tmp/

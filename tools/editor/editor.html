@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLAYLOG 글쓰기</title>
+<link rel="icon" type="image/svg+xml" href="/site/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Space+Grotesk:wght@700&display=swap">
+<link rel="stylesheet" href="/editor.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="wm">PLAY<i>LOG</i></span><span class="sub">글쓰기</span></div>
+  <div class="top-btns">
+    <button type="button" class="btn ghost" id="bNew">새 기록</button>
+    <button type="button" class="btn ghost" id="bList">기록 목록</button>
+  </div>
+  <span class="msg" id="msg" role="status" aria-live="polite"></span>
+  <div class="top-btns">
+    <button type="button" class="btn" id="bSave" title="Ctrl+S">저장</button>
+    <button type="button" class="btn dark" id="bPublish">사이트에 올리기 <span class="badge" id="chg" hidden></span></button>
+  </div>
+</header>
+
+<main class="split">
+  <section class="left" aria-label="기록 쓰기">
+    <div class="form">
+      <label class="f f-game"><span>게임</span><select id="fGame"></select></label>
+      <label class="f f-date"><span>날짜</span><input type="date" id="fDate"></label>
+      <label class="f f-title"><span>제목</span><input id="fTitle" placeholder="기록 제목" autocomplete="off"></label>
+      <div class="f f-tags"><span>태그</span>
+        <div class="tags" id="tags"><input id="fTag" list="tagList" placeholder="입력하고 Enter" autocomplete="off"></div>
+        <datalist id="tagList"></datalist>
+      </div>
+      <label class="f f-spoil"><span>스포일러</span>
+        <select id="fSpoil"><option value="none">없음</option><option value="warn">있음 — 경고만</option><option value="text">있음 — 내용 적기</option></select>
+      </label>
+      <label class="f f-spoiltext" id="spoilWrap" hidden><span>무엇에 대한 스포일러인지</span><input id="fSpoilText" placeholder="예: 3회차 엔딩" autocomplete="off"></label>
+      <label class="f f-slug"><span>폴더 이름 <em>영문 · 숫자 · -</em></span><input id="fSlug" placeholder="비우면 자동" autocomplete="off" spellcheck="false"></label>
+      <label class="f f-draft chk"><input type="checkbox" id="fDraft"><span>임시 저장 (사이트에 안 보여요)</span></label>
+    </div>
+
+    <div class="toolbar" role="toolbar" aria-label="서식">
+      <div class="grp">
+        <button type="button" data-cmd="p" title="본문">본문</button>
+        <button type="button" data-cmd="h2" title="소제목">소제목</button>
+        <button type="button" data-cmd="h3" title="작은 소제목">작은 소제목</button>
+      </div>
+      <div class="grp">
+        <button type="button" data-cmd="bold" title="굵게 (Ctrl+B)"><b>B</b></button>
+        <button type="button" data-cmd="italic" title="기울임 (Ctrl+I)"><i>I</i></button>
+        <button type="button" data-cmd="strike" title="취소선 (Ctrl+Shift+X)"><s>S</s></button>
+        <button type="button" data-cmd="link" title="링크 (Ctrl+K)">링크</button>
+        <button type="button" data-cmd="spoiler" title="스포일러 가리기 (Ctrl+Shift+H)">스포일러</button>
+        <button type="button" data-cmd="clear" title="서식 지우기">서식 지우기</button>
+      </div>
+      <div class="grp">
+        <button type="button" data-cmd="ul" title="목록">• 목록</button>
+        <button type="button" data-cmd="ol" title="번호 목록">1. 목록</button>
+        <button type="button" data-cmd="quote" title="인용 상자">인용</button>
+      </div>
+      <div class="grp">
+        <button type="button" data-cmd="image" title="사진 넣기 (끌어다 놓거나 붙여 넣어도 돼요)">사진</button>
+        <button type="button" data-cmd="youtube" title="YouTube 영상 넣기">YouTube</button>
+      </div>
+      <input type="file" id="fileIn" accept="image/jpeg,image/png,image/gif,image/webp" multiple hidden>
+    </div>
+
+    <div class="ed-wrap"><div class="ed" id="ed" contenteditable="true" spellcheck="false" aria-label="본문"></div></div>
+    <p class="help">Enter는 새 문단, Shift+Enter는 문단 안 줄바꿈이에요. 사진은 끌어다 놓거나 붙여 넣어도 돼요. Ctrl+S로 저장해요.</p>
+  </section>
+
+  <section class="right" aria-label="미리보기">
+    <div class="pv-bar"><span>미리보기</span><label class="chk"><input type="checkbox" id="pvSkin" checked><span>게임 테마로 보기</span></label></div>
+    <iframe id="pv" src="/preview.html" title="미리보기"></iframe>
+  </section>
+</main>
+
+<aside class="drawer" id="drawer" hidden aria-label="기록 목록">
+  <div class="dr-hd"><b>기록 목록</b><button type="button" class="btn ghost" id="drClose">닫기</button></div>
+  <div class="dr-list" id="drList"></div>
+</aside>
+
+<dialog id="dlg"><form method="dialog">
+  <h2 id="dlgT"></h2><div id="dlgB"></div>
+  <div class="dlg-btns"><button value="cancel" class="btn ghost">취소</button><button value="ok" class="btn dark" id="dlgOk">확인</button></div>
+</form></dialog>
+
+<script src="/editor.js"></script>
+</body>
+</html>
