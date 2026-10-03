@@ -19,4 +19,5 @@
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
     transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
-:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+/* 키보드 초점 : 테마마다 --focus 색을 정해 둔다 (skins/focus.css). 없으면 하늘색 */
+:focus-visible{outline:3px solid var(--focus,var(--sky));outline-offset:2px}

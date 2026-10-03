@@ -37,6 +37,8 @@
 /* 카트리지는 링 없이 들리기만 */
 .lift{transition:transform 160ms var(--ease-focus),filter 160ms var(--ease-focus)}
 .lift:hover,.lift:focus-visible{transform:translateY(-5px);filter:drop-shadow(0 12px 12px rgba(13,22,29,.16));outline:none}
+/* 키보드로 왔을 때는 들리기만으로는 잘 안 보이니 테두리도 */
+.lift:focus-visible{outline:3px solid var(--focus,var(--sky));outline-offset:4px;border-radius:10px}
 .lift:focus-visible .nm{text-decoration:underline;text-underline-offset:4px}
 
 /* 소개 · 방명록이 쓰는 옛 섹션 제목 */

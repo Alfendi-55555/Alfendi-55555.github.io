@@ -84,7 +84,7 @@ export function openReader(p) {
   back.onclick = closeReader;
   rd.appendChild(back);
   const hero = el('div', 'hero');
-  if (p.cover) { const im = new Image(); im.className = 'cov'; im.src = p.cover; im.alt = ''; hero.appendChild(im); }
+  if (p.cover) { const im = new Image(); im.className = 'cov'; im.src = p.cover; im.alt = p.coverAlt || p.t + ' 표지 이미지'; hero.appendChild(im); }
   hero.append(el('div', 'tex'), el('div', 'glow'), el('div', 'frame'));
   ['tl', 'tr', 'bl', 'br'].forEach(k => hero.appendChild(el('span', 'brk ' + k)));
   const comp = el('div', 'compass'); comp.innerHTML = '<i></i><span>N</span>'; hero.appendChild(comp);
@@ -108,12 +108,12 @@ export function openReader(p) {
       n = el('div', 'rd-yt');
       const f = document.createElement('iframe');
       f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(b.id)}${b.start ? '?start=' + b.start : ''}`;
-      f.title = 'YouTube 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
+      f.title = p.t + ' — YouTube 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
       f.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture';
       f.referrerPolicy = 'strict-origin-when-cross-origin';
       n.appendChild(f);
     } else {
-      n = el('figure'); const im = new Image(); im.src = b.src; im.alt = b.caption || ''; im.loading = 'lazy';
+      n = el('figure'); const im = new Image(); im.src = b.src; im.alt = b.alt || b.caption || g.name + ' 스크린샷'; im.loading = 'lazy';
       n.appendChild(im);
       if (b.caption) { const cp = el('figcaption'); const sp = el('span'); sp.textContent = b.caption; cp.appendChild(sp); n.appendChild(cp); }
     }

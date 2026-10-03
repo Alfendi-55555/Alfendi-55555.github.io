@@ -90,7 +90,8 @@ def read_post(path):
 #   ## 소제목 / ### 작은 소제목          - 항목 / 1. 항목         목록
 #   > 인용
 # 문장 안: **굵게** *기울임* ~~취소선~~ [글자](주소) ||스포일러||
-IMG_LINE = re.compile(r'^!\[(.*?)\]\((.+?)\)\s*$')
+# ![캡션](./01.jpg)  ·  ![캡션](./01.jpg "대체텍스트")  ·  ![](./01.jpg "대체텍스트")
+IMG_LINE = re.compile(r'^!\[(.*?)\]\(\s*(.+?)(?:\s+"([^"]*)")?\s*\)\s*$')
 YT_LINE = re.compile(r'^https?://(?:www\.|m\.)?(?:youtu\.be/|youtube\.com/(?:watch\?(?:\S*&)?v=|shorts/|live/|embed/))'
                      r'([\w-]{11})(\S*)$')
 HEAD_LINE = re.compile(r'^(#{2,3})\s+(.+)$')
@@ -131,7 +132,11 @@ def to_blocks(body, folder_url, path):
         one = para.strip()
         lines = [l.strip() for l in para.split('\n') if l.strip()]
         if m := IMG_LINE.match(one):
-            blocks.append({'type': 'image', 'src': resolve(m.group(2), folder_url, path), 'caption': m.group(1)})
+            cap, alt = m.group(1).strip(), (m.group(3) or '').strip()
+            if not cap and not alt:   # 화면 읽기 프로그램이 읽을 말이 없다 — 자동 문구로 채우되 알려 준다
+                n = sum(1 for b in blocks if b['type'] == 'image') + 1
+                print(f'참고: {path.relative_to(ROOT).as_posix()} 의 {n}번째 사진에 캡션도 대체텍스트도 없어요 → ![](파일 "사진 설명") 처럼 적어 주세요')
+            blocks.append({'type': 'image', 'src': resolve(m.group(2), folder_url, path), 'caption': cap, 'alt': alt or cap})
         elif m := YT_LINE.match(one):
             blocks.append({'type': 'youtube', 'id': m.group(1), 'start': yt_start(m.group(2))})
         elif m := HEAD_LINE.match(lines[0]):
@@ -496,6 +501,7 @@ def build():
                 'min': reading_min(blocks),
                 'tags': meta.get('tags') or [],
                 'cover': resolve(cover, folder_url, md) if cover else None,
+                'coverAlt': str(meta.get('cover_alt') or ''),   # 없으면 화면에서 「제목 표지 이미지」
                 'blocks': blocks,
                 # spoiler: true → 경고만, spoiler: 3회차 엔딩 → 무엇이 나오는지까지. 없으면 null
                 'spoiler': (meta['spoiler'] if isinstance(meta.get('spoiler'), str) and meta['spoiler']

@@ -22,10 +22,10 @@ const hero = `<div class="wrap ab-hero">
     <h1 id="abTitle" class="rise" ${d(90)}>${headline(P.headline || P.tagline || '')}</h1>
     ${P.bio ? `<p class="ab-bio rise" ${d(180)}>${esc(P.bio)}</p>` : ''}
   </div>
-  <div class="ab-stage" aria-hidden="true">
-    <div class="ab-card rise" ${d(120)}>${bez(`<div class="pf-top">${P.avatar ? `<img src="${esc(P.avatar)}" alt="">` : ''}
+  <div class="ab-stage">
+    <div class="ab-card rise" ${d(120)}>${bez(`<div class="pf-top">${P.avatar ? `<img src="${esc(P.avatar)}" alt="${esc((P.name || '') + ' 프로필 사진')}">` : ''}
       <div><b>${esc(P.name || '')}</b><span>OWNER${P.handle ? ' · ' + esc(P.handle) : ''}${P.since ? ' · SINCE ' + esc(P.since) : ''}</span></div></div>${spec}`)}</div>
-    ${floats.map((g, i) => `<div class="fl ${'abc'[i]} bob${'ABC'[i]}"><div>${cart(g, [140, 128, 96][i])}</div></div>`).join('')}
+    ${floats.map((g, i) => `<div class="fl ${'abc'[i]} bob${'ABC'[i]}" aria-hidden="true"><div>${cart(g, [140, 128, 96][i])}</div></div>`).join('')}
   </div>
 </div>`;
 

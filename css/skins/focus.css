@@ -1,0 +1,13 @@
+/* 키보드 초점 색 — 테마 바탕에서 잘 보이는 색 하나씩 (마우스 hover 모습과는 따로, Tab 으로 왔을 때만 테두리가 뜬다)
+   게임 화면 · 글 읽기는 [data-skin], 그 테마일 때의 위쪽 메뉴는 body[data-hskin] .hdr 에 둔다.
+   body 전체에 두지 않는 이유 : 설정 창처럼 밝은 창이 위에 열려도 기본 하늘색을 쓰게 */
+[data-skin="playlog"],body[data-hskin="playlog"] .hdr{--focus:var(--pl-ink)}
+[data-skin="metaphor"],body[data-hskin="metaphor"] .hdr{--focus:#E3C98A}
+[data-skin="splatoon"],body[data-hskin="splatoon"] .hdr{--focus:#EAFF3D}
+[data-skin="raiders"],body[data-hskin="raiders"] .hdr{--focus:#FF8A1F}
+[data-skin="robobot"],body[data-hskin="robobot"] .hdr{--focus:#FFD23F}
+[data-skin="rhythm"],body[data-hskin="rhythm"] .hdr{--focus:#1E1A14}
+[data-skin="hades"],body[data-hskin="hades"] .hdr{--focus:#F2CF7A}
+[data-skin="katamari"],body[data-hskin="katamari"] .hdr{--focus:#2A1E3B}
+[data-skin="botw"],body[data-hskin="botw"] .hdr{--focus:#6FDCEF}
+[data-skin="tomodachi"],body[data-hskin="tomodachi"] .hdr{--focus:#141414}

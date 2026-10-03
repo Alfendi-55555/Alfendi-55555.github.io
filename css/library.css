@@ -22,7 +22,8 @@
 .save .mid{flex-grow:1;min-width:0;position:relative;z-index:2}
 .save .n{margin-bottom:5px}
 .save .t{margin-bottom:7px;line-height:1.3}
-.save:focus-visible{outline:none}
+/* 글 카드 : 마우스 hover 효과는 테마가 정하고, Tab 으로 왔을 때는 테마 색 테두리를 바깥에 하나 더 */
+.save:focus-visible{outline:3px solid var(--focus,var(--sky));outline-offset:4px}
 /* backwards : 끝난 뒤 상태를 붙잡지 않는다 — 스킨이 hover 때 다른 animation 을 걸어도 카드가 사라지지 않게 */
 .slots.boot .save{animation:up 240ms var(--ease-sheet) backwards}
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}

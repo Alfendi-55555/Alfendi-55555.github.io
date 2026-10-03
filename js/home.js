@@ -13,7 +13,7 @@ const P = PROFILE;
 /* ABOUT */
 chans.push(h(`<a href="#/about" class="chan about ch"><span class="scr">
   <span class="row-sb"><span class="lbl">ABOUT</span>${P.since ? `<span class="meta-line">SINCE ${esc(P.since)}</span>` : ''}</span>
-  <span class="who">${P.avatar ? `<img src="${esc(P.avatar)}" alt="">` : ''}<span><b>${esc(P.name || '')}</b><span>OWNER${P.handle ? ' · ' + esc(P.handle) : ''}</span></span></span>
+  <span class="who">${P.avatar ? `<img src="${esc(P.avatar)}" alt="${esc((P.name || '') + ' 프로필 사진')}">` : ''}<span><b>${esc(P.name || '')}</b><span>OWNER${P.handle ? ' · ' + esc(P.handle) : ''}</span></span></span>
   <span class="bio">${esc(P.bio || P.tagline || '')}</span></span></a>`));
 
 /* LATEST : 가장 최근 글 */

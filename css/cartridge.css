@@ -24,7 +24,8 @@
 
 /* ============ 선반 : 좌우 버튼, 꾹 누르면 연속, 스크롤바 없음 ============ */
 .shelf{display:flex;align-items:center;gap:14px}
-.shelf-track{flex-grow:1;min-width:0;display:flex;gap:20px;padding:6px 22px 22px;overflow-x:auto;
+.shelf-track{flex-grow:1;min-width:0;display:flex;gap:20px;padding:16px 22px 22px;margin-top:-10px;overflow-x:auto;   /* 위 여백 : 들린 카트리지의 초점 테두리가 잘리지 않게 */
+  
   scrollbar-width:none;overscroll-behavior-x:contain;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%);
   mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%)}
@@ -42,7 +43,7 @@
 .shelf-item .sv{font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--mut)}
 .shelf-item .tx{display:flex;flex-direction:column;align-items:center;gap:2px}
 @media (pointer:coarse){ .shelf-btn{display:none} }
-@media (max-width:720px){ .shelf-track{padding:6px 12px 18px;gap:12px} .shelf-item{width:116px} .shelf-item .cart{--w:100px!important} }
+@media (max-width:720px){ .shelf-track{padding:16px 12px 18px;gap:12px} .shelf-item{width:116px} .shelf-item .cart{--w:100px!important} }
 
 /* ============ 부팅 : 밝은 톤, 꽂은 카트리지가 살짝 들썩인다 ============ */
 #boot{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;flex-direction:column;gap:26px;
