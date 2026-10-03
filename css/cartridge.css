@@ -46,13 +46,13 @@
 
 /* ============ 부팅 : 밝은 톤, 꽂은 카트리지가 살짝 들썩인다 ============ */
 #boot{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;flex-direction:column;gap:26px;
-  background:repeating-linear-gradient(180deg,#EFF3F7 0 3px,#EAEFF4 3px 6px)}
+  background:repeating-linear-gradient(180deg,var(--stripe-a) 0 3px,var(--stripe-b) 3px 6px)}
 #boot.on{display:flex}
 #boot .boot-cart{display:flex}
 #boot.run .boot-cart{animation:bob 700ms ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-6px)}}
 .boot-txt{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.2em;color:var(--ink-soft)}
-.boot-bar{width:220px;height:6px;border-radius:3px;background:#DCE4EB;box-shadow:inset 0 1px 2px rgba(13,22,29,.15);overflow:hidden}
+.boot-bar{width:220px;height:6px;border-radius:3px;background:var(--fill);box-shadow:inset 0 1px 2px rgba(13,22,29,.15);overflow:hidden}
 .boot-bar i{display:block;height:100%;width:0;background:var(--sky);border-radius:3px}
 #boot.run .boot-bar i{animation:read 600ms cubic-bezier(.4,0,.2,1) forwards}
 @keyframes read{to{width:100%}}

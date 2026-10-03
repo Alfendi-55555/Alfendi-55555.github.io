@@ -65,7 +65,7 @@
 .rd .spoiler.open{background:color-mix(in srgb,currentColor 10%,transparent)}
 .rd .spoiler:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .rd-spoil{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:0 0 26px;padding:12px 16px;border-radius:12px;
-  background:#FBEDE4;color:#9A3F12;font-size:14px;line-height:1.55}
+  background:var(--warn-bg);color:var(--warn);font-size:14px;line-height:1.55}
 .rd-spoil b{font-weight:700}
 .rd-yt{position:relative;aspect-ratio:16/9;margin:0 0 26px;border-radius:14px;overflow:hidden;background:#0D161D}
 .rd-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}

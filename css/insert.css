@@ -1,5 +1,5 @@
 /* ============ 카트리지 삽입 : 밝은 화면, 두께를 감안한 슬롯 ============ */
-#insert{background:repeating-linear-gradient(180deg,#EFF3F7 0 3px,#EAEFF4 3px 6px)}
+#insert{background:repeating-linear-gradient(180deg,var(--stripe-a) 0 3px,var(--stripe-b) 3px 6px)}
 .ins-bar{height:52px;box-sizing:border-box;padding:0 48px;display:flex;align-items:center;justify-content:space-between;
   border-bottom:1px solid var(--line-soft)}
 .ins-bar .sys{color:var(--mut)}
