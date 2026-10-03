@@ -46,7 +46,7 @@ function render() {
   $('#postsCount').textContent = (q || state.game || state.tag) ? `${list.length} / ${POSTS.length} SAVES` : POSTS.length + ' SAVES';
   const tl = $('#timeline'); tl.innerHTML = '';
   if (!list.length) {
-    tl.appendChild(h(`<p class="empty-note">${q ? `‘${esc(state.q.trim())}’가 들어간 글이 없어요.` : '조건에 맞는 글이 없어요.'}</p>`));
+    tl.appendChild(h(`<p class="empty-note">${q ? `‘${esc(state.q.trim())}’가 들어간 기록이 없어요.` : '조건에 맞는 기록이 없어요.'}</p>`));
     return;
   }
   let month = '';
@@ -58,7 +58,7 @@ function render() {
       <span class="dt">${p.d.slice(5)}</span>
       <span class="mid"><span class="gm"><i style="background:${g.color}"></i>${esc(g.name)}</span>
         <span class="t">${mark(p.t, q)}</span><span class="ex">${p.spoiler != null   /* 스포일러 글은 목록에서 본문을 미리 보여 주지 않는다 */
-          ? `<span class="spoil-tag">스포일러</span>${p.spoiler ? esc(p.spoiler) + ' 내용이 있어요' : '게임 내용이 드러나는 글이에요'}`
+          ? `<span class="spoil-tag">스포일러</span>${p.spoiler ? esc(p.spoiler) + ' 내용이 있어요' : '게임 내용이 드러나는 기록이에요'}`
           : q ? snippet(p, q) : esc(excerpt(p))}</span>
         ${p.tags.length ? `<span class="tg">${p.tags.map(t => '#' + esc(t)).join(' ')}</span>` : ''}</span>
       <span class="th" style="${p.cover ? imgStyle(p.cover) : artStyle(g)}"></span></button>`);

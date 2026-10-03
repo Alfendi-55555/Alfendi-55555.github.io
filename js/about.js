@@ -99,7 +99,7 @@ const hi = REVIEWED.filter(g => g.review.rating >= 4).length;
 const tagCount = {};
 POSTS.forEach(p => p.tags.forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
 const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 12);
-const rating = `<section class="ab-sec">${sec('RECORDS', '기록 현황')}${stats}<div class="two-col wide" style="margin-top:24px">
+const rating = `<section class="ab-sec">${sec('STATS', '기록 현황')}${stats}<div class="two-col wide" style="margin-top:24px">
   <div><h3 class="sub-h">별점을 이렇게 줍니다</h3>${bez(`<div class="dist2">${[4, 3, 2, 1, 0].map((i, k) =>
     `<div class="row"><span>${i + 1}★</span><span class="tr"><i class="grow" style="width:${bucket[i] / bmax * 100}%;animation-delay:${200 + k * 90}ms"></i></span><span>${bucket[i]}</span></div>`).join('')}</div>
     ${REVIEWED.length ? `<p class="dist-note">${REVIEWED.length}개 리뷰 중 4점 이상이 ${hi}개${hi / REVIEWED.length >= 0.6 ? '. 후한 편이에요.' : hi / REVIEWED.length <= 0.3 ? '. 짠 편이에요.' : '.'}</p>` : ''}`)}</div>

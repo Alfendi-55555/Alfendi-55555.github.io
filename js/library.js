@@ -132,7 +132,7 @@ export function openCase(g, opener) {
   const stats = [];
   if (r && r.year) stats.push(['PLAYED', r.year]);
   if (r && r.hours) stats.push(['TIME', r.hours + 'H']);
-  if (n) stats.push(['RECORDS', n + '편'], ['LAST SAVE', lastDate(g)]);
+  if (n) stats.push(['SAVES', n + '편'], ['LAST SAVE', lastDate(g)]);
   const left = `<div class="co-left">
     <div class="co-cover${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
       ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}

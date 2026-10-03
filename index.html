@@ -53,7 +53,7 @@
     <a href="#/" data-nav="home">홈</a>
     <span class="nav-sep grp" aria-hidden="true"></span>
     <a href="#/library" data-nav="library">라이브러리</a>
-    <a href="#/posts" data-nav="posts">글</a>
+    <a href="#/posts" data-nav="posts">기록</a>
     <a href="#/music" data-nav="music">음악</a>
     <a href="#/news" data-nav="news">소식</a>
     <span class="nav-sep grp" aria-hidden="true"></span>
@@ -118,7 +118,7 @@
 <section id="posts" class="screen" aria-labelledby="postsTitle">
   <div class="wrap posts-layout">
     <div class="page-hd row full">
-      <div class="ttl"><h1 id="postsTitle">전체 글</h1><span class="cnt" id="postsCount" aria-live="polite"></span></div>
+      <div class="ttl"><h1 id="postsTitle">전체 기록</h1><span class="cnt" id="postsCount" aria-live="polite"></span></div>
       <div class="search" role="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="postQ" placeholder="제목·본문·태그로 찾기" aria-label="전체 글에서 찾기" autocomplete="off" spellcheck="false"><button type="button" class="s-clear" aria-label="검색어 지우기" hidden><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button><kbd aria-hidden="true">/</kbd></div>
     </div>
     <aside class="posts-side">
@@ -232,7 +232,7 @@
         </div>
         <div class="g-field">
           <label for="gMsg">내용</label>
-          <textarea class="g-inp" id="gMsg" maxlength="300" placeholder="어떤 글을 보고 오셨나요? 궁금한 게임이나 하고 싶은 말을 적어 주세요."></textarea>
+          <textarea class="g-inp" id="gMsg" maxlength="300" placeholder="어떤 기록을 보고 오셨나요? 궁금한 게임이나 하고 싶은 말을 적어 주세요."></textarea>
         </div>
         <!-- 사람에게는 보이지 않는 칸 : 채워져 있으면 봇 -->
         <div class="g-hp" aria-hidden="true"><label>홈페이지 <input id="gHp" tabindex="-1" autocomplete="off"></label></div>
@@ -289,7 +289,7 @@
       </div>
     </div>
     <div class="st-row">
-      <div><b>화면 테마</b><p>게임별 테마를 켜 두면 게임 화면과 글은 그 게임의 색을 따라가요.</p></div>
+      <div><b>화면 테마</b><p>게임별 테마를 켜 두면 게임 화면과 기록은 그 게임의 색을 따라가요.</p></div>
       <div class="seg" role="radiogroup" aria-label="화면 테마" id="stTheme">
         <button type="button" role="radio" data-v="system">시스템</button>
         <button type="button" role="radio" data-v="light">밝게</button>
@@ -297,7 +297,7 @@
       </div>
     </div>
     <div class="st-row">
-      <div><b>게임별 테마</b><p>끄면 모든 게임의 기록과 글을 기본 디자인으로 보여 줘요.</p></div>
+      <div><b>게임별 테마</b><p>끄면 모든 게임의 기록 화면을 기본 디자인으로 보여 줘요.</p></div>
       <label class="switch"><input type="checkbox" role="switch" id="stSkins" aria-label="게임별 테마"><span></span></label>
     </div>
     <p class="st-foot">설정은 이 브라우저에만 저장됩니다. 다른 기기에서는 따로 정해 주세요.</p>

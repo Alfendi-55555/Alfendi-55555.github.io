@@ -94,7 +94,7 @@ export function openReader(p) {
   hin.append(h, m); hero.appendChild(hin); rd.appendChild(hero);
   if (p.spoiler != null) {
     const w = el('div', 'rd-spoil');
-    w.innerHTML = `<b>스포일러 주의</b><span>${p.spoiler ? esc(p.spoiler) + '에 대한 내용이 있어요.' : '게임 내용이 드러나는 글이에요.'}</span>`;
+    w.innerHTML = `<b>스포일러 주의</b><span>${p.spoiler ? esc(p.spoiler) + '에 대한 내용이 있어요.' : '게임 내용이 드러나는 기록이에요.'}</span>`;
     rd.appendChild(w);
   }
   /* 본문 블록 — html 은 build.py 가 글자를 이스케이프한 뒤 만든 것만 들어온다 */
