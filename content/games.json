@@ -37,7 +37,8 @@
       "별의 커비 로보보 플래닛",
       "로보보 플래닛"
     ],
-    "color": "#E0679A"
+    "color": "#E0679A",
+    "skin": "robobot"
   },
   {
     "id": "splatoon-3",
@@ -55,7 +56,8 @@
     "aliases": [
       "스플래툰 레이더스"
     ],
-    "color": "#2E9E8F"
+    "color": "#2E9E8F",
+    "skin": "raiders"
   },
   {
     "id": "once-upon-a-katamari",

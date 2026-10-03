@@ -1,0 +1,101 @@
+/* ============ SKIN: raiders — 보물찾기 원정 + 정비공 작업장 : 정글 밤 초록, 청록 잉크, 주황 표식, 푸른 수정 ============
+   등고선 · 잉크 · 수정 · 리벳은 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
+:root{
+  --rd-jungle:#10261F; --rd-moss:#1C3D31; --rd-teal:#19D3C5; --rd-orange:#FF8A1F; --rd-gold:#FFC23D;
+  --rd-ink:#0A1712; --rd-sand:#F3E7CC; --rd-text:#E3F0E9;
+  --rd-font:'Titan One','Black Han Sans','Noto Sans KR',sans-serif;
+}
+[data-skin="raiders"]{color:var(--rd-text);font-family:'Noto Sans KR',sans-serif;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 190'%3E%3Cg fill='%2319D3C5' fill-opacity='0.5'%3E%3Cpath d='M100 30C118 8 152 22 146 50C172 44 188 72 166 86C192 101 176 137 150 128C156 157 124 172 107 150C94 176 58 166 64 140C34 151 18 120 41 105C13 90 24 54 55 62C49 34 80 18 100 30Z'/%3E%3Ccircle cx='182' cy='38' r='7'/%3E%3Ccircle cx='194' cy='58' r='3.5'/%3E%3Ccircle cx='26' cy='162' r='8'/%3E%3Ccircle cx='12' cy='142' r='4'/%3E%3Ccircle cx='174' cy='162' r='5'/%3E%3Ccircle cx='18' cy='56' r='5'/%3E%3C/g%3E%3C/svg%3E") right -80px top 50px/300px auto no-repeat,          /* 청록 잉크 */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 120'%3E%3Cg stroke='%230A1712' stroke-width='2.5' stroke-linejoin='round'%3E%3Cpath d='M40 118 28 60 48 18 66 62 58 118Z' fill='%234FD8EA'/%3E%3Cpath d='M48 18 66 62 58 118 50 64Z' fill='%239BF2FF'/%3E%3Cpath d='M70 118 74 76 92 46 106 80 96 118Z' fill='%2333B7D6'/%3E%3Cpath d='M92 46 106 80 96 118 92 82Z' fill='%237FE6F8'/%3E%3Cpath d='M14 118 10 92 22 78 30 96 26 118Z' fill='%2333B7D6'/%3E%3Cpath d='M104 118 112 98 124 90 128 104 120 118Z' fill='%234FD8EA'/%3E%3C/g%3E%3C/svg%3E") left 2% bottom 0/190px auto no-repeat,                 /* 푸른 수정 */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cellipse cx='150' cy='150' rx='30' ry='20' transform='rotate%28-12 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='52' ry='35' transform='rotate%28-9 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='74' ry='50' transform='rotate%28-6 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='96' ry='65' transform='rotate%28-3 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='118' ry='80' transform='rotate%280 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='140' ry='95' transform='rotate%283 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='162' ry='110' transform='rotate%286 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='184' ry='125' transform='rotate%289 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='206' ry='140' transform='rotate%2812 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3C/svg%3E") 0 0/420px 420px,                                          /* 등고선 */
+    radial-gradient(120% 80% at 50% 0,var(--rd-moss) 0%,var(--rd-jungle) 70%);
+  background-attachment:fixed}
+/* 글 읽기에서는 본문과 겹치지 않게 수정·잉크를 빼고 등고선만 */
+#reader[data-skin="raiders"]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cellipse cx='150' cy='150' rx='30' ry='20' transform='rotate%28-12 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='52' ry='35' transform='rotate%28-9 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='74' ry='50' transform='rotate%28-6 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='96' ry='65' transform='rotate%28-3 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='118' ry='80' transform='rotate%280 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='140' ry='95' transform='rotate%283 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='162' ry='110' transform='rotate%286 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='184' ry='125' transform='rotate%289 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cellipse cx='150' cy='150' rx='206' ry='140' transform='rotate%2812 150 150%29' fill='none' stroke='%23BFE8D8' stroke-opacity='.10' stroke-width='1.5'/%3E%3C/svg%3E") 0 0/420px 420px,radial-gradient(120% 80% at 50% 0,var(--rd-moss) 0%,var(--rd-jungle) 70%);background-attachment:fixed}
+
+/* ---------- 위쪽 띠 : 청록 잉크가 흘러내린다 ---------- */
+[data-skin="raiders"] .orn{display:block;background:var(--rd-teal);border-bottom:3px solid var(--rd-ink);overflow:visible}
+[data-skin="raiders"] .orn div{height:14px}
+[data-skin="raiders"] .orn .rule{display:none}
+[data-skin="raiders"] .orn::after{content:'';position:absolute;left:0;right:0;top:100%;height:22px;pointer-events:none;
+  background:radial-gradient(7px 13px at 26px 0,var(--rd-teal) 96%,transparent 100%),radial-gradient(4px 8px at 64px 0,var(--rd-teal) 96%,transparent 100%),radial-gradient(9px 19px at 118px 0,var(--rd-teal) 96%,transparent 100%),radial-gradient(5px 10px at 170px 0,var(--rd-teal) 96%,transparent 100%);background-size:230px 22px;background-repeat:repeat-x;filter:drop-shadow(0 2px 0 var(--rd-ink))}
+[data-skin="raiders"] .lib-body{padding-top:44px}
+
+/* ---------- 게임별 기록 ---------- */
+[data-skin="raiders"] .lib-hd h2{font-family:var(--rd-font);font-weight:400;font-size:34px;letter-spacing:.01em;color:var(--rd-orange);
+  text-shadow:0 3px 0 #8A3C10,3px 5px 0 var(--rd-ink)}
+[data-skin="raiders"] .lib-hd .cnt{font-family:var(--rd-font);font-size:11px;letter-spacing:.1em;color:var(--rd-ink);background:var(--rd-gold);
+  padding:4px 10px;border:2px solid var(--rd-ink);border-radius:4px;transform:rotate(-2deg)}
+[data-skin="raiders"] .eject{border-radius:12px;background:var(--rd-orange);color:var(--rd-ink);border:3px solid var(--rd-ink);box-shadow:0 4px 0 #8A3C10}
+[data-skin="raiders"] .eject:hover,[data-skin="raiders"] .eject:focus-visible{background:var(--rd-gold)}
+
+/* ---------- 세이브 : 리벳 박힌 금속 인양품 태그 ---------- */
+[data-skin="raiders"] .slots{gap:16px}
+[data-skin="raiders"] .save{color:var(--rd-text);border:3px solid var(--rd-ink);border-radius:14px;padding:14px 18px 14px 14px;
+  background:
+    radial-gradient(circle at 10px 10px,#9FB3A9 2.2px,#2B3F36 2.8px,transparent 3.4px),
+    radial-gradient(circle at calc(100% - 10px) 10px,#9FB3A9 2.2px,#2B3F36 2.8px,transparent 3.4px),
+    radial-gradient(circle at 10px calc(100% - 10px),#9FB3A9 2.2px,#2B3F36 2.8px,transparent 3.4px),
+    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px),#9FB3A9 2.2px,#2B3F36 2.8px,transparent 3.4px),
+    linear-gradient(180deg,#2E4A3E 0%,#22382F 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 5px 0 var(--rd-ink);transition:translate 140ms,box-shadow 140ms}
+[data-skin="raiders"] .save:hover,[data-skin="raiders"] .save:focus-visible{translate:0 -3px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 0 var(--rd-ink),0 0 0 3px var(--rd-orange)}
+[data-skin="raiders"] .save .bar{width:0}
+[data-skin="raiders"] .save .thumb{border-radius:8px;outline:3px solid var(--rd-ink);outline-offset:-3px}
+[data-skin="raiders"] .save .n{display:inline-block;font-family:var(--rd-font);font-size:11px;letter-spacing:.1em;color:var(--rd-ink);
+  background:var(--rd-orange);padding:2px 10px;transform:rotate(-2deg);box-shadow:1px 1px 0 var(--rd-ink)}
+[data-skin="raiders"] .save .t{font-family:'Black Han Sans','Noto Sans KR',sans-serif;font-weight:400;font-size:20px;color:#fff}
+[data-skin="raiders"] .save .m{font-size:12.5px;color:rgba(227,240,233,.62)}
+[data-skin="raiders"] .save-empty{border-color:var(--rd-teal)}
+
+/* ---------- 글 읽기 : 설계도 표지, 주황 테이프 캡션 ---------- */
+[data-skin="raiders"] .rd-bar{background:var(--rd-orange);height:5px}
+[data-skin="raiders"] .rd-back{background:var(--rd-orange);color:var(--rd-ink);border:3px solid var(--rd-ink);border-radius:10px;
+  font-family:var(--rd-font);font-size:13px;letter-spacing:.06em;box-shadow:0 4px 0 #8A3C10}
+[data-skin="raiders"] .rd-back:hover{background:var(--rd-gold)}
+[data-skin="raiders"] .hero{border-radius:18px;border:3px solid var(--rd-ink);box-shadow:0 6px 0 var(--rd-ink);
+  background:
+    linear-gradient(rgba(127,243,255,.10) 1px,transparent 1px) 0 0/22px 22px,
+    linear-gradient(90deg,rgba(127,243,255,.10) 1px,transparent 1px) 0 0/22px 22px,
+    #12394A}
+[data-skin="raiders"] .hero .cov{border-radius:0 15px 15px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%)}
+[data-skin="raiders"] .hero .glow{background:linear-gradient(90deg,#12394A 12%,rgba(18,57,74,.55) 46%,transparent 76%)}
+[data-skin="raiders"] .hero .frame{box-shadow:inset 0 0 0 2px rgba(127,243,255,.35)}
+[data-skin="raiders"] .rd h1{font-family:'Black Han Sans','Noto Sans KR',sans-serif;font-weight:400;font-size:34px;line-height:1.25;color:#fff;
+  text-shadow:2px 3px 0 var(--rd-ink)}
+[data-skin="raiders"] .rd .rmeta{font-family:var(--rd-font);font-size:12px;letter-spacing:.1em;color:var(--rd-orange)}
+[data-skin="raiders"] .rd p{font-size:16.5px;line-height:1.9;color:var(--rd-text)}
+[data-skin="raiders"] .rd h2,[data-skin="raiders"] .rd h3{font-family:'Black Han Sans','Noto Sans KR',sans-serif;font-weight:400;color:var(--rd-gold)}
+[data-skin="raiders"] .rd a{text-decoration-color:var(--rd-teal);text-decoration-thickness:2px}
+[data-skin="raiders"] .rd blockquote{background:rgba(25,211,197,.10);border:2px dashed rgba(25,211,197,.55)}
+[data-skin="raiders"] .rd figure img,[data-skin="raiders"] .rd-yt{border-radius:12px;border:3px solid var(--rd-ink);box-shadow:0 0 0 3px var(--rd-teal),0 8px 0 3px var(--rd-ink)}
+[data-skin="raiders"] .rd figcaption{display:table;margin:16px auto 0;padding:5px 16px;transform:rotate(-1.5deg);
+  background:var(--rd-orange);color:var(--rd-ink);font-size:13.5px;font-weight:700;
+  clip-path:polygon(2% 0,98% 4%,100% 50%,97% 100%,3% 96%,0 50%)}
+[data-skin="raiders"] .rd .end{box-shadow:inset 0 3px 0 var(--rd-orange);font-family:var(--rd-font);font-size:11px;letter-spacing:.14em;color:rgba(227,240,233,.55)}
+[data-skin="raiders"] .rd .end b{font-family:var(--rd-font);font-weight:400;font-size:18px;color:#fff}
+[data-skin="raiders"] .rd .end b i{font-style:normal;color:var(--rd-orange)}
+[data-skin="raiders"] .rd-nav button{background:#2E4A3E;color:var(--rd-text);border:3px solid var(--rd-ink);border-radius:12px;box-shadow:0 4px 0 var(--rd-ink)}
+[data-skin="raiders"] .rd-nav button span{color:var(--rd-orange)}
+
+/* ---------- 이 스킨일 때 위쪽 메뉴 ---------- */
+body[data-hskin="raiders"] .hdr{background:var(--rd-jungle);border-bottom:3px solid var(--rd-orange)}
+body[data-hskin="raiders"] .logo{color:var(--rd-sand)}
+body[data-hskin="raiders"] .logo .wm{font-family:var(--rd-font);font-weight:400;letter-spacing:.04em}
+body[data-hskin="raiders"] .logo .wm i{color:var(--rd-orange)}
+body[data-hskin="raiders"] .hdr-nav a,body[data-hskin="raiders"] .nav-btn{color:rgba(243,231,204,.62)}
+body[data-hskin="raiders"] .hdr-nav a[aria-current="page"],body[data-hskin="raiders"] .hdr-nav a:hover,body[data-hskin="raiders"] .nav-btn:hover{color:var(--rd-orange)}
+body[data-hskin="raiders"] .hdr-nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--rd-orange)}
+body[data-hskin="raiders"] .hdr-ctx{color:var(--rd-orange);font-family:var(--rd-font)}
+body[data-hskin="raiders"] .nav-sep{background:rgba(243,231,204,.2)}
+body[data-hskin="raiders"] .menu-btn{color:var(--rd-sand)}
+@media (max-width:980px){ body[data-hskin="raiders"] .hdr-nav{background:var(--rd-jungle)} }
+@media (max-width:720px){
+  [data-skin="raiders"]{background-size:170px auto,120px auto,300px 300px,auto}
+  [data-skin="raiders"] .lib-hd h2{font-size:28px}
+}

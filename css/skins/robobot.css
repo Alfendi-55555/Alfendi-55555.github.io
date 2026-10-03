@@ -1,0 +1,96 @@
+/* ============ SKIN: robobot — 커비의 귀여움 + 기계 회사의 공장 : 강철 패널, 회로, 분홍, 경고 줄무늬 ============
+   회로 · 별 · 나사 · 줄무늬는 직접 그린 그림. 게임의 이미지나 로고는 쓰지 않는다. */
+:root{
+  --rb-steel:#DCE3EA; --rb-steel-2:#C3CDD7; --rb-machine:#232A36; --rb-pink:#FF6FA8; --rb-pink-2:#E2457F;
+  --rb-cyan:#3FE0FF; --rb-warn:#FFD23F; --rb-ink:#1B2029;
+  --rb-font:'Fredoka','Do Hyeon','Noto Sans KR',sans-serif;   /* 영문은 둥근 Fredoka, 한글은 반듯한 Do Hyeon */
+}
+[data-skin="robobot"]{color:var(--rb-ink);font-family:'Noto Sans KR',sans-serif;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 62 36 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 36Z' fill='%23FF8FB8' fill-opacity='.55' stroke='%23E2457F' stroke-opacity='.4' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") right 6% top 90px/70px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 62 36 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 36Z' fill='%23FF8FB8' fill-opacity='.55' stroke='%23E2457F' stroke-opacity='.4' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") right 14% top 210px/34px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 62 36 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 36Z' fill='%23FF8FB8' fill-opacity='.55' stroke='%23E2457F' stroke-opacity='.4' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") left 4% bottom 12%/48px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%233FB8E0' stroke-opacity='.28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 30H40L60 50H110'/%3E%3Cpath d='M140 0V30L120 50V90'/%3E%3Cpath d='M0 120H30L50 100H90L110 120H160'/%3E%3Cpath d='M70 160V130'/%3E%3Cpath d='M160 70H130'/%3E%3C/g%3E%3Cg fill='%233FB8E0' fill-opacity='.35'%3E%3Ccircle cx='110' cy='50' r='4'/%3E%3Ccircle cx='120' cy='90' r='4'/%3E%3Ccircle cx='70' cy='130' r='4'/%3E%3Ccircle cx='130' cy='70' r='4'/%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,
+    linear-gradient(180deg,#E6EBF0 0%,#CFD8E1 100%);
+  background-attachment:fixed}
+#reader[data-skin="robobot"]{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%233FB8E0' stroke-opacity='.28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 30H40L60 50H110'/%3E%3Cpath d='M140 0V30L120 50V90'/%3E%3Cpath d='M0 120H30L50 100H90L110 120H160'/%3E%3Cpath d='M70 160V130'/%3E%3Cpath d='M160 70H130'/%3E%3C/g%3E%3Cg fill='%233FB8E0' fill-opacity='.35'%3E%3Ccircle cx='110' cy='50' r='4'/%3E%3Ccircle cx='120' cy='90' r='4'/%3E%3Ccircle cx='70' cy='130' r='4'/%3E%3Ccircle cx='130' cy='70' r='4'/%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/240px 240px,linear-gradient(180deg,#E6EBF0 0%,#CFD8E1 100%);background-attachment:fixed}
+
+/* ---------- 위쪽 띠 : 공장의 노랑·검정 경고 줄무늬 ---------- */
+[data-skin="robobot"] .orn{display:block;border-bottom:3px solid var(--rb-ink);
+  background:repeating-linear-gradient(-45deg,var(--rb-warn) 0 16px,var(--rb-ink) 16px 32px)}
+[data-skin="robobot"] .orn div{height:16px}
+[data-skin="robobot"] .orn .rule{display:none}
+
+/* ---------- 게임별 기록 ---------- */
+[data-skin="robobot"] .lib-hd h2{font-family:var(--rb-font);font-weight:700;font-size:34px;letter-spacing:-.01em;color:var(--rb-pink);
+  -webkit-text-stroke:2px var(--rb-ink);paint-order:stroke fill;text-shadow:0 4px 0 var(--rb-ink)}
+[data-skin="robobot"] .lib-hd .cnt{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--rb-cyan);
+  background:var(--rb-machine);padding:5px 10px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(63,224,255,.35)}
+[data-skin="robobot"] .eject{border-radius:50%;color:#fff;border:3px solid var(--rb-ink);
+  background:radial-gradient(circle at 35% 30%,#FFB3D0 0%,var(--rb-pink) 45%,var(--rb-pink-2) 100%);box-shadow:0 3px 0 var(--rb-ink)}
+[data-skin="robobot"] .eject:hover,[data-skin="robobot"] .eject:focus-visible{filter:brightness(1.08);translate:0 -2px}
+
+/* ---------- 세이브 : 나사 박힌 강철판, 왼쪽 분홍 LED, 번호는 작은 디지털 화면 ---------- */
+[data-skin="robobot"] .slots{gap:16px}
+[data-skin="robobot"] .save{color:var(--rb-ink);border:2px solid #7D8896;border-radius:14px;padding:14px 18px 14px 22px;
+  background:radial-gradient(circle at 12px 12px,#8A96A4 0 2px,transparent 2.4px),radial-gradient(circle at 12px 12px,#E9EEF3 0 3.4px,#6E7A88 3.8px,transparent 4.4px),radial-gradient(circle at calc(100% - 12px) 12px,#8A96A4 0 2px,transparent 2.4px),radial-gradient(circle at calc(100% - 12px) 12px,#E9EEF3 0 3.4px,#6E7A88 3.8px,transparent 4.4px),radial-gradient(circle at 12px calc(100% - 12px),#8A96A4 0 2px,transparent 2.4px),radial-gradient(circle at 12px calc(100% - 12px),#E9EEF3 0 3.4px,#6E7A88 3.8px,transparent 4.4px),radial-gradient(circle at calc(100% - 12px) calc(100% - 12px),#8A96A4 0 2px,transparent 2.4px),radial-gradient(circle at calc(100% - 12px) calc(100% - 12px),#E9EEF3 0 3.4px,#6E7A88 3.8px,transparent 4.4px),
+    linear-gradient(180deg,#F2F5F8 0%,var(--rb-steel) 55%,var(--rb-steel-2) 100%);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(0,0,0,.08),0 4px 0 #8C97A4,0 10px 18px -8px rgba(27,32,41,.4);
+  transition:translate 140ms,box-shadow 140ms}
+[data-skin="robobot"] .save:hover,[data-skin="robobot"] .save:focus-visible{translate:0 -3px;
+  box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(0,0,0,.08),0 6px 0 #8C97A4,0 0 0 3px var(--rb-pink),0 14px 22px -8px rgba(226,69,127,.45)}
+[data-skin="robobot"] .save .bar{left:7px;top:14px;bottom:14px;width:5px;border-radius:3px;background:var(--rb-pink)!important;
+  box-shadow:0 0 8px 1px rgba(255,111,168,.8)}
+[data-skin="robobot"] .save .thumb{border-radius:8px;outline:3px solid var(--rb-machine);outline-offset:-3px}
+[data-skin="robobot"] .save .n{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+  color:var(--rb-cyan);background:var(--rb-machine);padding:2px 8px;border-radius:4px;text-shadow:0 0 6px rgba(63,224,255,.7)}
+[data-skin="robobot"] .save .t{font-family:'Do Hyeon','Noto Sans KR',sans-serif;font-weight:400;font-size:21px}
+[data-skin="robobot"] .save .m{font-size:12.5px;color:rgba(27,32,41,.6)}
+[data-skin="robobot"] .save-empty{border-color:#7D8896}
+
+/* ---------- 글 읽기 : 모니터 화면 같은 표지, 강철 액자 ---------- */
+[data-skin="robobot"] .rd-bar{height:6px;background:repeating-linear-gradient(-45deg,var(--rb-warn) 0 8px,var(--rb-ink) 8px 16px)}
+[data-skin="robobot"] .rd-back{font-family:var(--rb-font);font-weight:700;font-size:14px;color:#fff;border:3px solid var(--rb-ink);border-radius:999px;
+  background:linear-gradient(180deg,#FF8DBA,var(--rb-pink-2));box-shadow:0 3px 0 var(--rb-ink)}
+[data-skin="robobot"] .rd-back:hover{filter:brightness(1.08)}
+[data-skin="robobot"] .hero{border-radius:20px;border:6px solid #8C97A4;outline:2px solid var(--rb-ink);
+  box-shadow:inset 0 0 0 2px var(--rb-ink),0 6px 0 var(--rb-ink);
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px),          /* 주사선 */
+    linear-gradient(rgba(63,224,255,.10) 1px,transparent 1px) 0 0/24px 24px,
+    linear-gradient(90deg,rgba(63,224,255,.10) 1px,transparent 1px) 0 0/24px 24px,
+    var(--rb-machine)}
+[data-skin="robobot"] .hero .cov{border-radius:0 12px 12px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 60%)}
+[data-skin="robobot"] .hero .glow{background:linear-gradient(90deg,var(--rb-machine) 12%,rgba(35,42,54,.55) 46%,transparent 76%)}
+[data-skin="robobot"] .rd h1{font-family:'Do Hyeon','Fredoka','Noto Sans KR',sans-serif;font-weight:400;font-size:36px;line-height:1.25;color:#FFC2DA;
+  text-shadow:0 0 14px rgba(255,111,168,.55)}
+[data-skin="robobot"] .rd .rmeta{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--rb-cyan)}
+[data-skin="robobot"] .rd p{font-size:16.5px;line-height:1.9;color:#2A303B}
+[data-skin="robobot"] .rd h2,[data-skin="robobot"] .rd h3{font-family:'Do Hyeon','Noto Sans KR',sans-serif;font-weight:400;color:var(--rb-pink-2)}
+[data-skin="robobot"] .rd a{text-decoration-color:var(--rb-pink);text-decoration-thickness:2px}
+[data-skin="robobot"] .rd blockquote{background:rgba(255,255,255,.6);border:2px solid #8C97A4;border-left:6px solid var(--rb-pink)}
+[data-skin="robobot"] .rd figure img,[data-skin="robobot"] .rd-yt{border-radius:12px;border:6px solid #8C97A4;outline:2px solid var(--rb-ink);outline-offset:0;
+  box-shadow:0 6px 0 var(--rb-ink)}
+[data-skin="robobot"] .rd figcaption{display:table;margin:16px auto 0;padding:6px 14px;border-radius:6px;background:var(--rb-machine);
+  color:var(--rb-cyan);font-family:var(--font-mono);font-size:12.5px;letter-spacing:.06em;text-shadow:0 0 6px rgba(63,224,255,.6)}
+[data-skin="robobot"] .rd .end{box-shadow:inset 0 3px 0 #8C97A4;font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:rgba(27,32,41,.5)}
+[data-skin="robobot"] .rd .end b{font-family:var(--rb-font);font-weight:700;font-size:18px;color:var(--rb-ink)}
+[data-skin="robobot"] .rd .end b i{font-style:normal;color:var(--rb-pink-2)}
+[data-skin="robobot"] .rd-nav button{background:linear-gradient(180deg,#F2F5F8,var(--rb-steel-2));color:var(--rb-ink);border:2px solid #7D8896;border-radius:14px;box-shadow:0 4px 0 #8C97A4}
+[data-skin="robobot"] .rd-nav button span{color:var(--rb-pink-2)}
+
+/* ---------- 이 스킨일 때 위쪽 메뉴 ---------- */
+body[data-hskin="robobot"] .hdr{background:var(--rb-machine);border-bottom:3px solid var(--rb-pink)}
+body[data-hskin="robobot"] .logo{color:#EEF2F6}
+body[data-hskin="robobot"] .logo .wm{font-family:var(--rb-font);font-weight:700}
+body[data-hskin="robobot"] .logo .wm i{color:var(--rb-pink)}
+body[data-hskin="robobot"] .hdr-nav a,body[data-hskin="robobot"] .nav-btn{color:rgba(238,242,246,.6)}
+body[data-hskin="robobot"] .hdr-nav a[aria-current="page"],body[data-hskin="robobot"] .hdr-nav a:hover,body[data-hskin="robobot"] .nav-btn:hover{color:#FFC2DA}
+body[data-hskin="robobot"] .hdr-nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--rb-pink)}
+body[data-hskin="robobot"] .hdr-ctx{color:var(--rb-cyan);font-family:var(--font-mono)}
+body[data-hskin="robobot"] .nav-sep{background:rgba(238,242,246,.2)}
+body[data-hskin="robobot"] .menu-btn{color:#EEF2F6}
+@media (max-width:980px){ body[data-hskin="robobot"] .hdr-nav{background:var(--rb-machine)} }
+@media (max-width:720px){ [data-skin="robobot"] .lib-hd h2{font-size:28px} }
