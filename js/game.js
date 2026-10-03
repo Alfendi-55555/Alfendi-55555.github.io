@@ -2,14 +2,20 @@
 import { $, el, reduced, cart, esc } from './util.js';
 import { BY_ID } from './store.js';
 import { showScreen } from './shell.js';
+import { settings } from './settings.js';
 
 $('#ejectBtn').onclick = () => { location.hash = '#/library'; };
 
+/* 게임별 테마를 끄면 모든 게임이 기본 스킨으로 */
+const skinOf = g => (settings.skins && g.skin) || 'base';
+
 const slots = $('#slots');
+let shown = null, bootTimer = 0;
 export function renderGame(id) {
   const g = BY_ID.get(id);
   if (!g) { location.replace('#/library'); return; }
-  const skin = g.skin || 'base';
+  shown = g;
+  const skin = skinOf(g);
   $('#game').dataset.skin = skin;
   $('#reader').dataset.skin = skin;
   $('#libName').textContent = g.name;
@@ -40,8 +46,21 @@ export function renderGame(id) {
     slots.appendChild(b);
   });
   showScreen('game', { ctx: g.name.toUpperCase(), skin });
-  if (!reduced) requestAnimationFrame(() => slots.classList.add('boot'));
+  /* 들어오는 연출이 끝나면 boot 를 떼어 낸다 — 마우스를 뗄 때 연출이 다시 돌지 않게 */
+  clearTimeout(bootTimer);
+  if (!reduced) {
+    requestAnimationFrame(() => slots.classList.add('boot'));
+    bootTimer = setTimeout(() => slots.classList.remove('boot'), 300 + g.posts.length * 40);
+  }
 }
+/* 설정에서 게임별 테마를 바꾸면 보고 있던 화면에도 바로 적용 */
+settings.onChange(() => {
+  if (!shown || !$('#game').classList.contains('on')) return;
+  const skin = skinOf(shown);
+  if ($('#game').dataset.skin === skin) return;
+  renderGame(shown.id);
+  if (readerOpen()) reader.dataset.skin = skin;
+});
 
 /* ---------- 글 읽기 : 위쪽 막대는 지금 이 글을 얼마나 읽었는지만 보여준다 ---------- */
 const reader = $('#reader'), rd = $('#rd'), rdBar = $('#rdBar');
@@ -58,7 +77,7 @@ export const readerOpen = () => reader.classList.contains('on');
 export function openReader(p) {
   const g = p.game;
   cur = { p, opener: cur ? cur.opener : document.activeElement };
-  reader.dataset.skin = g.skin || 'base';
+  reader.dataset.skin = skinOf(g);
   rd.innerHTML = '';
   const back = el('button', 'rd-back');
   back.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.6 1.6 3.2 6l4.4 4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>닫기';

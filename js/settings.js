@@ -2,7 +2,7 @@
 import { $, $$ } from './util.js';
 import { openOverlay } from './shell.js';
 
-const K = { auto: 'pl_auto_insert', intro: 'pl_intro', seen: 'pl_seen', theme: 'pl_theme' };
+const K = { auto: 'pl_auto_insert', intro: 'pl_intro', seen: 'pl_seen', theme: 'pl_theme', skins: 'pl_skins' };
 const get = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch { return d; } };
 const put = (k, v) => { try { localStorage.setItem(k, v); } catch { /* 저장소를 못 쓰면 이번 방문 동안만 */ } };
 
@@ -14,6 +14,8 @@ export const settings = {
   set intro(v) { put(K.intro, v); listeners.forEach(f => f()); },
   get theme() { return get(K.theme, 'system'); },     /* system(기본) · light · dark */
   set theme(v) { put(K.theme, v); applyTheme(); listeners.forEach(f => f()); },
+  get skins() { return get(K.skins, '1') === '1'; }, /* 게임별 테마 (기본 켜짐) */
+  set skins(v) { put(K.skins, v ? '1' : '0'); listeners.forEach(f => f()); },
   get seen() { return get(K.seen, '0') === '1'; },
   markSeen() { put(K.seen, '1'); },
   onChange(f) { listeners.add(f); }
@@ -30,7 +32,9 @@ applyTheme();
 
 /* ---------- 설정 창 ---------- */
 const wrap = $('#settingsWrap'), sAuto = $('#stAuto');
+const sSkins = $('#stSkins');
 sAuto.addEventListener('change', () => { settings.auto = sAuto.checked; });
+sSkins.addEventListener('change', () => { settings.skins = sSkins.checked; });
 
 /* 라디오처럼 동작하는 버튼 묶음 : 누르거나 화살표 키로 고른다 */
 const groups = [['#stIntro', 'intro'], ['#stTheme', 'theme']].map(([sel, key]) => {
@@ -46,6 +50,7 @@ const groups = [['#stIntro', 'intro'], ['#stTheme', 'theme']].map(([sel, key]) =
 });
 function sync() {
   sAuto.checked = settings.auto;
+  sSkins.checked = settings.skins;
   groups.forEach(({ btns, key }) => btns.forEach(b => b.setAttribute('aria-checked', String(b.dataset.v === settings[key]))));
 }
 settings.onChange(sync);
