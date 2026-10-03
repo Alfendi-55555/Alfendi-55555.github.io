@@ -6,7 +6,7 @@ import { bindSearch, norm } from './library.js';
 
 const state = { game: null, tag: null, q: '' };
 /* 검색 대상 : 제목 · 본문 전체 · 게임 이름과 별칭 · 태그 */
-const body = p => (p.blocks || []).map(b => b.type === 'text' ? b.text : (b.caption || '')).join(' ');
+const body = p => (p.blocks || []).map(b => b.text || b.caption || '').join(' ');
 POSTS.forEach(p => { p._hay = norm([p.t, body(p), p.game.name, ...(p.game.aliases || []), ...p.tags].join(' ')); });
 /* 띄어쓰기를 무시하고 원문에서 검색어 위치를 찾는다 */
 function locate(text, q) {
@@ -57,7 +57,9 @@ function render() {
     const b = h(`<button type="button" class="post-row ch">
       <span class="dt">${p.d.slice(5)}</span>
       <span class="mid"><span class="gm"><i style="background:${g.color}"></i>${esc(g.name)}</span>
-        <span class="t">${mark(p.t, q)}</span><span class="ex">${q ? snippet(p, q) : esc(excerpt(p))}</span>
+        <span class="t">${mark(p.t, q)}</span><span class="ex">${p.spoiler != null   /* 스포일러 글은 목록에서 본문을 미리 보여 주지 않는다 */
+          ? `<span class="spoil-tag">스포일러</span>${p.spoiler ? esc(p.spoiler) + ' 내용이 있어요' : '게임 내용이 드러나는 글이에요'}`
+          : q ? snippet(p, q) : esc(excerpt(p))}</span>
         ${p.tags.length ? `<span class="tg">${p.tags.map(t => '#' + esc(t)).join(' ')}</span>` : ''}</span>
       <span class="th" style="${p.cover ? imgStyle(p.cover) : artStyle(g)}"></span></button>`);
     b.addEventListener('click', () => openReader(p));

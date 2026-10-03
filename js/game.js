@@ -47,6 +47,13 @@ export function renderGame(id) {
 
 /* ---------- 글 읽기 : 위쪽 막대는 지금 이 글을 얼마나 읽었는지만 보여준다 ---------- */
 const reader = $('#reader'), rd = $('#rd'), rdBar = $('#rdBar');
+/* ||스포일러|| : 누르거나 Enter·Space 로 보이기 / 다시 가리기 */
+const toggleSpoiler = s => { s.classList.toggle('open'); s.setAttribute('aria-label', s.classList.contains('open') ? '스포일러, 눌러서 가리기' : '스포일러, 눌러서 보기'); };
+rd.addEventListener('click', e => { const s = e.target.closest('.spoiler'); if (s) toggleSpoiler(s); });
+rd.addEventListener('keydown', e => {
+  const s = e.target.closest?.('.spoiler');
+  if (s && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleSpoiler(s); }
+});
 let cur = null;
 export const readerOpen = () => reader.classList.contains('on');
 
@@ -68,14 +75,32 @@ export function openReader(p) {
   const h = el('h1'); h.textContent = p.t;
   const m = el('div', 'rmeta'); m.textContent = [g.name, p.d, p.min >= 3 ? '읽는 데 ' + p.min + '분' : ''].filter(Boolean).join(' · ');
   hin.append(h, m); hero.appendChild(hin); rd.appendChild(hero);
+  if (p.spoiler != null) {
+    const w = el('div', 'rd-spoil');
+    w.innerHTML = `<b>스포일러 주의</b><span>${p.spoiler ? esc(p.spoiler) + '에 대한 내용이 있어요.' : '게임 내용이 드러나는 글이에요.'}</span>`;
+    rd.appendChild(w);
+  }
+  /* 본문 블록 — html 은 build.py 가 글자를 이스케이프한 뒤 만든 것만 들어온다 */
   (p.blocks || []).forEach(b => {
-    if (b.type === 'text') { const q = el('p'); q.textContent = b.text; rd.appendChild(q); }
-    else {
-      const f = el('figure'); const im = new Image(); im.src = b.src; im.alt = b.caption || ''; im.loading = 'lazy';
-      f.appendChild(im);
-      if (b.caption) { const cp = el('figcaption'); const sp = el('span'); sp.textContent = b.caption; cp.appendChild(sp); f.appendChild(cp); }
-      rd.appendChild(f);
+    let n;
+    if (b.type === 'text') { n = el('p'); n.innerHTML = b.html ?? esc(b.text); }
+    else if (b.type === 'h') { n = el(b.level === 3 ? 'h3' : 'h2'); n.innerHTML = b.html; }
+    else if (b.type === 'quote') { n = el('blockquote'); n.innerHTML = b.html; }
+    else if (b.type === 'list') { n = el(b.ordered ? 'ol' : 'ul'); n.innerHTML = b.items.map(i => `<li>${i}</li>`).join(''); }
+    else if (b.type === 'youtube') {
+      n = el('div', 'rd-yt');
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(b.id)}${b.start ? '?start=' + b.start : ''}`;
+      f.title = 'YouTube 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
+      f.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture';
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      n.appendChild(f);
+    } else {
+      n = el('figure'); const im = new Image(); im.src = b.src; im.alt = b.caption || ''; im.loading = 'lazy';
+      n.appendChild(im);
+      if (b.caption) { const cp = el('figcaption'); const sp = el('span'); sp.textContent = b.caption; cp.appendChild(sp); n.appendChild(cp); }
     }
+    rd.appendChild(n);
   });
   const endl = el('div', 'end');
   const es = el('span'); es.textContent = 'END OF LOG';

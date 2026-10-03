@@ -85,20 +85,70 @@ def read_post(path):
     return meta, m.group(2)
 
 # ---------------- 본문 → blocks ----------------
+# 빈 줄 = 새 문단, 그냥 줄바꿈 = 문단 안 줄바꿈. 문단 하나가 아래 중 하나면 그 블록이 된다.
+#   ![캡션](./01.jpg)        사진          https://youtu.be/…     유튜브 플레이어
+#   ## 소제목 / ### 작은 소제목          - 항목 / 1. 항목         목록
+#   > 인용
+# 문장 안: **굵게** *기울임* ~~취소선~~ [글자](주소) ||스포일러||
 IMG_LINE = re.compile(r'^!\[(.*?)\]\((.+?)\)\s*$')
+YT_LINE = re.compile(r'^https?://(?:www\.|m\.)?(?:youtu\.be/|youtube\.com/(?:watch\?(?:\S*&)?v=|shorts/|live/|embed/))'
+                     r'([\w-]{11})(\S*)$')
+HEAD_LINE = re.compile(r'^(#{2,3})\s+(.+)$')
+UL_LINE, OL_LINE = re.compile(r'^[-*]\s+(.+)$'), re.compile(r'^\d+[.)]\s+(.+)$')
+
+def html_escape(s):
+    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
+
+INLINE = [   # (패턴, 바꿀 HTML) — 위에서부터 차례로. 글자는 먼저 이스케이프한다
+    (re.compile(r'\[([^\]\n]+)\]\((https?://[^)\s]+)\)'), r'<a href="\2" target="_blank" rel="noopener">\1</a>'),
+    (re.compile(r'\|\|(.+?)\|\|'), r'<span class="spoiler" tabindex="0" role="button" aria-label="스포일러, 눌러서 보기">\1</span>'),
+    (re.compile(r'\*\*(.+?)\*\*'), r'<strong>\1</strong>'),
+    (re.compile(r'~~(.+?)~~'), r'<del>\1</del>'),
+    (re.compile(r'(?<![*\w])\*(?=\S)(.+?)(?<=\S)\*(?![*\w])'), r'<em>\1</em>'),
+]
+def inline_html(s):
+    s = html_escape(s)
+    for pat, rep in INLINE:
+        s = pat.sub(rep, s)
+    return s
+
+def inline_plain(s):
+    """검색·발췌·읽는 시간용 — 문법 기호를 빼고, 스포일러는 내용 대신 표시만"""
+    s = re.sub(r'\|\|(.+?)\|\|', '(스포일러)', s)
+    s = re.sub(r'\[([^\]\n]+)\]\((https?://[^)\s]+)\)', r'\1', s)
+    return re.sub(r'\*\*|~~|(?<![*\w])\*(?=\S)|(?<=\S)\*(?![*\w])', '', s)
+
+def yt_start(rest):
+    """주소 뒤의 t=90 / t=1m30s / start=90 → 초"""
+    m = re.search(r'[?&](?:t|start)=(?:(\d+)h)?(?:(\d+)m)?(\d+)?s?', rest)
+    return (int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + int(m.group(3) or 0)) if m else 0
 
 def to_blocks(body, folder_url, path):
     blocks = []
-    for para in re.split(r'\n\s*\n', body.strip()):
-        para = para.strip('\n')
-        if not para.strip():
-            continue
-        m = IMG_LINE.match(para.strip())
-        if m:
-            blocks.append({'type': 'image', 'src': resolve(m.group(2), folder_url, path),
-                           'caption': m.group(1)})
+    paras = [p.strip('\n') for p in re.split(r'\n\s*\n', body.strip()) if p.strip()]
+    while paras:
+        para = paras.pop(0)
+        one = para.strip()
+        lines = [l.strip() for l in para.split('\n') if l.strip()]
+        if m := IMG_LINE.match(one):
+            blocks.append({'type': 'image', 'src': resolve(m.group(2), folder_url, path), 'caption': m.group(1)})
+        elif m := YT_LINE.match(one):
+            blocks.append({'type': 'youtube', 'id': m.group(1), 'start': yt_start(m.group(2))})
+        elif m := HEAD_LINE.match(lines[0]):
+            t = m.group(2).strip()
+            blocks.append({'type': 'h', 'level': len(m.group(1)), 'text': inline_plain(t), 'html': inline_html(t)})
+            if len(lines) > 1:                         # 소제목 바로 아래 줄부터는 다음 문단으로
+                paras.insert(0, '\n'.join(para.split('\n')[1:]))
+        elif all(UL_LINE.match(l) for l in lines) or all(OL_LINE.match(l) for l in lines):
+            ordered = bool(OL_LINE.match(lines[0]))
+            items = [(OL_LINE if ordered else UL_LINE).match(l).group(1) for l in lines]
+            blocks.append({'type': 'list', 'ordered': ordered, 'text': ' '.join(inline_plain(i) for i in items),
+                           'items': [inline_html(i) for i in items]})
+        elif all(l.startswith('>') for l in lines):
+            t = '\n'.join(re.sub(r'^>\s?', '', l) for l in para.split('\n') if l.strip())
+            blocks.append({'type': 'quote', 'text': inline_plain(t), 'html': inline_html(t)})
         else:
-            blocks.append({'type': 'text', 'text': para})
+            blocks.append({'type': 'text', 'text': inline_plain(para), 'html': inline_html(para)})
     return blocks
 
 def resolve(src, folder_url, path):
@@ -111,7 +161,7 @@ def resolve(src, folder_url, path):
     return f'{folder_url}/{rel}'
 
 def reading_min(blocks):
-    chars = sum(len(b['text']) for b in blocks if b['type'] == 'text')
+    chars = sum(len(b.get('text', '')) for b in blocks)
     return max(1, round(chars / CHARS_PER_MIN))
 
 # ---------------- 조립 ----------------
@@ -405,6 +455,9 @@ def build():
                 'tags': meta.get('tags') or [],
                 'cover': resolve(cover, folder_url, md) if cover else None,
                 'blocks': blocks,
+                # spoiler: true → 경고만, spoiler: 3회차 엔딩 → 무엇이 나오는지까지. 없으면 null
+                'spoiler': (meta['spoiler'] if isinstance(meta.get('spoiler'), str) and meta['spoiler']
+                            else '' if meta.get('spoiler') is True else None),
                 'draft': bool(meta.get('draft', False)),
             })
         posts = [p for p in posts if not p.pop('draft')]
