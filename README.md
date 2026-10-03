@@ -86,6 +86,8 @@ scripts/build.py      content + posts + 음악 시트 + 게임 소식 → _site/
 
 ## 글 쓰기
 
+> 처음부터 차근차근 정리한 안내는 **[WRITING.md](WRITING.md)** 에 있습니다(GitHub 웹에서 쓰는 법, 템플릿, 사진·영상, 실수했을 때).
+
 `posts/<게임id>/` 아래에 폴더를 하나 만들고 `index.md`를 넣습니다.
 폴더 이름은 `2026-10-01-boss-rush`처럼 날짜로 시작하면 정리가 편합니다.
 

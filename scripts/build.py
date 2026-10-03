@@ -104,7 +104,7 @@ INLINE = [   # (패턴, 바꿀 HTML) — 위에서부터 차례로. 글자는 �
     (re.compile(r'\|\|(.+?)\|\|'), r'<span class="spoiler" tabindex="0" role="button" aria-label="스포일러, 눌러서 보기">\1</span>'),
     (re.compile(r'\*\*(.+?)\*\*'), r'<strong>\1</strong>'),
     (re.compile(r'~~(.+?)~~'), r'<del>\1</del>'),
-    (re.compile(r'(?<![*\w])\*(?=\S)(.+?)(?<=\S)\*(?![*\w])'), r'<em>\1</em>'),
+    (re.compile(r'(?<![*A-Za-z0-9])\*(?=\S)(.+?)(?<=\S)\*(?![*A-Za-z0-9])'), r'<em>\1</em>'),   # 한국어 조사가 바로 붙어도 되게
 ]
 def inline_html(s):
     s = html_escape(s)
@@ -116,7 +116,7 @@ def inline_plain(s):
     """검색·발췌·읽는 시간용 — 문법 기호를 빼고, 스포일러는 내용 대신 표시만"""
     s = re.sub(r'\|\|(.+?)\|\|', '(스포일러)', s)
     s = re.sub(r'\[([^\]\n]+)\]\((https?://[^)\s]+)\)', r'\1', s)
-    return re.sub(r'\*\*|~~|(?<![*\w])\*(?=\S)|(?<=\S)\*(?![*\w])', '', s)
+    return re.sub(r'\*\*|~~|(?<![*A-Za-z0-9])\*(?=\S)|(?<=\S)\*(?![*A-Za-z0-9])', '', s)
 
 def yt_start(rest):
     """주소 뒤의 t=90 / t=1m30s / start=90 → 초"""
