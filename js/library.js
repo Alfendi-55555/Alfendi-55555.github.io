@@ -1,6 +1,6 @@
 /* 라이브러리 : 최근 꺼낸 게임(카트리지 선반) + 전체 라이브러리(케이스) + 펼친 케이스 */
 import { $, $$, h, esc, stars, cart, artStyle, darken, reduced, CART_SVG, md } from './util.js';
-import { GAMES, RECENT, lastDate } from './store.js';
+import { GAMES, RECENT, MUSIC, lastDate } from './store.js';
 import { openOverlay, closeOverlay } from './shell.js';
 import { startInsert } from './insert.js';
 import { openReader } from './game.js';
@@ -120,6 +120,13 @@ renderCases();
 const wrap = $('#caseWrap'), open = $('#caseOpen');
 const HOLE = '<svg width="30" height="36" viewBox="0 0 11 13" fill="none" aria-hidden="true"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width=".8" stroke-linejoin="round"/></svg>';
 
+/* 표지의 게임 정보 : 출시일 · 장르 / 공식 플랫폼 */
+const info = g => {
+  const top = [g.release, g.genre].filter(Boolean).join(' · ');
+  return (top ? `<span class="co-meta">${esc(top)}</span>` : '')
+    + (g.platforms && g.platforms.length ? `<span class="co-plat">${g.platforms.map(esc).join(' · ')}</span>` : '');
+};
+
 export function openCase(g, opener) {
   const r = g.review, n = g.posts.length;
   const stats = [];
@@ -129,30 +136,33 @@ export function openCase(g, opener) {
   const left = `<div class="co-left">
     <div class="co-cover${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
       ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
-      <div class="cap"><span class="sys">PLAYLOG · CASE</span><h2 id="caseName">${esc(g.name)}</h2></div>
+      <div class="cap"><h2 id="caseName">${esc(g.name)}</h2>${info(g)}</div>
     </div>
     <div class="co-body">
-      ${stats.length ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
+      ${stats.length || r ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
         ${r ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
       ${r ? `<div class="co-review"><span class="sys">ONE-LINE REVIEW</span><p>${esc(r.text)}</p></div>`
           : '<div class="co-empty"><span class="sys">ONE-LINE REVIEW</span><span>아직 한줄 리뷰가 없어요</span></div>'}
     </div>
   </div>`;
   const posts = g.posts.slice(0, 3);
-  const right = n ? `<div class="co-right">
-    <div class="seat-row">
-      <div class="seat"><button type="button" class="lift" data-act="insert" aria-label="${esc(g.name)} 카트리지 꽂기">${cart(g, 150)}</button></div>
-      <div class="co-saves"><span class="sys">SAVES</span>
-        ${posts.map((p, i) => `<button type="button" class="co-post" data-post="${i}"><span>${esc(p.t)}</span><span>${md(p.d)}</span></button>`).join('')}
-        ${n > 3 ? `<span class="co-more">외 ${n - 3}편 더 — 카트리지를 꽂으면 모두 보여요</span>` : ''}
-      </div>
+  /* 오른쪽 트레이 : 왼쪽 위 카트리지(+ 짧은 안내), 그 아래 추천곡 바로가기, 오른쪽 기록 목록. 기록이 없어도 같은 모양 */
+  const songs = MUSIC.filter(m => m.game === g.id).length;
+  const seat = n
+    ? `<div class="seat"><button type="button" class="lift" data-act="insert" data-autofocus aria-label="${esc(g.name)} 카트리지 꽂기 — 기록 ${n}편 보기">${cart(g, 150)}</button></div>
+       <p class="seat-hint">카트리지를 누르면 꽂혀서 이 게임의 기록을 모두 볼 수 있어요.</p>`
+    : `<div class="seat"><div class="hole">${HOLE}</div></div>
+       <p class="seat-hint">기록을 남기면 이곳에 카트리지가 생겨요.</p>`;
+  const right = `<div class="co-right"><div class="seat-row">
+    <div class="seat-col">${seat}
+      ${songs ? `<button type="button" class="co-music" data-act="music"><span class="sys">MUSIC</span><b>추천곡 ${songs}곡</b><span class="go" aria-hidden="true">음악에서 보기 →</span></button>` : ''}
     </div>
-    <div class="co-foot"><small>카트리지를 누르면 슬롯에 꽂아요.<br>설정에서 자동으로 꽂기를 켤 수 있어요.</small>
-      <button type="button" class="btn-dark" data-act="insert" data-autofocus>카트리지 꽂기</button></div>
-  </div>` : `<div class="co-right"><div class="co-none">
-      <div class="seat"><div class="hole">${HOLE}</div></div>
-      <div><b>아직 기록이 없어요</b><span>${r ? '이 게임은 한줄 리뷰만 남겨 두었어요' : '라이브러리에 꽂아 두고 기록을 준비하고 있어요'}</span></div>
-    </div></div>`;
+    <div class="co-saves"><span class="sys">SAVES</span>
+      ${n ? posts.map((p, i) => `<button type="button" class="co-post" data-post="${i}"><span>${esc(p.t)}</span><span>${md(p.d)}</span></button>`).join('')
+          : `<div class="co-saves-empty"><b>아직 기록이 없어요</b><span>${r ? '이 게임은 한줄 리뷰만 남겨 두었어요.' : '기록을 준비하고 있어요.'}</span></div>`}
+      ${n > 3 ? `<span class="co-more">외 ${n - 3}편 더 — 카트리지를 꽂으면 모두 보여요</span>` : ''}
+    </div>
+  </div></div>`;
   const front = `<div class="co-front shell" aria-hidden="true"><span class="ridge"></span>
     <div class="fband"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
     <div class="fcov${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
@@ -162,6 +172,12 @@ export function openCase(g, opener) {
     + `<div class="co-tray shell"><div class="co-hinge" aria-hidden="true"><i></i><i></i><i></i><i></i></div>${right}</div>`;
   $$('[data-act="insert"]', open).forEach(b => b.addEventListener('click', () => { closeOverlay(wrap); startInsert(g); }));
   $$('[data-post]', open).forEach(b => b.addEventListener('click', () => openReader(posts[+b.dataset.post])));
+  /* 추천곡 : 음악 화면을 열고 검색창에 게임 이름을 넣어 둔다 */
+  $$('[data-act="music"]', open).forEach(b => b.addEventListener('click', () => {
+    closeOverlay(wrap);
+    location.hash = '#/music';
+    requestAnimationFrame(() => { const q = $('#musicQ'); q.value = g.name; q.dispatchEvent(new Event('input')); });
+  }));
   /* 닫힌 케이스로 나타났다가 표지가 경첩을 축으로 넘어간다 (넓은 화면에서만) */
   clearTimeout(flipT);
   const animate = !reduced && innerWidth > 720;

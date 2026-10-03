@@ -6,6 +6,18 @@
       "하데스"
     ],
     "color": "#C4643E",
+    "release": "2020-09-17",
+    "genre": "로그라이크 액션",
+    "platforms": [
+      "Windows",
+      "macOS",
+      "Nintendo Switch",
+      "PS4",
+      "PS5",
+      "Xbox One",
+      "Xbox Series X|S",
+      "iOS"
+    ],
     "art": "assets/games/hades/art.jpg",
     "steam": "1145360",
     "skin": "hades"
@@ -18,6 +30,15 @@
       "메타포 리판타지오"
     ],
     "color": "#C13C4F",
+    "release": "2024-10-11",
+    "genre": "판타지 RPG",
+    "platforms": [
+      "Windows",
+      "PS4",
+      "PS5",
+      "Xbox Series X|S",
+      "Nintendo Switch 2 (2026.11.12 예정)"
+    ],
     "skin": "metaphor",
     "art": "assets/games/metaphor/art.jpg",
     "steam": "2679460"
@@ -29,6 +50,11 @@
       "플레이로그"
     ],
     "color": "#1D9E75",
+    "release": "2026-09-16",
+    "genre": "게임 기록 블로그",
+    "platforms": [
+      "Web"
+    ],
     "skin": "playlog"
   },
   {
@@ -39,6 +65,11 @@
       "로보보 플래닛"
     ],
     "color": "#E0679A",
+    "release": "2016-04-28",
+    "genre": "액션",
+    "platforms": [
+      "Nintendo 3DS"
+    ],
     "skin": "robobot"
   },
   {
@@ -49,6 +80,11 @@
       "스플래툰3"
     ],
     "color": "#C9B81C",
+    "release": "2022-09-09",
+    "genre": "3인칭 슈팅",
+    "platforms": [
+      "Nintendo Switch"
+    ],
     "skin": "splatoon"
   },
   {
@@ -58,6 +94,11 @@
       "스플래툰 레이더스"
     ],
     "color": "#2E9E8F",
+    "release": "2026-07-23",
+    "genre": "3인칭 슈팅",
+    "platforms": [
+      "Nintendo Switch 2"
+    ],
     "skin": "raiders"
   },
   {
@@ -68,6 +109,15 @@
       "괴혼"
     ],
     "color": "#D9732E",
+    "release": "2025-10-24",
+    "genre": "액션 퍼즐",
+    "platforms": [
+      "Windows",
+      "Nintendo Switch",
+      "PS5",
+      "Xbox Series X|S",
+      "Nintendo Switch 2 (2026.10.08 예정)"
+    ],
     "steam": "1880620",
     "skin": "katamari"
   },
@@ -80,6 +130,13 @@
       "BotW"
     ],
     "color": "#3D8C9C",
+    "release": "2018-02-01",
+    "genre": "오픈 월드 액션 어드벤처",
+    "platforms": [
+      "Wii U",
+      "Nintendo Switch",
+      "Nintendo Switch 2"
+    ],
     "skin": "botw"
   },
   {
@@ -89,6 +146,11 @@
       "친구모아 아일랜드"
     ],
     "color": "#E59A3A",
+    "release": "2026-04-16",
+    "genre": "생활 시뮬레이션",
+    "platforms": [
+      "Nintendo Switch"
+    ],
     "skin": "tomodachi"
   },
   {
@@ -99,6 +161,11 @@
       "리듬 천국 미라클 스타즈"
     ],
     "color": "#C9465A",
+    "release": "2026-07-02",
+    "genre": "리듬",
+    "platforms": [
+      "Nintendo Switch"
+    ],
     "skin": "rhythm"
   }
 ]

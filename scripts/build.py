@@ -514,6 +514,9 @@ def build():
         games.append({'id': g['id'], 'name': g['name'], 'aliases': g.get('aliases') or [],
                       'skin': g.get('skin', 'base'),
                       'color': g['color'], 'img': img,
+                      # 게임 기본 정보 (케이스 표지) : 출시일(한국) · 장르 · 공식 플랫폼
+                      'release': str(g.get('release') or '').replace('-', '.'), 'genre': g.get('genre') or '',
+                      'platforms': g.get('platforms') or [],
                       'art': f'url("{img}") center/cover' if img else g['color'],
                       'review': check_review(g), 'posts': posts})
 

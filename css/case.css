@@ -74,10 +74,13 @@
 .co-hinge i{width:4px;height:58px;border-radius:2px;background:#D0D9E1;box-shadow:inset 1px 0 0 rgba(13,22,29,.10),1px 0 0 #fff}
 .co-right{flex:1 1 0;min-width:0;border-radius:12px;background:#DCE4EB;padding:26px;box-sizing:border-box;display:flex;flex-direction:column;
   box-shadow:inset 0 2px 8px rgba(13,22,29,.14),inset 0 0 0 1px rgba(13,22,29,.05)}
-.co-cover{position:relative;height:200px;flex-shrink:0;background-size:cover;background-position:center}
-.co-cover.img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,0) 35%,rgba(8,12,20,.8) 100%)}
+.co-cover{position:relative;height:220px;flex-shrink:0;background-size:cover;background-position:center}
+.co-cover.img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,0) 10%,rgba(8,12,20,.55) 45%,rgba(8,12,20,.9) 100%)}
+.co-cover .cap{text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .co-cover .cap{position:absolute;left:24px;right:90px;bottom:18px;display:flex;flex-direction:column;gap:4px;color:#fff}
-.co-cover .cap .sys{color:rgba(255,255,255,.78)}
+/* 게임 정보 : 출시일 · 장르, 그 아래 공식 플랫폼 */
+.co-cover .co-meta{margin-top:4px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.94)}
+.co-cover .co-plat{font-size:12px;line-height:1.5;color:rgba(255,255,255,.76)}
 .co-cover h2{margin:0;font-family:var(--font-display);font-weight:700;font-size:32px;letter-spacing:-.02em;line-height:1.1}
 .co-cover .sticker{width:58px;height:58px;top:18px;right:20px}
 .co-cover .sticker b{font-size:19px} .co-cover .sticker span{font-size:10px}
@@ -99,7 +102,15 @@
   background:#E6ECF2;box-shadow:0 1px 2px rgba(13,22,29,.25)}
 .seat .hole{width:150px;height:177px;box-sizing:border-box;border-radius:12px 12px 7px 7px;border:2px dashed #A9B5C1;
   box-shadow:inset 0 2px 6px rgba(13,22,29,.12);display:flex;align-items:center;justify-content:center;color:#8C98A4}
-.seat-row{display:flex;gap:22px;align-items:flex-start}
+.seat-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start}
+.seat-col{display:flex;flex-direction:column;gap:12px;width:182px}
+.seat-hint{margin:0;font-size:12.5px;line-height:1.55;color:var(--mut);text-align:center}
+.co-music{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;border-radius:12px;width:100%;box-sizing:border-box;
+  background:var(--surface);border:1px solid var(--line);color:var(--text);font:inherit;text-align:left;cursor:pointer}
+.co-music .sys{color:var(--mut)} .co-music b{font-size:14px;font-weight:600} .co-music .go{font-size:12.5px;color:var(--link)}
+.co-music:hover{border-color:var(--hover-line)}
+.co-saves-empty{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:12px;border:1.5px dashed #A9B5C1}
+.co-saves-empty b{font-size:14px;font-weight:600} .co-saves-empty span{font-size:13px;color:var(--mut)}
 .co-saves{display:flex;flex-direction:column;gap:10px;flex-grow:1;min-width:0;padding-top:4px}
 .co-saves .sys{color:var(--mut)}
 .co-post{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;
@@ -131,8 +142,9 @@
   .co-cover{height:160px}
   .co-cover h2{font-size:26px}
   .co-right{padding:18px}
-  .seat-row{flex-direction:column;align-items:stretch}
-  .seat{align-self:center}
+  .seat-row{grid-template-columns:minmax(0,1fr)}
+  .seat-col{width:auto;align-items:center}
+  .co-music{max-width:320px}
   .co-foot{flex-direction:column;align-items:stretch}
   .co-foot .btn-dark{justify-content:center}
 }
