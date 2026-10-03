@@ -37,8 +37,8 @@ const STATS = [
   /* 리뷰 시트에 플레이 시간을 하나도 안 적었으면 0시간 대신 리뷰 수를 보인다 */
   hours ? { v: hours, u: '시간', l: '리뷰한 게임 누적 플레이' } : { v: REVIEWED.length, u: '개', l: '한줄 리뷰' }
 ];
-const stats = `<div class="wrap" style="padding-top:0;padding-bottom:0"><div class="rise" ${d(300)}>${bez(STATS.map((s, i) =>
-  `<div class="ab-stat"><b><span data-n="${i}">0</span>${s.u ? `<small>${s.u}</small>` : ''}</b><span>${s.l}</span></div>`).join(''), 'ab-stats')}</div></div>`;
+const stats = `<div id="abStats">${bez(STATS.map((s, i) =>
+  `<div class="ab-stat"><b><span data-n="${i}">0</span>${s.u ? `<small>${s.u}</small>` : ''}</b><span>${s.l}</span></div>`).join(''), 'ab-stats')}</div>`;
 
 /* ---------- 이 사이트는 : 목적 · 이런 분께 · 메뉴 안내 (profile.json 의 purpose) ---------- */
 function purpose() {
@@ -47,13 +47,29 @@ function purpose() {
     <ul class="lst">${u.for.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
   const menu = u.menu && u.menu.length ? `<nav class="pp-menu" aria-label="사이트 안내">${u.menu.map(m =>
     `<a href="${esc(m.href)}"><b>${esc(m.name)}</b><span>${esc(m.text)}</span><i aria-hidden="true">→</i></a>`).join('')}</nav>` : '';
-  return `<section class="ab-sec">${sec('ABOUT THIS SITE', '이 사이트는')}<div class="two-col wide">
-    <div>${bez(`<p class="pp-text">${esc(u.text || '')}</p>${who}`)}</div><div>${bez(menu, 'pp-nav')}</div></div></section>`;
+  return `<section class="ab-sec">${sec('GUIDE', '이 사이트는')}<div class="two-col">
+    <div>${bez(who)}</div><div>${bez(menu, 'pp-nav')}</div></div></section>`;
+}
+
+/* ---------- 나 → 이 사이트로 넘어가는 칸 : 큰 문장 + 카트리지가 길을 따라 PLAYLOG 슬롯에 들어가 저장된다 ---------- */
+function bridge() {
+  const u = P.purpose; if (!u) return '';
+  const carts = RECENT.slice(0, 3).map((g, i) => `<div class="br-cart c${i}">${cart(g, 58)}</div>`).join('');
+  return `<section class="ab-bridge" id="abBridge">
+    <span class="sys">ABOUT THIS SITE · 이 사이트에 대하여</span>
+    <h2>${headline(P.bridge || '')}</h2>
+    ${u.text ? `<p>${esc(u.text)}</p>` : ''}
+    <div class="br-run" aria-hidden="true"><span class="br-trail"></span>${carts}
+      <div class="br-slot"><span class="br-mouth"></span><span class="wm">PLAY<i>LOG</i></span><span class="br-led"></span><span class="br-saved">SAVED</span></div></div>
+  </section>`;
 }
 
 /* ---------- 게임과 함께한 길 (profile.json 의 history) ---------- */
-const history = P.history && P.history.length ? `<section class="ab-sec">${sec('HISTORY', '게임과 함께한 길')}${bez(`<ol class="tl">${P.history.map((x, i) =>
-  `<li><span class="tl-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div><span class="tl-l">${esc(x.label || '')}</span><b>${esc(x.title || '')}</b>${x.text ? `<p>${esc(x.text)}</p>` : ''}</div></li>`).join('')}</ol>`)}</section>` : '';
+/* 왼쪽에서 오른쪽으로 이어지는 길. 가장 좋아하는 게임 칸은 별로 표시 */
+const favT = P.favorite && (P.favorite.title || (BY_ID.get(P.favorite.game) || {}).name);
+const history = P.history && P.history.length ? `<section class="ab-sec">${sec('HISTORY', '게임과 함께한 길')}<ol class="trail" id="abTrail" style="--n:${P.history.length}">${P.history.map((x, i) =>
+  `<li style="--i:${i}"${x.title === favT ? ' class="fav"' : ''}><span class="tr-dot" aria-hidden="true">${x.title === favT ? '★' : String(i + 1).padStart(2, '0')}</span>
+    <div class="tr-card"><span class="tl-l">${esc(x.label || '')}</span><b>${esc(x.title || '')}</b>${x.text ? `<p>${esc(x.text)}</p>` : ''}</div></li>`).join('')}</ol></section>` : '';
 
 /* ---------- 가장 좋아하는 게임 (profile.json 의 favorite 가 있을 때만) ---------- */
 function favorite() {
@@ -83,11 +99,11 @@ const hi = REVIEWED.filter(g => g.review.rating >= 4).length;
 const tagCount = {};
 POSTS.forEach(p => p.tags.forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
 const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 12);
-const rating = `<section class="ab-sec"><div class="two-col wide">
-  <div>${sec('RATING', '별점을 이렇게 줍니다')}${bez(`<div class="dist2">${[4, 3, 2, 1, 0].map((i, k) =>
+const rating = `<section class="ab-sec">${sec('RECORDS', '기록 현황')}${stats}<div class="two-col wide" style="margin-top:24px">
+  <div><h3 class="sub-h">별점을 이렇게 줍니다</h3>${bez(`<div class="dist2">${[4, 3, 2, 1, 0].map((i, k) =>
     `<div class="row"><span>${i + 1}★</span><span class="tr"><i class="grow" style="width:${bucket[i] / bmax * 100}%;animation-delay:${200 + k * 90}ms"></i></span><span>${bucket[i]}</span></div>`).join('')}</div>
     ${REVIEWED.length ? `<p class="dist-note">${REVIEWED.length}개 리뷰 중 4점 이상이 ${hi}개${hi / REVIEWED.length >= 0.6 ? '. 후한 편이에요.' : hi / REVIEWED.length <= 0.3 ? '. 짠 편이에요.' : '.'}</p>` : ''}`)}</div>
-  <div>${sec('TAGS', '자주 쓰는 태그')}${bez(`<div class="tagcloud">${tags.map(([t, n]) => `<span>#${esc(t)}${n > 1 ? `<i>${n}</i>` : ''}</span>`).join('')}</div>`)}</div>
+  <div><h3 class="sub-h">자주 쓰는 태그</h3>${bez(`<div class="tagcloud">${tags.map(([t, n]) => `<span>#${esc(t)}${n > 1 ? `<i>${n}</i>` : ''}</span>`).join('')}</div>`)}</div>
 </div></section>`;
 
 /* ---------- 플레이 환경 ---------- */
@@ -103,7 +119,7 @@ const hw = P.hardware && P.hardware.length ? `<section class="ab-sec">${sec('HAR
   <div class="top"><span class="bd">${devIcon(x.badge)}</span>${x.note ? `<span class="nt">${esc(x.note)}</span>` : ''}</div>
   <div><b>${esc(x.name || '')}</b>${x.detail ? `<small>${esc(x.detail)}</small>` : ''}</div>`)).join('')}</div></section>` : '';
 
-const body = `<div class="wrap" style="padding-top:0;padding-bottom:0">${purpose()}${history}${favorite()}${style}${rating}${hw}</div>`;
+const body = `<div class="wrap" style="padding-top:0;padding-bottom:0">${history}${favorite()}${style}${hw}${bridge()}${purpose()}${rating}</div>`;
 
 /* ---------- 최근 꺼낸 카트리지 : 끝없이 흐른다 (보일 때만) ---------- */
 const row = RECENT.map(g => `<button type="button" class="shelf-item lift" data-id="${esc(g.id)}" aria-label="${esc(g.name)} 케이스 열기">${cart(g, 120)}<span class="tx"><span class="nm">${esc(g.name)}</span><span class="sv">${g.posts.length} SAVES</span></span></button>`).join('');
@@ -117,7 +133,7 @@ const cta = `<div class="wrap" style="padding-top:0"><div class="ab-cta"><span c
 addEventListener('guestdata', e => { const c = $('#abGuestCnt'); if (c) c.textContent = ` · ${e.detail.total} NOTES`; });
 
 const root = $('#aboutRoot');
-root.innerHTML = hero + stats + body + marq + cta;
+root.innerHTML = hero + body + marq + cta;
 /* 복제본은 화면 읽기 프로그램과 탭 이동에서 뺀다 */
 $$('.dup .shelf-item', root).forEach(b => { b.tabIndex = -1; });
 $$('.shelf-item', root).forEach(b => b.addEventListener('click', () => openCase(BY_ID.get(b.dataset.id), b)));
@@ -126,10 +142,19 @@ const mq = $('#abMarq');
 if (mq && !reduced && 'IntersectionObserver' in window) {
   new IntersectionObserver(es => es.forEach(e => mq.classList.toggle('run', e.isIntersecting))).observe(mq);
 }
+/* 길 · 넘어가는 칸 : 화면에 들어오면 go (나갔다 다시 오면 처음부터) */
+const io = 'IntersectionObserver' in window && !reduced
+  ? new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('go'); if (e.target.id === 'abStats') countUp(); }
+      else if (e.boundingClientRect.top > 0) e.target.classList.remove('go');
+    }), { threshold: .35 })
+  : null;
+['#abTrail', '#abBridge', '#abStats'].forEach(s => { const el = $(s); if (!el) return; if (io) io.observe(el); else el.classList.add('go'); });
 
-/* 소개 화면에 들어올 때마다 숫자를 다시 센다 */
+/* 숫자는 「기록 현황」이 화면에 들어올 때 0부터 센다 */
 let iv = 0;
-export function aboutShown() {
+export function aboutShown() { if (!io) countUp(); }
+function countUp() {
   clearInterval(iv);
   const els = $$('[data-n]', root);
   const put = t => els.forEach(el => {
@@ -138,7 +163,7 @@ export function aboutShown() {
   });
   if (reduced) { put(1); return; }
   put(0);
-  const start = performance.now() + 450;
+  const start = performance.now() + 150;
   iv = setInterval(() => {
     const x = Math.min(1, Math.max(0, (performance.now() - start) / 1300));
     put(1 - Math.pow(1 - x, 3));
