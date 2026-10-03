@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- 탭 아이콘 : 로고의 카트리지. 밝은 탭에서는 진한 몸체, 어두운 탭에서는 밝은 몸체 -->
+  <style>
+    .body { fill: #17232D; }
+    .win  { fill: #30B0F4; }
+    @media (prefers-color-scheme: dark) { .body { fill: #E8EEF4; } }
+  </style>
+  <path class="body" d="M3.2 1.2h9.6c.66 0 1.2.54 1.2 1.2v9.9c0 .4-.2.77-.53.99l-2.03 1.35a1.2 1.2 0 0 1-.66.2H3.2c-.66 0-1.2-.54-1.2-1.2V2.4c0-.66.54-1.2 1.2-1.2Z"/>
+  <rect class="win" x="4.4" y="4" width="7.2" height="4.6" rx=".6"/>
+</svg>
