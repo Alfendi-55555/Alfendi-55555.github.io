@@ -5,6 +5,7 @@
 :root[data-theme="dark"] :is(#reader, #caseWrap, .case, .cart, .fav-case),
 :root[data-theme="dark"] body:is([data-screen="game"], [data-screen="insert"]){
   color-scheme:light;
+  color:var(--text);   /* 글자색은 위에서 계산된 값이 그대로 내려오므로, 라이트로 되돌리는 곳에서 다시 정한다 */
   --bg:#F1F7FD; --surface:#FBFEFF; --sunken:#E6EFF7; --line:#D0DCE7;
   --line-soft:#DDE6EE; --text:#17232D; --muted:#6A7681; --muted-2:#94A0AA; --muted-3:#B8C4CE;
   --ink-soft:#3F4C57; --mut:#5F6B76; --ground:#EDF2F7; --shell-line:#C9D5E0;
