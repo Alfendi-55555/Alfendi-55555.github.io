@@ -7,7 +7,8 @@ const P = PROFILE;
 const avg = REVIEWED.length ? REVIEWED.reduce((n, g) => n + g.review.rating, 0) / REVIEWED.length : 0;
 const hours = REVIEWED.reduce((n, g) => n + (g.review.hours || 0), 0);
 const d = ms => `style="animation-delay:${ms}ms"`;
-const sec = (k, t) => `<div class="sec-line"><span class="sys">${k}</span><span class="ko">${t}</span><span class="rule"></span></div>`;
+/* 칸 제목 : 작은 영문 표시 + 굵고 큰 한글 제목 (캐치프레이즈보다 한 단계 작게) */
+const sec = (k, t) => `<header class="ab-h"><span class="sys">${k}</span><h2>${t}</h2></header>`;
 const bez = (inner, cls = '') => `<div class="bez ${cls}"><div class="in">${inner}</div></div>`;
 /* 줄바꿈과 *강조* 를 허용하는 제목 */
 const headline = s => esc(s).replace(/\*(.+?)\*/g, '<em>$1</em>').replace(/\n/g, '<br>');
@@ -18,7 +19,6 @@ const spec = [['MODEL', P.model], ['REGION', P.region], ['SLOTS', RECENT.length 
   .filter(([, v]) => v).map(([k, v]) => `<div class="pf-row"><span>${k}</span><span>${esc(v)}</span></div>`).join('');
 const hero = `<div class="wrap ab-hero">
   <div class="ab-copy">
-    <span class="sys rise" ${d(0)}>SYSTEM INFO · 본체 정보</span>
     <h1 id="abTitle" class="rise" ${d(90)}>${headline(P.headline || P.tagline || '')}</h1>
     ${P.bio ? `<p class="ab-bio rise" ${d(180)}>${esc(P.bio)}</p>` : ''}
   </div>
@@ -146,10 +146,15 @@ if (mq && !reduced && 'IntersectionObserver' in window) {
 const io = 'IntersectionObserver' in window && !reduced
   ? new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('go'); if (e.target.id === 'abStats') countUp(); }
-      else if (e.boundingClientRect.top > 0) e.target.classList.remove('go');
-    }), { threshold: .35 })
+      else if (e.boundingClientRect.top > 0) e.target.classList.remove('go');   /* 아래로 나가면 다음에 다시 */
+      else e.target.classList.add('go');
+      /* 한 번에 건너뛰어 위로 지나간 칸(알림이 오지 않는다)도 보인 채로 */
+      watched.forEach(w => { if (w.getBoundingClientRect().bottom < 0) w.classList.add('go'); });
+    }), { threshold: 0, rootMargin: '0px 0px -12% 0px' })   /* 아주 긴 칸(휴대폰의 길)도 들어오자마자 */
   : null;
-['#abTrail', '#abBridge', '#abStats'].forEach(s => { const el = $(s); if (!el) return; if (io) io.observe(el); else el.classList.add('go'); });
+/* 칸마다 화면에 들어올 때 아래에서 떠오른다 — 위에서부터 차례로 읽어 내려가는 흐름 */
+const watched = [...$$('.ab-sec, .ab-marq, .ab-cta', root), ...['#abTrail', '#abBridge', '#abStats'].map(s => $(s)).filter(Boolean)];
+watched.forEach(el => { if (io) io.observe(el); else el.classList.add('go'); });
 
 /* 숫자는 「기록 현황」이 화면에 들어올 때 0부터 센다 */
 let iv = 0;
