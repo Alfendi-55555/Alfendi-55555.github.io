@@ -91,8 +91,16 @@ const rating = `<section class="ab-sec"><div class="two-col wide">
 </div></section>`;
 
 /* ---------- 플레이 환경 ---------- */
+/* 기기 그림 : 이름을 한 번 더 쓰지 않게 글자 배지 대신 모양만 (badge 값으로 고른다) */
+const DEV = {
+  fold: '<rect x="5" y="2.5" width="14" height="9" rx="1.6"/><rect x="5" y="12.5" width="14" height="9" rx="1.6"/><rect x="8" y="4.6" width="8" height="4.8" rx=".6"/><circle cx="8.6" cy="17" r="1.2"/><path d="M13.4 16.2h3M13.4 18h3"/>',
+  hybrid: '<rect x="6.5" y="6" width="11" height="12" rx="1"/><path d="M6.5 6.4H5A2.6 2.6 0 0 0 2.4 9v6A2.6 2.6 0 0 0 5 17.6h1.5M17.5 6.4H19A2.6 2.6 0 0 1 21.6 9v6a2.6 2.6 0 0 1-2.6 2.6h-1.5"/><circle cx="4.5" cy="10" r=".9"/><circle cx="19.5" cy="14" r=".9"/>',
+  laptop: '<rect x="4.5" y="5" width="15" height="10.5" rx="1.2"/><path d="M2 19h20M10 17h4"/>'
+};
+const devKind = b => /^(DS|3DS)$/i.test(b || '') ? 'fold' : /^NS/i.test(b || '') ? 'hybrid' : 'laptop';
+const devIcon = b => `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${DEV[devKind(b)]}</svg>`;
 const hw = P.hardware && P.hardware.length ? `<section class="ab-sec">${sec('HARDWARE', '플레이 환경')}<div class="hw4">${P.hardware.map(x => bez(`
-  <div class="top"><span class="bd">${esc(x.badge || '')}</span>${x.note ? `<span class="nt">${esc(x.note)}</span>` : ''}</div>
+  <div class="top"><span class="bd">${devIcon(x.badge)}</span>${x.note ? `<span class="nt">${esc(x.note)}</span>` : ''}</div>
   <div><b>${esc(x.name || '')}</b>${x.detail ? `<small>${esc(x.detail)}</small>` : ''}</div>`)).join('')}</div></section>` : '';
 
 const body = `<div class="wrap" style="padding-top:0;padding-bottom:0">${purpose()}${history}${favorite()}${style}${rating}${hw}</div>`;
