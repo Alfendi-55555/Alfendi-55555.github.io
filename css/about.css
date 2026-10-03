@@ -28,8 +28,8 @@
 .ab-h .sys{display:block;margin-bottom:8px;color:var(--mut)}
 .ab-h h2{margin:0;font-family:var(--font-display);font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:1.2}
 /* 칸이 화면에 들어올 때 아래에서 떠오른다 (JS 가 go 를 붙인다) */
-#aboutRoot :is(.ab-sec,.ab-marq,.ab-cta){opacity:0;translate:0 28px;transition:opacity .7s var(--ease-sheet),translate .7s var(--ease-sheet)}
-#aboutRoot :is(.ab-sec,.ab-marq,.ab-cta).go{opacity:1;translate:0 0}
+#aboutRoot :is(.ab-sec,.ab-marq){opacity:0;translate:0 28px;transition:opacity .7s var(--ease-sheet),translate .7s var(--ease-sheet)}
+#aboutRoot :is(.ab-sec,.ab-marq).go{opacity:1;translate:0 0}
 .ab-stats .in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 0}
 .ab-stat{display:flex;flex-direction:column;gap:6px;padding:6px 28px;border-left:1px solid var(--rule)}
 .ab-stat:first-child{border-left:0}
@@ -81,7 +81,7 @@
 .tagcloud{display:flex;flex-wrap:wrap;gap:10px}
 .tagcloud span{padding:9px 15px;border-radius:999px;background:var(--fill);font-size:14px;font-weight:500;color:var(--ink-soft)}
 .tagcloud i{font-style:normal;font-family:var(--font-mono);font-size:11.5px;color:var(--mut);margin-left:5px}
-.hw4{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}
+.hw4{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
 /* 이 사이트는 */
 .pp-for{display:flex;flex-direction:column;gap:4px} .pp-for .sys{color:var(--mut)} .pp-for b{font-size:14px;font-weight:600;margin-bottom:6px}
 .pp-menu{display:flex;flex-direction:column}
@@ -133,7 +133,7 @@
 .go .br-saved{animation:br-pop .35s 3.4s forwards}
 @keyframes br-pop{to{opacity:1;translate:0 0}}
 .sub-h{margin:0 0 12px;font-size:14px;font-weight:600;color:var(--ink-soft)}
-.hw4 .in{display:flex;flex-direction:column;gap:14px}
+.hw4 .in{display:flex;flex-direction:row;align-items:center;gap:16px}   /* 아이콘 바로 오른쪽에 이름 */
 .hw4 .top{display:flex;justify-content:space-between;align-items:center}
 .hw4 .bd{width:52px;height:52px;border-radius:16px;background:var(--ink-box);color:#EDF2F7;display:flex;align-items:center;justify-content:center;
   font-family:var(--font-mono);font-weight:600;font-size:14px;letter-spacing:.06em}
@@ -150,11 +150,6 @@
 .marq-wrap:hover .marq,.marq-wrap:focus-within .marq{animation-play-state:paused}
 .marq .shelf-item{width:150px}
 @keyframes marq{to{transform:translateX(-50%)}}
-.ab-cta{margin:70px 0 30px;padding:56px 40px;border-radius:32px;background:var(--ink-box);border:1px solid var(--ink-box-line);color:#EDF2F7;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
-.ab-cta .sys{color:#8F9BA5}
-.ab-cta h2{margin:0;font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.02em}
-.ab-cta p{margin:0;font-size:15px;color:#C0CAD4}
-.ab-cta a{margin-top:8px;display:inline-flex;align-items:center;height:50px;padding:0 26px;border-radius:25px;background:#FBFEFF;color:#17232D;
   text-decoration:none;font-size:15px;font-weight:600}
 
 /* 움직임 : 위치와 투명도만 바꾼다 */
@@ -165,7 +160,7 @@
 .grow{transform-origin:left center;transform:scaleX(0);animation:grow 1100ms cubic-bezier(.16,1,.3,1) forwards}
 @keyframes grow{to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){
-  #aboutRoot :is(.ab-sec,.ab-marq,.ab-cta){opacity:1;translate:none;transition:none}
+  #aboutRoot :is(.ab-sec,.ab-marq){opacity:1;translate:none;transition:none}
   .trail::before,.br-trail{transform:none!important;transition:none} .trail li{opacity:1;translate:none;transition:none}
   .br-cart{display:none} .br-led{background:#4ADE80!important} .br-saved{opacity:1;translate:none}
   .rise,.grow{animation:none;opacity:1;transform:none}
@@ -201,9 +196,13 @@
   .ab-bridge{margin-top:96px} .ab-bridge h2{font-size:32px}
   .br-run{height:130px}
   .pp-menu a{grid-template-columns:78px 1fr auto}
-  .hw4{gap:14px}
+  .hw4{gap:12px;grid-template-columns:1fr} .hw4 .in{padding:16px 18px}
   .ab-marq .ab-h{padding:0 20px}
   .ab-h h2{font-size:28px}
-  .ab-cta{padding:40px 22px}
-  .ab-cta h2{font-size:26px}
 }
+/* 방명록 안내 */
+.ab-cta{margin-bottom:40px}
+.cta-card .in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 28px}
+.cta-card p{margin:0;font-size:17px;line-height:1.7;color:var(--ink-soft)}
+.cta-card .btn-dark{flex-shrink:0}
+@media (max-width:720px){ .cta-card .in{flex-direction:column;align-items:flex-start} }
