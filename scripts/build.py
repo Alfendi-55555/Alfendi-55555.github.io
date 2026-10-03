@@ -211,6 +211,44 @@ def clean_link(url, where):
     query = urlencode([(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k not in TRACKING])
     return {'url': urlunsplit(parts._replace(query=query)), 'label': label, 'short': short}
 
+YT_ID = re.compile(r'(?:youtu\.be/|[?&]v=|/shorts/|/live/|/embed/)([\w-]{11})')
+YT_THUMB = re.compile(r'^https://i\.ytimg\.com/vi/([\w-]{11})/(?:default|mqdefault|hqdefault|sddefault)\.jpg$')
+_thumb_cache = {}
+
+def youtube_thumb(vid):
+    """검은 띠가 없는 큰 썸네일(maxresdefault). 없는 영상이면 중간 크기(mqdefault, 16:9)."""
+    if vid not in _thumb_cache:
+        big = f'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg'
+        ok = False
+        if not os.environ.get('NEWS_OFFLINE'):
+            try:
+                with urlopen(Request(big, method='HEAD', headers={'User-Agent': 'playlog-build'}), timeout=10) as r:
+                    ok = r.status == 200
+            except Exception:
+                ok = False
+        _thumb_cache[vid] = big if ok else f'https://i.ytimg.com/vi/{vid}/mqdefault.jpg'
+    return _thumb_cache[vid]
+
+def link_thumb(links):
+    """듣기 링크에서 앨범 커버를 찾는다 — 앞에 적은 링크부터. 못 찾으면 ''."""
+    for l in links:
+        try:
+            if l['short'] in ('YT', 'YTM') and (m := YT_ID.search(l['url'])):
+                return youtube_thumb(m.group(1))
+            if os.environ.get('NEWS_OFFLINE'):
+                continue
+            if l['short'] == 'SP':          # 공개 oEmbed — 300px 주소를 640px로
+                t = json.loads(fetch_text('https://open.spotify.com/oembed?url=' + l['url'])).get('thumbnail_url', '')
+                if t:
+                    return t.replace('ab67616d00001e02', 'ab67616d0000b273')
+            if l['short'] == 'NM':          # 공유 페이지의 대표 이미지
+                m = re.search(r'og:image" content="([^"]+)"', fetch_text(l['url']))
+                if m:
+                    return html.unescape(m.group(1))
+        except Exception:
+            continue                         # 이미지 하나 못 가져와도 빌드는 계속
+    return ''
+
 def fetch_text(url):
     req = Request(url, headers={'User-Agent': 'playlog-build (+https://alfendi-55555.github.io/)',
                                 'Accept-Language': 'ko-KR,ko;q=0.9'})
@@ -273,6 +311,10 @@ def build_music(games):
         if thumb and not re.match(r'https?://', thumb) and not (ROOT / thumb).exists():
             errors.append(f'{where}: 썸네일 파일이 없습니다 → {thumb}')
         links = [l for l in (clean_link(u, where) for u in split_cell(r.get('링크'))) if l]
+        # 썸네일 : 시트에 적은 것 → 듣기 링크의 앨범 커버 → (화면에서) 게임 아트 → 게임 이름 판
+        if m := YT_THUMB.match(thumb):       # 검은 띠가 있는 작은 유튜브 썸네일은 큰 것으로
+            thumb = youtube_thumb(m.group(1))
+        thumb = thumb or link_thumb(links)
         music.append({'title': r['제목'], 'game': gid, 'gameName': r['게임'], 'composer': r.get('작곡가', ''),
                       'tags': split_cell(r.get('태그')), 'note': r.get('한마디', ''),
                       'similar': split_cell(r.get('비슷한 곡')), 'links': links, 'thumb': thumb})
