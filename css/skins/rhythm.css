@@ -1,0 +1,90 @@
+/* ============ SKIN: rhythm — 해 같은 노랑, 퍼지는 무지개 점 고리, 굵은 검은 윤곽의 만화 ============
+   배경의 점 고리 · 음표 · 박자 점은 직접 그린 SVG. 게임의 이미지나 로고는 쓰지 않는다. */
+:root{
+  --rh-sun:#FFE11A; --rh-ink:#1E1A14; --rh-paper:#FFFDF5; --rh-red:#FF4D4D; --rh-blue:#3A86FF; --rh-pink:#FF5DA2;
+  --rh-font:'Luckiest Guy','Jua','Noto Sans KR',sans-serif;   /* 영문은 만화 글자 Luckiest Guy, 한글은 둥근 Jua */
+}
+[data-skin="rhythm"]{color:var(--rh-ink);font-family:'Jua','Noto Sans KR',sans-serif;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 340'%3E%3Ccircle cx='0' cy='0' r='60' fill='none' stroke='%23FF4D4D' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 16.0'/%3E%3Ccircle cx='0' cy='0' r='94' fill='none' stroke='%23FF9F1C' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 17.5'/%3E%3Ccircle cx='0' cy='0' r='128' fill='none' stroke='%232EC4B6' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 19.0'/%3E%3Ccircle cx='0' cy='0' r='162' fill='none' stroke='%233A86FF' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 20.5'/%3E%3Ccircle cx='0' cy='0' r='196' fill='none' stroke='%238338EC' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 22.0'/%3E%3Ccircle cx='0' cy='0' r='230' fill='none' stroke='%23FF5DA2' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 23.5'/%3E%3Ccircle cx='0' cy='0' r='264' fill='none' stroke='%23FF4D4D' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 25.0'/%3E%3Ccircle cx='0' cy='0' r='298' fill='none' stroke='%23FF9F1C' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 26.5'/%3E%3C/svg%3E") right -40px top -40px/420px auto no-repeat,       /* 오른쪽 위에서 퍼지는 점 고리 */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 340'%3E%3Ccircle cx='0' cy='0' r='60' fill='none' stroke='%23FF4D4D' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 16.0'/%3E%3Ccircle cx='0' cy='0' r='94' fill='none' stroke='%23FF9F1C' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 17.5'/%3E%3Ccircle cx='0' cy='0' r='128' fill='none' stroke='%232EC4B6' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 19.0'/%3E%3Ccircle cx='0' cy='0' r='162' fill='none' stroke='%233A86FF' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 20.5'/%3E%3Ccircle cx='0' cy='0' r='196' fill='none' stroke='%238338EC' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 22.0'/%3E%3Ccircle cx='0' cy='0' r='230' fill='none' stroke='%23FF5DA2' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 23.5'/%3E%3Ccircle cx='0' cy='0' r='264' fill='none' stroke='%23FF4D4D' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 25.0'/%3E%3Ccircle cx='0' cy='0' r='298' fill='none' stroke='%23FF9F1C' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 26.5'/%3E%3C/svg%3E") left -40px bottom -40px/300px auto no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 260'%3E%3Cg stroke='%231E1A14' stroke-width='2.5' stroke-linejoin='round'%3E%3Cg transform='translate%2820 30%29 rotate%28-12%29' fill='%233A86FF'%3E%3Cellipse cx='10' cy='40' rx='10' ry='7.5'/%3E%3Cpath d='M18 40V6l18 6v8l-12-4v24z'/%3E%3C/g%3E%3Cg transform='translate%28150 110%29 rotate%2810%29' fill='%23FF4D4D'%3E%3Cellipse cx='10' cy='38' rx='9' ry='7'/%3E%3Cellipse cx='42' cy='32' rx='9' ry='7'/%3E%3Cpath d='M17 38V8l33-7v31h-2V10l-29 6v22z'/%3E%3C/g%3E%3Cg transform='translate%2870 190%29 rotate%28-6%29' fill='%238338EC'%3E%3Cellipse cx='10' cy='34' rx='9' ry='7'/%3E%3Cpath d='M17 34V4l14 8v6l-11-6v22z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right 4% bottom 6%/200px auto no-repeat,           /* 음표 */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 260'%3E%3Cg stroke='%231E1A14' stroke-width='2.5' stroke-linejoin='round'%3E%3Cg transform='translate%2820 30%29 rotate%28-12%29' fill='%233A86FF'%3E%3Cellipse cx='10' cy='40' rx='10' ry='7.5'/%3E%3Cpath d='M18 40V6l18 6v8l-12-4v24z'/%3E%3C/g%3E%3Cg transform='translate%28150 110%29 rotate%2810%29' fill='%23FF4D4D'%3E%3Cellipse cx='10' cy='38' rx='9' ry='7'/%3E%3Cellipse cx='42' cy='32' rx='9' ry='7'/%3E%3Cpath d='M17 38V8l33-7v31h-2V10l-29 6v22z'/%3E%3C/g%3E%3Cg transform='translate%2870 190%29 rotate%28-6%29' fill='%238338EC'%3E%3Cellipse cx='10' cy='34' rx='9' ry='7'/%3E%3Cpath d='M17 34V4l14 8v6l-11-6v22z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") left 3% top 28%/150px auto no-repeat,
+    var(--rh-sun);background-attachment:fixed}
+
+/* ---------- 위쪽 띠 : 검은 띠 위 4/4 박자 점 ---------- */
+[data-skin="rhythm"] .orn{display:block;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 224 20'%3E%3Ccircle cx='14' cy='10' r='6' fill='%23FF4D4D'/%3E%3Ccircle cx='42' cy='10' r='3.4' fill='%23FFFDF5'/%3E%3Ccircle cx='70' cy='10' r='3.4' fill='%23FFFDF5'/%3E%3Ccircle cx='98' cy='10' r='3.4' fill='%23FFFDF5'/%3E%3Ccircle cx='126' cy='10' r='6' fill='%238338EC'/%3E%3Ccircle cx='154' cy='10' r='3.4' fill='%23FFFDF5'/%3E%3Ccircle cx='182' cy='10' r='3.4' fill='%23FFFDF5'/%3E%3Ccircle cx='210' cy='10' r='3.4' fill='%23FFFDF5'/%3E%3C/svg%3E") 0 50%/224px 20px repeat-x,var(--rh-ink);border-bottom:3px solid var(--rh-ink)}
+[data-skin="rhythm"] .orn div{height:26px}
+[data-skin="rhythm"] .orn .rule{display:none}
+
+/* ---------- 게임별 기록 ---------- */
+[data-skin="rhythm"] .lib-hd h2{font-family:var(--rh-font);font-weight:400;font-size:36px;letter-spacing:.02em;color:var(--rh-red);
+  -webkit-text-stroke:2px var(--rh-ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--rh-ink)}
+[data-skin="rhythm"] .lib-hd .cnt{font-family:var(--rh-font);font-size:13px;letter-spacing:.06em;color:#fff;background:var(--rh-blue);
+  padding:5px 16px 3px;border:2px solid var(--rh-ink);clip-path:polygon(0 0,100% 0,92% 50%,100% 100%,0 100%,8% 50%)}
+[data-skin="rhythm"] .eject{border-radius:50%;background:var(--rh-paper);color:var(--rh-ink);border:3px solid var(--rh-ink);box-shadow:3px 3px 0 var(--rh-ink)}
+[data-skin="rhythm"] .eject:hover,[data-skin="rhythm"] .eject:focus-visible{background:var(--rh-red);color:#fff}
+
+/* ---------- 세이브 : 굵은 윤곽 카드, 번호는 파란 리본. 올리면 박자에 맞춰 한 번 통 튄다 ---------- */
+[data-skin="rhythm"] .slots{gap:16px}
+[data-skin="rhythm"] .save{background:var(--rh-paper);color:var(--rh-ink);border:3px solid var(--rh-ink);border-radius:22px;
+  padding:12px 16px 12px 12px;box-shadow:5px 5px 0 var(--rh-ink);transition:translate 140ms,box-shadow 140ms}
+[data-skin="rhythm"] .save:hover,[data-skin="rhythm"] .save:focus-visible{translate:-2px -2px;box-shadow:7px 7px 0 var(--rh-ink);
+  animation:rh-beat 360ms cubic-bezier(.3,1.6,.5,1)}
+@keyframes rh-beat{40%{scale:1.025}100%{scale:1}}
+[data-skin="rhythm"] .save .bar{width:0}
+[data-skin="rhythm"] .save .thumb{border-radius:14px;outline:3px solid var(--rh-ink);outline-offset:-3px}
+[data-skin="rhythm"] .save .n{display:inline-block;font-family:var(--rh-font);font-size:12px;letter-spacing:.06em;color:#fff;
+  background:var(--rh-blue);padding:3px 14px 1px;clip-path:polygon(0 0,100% 0,92% 50%,100% 100%,0 100%,8% 50%)}
+[data-skin="rhythm"] .save .t{font-family:'Jua','Noto Sans KR',sans-serif;font-weight:400;font-size:21px}
+[data-skin="rhythm"] .save .m{font-size:13px;color:rgba(30,26,20,.6)}
+[data-skin="rhythm"] .save-empty{border-color:var(--rh-ink)}
+
+/* ---------- 글 읽기 : 노란 배경 위의 흰 종이 ---------- */
+[data-skin="rhythm"] .rd-bar{height:6px;background:linear-gradient(90deg,#FF4D4D,#FF9F1C,#2EC4B6,#3A86FF,#8338EC,#FF5DA2)}
+[data-skin="rhythm"] .rd{background:var(--rh-paper);border:4px solid var(--rh-ink);border-radius:30px;box-shadow:8px 8px 0 var(--rh-ink);
+  margin-top:28px;margin-bottom:60px;padding-bottom:40px}
+[data-skin="rhythm"] .rd-back{font-family:var(--rh-font);font-size:14px;letter-spacing:.04em;color:#fff;background:var(--rh-blue);
+  border:3px solid var(--rh-ink);border-radius:999px;box-shadow:3px 3px 0 var(--rh-ink)}
+[data-skin="rhythm"] .rd-back:hover{background:var(--rh-red)}
+[data-skin="rhythm"] .hero{border-radius:22px;border:3px solid var(--rh-ink);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 340'%3E%3Ccircle cx='0' cy='0' r='60' fill='none' stroke='%23FF4D4D' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 16.0'/%3E%3Ccircle cx='0' cy='0' r='94' fill='none' stroke='%23FF9F1C' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 17.5'/%3E%3Ccircle cx='0' cy='0' r='128' fill='none' stroke='%232EC4B6' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 19.0'/%3E%3Ccircle cx='0' cy='0' r='162' fill='none' stroke='%233A86FF' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 20.5'/%3E%3Ccircle cx='0' cy='0' r='196' fill='none' stroke='%238338EC' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 22.0'/%3E%3Ccircle cx='0' cy='0' r='230' fill='none' stroke='%23FF5DA2' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 23.5'/%3E%3Ccircle cx='0' cy='0' r='264' fill='none' stroke='%23FF4D4D' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 25.0'/%3E%3Ccircle cx='0' cy='0' r='298' fill='none' stroke='%23FF9F1C' stroke-width='7' stroke-linecap='round' stroke-dasharray='0 26.5'/%3E%3C/svg%3E") right -30px top -30px/260px auto no-repeat,var(--rh-sun)}
+[data-skin="rhythm"] .hero .cov{border-radius:0 18px 18px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 24%,#000 62%);
+  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 24%,#000 62%)}
+[data-skin="rhythm"] .hero .glow{background:linear-gradient(90deg,var(--rh-sun) 12%,rgba(255,225,26,.6) 46%,transparent 76%)}
+[data-skin="rhythm"] .rd h1{font-family:'Jua','Noto Sans KR',sans-serif;font-weight:400;font-size:36px;line-height:1.25;color:var(--rh-ink)}
+[data-skin="rhythm"] .rd .rmeta{font-family:var(--rh-font);font-size:13px;letter-spacing:.06em;color:var(--rh-red)}
+[data-skin="rhythm"] .rd p{font-family:'Noto Sans KR',sans-serif;font-size:16.5px;line-height:1.9;color:#2B261D}
+[data-skin="rhythm"] .rd h2,[data-skin="rhythm"] .rd h3{font-family:'Jua','Noto Sans KR',sans-serif;font-weight:400;color:var(--rh-blue)}
+[data-skin="rhythm"] .rd li{font-family:'Noto Sans KR',sans-serif}
+[data-skin="rhythm"] .rd a{text-decoration-color:var(--rh-pink);text-decoration-thickness:2px}
+[data-skin="rhythm"] .rd blockquote{font-family:'Jua','Noto Sans KR',sans-serif;font-size:17px;background:#FFF4B8;border:3px solid var(--rh-ink);border-radius:18px}
+[data-skin="rhythm"] .rd figure img,[data-skin="rhythm"] .rd-yt{border-radius:18px;border:3px solid var(--rh-ink);box-shadow:6px 6px 0 var(--rh-pink)}
+/* 캡션은 말풍선 */
+[data-skin="rhythm"] .rd figcaption{position:relative;display:table;margin:16px auto 0;padding:7px 16px;border-radius:16px;
+  background:#fff;border:3px solid var(--rh-ink);font-family:'Jua','Noto Sans KR',sans-serif;font-size:15px;color:var(--rh-ink)}
+[data-skin="rhythm"] .rd figcaption::before{content:'';position:absolute;left:50%;top:-11px;width:16px;height:16px;margin-left:-8px;
+  background:#fff;border-left:3px solid var(--rh-ink);border-top:3px solid var(--rh-ink);transform:rotate(45deg)}
+[data-skin="rhythm"] .rd .end{box-shadow:inset 0 3px 0 var(--rh-ink);font-family:var(--rh-font);font-size:12px;letter-spacing:.1em;color:rgba(30,26,20,.55)}
+[data-skin="rhythm"] .rd .end b{font-family:var(--rh-font);font-weight:400;font-size:20px;letter-spacing:.02em;color:var(--rh-red);
+  -webkit-text-stroke:1px var(--rh-ink);paint-order:stroke fill}
+[data-skin="rhythm"] .rd .end b i{font-style:normal;color:var(--rh-blue)}
+[data-skin="rhythm"] .rd-nav button{background:#fff;color:var(--rh-ink);border:3px solid var(--rh-ink);border-radius:18px;box-shadow:4px 4px 0 var(--rh-ink)}
+[data-skin="rhythm"] .rd-nav button span{color:var(--rh-red)}
+
+/* ---------- 이 스킨일 때 위쪽 메뉴 ---------- */
+body[data-hskin="rhythm"] .hdr{background:var(--rh-paper);border-bottom:3px solid var(--rh-ink)}
+body[data-hskin="rhythm"] .logo .wm{font-family:var(--rh-font);font-weight:400;letter-spacing:.03em}
+body[data-hskin="rhythm"] .logo .wm i{color:var(--rh-red)}
+body[data-hskin="rhythm"] .hdr-nav a,body[data-hskin="rhythm"] .nav-btn{color:rgba(30,26,20,.6);font-family:'Jua','Noto Sans KR',sans-serif;font-size:15px}
+body[data-hskin="rhythm"] .hdr-nav a[aria-current="page"],body[data-hskin="rhythm"] .hdr-nav a:hover{color:var(--rh-ink)}
+body[data-hskin="rhythm"] .hdr-nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--rh-blue)}
+body[data-hskin="rhythm"] .hdr-ctx{color:var(--rh-red);font-family:var(--rh-font)}
+@media (max-width:980px){ body[data-hskin="rhythm"] .hdr-nav{background:var(--rh-paper)} }
+@media (max-width:720px){
+  [data-skin="rhythm"]{background-size:260px auto,180px auto,130px auto,100px auto,auto}
+  [data-skin="rhythm"] .rd{margin:16px 10px 40px;border-radius:24px}
+  [data-skin="rhythm"] .lib-hd h2{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){ [data-skin="rhythm"] .save{animation:none!important} }
