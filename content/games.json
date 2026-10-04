@@ -1,9 +1,9 @@
 [
   {
     "id": "hades",
-    "name": "Hades",
+    "name": "하데스",
     "aliases": [
-      "하데스"
+      "Hades"
     ],
     "color": "#C4643E",
     "release": "2020-09-17",
@@ -24,8 +24,9 @@
   },
   {
     "id": "metaphor",
-    "name": "Metaphor: ReFantazio",
+    "name": "메타포: 리판타지오",
     "aliases": [
+      "Metaphor: ReFantazio",
       "메타포",
       "메타포 리판타지오"
     ],
@@ -59,9 +60,9 @@
   },
   {
     "id": "kirby-planet-robobot",
-    "name": "Kirby: Planet Robobot",
+    "name": "별의 커비 로보보 플래닛",
     "aliases": [
-      "별의 커비 로보보 플래닛",
+      "Kirby: Planet Robobot",
       "로보보 플래닛"
     ],
     "color": "#E0679A",
@@ -75,9 +76,9 @@
   },
   {
     "id": "splatoon-3",
-    "name": "Splatoon 3",
+    "name": "스플래툰 3",
     "aliases": [
-      "스플래툰 3",
+      "Splatoon 3",
       "스플래툰3"
     ],
     "color": "#C9B81C",
@@ -91,9 +92,9 @@
   },
   {
     "id": "splatoon-raiders",
-    "name": "Splatoon Raiders",
+    "name": "스플래툰 레이더스",
     "aliases": [
-      "스플래툰 레이더스"
+      "Splatoon Raiders"
     ],
     "color": "#2E9E8F",
     "release": "2026-07-23",
@@ -106,9 +107,9 @@
   },
   {
     "id": "once-upon-a-katamari",
-    "name": "Once Upon a Katamari",
+    "name": "옛날 옛적에 괴혼",
     "aliases": [
-      "옛날 옛적에 괴혼",
+      "Once Upon a Katamari",
       "괴혼"
     ],
     "color": "#5CFF85",
@@ -127,8 +128,9 @@
   },
   {
     "id": "zelda-botw",
-    "name": "The Legend of Zelda: Breath of the Wild",
+    "name": "젤다의 전설 브레스 오브 더 와일드",
     "aliases": [
+      "The Legend of Zelda: Breath of the Wild",
       "젤다의 전설 야생의 숨결",
       "야생의 숨결",
       "BotW"
@@ -146,8 +148,9 @@
   },
   {
     "id": "tomodachi-life-living-the-dream",
-    "name": "Tomodachi Life: Living the Dream",
+    "name": "친구모아 아일랜드 두근두근 라이프",
     "aliases": [
+      "Tomodachi Life: Living the Dream",
       "친구모아 아일랜드"
     ],
     "color": "#E59A3A",
@@ -161,10 +164,10 @@
   },
   {
     "id": "rhythm-heaven-groove",
-    "name": "Rhythm Heaven Groove",
+    "name": "리듬 천국 미라클 스타즈",
     "aliases": [
-      "리듬천국 미라클 스타즈",
-      "리듬 천국 미라클 스타즈"
+      "Rhythm Heaven Groove",
+      "리듬천국 미라클 스타즈"
     ],
     "color": "#C9465A",
     "release": "2026-07-02",
@@ -177,9 +180,9 @@
   },
   {
     "id": "professor-layton-curious-village",
-    "name": "Professor Layton and the Curious Village",
+    "name": "레이튼 교수와 이상한 마을",
     "aliases": [
-      "레이튼 교수와 이상한 마을"
+      "Professor Layton and the Curious Village"
     ],
     "color": "#B07A3A",
     "release": "2008-09-11",
@@ -188,13 +191,14 @@
       "Nintendo DS",
       "iOS",
       "Android"
-    ]
+    ],
+    "art": "assets/games/professor-layton-curious-village/art.jpg"
   },
   {
     "id": "professor-layton-diabolical-box",
-    "name": "Professor Layton and the Diabolical Box",
+    "name": "레이튼 교수와 악마의 상자",
     "aliases": [
-      "레이튼 교수와 악마의 상자"
+      "Professor Layton and the Diabolical Box"
     ],
     "color": "#7B3F2A",
     "release": "2011-09-08",
@@ -203,13 +207,14 @@
       "Nintendo DS",
       "iOS",
       "Android"
-    ]
+    ],
+    "art": "assets/games/professor-layton-diabolical-box/art.jpg"
   },
   {
     "id": "professor-layton-unwound-future",
-    "name": "Professor Layton and the Unwound Future",
+    "name": "레이튼 교수와 최후의 시간여행",
     "aliases": [
-      "레이튼 교수와 최후의 시간여행"
+      "Professor Layton and the Unwound Future"
     ],
     "color": "#9B6B2F",
     "release": "2008-11-27",
@@ -218,14 +223,15 @@
       "Nintendo DS",
       "iOS",
       "Android"
-    ]
+    ],
+    "art": "assets/games/professor-layton-unwound-future/art.jpg"
   },
   {
     "id": "hollow-knight",
     "name": "Hollow Knight",
     "aliases": [
-      "할로우 나이트",
-      "할로우나이트"
+      "할로우나이트",
+      "할로우 나이트"
     ],
     "color": "#3E4A61",
     "release": "2017-02-24",
@@ -236,16 +242,18 @@
       "Linux",
       "Nintendo Switch",
       "PS4",
-      "Xbox One"
-    ]
+      "Xbox One",
+      "Nintendo Switch 2"
+    ],
+    "art": "assets/games/hollow-knight/art.jpg"
   },
   {
     "id": "hollow-knight-silksong",
     "name": "Hollow Knight: Silksong",
     "aliases": [
-      "할로우 나이트: 실크송",
       "할로우나이트 실크송",
-      "실크송"
+      "실크송",
+      "할로우 나이트: 실크송"
     ],
     "color": "#A3324A",
     "release": "2025-09-04",
@@ -260,13 +268,14 @@
       "PS5",
       "Xbox One",
       "Xbox Series X|S"
-    ]
+    ],
+    "art": "assets/games/hollow-knight-silksong/art.jpg"
   },
   {
     "id": "splatoon-2",
-    "name": "Splatoon 2",
+    "name": "스플래툰 2",
     "aliases": [
-      "스플래툰 2",
+      "Splatoon 2",
       "스플래툰2"
     ],
     "color": "#E83E8C",
@@ -274,13 +283,14 @@
     "genre": "3인칭 슈팅",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/splatoon-2/art.jpg"
   },
   {
     "id": "zelda-totk",
-    "name": "The Legend of Zelda: Tears of the Kingdom",
+    "name": "젤다의 전설 티어스 오브 더 킹덤",
     "aliases": [
-      "젤다의 전설 티어스 오브 더 킹덤",
+      "The Legend of Zelda: Tears of the Kingdom",
       "젤다의 전설 왕국의 눈물",
       "티어스 오브 더 킹덤"
     ],
@@ -290,13 +300,14 @@
     "platforms": [
       "Nintendo Switch",
       "Nintendo Switch 2"
-    ]
+    ],
+    "art": "assets/games/zelda-totk/art.jpg"
   },
   {
     "id": "animal-crossing-new-horizons",
-    "name": "Animal Crossing: New Horizons",
+    "name": "모여봐요 동물의 숲",
     "aliases": [
-      "모여봐요 동물의 숲",
+      "Animal Crossing: New Horizons",
       "동물의 숲"
     ],
     "color": "#6BBE5F",
@@ -305,13 +316,14 @@
     "platforms": [
       "Nintendo Switch",
       "Nintendo Switch 2"
-    ]
+    ],
+    "art": "assets/games/animal-crossing-new-horizons/art.jpg"
   },
   {
     "id": "kirby-return-to-dream-land-deluxe",
-    "name": "Kirby's Return to Dream Land Deluxe",
+    "name": "별의 커비 Wii 디럭스",
     "aliases": [
-      "별의 커비 Wii 디럭스",
+      "Kirby's Return to Dream Land Deluxe",
       "커비 Wii 디럭스"
     ],
     "color": "#F29AB5",
@@ -319,13 +331,14 @@
     "genre": "액션",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/kirby-return-to-dream-land-deluxe/art.jpg"
   },
   {
     "id": "kirby-forgotten-land",
-    "name": "Kirby and the Forgotten Land",
+    "name": "별의 커비 디스커버리",
     "aliases": [
-      "별의 커비 디스커버리",
+      "Kirby and the Forgotten Land",
       "커비 디스커버리"
     ],
     "color": "#E8789E",
@@ -334,13 +347,14 @@
     "platforms": [
       "Nintendo Switch",
       "Nintendo Switch 2"
-    ]
+    ],
+    "art": "assets/games/kirby-forgotten-land/art.jpg"
   },
   {
     "id": "kirby-star-allies",
-    "name": "Kirby Star Allies",
+    "name": "별의 커비 스타 얼라이즈",
     "aliases": [
-      "별의 커비 스타 얼라이즈",
+      "Kirby Star Allies",
       "스타 얼라이즈"
     ],
     "color": "#F4A3C4",
@@ -348,13 +362,14 @@
     "genre": "액션",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/kirby-star-allies/art.jpg"
   },
   {
     "id": "super-mario-odyssey",
-    "name": "Super Mario Odyssey",
+    "name": "슈퍼 마리오 오디세이",
     "aliases": [
-      "슈퍼 마리오 오디세이",
+      "Super Mario Odyssey",
       "마리오 오디세이"
     ],
     "color": "#D3302F",
@@ -362,13 +377,14 @@
     "genre": "3D 액션",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/super-mario-odyssey/art.jpg"
   },
   {
     "id": "super-smash-bros-ultimate",
-    "name": "Super Smash Bros. Ultimate",
+    "name": "슈퍼 스매시브라더스 얼티밋",
     "aliases": [
-      "대난투 스매시브라더스 SPECIAL",
+      "Super Smash Bros. Ultimate",
       "슈퍼 스매시 브라더스",
       "스매시브라더스"
     ],
@@ -377,14 +393,16 @@
     "genre": "대전 액션",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/super-smash-bros-ultimate/art.jpg"
   },
   {
     "id": "dragon-quest-builders-2",
-    "name": "Dragon Quest Builders 2",
+    "name": "드래곤 퀘스트 빌더즈 2",
     "aliases": [
-      "드래곤 퀘스트 빌더즈 2",
-      "드래곤퀘스트 빌더즈2"
+      "Dragon Quest Builders 2",
+      "드래곤퀘스트 빌더즈2",
+      "드래곤 퀘스트 빌더즈 2 파괴신 시도와 텅 빈 섬"
     ],
     "color": "#3C77C8",
     "release": "2019-01-24",
@@ -394,15 +412,16 @@
       "Nintendo Switch",
       "Windows",
       "Xbox One"
-    ]
+    ],
+    "art": "assets/games/dragon-quest-builders-2/art.jpg"
   },
   {
     "id": "pokemon-legends-z-a",
-    "name": "Pokémon Legends: Z-A",
+    "name": "Pokémon LEGENDS Z-A",
     "aliases": [
-      "Pokémon LEGENDS Z-A",
-      "포켓몬 레전드 Z-A",
-      "포켓몬스터 Z-A"
+      "Pokémon Legends: Z-A",
+      "포켓몬스터 Z-A",
+      "포켓몬 레전드 Z-A"
     ],
     "color": "#3EA88A",
     "release": "2025-10-16",
@@ -410,72 +429,78 @@
     "platforms": [
       "Nintendo Switch",
       "Nintendo Switch 2"
-    ]
+    ],
+    "art": "assets/games/pokemon-legends-z-a/art.jpg"
   },
   {
     "id": "pokemon-violet",
-    "name": "Pokémon Violet",
+    "name": "포켓몬스터 바이올렛",
     "aliases": [
-      "포켓몬스터 바이올렛"
+      "Pokémon Violet"
     ],
     "color": "#8E55C9",
     "release": "2022-11-18",
     "genre": "RPG",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/pokemon-violet/art.jpg"
   },
   {
     "id": "pokemon-y",
-    "name": "Pokémon Y",
+    "name": "포켓몬스터 Y",
     "aliases": [
-      "포켓몬스터 Y"
+      "Pokémon Y"
     ],
     "color": "#2C6FB6",
     "release": "2013-10-12",
     "genre": "RPG",
     "platforms": [
       "Nintendo 3DS"
-    ]
+    ],
+    "art": "assets/games/pokemon-y/art.jpg"
   },
   {
     "id": "pokemon-alpha-sapphire",
-    "name": "Pokémon Alpha Sapphire",
+    "name": "포켓몬스터 알파사파이어",
     "aliases": [
-      "포켓몬스터 알파사파이어"
+      "Pokémon Alpha Sapphire"
     ],
     "color": "#2647A6",
     "release": "2014-11-21",
     "genre": "RPG",
     "platforms": [
       "Nintendo 3DS"
-    ]
+    ],
+    "art": "assets/games/pokemon-alpha-sapphire/art.jpg"
   },
   {
     "id": "pokemon-moon",
-    "name": "Pokémon Moon",
+    "name": "포켓몬스터 문",
     "aliases": [
-      "포켓몬스터 문"
+      "Pokémon Moon"
     ],
     "color": "#6B4CA8",
     "release": "2016-11-18",
     "genre": "RPG",
     "platforms": [
       "Nintendo 3DS"
-    ]
+    ],
+    "art": "assets/games/pokemon-moon/art.jpg"
   },
   {
     "id": "pokemon-heartgold",
-    "name": "Pokémon HeartGold",
+    "name": "포켓몬스터 하트골드",
     "aliases": [
-      "포켓몬스터 하트골드"
+      "Pokémon HeartGold"
     ],
     "color": "#D9A520",
     "release": "2010-02-04",
     "genre": "RPG",
     "platforms": [
       "Nintendo DS"
-    ]
+    ],
+    "art": "assets/games/pokemon-heartgold/art.jpg"
   },
   {
     "id": "baba-is-you",
@@ -493,13 +518,14 @@
       "Nintendo Switch",
       "iOS",
       "Android"
-    ]
+    ],
+    "art": "assets/games/baba-is-you/art.jpg"
   },
   {
     "id": "monster-hunter-rise",
-    "name": "Monster Hunter Rise",
+    "name": "몬스터 헌터 라이즈",
     "aliases": [
-      "몬스터 헌터 라이즈",
+      "Monster Hunter Rise",
       "몬헌 라이즈"
     ],
     "color": "#B33A2E",
@@ -512,13 +538,14 @@
       "PS5",
       "Xbox One",
       "Xbox Series X|S"
-    ]
+    ],
+    "art": "assets/games/monster-hunter-rise/art.jpg"
   },
   {
     "id": "ring-fit-adventure",
-    "name": "Ring Fit Adventure",
+    "name": "링 피트 어드벤처",
     "aliases": [
-      "링 피트 어드벤처",
+      "Ring Fit Adventure",
       "링피트 어드벤쳐",
       "링피트"
     ],
@@ -527,13 +554,14 @@
     "genre": "피트니스 어드벤처",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/ring-fit-adventure/art.jpg"
   },
   {
     "id": "pikmin-4",
-    "name": "Pikmin 4",
+    "name": "피크민 4",
     "aliases": [
-      "피크민 4",
+      "Pikmin 4",
       "피크민4"
     ],
     "color": "#3F8F3A",
@@ -541,13 +569,14 @@
     "genre": "액션 어드벤처",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/pikmin-4/art.jpg"
   },
   {
     "id": "dave-the-diver",
-    "name": "Dave the Diver",
+    "name": "데이브 더 다이버",
     "aliases": [
-      "데이브 더 다이버"
+      "Dave the Diver"
     ],
     "color": "#1E7FB8",
     "release": "2023-06-28",
@@ -561,13 +590,14 @@
       "Xbox One",
       "Xbox Series X|S",
       "Nintendo Switch 2 (2026.10.08 예정)"
-    ]
+    ],
+    "art": "assets/games/dave-the-diver/art.jpg"
   },
   {
     "id": "we-love-katamari-reroll",
-    "name": "We Love Katamari REROLL+ Royal Reverie",
+    "name": "아바마마와 돌아온 데굴데굴~ 쫀득쫀득~ 괴혼",
     "aliases": [
-      "아바마마와 돌아온 데굴데굴쫀득쫀득 괴혼"
+      "We Love Katamari REROLL+ Royal Reverie"
     ],
     "color": "#E85B9C",
     "release": "2023-06-02",
@@ -579,13 +609,14 @@
       "PS5",
       "Xbox One",
       "Xbox Series X|S"
-    ]
+    ],
+    "art": "assets/games/we-love-katamari-reroll/art.jpg"
   },
   {
     "id": "katamari-damacy-reroll",
-    "name": "Katamari Damacy REROLL",
+    "name": "괴혼 굴려라 돌아온 왕자님",
     "aliases": [
-      "괴혼 굴려라 돌아온 왕자님"
+      "Katamari Damacy REROLL"
     ],
     "color": "#F2A33A",
     "release": "2018-12-07",
@@ -595,13 +626,14 @@
       "Windows",
       "PS4",
       "Xbox One"
-    ]
+    ],
+    "art": "assets/games/katamari-damacy-reroll/art.jpg"
   },
   {
     "id": "persona-3-portable",
-    "name": "Persona 3 Portable",
+    "name": "페르소나 3 포터블",
     "aliases": [
-      "페르소나 3 포터블",
+      "Persona 3 Portable",
       "P3P"
     ],
     "color": "#2C5FB3",
@@ -614,13 +646,14 @@
       "Xbox One",
       "Xbox Series X|S",
       "Windows"
-    ]
+    ],
+    "art": "assets/games/persona-3-portable/art.jpg"
   },
   {
     "id": "persona-4-golden",
-    "name": "Persona 4 Golden",
+    "name": "페르소나 4 더 골든",
     "aliases": [
-      "페르소나 4 더 골든",
+      "Persona 4 Golden",
       "P4G"
     ],
     "color": "#E8B923",
@@ -633,13 +666,14 @@
       "PS4",
       "Xbox One",
       "Xbox Series X|S"
-    ]
+    ],
+    "art": "assets/games/persona-4-golden/art.jpg"
   },
   {
     "id": "persona-5-royal",
-    "name": "Persona 5 Royal",
+    "name": "페르소나 5 더 로열",
     "aliases": [
-      "페르소나 5 더 로열",
+      "Persona 5 Royal",
       "P5R"
     ],
     "color": "#D61F2C",
@@ -652,7 +686,8 @@
       "Xbox One",
       "Xbox Series X|S",
       "Windows"
-    ]
+    ],
+    "art": "assets/games/persona-5-royal/art.jpg"
   },
   {
     "id": "potion-craft",
@@ -670,7 +705,8 @@
       "Nintendo Switch",
       "PS4",
       "PS5"
-    ]
+    ],
+    "art": "assets/games/potion-craft/art.jpg"
   },
   {
     "id": "pokemon-pokopia",
@@ -683,7 +719,8 @@
     "genre": "생활 시뮬레이션",
     "platforms": [
       "Nintendo Switch 2"
-    ]
+    ],
+    "art": "assets/games/pokemon-pokopia/art.jpg"
   },
   {
     "id": "pico-park-2",
@@ -700,13 +737,14 @@
       "Windows",
       "Xbox One",
       "Xbox Series X|S"
-    ]
+    ],
+    "art": "assets/games/pico-park-2/art.jpg"
   },
   {
     "id": "tetris-99",
-    "name": "Tetris 99",
+    "name": "TETRIS® 99",
     "aliases": [
-      "TETRIS® 99",
+      "Tetris 99",
       "TETRIS 99",
       "테트리스 99"
     ],
@@ -715,19 +753,21 @@
     "genre": "배틀로얄 퍼즐",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/tetris-99/art.jpg"
   },
   {
     "id": "super-kirby-clash",
-    "name": "Super Kirby Clash",
+    "name": "슈퍼 커비 헌터즈",
     "aliases": [
-      "슈퍼 커비 헌터즈"
+      "Super Kirby Clash"
     ],
     "color": "#F06A8F",
     "release": "2019-09-05",
     "genre": "협력 액션",
     "platforms": [
       "Nintendo Switch"
-    ]
+    ],
+    "art": "assets/games/super-kirby-clash/art.jpg"
   }
 ]
