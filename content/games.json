@@ -18,9 +18,9 @@
       "Xbox Series X|S",
       "iOS"
     ],
+    "skin": "hades",
     "art": "assets/games/hades/art.jpg",
-    "steam": "1145360",
-    "skin": "hades"
+    "steam": "1145360"
   },
   {
     "id": "metaphor",
@@ -70,7 +70,8 @@
     "platforms": [
       "Nintendo 3DS"
     ],
-    "skin": "robobot"
+    "skin": "robobot",
+    "art": "assets/games/kirby-planet-robobot/art.jpg"
   },
   {
     "id": "splatoon-3",
@@ -85,7 +86,8 @@
     "platforms": [
       "Nintendo Switch"
     ],
-    "skin": "splatoon"
+    "skin": "splatoon",
+    "art": "assets/games/splatoon-3/art.jpg"
   },
   {
     "id": "splatoon-raiders",
@@ -99,7 +101,8 @@
     "platforms": [
       "Nintendo Switch 2"
     ],
-    "skin": "raiders"
+    "skin": "raiders",
+    "art": "assets/games/splatoon-raiders/art.jpg"
   },
   {
     "id": "once-upon-a-katamari",
@@ -108,7 +111,7 @@
       "옛날 옛적에 괴혼",
       "괴혼"
     ],
-    "color": "#D9732E",
+    "color": "#5CFF85",
     "release": "2025-10-24",
     "genre": "액션 퍼즐",
     "platforms": [
@@ -118,8 +121,9 @@
       "Xbox Series X|S",
       "Nintendo Switch 2 (2026.10.08 예정)"
     ],
-    "steam": "1880620",
-    "skin": "katamari"
+    "skin": "katamari",
+    "art": "assets/games/once-upon-a-katamari/art.jpg",
+    "steam": "1880620"
   },
   {
     "id": "zelda-botw",
@@ -137,7 +141,8 @@
       "Nintendo Switch",
       "Nintendo Switch 2"
     ],
-    "skin": "botw"
+    "skin": "botw",
+    "art": "assets/games/zelda-botw/art.jpg"
   },
   {
     "id": "tomodachi-life-living-the-dream",
@@ -151,7 +156,8 @@
     "platforms": [
       "Nintendo Switch"
     ],
-    "skin": "tomodachi"
+    "skin": "tomodachi",
+    "art": "assets/games/tomodachi-life-living-the-dream/art.jpg"
   },
   {
     "id": "rhythm-heaven-groove",
@@ -166,6 +172,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
-    "skin": "rhythm"
+    "skin": "rhythm",
+    "art": "assets/games/rhythm-heaven-groove/art.jpg"
   }
 ]
