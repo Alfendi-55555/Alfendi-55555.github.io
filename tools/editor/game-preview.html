@@ -67,6 +67,7 @@ function openHTML(g, songs) {
         ${r ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
       ${r ? `<div class="co-review"><span class="sys">ONE-LINE REVIEW</span><p>${esc(r.text)}</p></div>`
           : '<div class="co-empty"><span class="sys">ONE-LINE REVIEW</span><span>아직 한줄 리뷰가 없어요</span></div>'}
+      ${g.site ? `<a class="co-site" href="${esc(g.site)}" target="_blank" rel="noopener">${/github\.com/.test(g.site) ? 'GitHub 저장소에서 보기' : '공식 사이트에서 더 보기'}<span aria-hidden="true">↗</span></a>` : ''}
     </div></div>`;
   const posts = g.posts.slice(0, 3);
   const seat = n

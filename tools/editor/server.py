@@ -173,7 +173,7 @@ def delete(rel):
 # ---------------- 게임 관리 (content/games.json + assets/games/<id>/) ----------------
 GAMES_JSON = ROOT / 'content' / 'games.json'
 CONFIG = HERE / 'config.json'           # 이 컴퓨터에만 두는 설정 (리뷰 시트 주소 등) — 저장소에 올리지 않는다
-KEY_ORDER = ['id', 'name', 'aliases', 'color', 'release', 'genre', 'platforms', 'skin', 'art', 'steam']
+KEY_ORDER = ['id', 'name', 'aliases', 'color', 'release', 'genre', 'platforms', 'site', 'skin', 'art', 'steam']
 
 
 def skins():
@@ -210,6 +210,8 @@ def save_game(data):
         raise ValueError('대표 색은 #RRGGBB 형식이어야 해요.')
     if g.get('release') and not re.fullmatch(r'\d{4}-\d{2}-\d{2}', g['release']):
         raise ValueError('출시일 형식이 맞지 않아요.')
+    if g.get('site') and not re.fullmatch(r'https?://\S+', str(g['site']).strip()):
+        raise ValueError('공식 사이트는 https:// 로 시작하는 주소로 넣어 주세요.')
     if g.get('steam') and not re.fullmatch(r'\d+', str(g['steam'])):
         raise ValueError('Steam 앱 번호는 숫자여야 해요.')
     if g.get('skin') and g['skin'] not in skins():
@@ -222,7 +224,7 @@ def save_game(data):
     new = {'id': gid, 'name': g['name'].strip(),
            'aliases': [a.strip() for a in g.get('aliases') or [] if a.strip()],
            'color': g['color'].upper()}
-    for k in ('release', 'genre'):
+    for k in ('release', 'genre', 'site'):
         if str(g.get(k, '')).strip():
             new[k] = str(g[k]).strip()
     pl = [x.strip() for x in g.get('platforms') or [] if x.strip()]

@@ -101,11 +101,18 @@ function renderCases() {
   const host = $('#cases');
   host.innerHTML = list.map(caseHTML).join('');
   $$('.case-card', host).forEach(b => b.addEventListener('click', () => openCase(GAMES.find(g => g.id === b.dataset.id), b)));
+  /* 모두 보기 ↔ 접기 */
   const more = $('#casesMore');
-  more.hidden = state.all || !!q || total <= PAGE;
-  more.textContent = `${total}개 모두 보기`;
+  more.hidden = !!q || total <= PAGE;
+  more.textContent = state.all ? '접기' : `${total}개 모두 보기`;
+  more.setAttribute('aria-expanded', String(state.all));
 }
-$('#casesMore').addEventListener('click', () => { state.all = true; renderCases(); });
+$('#casesMore').addEventListener('click', () => {
+  const folding = state.all;
+  state.all = !state.all; renderCases();
+  /* 접을 때는 목록 위로 돌아가 버튼만 덩그러니 남지 않게 */
+  if (folding) scrollTo({ top: $('#libFilter').getBoundingClientRect().top + scrollY - 96, behavior: reduced ? 'auto' : 'smooth' });   // 위쪽 메뉴에 가리지 않게
+});
 export function bindSearch(input, onChange) {
   const box = input.closest('.search'), clear = box.querySelector('.s-clear');
   const sync = () => { const has = !!input.value; box.classList.toggle('has', has); clear.hidden = !has; };
@@ -127,6 +134,9 @@ const info = g => {
     + (g.platforms && g.platforms.length ? `<span class="co-plat">${g.platforms.map(esc).join(' · ')}</span>` : '');
 };
 
+/* 공식 사이트 바로가기 (게임 정보 칸의 마지막) — PLAYLOG 는 사이트 자체라 저장소로 */
+export const siteLink = g => g.site ? `<a class="co-site" href="${esc(g.site)}" target="_blank" rel="noopener">${/github\.com/.test(g.site) ? 'GitHub 저장소에서 보기' : '공식 사이트에서 더 보기'}<span aria-hidden="true">↗</span><span class="sr">(새 창)</span></a>` : '';
+
 export function openCase(g, opener) {
   const r = g.review, n = g.posts.length;
   const stats = [];
@@ -143,6 +153,7 @@ export function openCase(g, opener) {
         ${r ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
       ${r ? `<div class="co-review"><span class="sys">ONE-LINE REVIEW</span><p>${esc(r.text)}</p></div>`
           : '<div class="co-empty"><span class="sys">ONE-LINE REVIEW</span><span>아직 한줄 리뷰가 없어요</span></div>'}
+      ${siteLink(g)}
     </div>
   </div>`;
   const posts = g.posts.slice(0, 3);

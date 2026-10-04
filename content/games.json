@@ -18,6 +18,7 @@
       "Xbox Series X|S",
       "iOS"
     ],
+    "site": "https://www.supergiantgames.com/games/hades/",
     "skin": "hades",
     "art": "assets/games/hades/art.jpg",
     "steam": "1145360"
@@ -40,6 +41,7 @@
       "Xbox Series X|S",
       "Nintendo Switch 2 (2026.11.12 예정)"
     ],
+    "site": "https://asia.sega.com/metaphor/kr/",
     "skin": "metaphor",
     "art": "assets/games/metaphor/art.jpg",
     "steam": "2679460"
@@ -56,6 +58,7 @@
     "platforms": [
       "Web"
     ],
+    "site": "https://github.com/Alfendi-55555/Alfendi-55555.github.io",
     "skin": "playlog"
   },
   {
@@ -71,6 +74,7 @@
     "platforms": [
       "Nintendo 3DS"
     ],
+    "site": "https://support.nintendo.co.kr/onlineStore/product/3DS_DL/8",
     "skin": "robobot",
     "art": "assets/games/kirby-planet-robobot/art.jpg"
   },
@@ -87,6 +91,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/av5ja/index.html",
     "skin": "splatoon",
     "art": "assets/games/splatoon-3/art.jpg"
   },
@@ -102,6 +107,7 @@
     "platforms": [
       "Nintendo Switch 2"
     ],
+    "site": "https://www.nintendo.com/kr/games/switch2/aadla/",
     "skin": "raiders",
     "art": "assets/games/splatoon-raiders/art.jpg"
   },
@@ -122,6 +128,7 @@
       "Xbox Series X|S",
       "Nintendo Switch 2 (2026.10.08 예정)"
     ],
+    "site": "https://store.nintendo.co.kr/70010000091587",
     "skin": "katamari",
     "art": "assets/games/once-upon-a-katamari/art.jpg",
     "steam": "1880620"
@@ -143,6 +150,7 @@
       "Nintendo Switch",
       "Nintendo Switch 2"
     ],
+    "site": "https://www.nintendo.com/kr/switch/aaaaa/",
     "skin": "botw",
     "art": "assets/games/zelda-botw/art.jpg"
   },
@@ -159,6 +167,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/blfga/index.html",
     "skin": "tomodachi",
     "art": "assets/games/tomodachi-life-living-the-dream/art.jpg"
   },
@@ -175,6 +184,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/bflta/index.html",
     "skin": "rhythm",
     "art": "assets/games/rhythm-heaven-groove/art.jpg"
   },
@@ -192,6 +202,7 @@
       "iOS",
       "Android"
     ],
+    "site": "https://apps.apple.com/kr/app/id1361526136",
     "art": "assets/games/professor-layton-curious-village/art.jpg"
   },
   {
@@ -208,6 +219,7 @@
       "iOS",
       "Android"
     ],
+    "site": "https://apps.apple.com/kr/app/id1459831585",
     "art": "assets/games/professor-layton-diabolical-box/art.jpg"
   },
   {
@@ -245,6 +257,7 @@
       "Xbox One",
       "Nintendo Switch 2"
     ],
+    "site": "https://www.hollowknight.com/",
     "art": "assets/games/hollow-knight/art.jpg"
   },
   {
@@ -269,6 +282,7 @@
       "Xbox One",
       "Xbox Series X|S"
     ],
+    "site": "https://hollowknightsilksong.com/",
     "art": "assets/games/hollow-knight-silksong/art.jpg"
   },
   {
@@ -284,6 +298,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.co.kr/software/switch/aab6b/",
     "art": "assets/games/splatoon-2/art.jpg"
   },
   {
@@ -301,6 +316,7 @@
       "Nintendo Switch",
       "Nintendo Switch 2"
     ],
+    "site": "https://www.nintendo.com/kr/zelda/totk/index.html",
     "art": "assets/games/zelda-totk/art.jpg"
   },
   {
@@ -317,6 +333,7 @@
       "Nintendo Switch",
       "Nintendo Switch 2"
     ],
+    "site": "https://www.nintendo.com/kr/switch/acbaa/index.html",
     "art": "assets/games/animal-crossing-new-horizons/art.jpg"
   },
   {
@@ -332,6 +349,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/a2jya/",
     "art": "assets/games/kirby-return-to-dream-land-deluxe/art.jpg"
   },
   {
@@ -348,6 +366,7 @@
       "Nintendo Switch",
       "Nintendo Switch 2"
     ],
+    "site": "https://www.nintendo.com/kr/software/switch/arzga/index.html",
     "art": "assets/games/kirby-forgotten-land/art.jpg"
   },
   {
@@ -358,11 +377,12 @@
       "스타 얼라이즈"
     ],
     "color": "#F4A3C4",
-    "release": "2018-03-16",
+    "release": "2018-04-26",
     "genre": "액션",
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://store.nintendo.co.kr/70010000009382",
     "art": "assets/games/kirby-star-allies/art.jpg"
   },
   {
@@ -378,6 +398,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/detail/aaaca/",
     "art": "assets/games/super-mario-odyssey/art.jpg"
   },
   {
@@ -394,6 +415,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.smashbros.com/ko_KR/",
     "art": "assets/games/super-smash-bros-ultimate/art.jpg"
   },
   {
@@ -413,6 +435,7 @@
       "Windows",
       "Xbox One"
     ],
+    "site": "https://store.steampowered.com/app/1072420/?l=koreana",
     "art": "assets/games/dragon-quest-builders-2/art.jpg"
   },
   {
@@ -430,6 +453,7 @@
       "Nintendo Switch",
       "Nintendo Switch 2"
     ],
+    "site": "https://pokemonkorea.co.kr/legends_z-a",
     "art": "assets/games/pokemon-legends-z-a/art.jpg"
   },
   {
@@ -444,6 +468,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://pokemonkorea.co.kr/sv",
     "art": "assets/games/pokemon-violet/art.jpg"
   },
   {
@@ -458,6 +483,7 @@
     "platforms": [
       "Nintendo 3DS"
     ],
+    "site": "https://www.pokemonkorea.co.kr/game/view/5244",
     "art": "assets/games/pokemon-y/art.jpg"
   },
   {
@@ -472,6 +498,7 @@
     "platforms": [
       "Nintendo 3DS"
     ],
+    "site": "https://pokemonkorea.co.kr/game/view/5245",
     "art": "assets/games/pokemon-alpha-sapphire/art.jpg"
   },
   {
@@ -486,6 +513,7 @@
     "platforms": [
       "Nintendo 3DS"
     ],
+    "site": "https://www.pokemonkorea.co.kr/game/view/5246",
     "art": "assets/games/pokemon-moon/art.jpg"
   },
   {
@@ -500,6 +528,7 @@
     "platforms": [
       "Nintendo DS"
     ],
+    "site": "https://pokemonkorea.co.kr/game/view/5235",
     "art": "assets/games/pokemon-heartgold/art.jpg"
   },
   {
@@ -519,6 +548,7 @@
       "iOS",
       "Android"
     ],
+    "site": "https://hempuli.com/baba/",
     "art": "assets/games/baba-is-you/art.jpg"
   },
   {
@@ -539,6 +569,7 @@
       "Xbox One",
       "Xbox Series X|S"
     ],
+    "site": "https://www.monsterhunter.com/rise/kr/",
     "art": "assets/games/monster-hunter-rise/art.jpg"
   },
   {
@@ -555,6 +586,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/ring/",
     "art": "assets/games/ring-fit-adventure/art.jpg"
   },
   {
@@ -570,6 +602,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/ampya/",
     "art": "assets/games/pikmin-4/art.jpg"
   },
   {
@@ -591,6 +624,7 @@
       "Xbox Series X|S",
       "Nintendo Switch 2 (2026.10.08 예정)"
     ],
+    "site": "https://store.steampowered.com/app/1868140/?l=koreana",
     "art": "assets/games/dave-the-diver/art.jpg"
   },
   {
@@ -611,6 +645,7 @@
       "Xbox One",
       "Xbox Series X|S"
     ],
+    "site": "https://store.nintendo.co.kr/70010000055863",
     "art": "assets/games/we-love-katamari-reroll/art.jpg"
   },
   {
@@ -629,6 +664,7 @@
       "PS4",
       "Xbox One"
     ],
+    "site": "https://store.nintendo.co.kr/70010000035378",
     "art": "assets/games/katamari-damacy-reroll/art.jpg"
   },
   {
@@ -649,6 +685,7 @@
       "Xbox Series X|S",
       "Windows"
     ],
+    "site": "https://asia.sega.com/persona-remaster/p3p/kr/",
     "art": "assets/games/persona-3-portable/art.jpg"
   },
   {
@@ -669,6 +706,7 @@
       "Xbox One",
       "Xbox Series X|S"
     ],
+    "site": "https://asia.sega.com/persona-remaster/p4g/kr/",
     "art": "assets/games/persona-4-golden/art.jpg"
   },
   {
@@ -689,6 +727,7 @@
       "Xbox Series X|S",
       "Windows"
     ],
+    "site": "https://asia.sega.com/p5r/kr/",
     "art": "assets/games/persona-5-royal/art.jpg"
   },
   {
@@ -708,6 +747,7 @@
       "PS4",
       "PS5"
     ],
+    "site": "https://store.nintendo.co.kr/70010000054957",
     "art": "assets/games/potion-craft/art.jpg"
   },
   {
@@ -722,6 +762,7 @@
     "platforms": [
       "Nintendo Switch 2"
     ],
+    "site": "https://pokemonkorea.co.kr/pokemonpokopia",
     "art": "assets/games/pokemon-pokopia/art.jpg"
   },
   {
@@ -740,6 +781,7 @@
       "Xbox One",
       "Xbox Series X|S"
     ],
+    "site": "https://store.steampowered.com/app/2644470/PICO_PARK_2/?l=koreana",
     "art": "assets/games/pico-park-2/art.jpg"
   },
   {
@@ -756,6 +798,7 @@
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/games/tetris99/",
     "art": "assets/games/tetris-99/art.jpg"
   },
   {
@@ -765,11 +808,12 @@
       "Super Kirby Clash"
     ],
     "color": "#F06A8F",
-    "release": "2019-09-05",
+    "release": "2019-09-09",
     "genre": "협력 액션",
     "platforms": [
       "Nintendo Switch"
     ],
+    "site": "https://www.nintendo.com/kr/switch/detail/apy8a/",
     "art": "assets/games/super-kirby-clash/art.jpg"
   },
   {
@@ -785,6 +829,7 @@
     "platforms": [
       "Nintendo 3DS",
       "Nintendo Switch"
-    ]
+    ],
+    "site": "https://support.nintendo.co.kr/onlineStore/product/3DS_DL/11"
   }
 ]

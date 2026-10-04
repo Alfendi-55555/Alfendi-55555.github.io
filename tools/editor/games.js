@@ -65,7 +65,7 @@ async function pickById(id, skipGuard) {
   const locked = (GM.posts[g.id] || 0) > 0;
   $('#gId').readOnly = locked; $('#gId').title = locked ? '기록이 있는 게임은 id를 바꿀 수 없어요' : '';
   setColor(g.color); $('#gRelease').value = g.release || ''; $('#gGenre').value = g.genre || '';
-  $('#gSkin').value = g.skin || 'base'; $('#gSteam').value = g.steam || '';
+  $('#gSkin').value = g.skin || 'base'; $('#gSteam').value = g.steam || ''; $('#gSite').value = g.site || '';
   $('#gDel').disabled = locked; $('#gDel').title = locked ? '기록이 있는 게임은 지울 수 없어요' : '';
   fillChips(); showArt(); renderList(); gDirty = false; gRender();
 }
@@ -73,7 +73,7 @@ function newGame(skipGuard) {
   (skipGuard ? Promise.resolve(true) : guardG()).then(ok => {
     if (!ok) return;
     G = { orig: null, aliases: [], platforms: [], art: null, idTouched: false };
-    ['#gName', '#gId', '#gRelease', '#gGenre', '#gSteam'].forEach(s => { $(s).value = ''; });
+    ['#gName', '#gId', '#gRelease', '#gGenre', '#gSteam', '#gSite'].forEach(s => { $(s).value = ''; });
     $('#gId').readOnly = false; $('#gId').title = '';
     setColor('#5B7C99'); $('#gSkin').value = 'base'; $('#gDel').disabled = true;
     fillChips(); showArt(); renderList(); gDirty = false; gRender();
@@ -93,7 +93,7 @@ const idSource = () => [$('#gName').value, ...(G ? G.aliases : [])].find(x => /[
 function autoId() { if (G && !G.idTouched && !G.orig) $('#gId').value = slug(idSource()); }
 $('#gName').addEventListener('input', () => { autoId(); gChanged(); });
 $('#gId').addEventListener('input', () => { if (G) G.idTouched = true; gChanged(); });
-['#gRelease', '#gGenre', '#gSkin'].forEach(s => $(s).addEventListener('input', gChanged));
+['#gRelease', '#gGenre', '#gSkin', '#gSite'].forEach(s => $(s).addEventListener('input', gChanged));
 $('#gSteam').addEventListener('change', e => {        // 상점 주소를 붙여 넣으면 앱 번호만
   const m = e.target.value.match(/app\/(\d+)/) || e.target.value.match(/^\s*(\d+)\s*$/);
   if (e.target.value.trim() && !m) say('Steam 상점 주소나 앱 번호를 넣어 주세요.', 'err');
@@ -165,7 +165,7 @@ let gT = 0;
 function gChanged() { gDirty = true; clearTimeout(gT); gT = setTimeout(gRender, 150); }
 function draft() {
   return { id: $('#gId').value.trim(), name: $('#gName').value.trim(), aliases: G.aliases, color: $('#gColor').value.trim(),
-    release: $('#gRelease').value, genre: $('#gGenre').value.trim(), platforms: G.platforms, skin: $('#gSkin').value, steam: $('#gSteam').value.trim() };
+    release: $('#gRelease').value, genre: $('#gGenre').value.trim(), platforms: G.platforms, skin: $('#gSkin').value, steam: $('#gSteam').value.trim(), site: $('#gSite').value.trim() };
 }
 function gpvOn() { if (gpvReady) return; gpvReady = true; gRender(); }
 addEventListener('message', e => { if (e.data && e.data.type === 'gpv-ready') gpvOn(); });
