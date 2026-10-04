@@ -320,7 +320,11 @@ function changed() {
   clearTimeout(pvT); pvT = setTimeout(() => { renderPreview(); autosave(); }, 280);
 }
 ed.addEventListener('input', changed);
-addEventListener('message', e => { if (e.data && e.data.type === 'preview-ready') { pvReady = true; renderPreview(); } });
+/* 미리보기 창이 준비되면 그리기 시작 — 이 스크립트보다 먼저 준비될 수도 있어서 세 가지로 확인한다 */
+function pvOn() { if (pvReady) return; pvReady = true; renderPreview(); }
+addEventListener('message', e => { if (e.data && e.data.type === 'preview-ready') pvOn(); });
+pv.addEventListener('load', pvOn);
+if (pv.contentDocument && pv.contentDocument.readyState === 'complete' && pv.contentDocument.getElementById('rd')) pvOn();
 async function renderPreview() {
   if (!pvReady) return;
   const seq = ++pvSeq;

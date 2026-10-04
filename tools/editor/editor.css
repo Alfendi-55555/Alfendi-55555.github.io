@@ -111,6 +111,14 @@ dialog h2{margin:0 0 10px;font-size:18px}
 #dlgB input{width:100%;height:38px;padding:0 10px;border-radius:9px;border:1px solid var(--line);margin-top:4px}
 .dlg-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
 
+/* 창이 좁으면 위에 쓰기, 아래에 미리보기 */
 @media (max-width:1000px){
-  .split{grid-template-columns:1fr} .right{display:none}
+  html,body{height:auto}
+  .top{position:sticky;top:0;z-index:10;flex-wrap:wrap}
+  .split{display:block}
+  .left{border-right:0;border-bottom:1px solid var(--line)}
+  .ed-wrap{min-height:60vh;overflow:visible} .ed{padding-bottom:80px}
+  .right{height:85vh}
+  .form{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .f-game,.f-date,.f-spoil,.f-slug,.f-draft{grid-column:span 1} .f-title,.f-tags,.f-spoiltext{grid-column:span 2}
 }
