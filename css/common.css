@@ -96,3 +96,8 @@ mark{background:rgba(48,176,244,.22);color:inherit;border-radius:3px;padding:0 1
   .search{width:100%;order:-1}
   .page-hd.row .search{width:100%}
 }
+
+/* 사이트 맨 아래 한 줄 : 게임 이미지 저작권 안내. 게임 테마 화면과 카트리지 꽂기 화면에서는 숨긴다 */
+.site-foot{flex-shrink:0;padding:20px 20px 26px;border-top:1px solid var(--line);text-align:center}
+.site-foot p{margin:0 auto;max-width:720px;font-size:12px;line-height:1.7;color:var(--mut)}
+#main:has(#game.on, #insert.on) .site-foot{display:none}
