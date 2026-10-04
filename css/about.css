@@ -18,6 +18,8 @@
 .pf-row{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:12.5px}
 .pf-row span:first-child{letter-spacing:.08em;color:var(--mut)}
 .pf-row span:last-child{letter-spacing:.04em;font-weight:500}
+.pf-say{margin:0;padding:14px 0 2px;border-top:1px solid var(--rule);font-size:15px;font-weight:600;line-height:1.55;text-wrap:balance}
+.pf-say::before{content:'“';margin-right:2px;color:var(--mut)} .pf-say::after{content:'”';margin-left:2px;color:var(--mut)}
 .fl{position:absolute}
 .fl.a{right:40px;top:10px;z-index:1} .fl.a>div{transform:rotate(9deg)}
 .fl.b{left:10px;bottom:30px;z-index:1} .fl.b>div{transform:rotate(-7deg)}
@@ -81,7 +83,7 @@
 .tagcloud{display:flex;flex-wrap:wrap;gap:10px}
 .tagcloud span{padding:9px 15px;border-radius:999px;background:var(--fill);font-size:14px;font-weight:500;color:var(--ink-soft)}
 .tagcloud i{font-style:normal;font-family:var(--font-mono);font-size:11.5px;color:var(--mut);margin-left:5px}
-.hw4{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.hw4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}   /* 기기 4개 — 한 줄에 */
 /* 이 사이트는 */
 .pp-for{display:flex;flex-direction:column;gap:4px} .pp-for .sys{color:var(--mut)} .pp-for b{font-size:14px;font-weight:600;margin-bottom:6px}
 .pp-menu{display:flex;flex-direction:column}

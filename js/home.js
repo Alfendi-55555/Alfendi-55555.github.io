@@ -23,7 +23,8 @@ if (latest) {
   const bg = latest.cover ? imgStyle(latest.cover) : artStyle(g);
   const b = h(`<button type="button" class="chan latest ch"><span class="scr">
     <span class="bg" style="${bg}"></span><span class="scrim"></span>
-    <span class="cap"><span class="lbl">LATEST</span><b>${esc(latest.t)}</b>
+    <span class="row-sb top"><span class="lbl">LATEST</span></span>
+    <span class="cap"><b>${esc(latest.t)}</b>
     <span class="meta-line">${esc(g.name.toUpperCase())} · ${esc(latest.d)}</span></span></span></button>`);
   b.addEventListener('click', () => openReader(latest));
   chans.push(b);

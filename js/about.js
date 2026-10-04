@@ -15,8 +15,10 @@ const headline = s => esc(s).replace(/\*(.+?)\*/g, '<em>$1</em>').replace(/\n/g,
 
 /* ---------- 첫 화면 ---------- */
 const floats = RECENT.slice(0, 3);
-const spec = [['MODEL', P.model], ['REGION', P.region], ['SLOTS', RECENT.length + ' CARTRIDGES'], ['SAVES', POSTS.length + ' SAVES']]
-  .filter(([, v]) => v).map(([k, v]) => `<div class="pf-row"><span>${k}</span><span>${esc(v)}</span></div>`).join('');
+/* 카트리지 · 세이브 수는 아래 기록 현황에 있으니 여기엔 자기소개 한마디 */
+const spec = [['MODEL', P.model], ['REGION', P.region]]
+  .filter(([, v]) => v).map(([k, v]) => `<div class="pf-row"><span>${k}</span><span>${esc(v)}</span></div>`).join('')
+  + (P.intro ? `<p class="pf-say">${esc(P.intro)}</p>` : '');
 const hero = `<div class="wrap ab-hero">
   <div class="ab-copy">
     <h1 id="abTitle" class="rise" ${d(90)}>${headline(P.headline || P.tagline || '')}</h1>

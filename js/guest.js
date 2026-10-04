@@ -83,7 +83,7 @@ function itemHTML(e) {
         <button type="button" class="g-ghost" data-act="del-cancel">취소</button>
         <button type="button" class="g-save" data-act="del-do"${busy ? ' disabled' : ''}>${busy ? '삭제 중…' : '삭제'}</button></div>` : '';
   const err = S.itemErr && S.itemErr.id === e.id ? `<p class="g-err" role="alert">${esc(S.itemErr.msg)}</p>` : '';
-  const re = e.re ? `<div class="g-re"><span class="who" aria-hidden="true">수</span><div><span class="sys">OWNER · 수</span><p>${esc(e.re)}</p></div></div>` : '';
+  const re = e.re ? `<div class="g-re"><span class="who" aria-hidden="true">N</span><div><span class="sys">OWNER · NAVI</span><p>${esc(e.re)}</p></div></div>` : '';
   return `<article class="g-item${S.fresh === e.id ? ' fresh' : ''}${editing ? ' editing' : ''}" data-id="${esc(e.id)}">
     <div class="g-hd"><b>${esc(e.n)}</b><span class="d">${esc(e.d)}</span>${e.edited ? '<span class="ed">· 수정됨</span>' : ''}${tag}${acts}</div>
     ${body}${conf}${err}${re}</article>`;
