@@ -4,12 +4,9 @@ import { MUSIC, BY_ID, dayIndex } from './store.js';
 import { openCase, bindSearch, norm } from './library.js';
 
 const L = MUSIC.length;
-/* 오늘부터 거꾸로 하루에 한 곡씩 — 곡마다 가장 최근에 추천된 날짜가 붙는다 */
+/* 오늘부터 거꾸로 하루에 한 곡씩 — 맨 위가 오늘의 곡 (날짜는 시트 순서로 계산한 값일 뿐이라 보이지 않는다) */
 const today = dayIndex();
-const rotated = Array.from({ length: L }, (_, i) => {
-  const d = new Date((today - i) * 86400000);
-  return { ...MUSIC[((today - i) % L + L) % L], date: `${String(d.getUTCMonth() + 1).padStart(2, '0')}.${String(d.getUTCDate()).padStart(2, '0')}`, first: i === 0 };
-});
+const rotated = Array.from({ length: L }, (_, i) => ({ ...MUSIC[((today - i) % L + L) % L], first: i === 0 }));
 const tags = [...new Set(MUSIC.flatMap(m => m.tags))];
 const titles = new Set(MUSIC.map(m => m.title));
 let tag = null, q = '';
@@ -88,9 +85,8 @@ function renderList() {
     const first = m.links[0];
     const row = h(`<div class="tune${first ? '' : ' off'}${m === sel ? ' on' : ''}">
       <button type="button" class="pick"${m === sel ? ' aria-current="true"' : ''}>
-        <span class="dt">${m.first ? 'TODAY' : m.date}</span>
         <span class="th" style="${thumbStyle(m)}"></span>
-        <span class="t"><b>${esc(m.title)}</b><span>${esc(byline(m))}</span></span>
+        <span class="t"><b>${m.first ? '<span class="dt">TODAY</span>' : ''}${esc(m.title)}</b><span>${esc(byline(m))}</span></span>
         <span class="tg">${m.tags.map(t => '#' + esc(t)).join(' ')}${m.links.map(l => `<span class="pf" title="${esc(l.label)}">${esc(l.short)}</span>`).join('')}</span>
       </button>
       ${first
