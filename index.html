@@ -209,6 +209,13 @@
       </button>
       <h2 id="libName"></h2><span class="cnt" id="libN"></span><span class="lib-cart" id="libCart"></span>
     </div>
+    <!-- 기록이 8편 이상인 게임에서만 보인다 -->
+    <div class="g-tools" id="gTools" hidden>
+      <label class="g-q"><span class="sr">이 게임의 기록 찾기</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="gQ" type="search" placeholder="이 게임의 기록 찾기" autocomplete="off"></label>
+      <div class="g-tags" id="gTags" role="group" aria-label="태그로 거르기"></div>
+    </div>
     <div class="slots" id="slots"></div>
   </div>
 </section>

@@ -1,5 +1,5 @@
 /* 게임별 기록 화면 (카트리지를 꽂은 뒤) · 글 읽기 — 게임 스킨이 화면을 가져간다 */
-import { $, el, reduced, cart, esc } from './util.js';
+import { $, $$, el, reduced, cart, esc } from './util.js';
 import { BY_ID } from './store.js';
 import { showScreen } from './shell.js';
 import { settings } from './settings.js';
@@ -11,29 +11,46 @@ const skinOf = g => (settings.skins && g.skin) || 'base';
 
 const slots = $('#slots');
 let shown = null, bootTimer = 0;
-export function renderGame(id) {
-  const g = BY_ID.get(id);
-  if (!g) { location.replace('#/library'); return; }
-  shown = g;
-  const skin = skinOf(g);
-  $('#game').dataset.skin = skin;
-  $('#reader').dataset.skin = skin;
-  $('#libName').textContent = g.name;
-  $('#libN').textContent = g.posts.length + ' SAVES';
-  $('#libCart').innerHTML = skin === 'base' ? cart(g, 40) : '';
-  slots.innerHTML = ''; slots.classList.remove('boot');
+/* 기록이 많은 게임에서만 : 찾기 + 태그 거르기 */
+const TOOLS_MIN = 8;
+const norm = s => String(s || '').toLowerCase().replace(/\s+/g, '');
+const flt = { q: '', tag: null };
+const hay = p => norm([p.t, ...(p.tags || []), ...(p.blocks || []).map(b => b.text || b.caption || '')].join(' '));
+function renderTools(g) {
+  const on = g.posts.length >= TOOLS_MIN;
+  $('#gTools').hidden = !on;
+  if (!on) return;
+  const count = {};
+  g.posts.forEach(p => (p.tags || []).forEach(t => { count[t] = (count[t] || 0) + 1; }));
+  const tags = Object.keys(count).sort((a, b) => count[b] - count[a]);
+  $('#gTags').innerHTML = tags.length ? [[null, '전체'], ...tags.map(t => [t, '#' + t])].map(([v, t]) =>
+    `<button type="button" data-v="${esc(v ?? '')}" aria-pressed="${flt.tag === v}">${esc(t)}</button>`).join('') : '';
+  $$('#gTags button').forEach(b => b.onclick = () => { flt.tag = b.dataset.v || null; renderTools(g); renderSlots(g); });
+}
+$('#gQ').addEventListener('input', e => { flt.q = e.target.value; if (shown) renderSlots(shown); });
+$('#gQ').addEventListener('keydown', e => { if (e.key === 'Escape' && e.target.value) { e.stopPropagation(); e.target.value = ''; flt.q = ''; if (shown) renderSlots(shown); } });
+
+function renderSlots(g) {
+  slots.innerHTML = '';
   if (!g.posts.length) {
     const p = el('p', 'save-empty'); p.textContent = '아직 이 게임의 기록이 없어요.';
-    slots.appendChild(p);
+    slots.appendChild(p); return;
   }
-  g.posts.forEach((p, i) => {
+  const q = norm(flt.q);
+  const list = g.posts.filter(p => (!flt.tag || (p.tags || []).includes(flt.tag)) && (!q || hay(p).includes(q)));
+  if (!list.length) {
+    const p = el('p', 'save-empty'); p.textContent = q ? `‘${flt.q.trim()}’가 들어간 기록이 없어요.` : '이 태그의 기록이 없어요.';
+    slots.appendChild(p); return;
+  }
+  list.forEach((p, i) => {
     const b = el('button', 'save');
     const bar = el('div', 'bar'); bar.style.background = g.color;
     const th = el('div', 'thumb');
     th.style.background = p.cover ? `url("${p.cover}") center/cover` : g.art;
     b.appendChild(el('div', 'tex'));
     const mid = el('div', 'mid');
-    const n = el('div', 'n'); n.textContent = 'SAVE ' + String(g.posts.length - i).padStart(2, '0');
+    /* 걸러 봐도 SAVE 번호는 원래 순서 그대로 */
+    const n = el('div', 'n'); n.textContent = 'SAVE ' + String(g.posts.length - g.posts.indexOf(p)).padStart(2, '0');
     const t = el('div', 't'); t.textContent = p.t;
     const m = el('div', 'm');
     /* 읽는 시간은 3분 이상일 때만 — 짧은 글마다 같은 말이 반복되지 않게 */
@@ -45,6 +62,21 @@ export function renderGame(id) {
     b.onclick = () => openReader(p);
     slots.appendChild(b);
   });
+}
+
+export function renderGame(id) {
+  const g = BY_ID.get(id);
+  if (!g) { location.replace('#/library'); return; }
+  shown = g;
+  const skin = skinOf(g);
+  $('#game').dataset.skin = skin;
+  $('#reader').dataset.skin = skin;
+  $('#libName').textContent = g.name;
+  $('#libN').textContent = g.posts.length + ' SAVES';
+  $('#libCart').innerHTML = skin === 'base' ? cart(g, 40) : '';
+  slots.classList.remove('boot');
+  if (shown !== g || !$('#game').classList.contains('on')) { flt.q = ''; flt.tag = null; $('#gQ').value = ''; }
+  renderTools(g); renderSlots(g);
   showScreen('game', { ctx: g.name.toUpperCase(), skin });
   /* 들어오는 연출이 끝나면 boot 를 떼어 낸다 — 마우스를 뗄 때 연출이 다시 돌지 않게 */
   clearTimeout(bootTimer);
