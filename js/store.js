@@ -17,7 +17,9 @@ try {
 export const GAMES = site.games;
 GAMES.forEach(g => g.posts.forEach(p => { p.game = g; }));
 export const BY_ID = new Map(GAMES.map(g => [g.id, g]));
-export const POSTS = GAMES.flatMap(g => g.posts).sort((a, b) => b.d.localeCompare(a.d));
+/* 최신순 : 날짜, 같은 날이면 시각(at = 'YYYY.MM.DD HH:MM') */
+const at = p => p.at || p.d;
+export const POSTS = GAMES.flatMap(g => g.posts).sort((a, b) => at(b).localeCompare(at(a)));
 export const MUSIC = site.music || [];
 export const GUEST = site.guestbook || [];          // 방명록 서버가 없을 때(로컬) 보여 줄 샘플
 export const GUEST_API = site.guestbookApi || '';    // Apps Script 웹앱 주소 — 있으면 방명록이 실시간으로 읽고 쓴다
@@ -27,9 +29,10 @@ export const NEWS_MAX = site.newsMax || 50;
 export const PROFILE = site.profile || {};
 
 export const lastDate = g => (g.posts[0] ? g.posts[0].d : '');
-/* 최근 꺼낸 게임 = 기록이 있는 게임을 마지막 기록 날짜순으로 */
+export const lastAt = g => (g.posts[0] ? at(g.posts[0]) : '');
+/* 최근 꺼낸 게임 = 기록이 있는 게임을 마지막 기록 순으로 (날짜 → 시각) */
 export const RECENT = GAMES.filter(g => g.posts.length)
-  .sort((a, b) => lastDate(b).localeCompare(lastDate(a)));
+  .sort((a, b) => lastAt(b).localeCompare(lastAt(a)));
 export const REVIEWED = GAMES.filter(g => g.review);
 
 /* 날짜마다 하나씩 도는 선택 — 모든 방문자에게 같은 결과 */

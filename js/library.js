@@ -1,6 +1,6 @@
 /* 라이브러리 : 최근 꺼낸 게임(카트리지 선반) + 전체 라이브러리(케이스) + 펼친 케이스 */
 import { $, $$, h, esc, stars, cart, artStyle, darken, reduced, CART_SVG, md } from './util.js';
-import { GAMES, RECENT, MUSIC, lastDate } from './store.js';
+import { GAMES, RECENT, MUSIC, lastDate, lastAt } from './store.js';
 import { openOverlay, closeOverlay } from './shell.js';
 import { startInsert } from './insert.js';
 import { openReader } from './game.js';
@@ -75,7 +75,7 @@ const state = { filter: 'all', sort: 'recent', all: false, q: '' };
 export const norm = s => String(s || '').toLowerCase().replace(/\s+/g, '');
 const matches = (g, q) => !q || [g.name, ...(g.aliases || [])].some(x => norm(x).includes(q));
 const PAGE = 12;
-const recency = g => lastDate(g) || (g.review && g.review.year ? String(g.review.year) : '');
+const recency = g => lastAt(g) || (g.review && g.review.year ? String(g.review.year) : '');
 const SORTS = {
   recent: (a, b) => recency(b).localeCompare(recency(a)),
   rating: (a, b) => (b.review ? b.review.rating : -1) - (a.review ? a.review.rating : -1),

@@ -1,6 +1,7 @@
 ---
 title: "친구들과 함께 플레이해보았습니다."
 date: 2026-10-04
+time: 21:14
 tags: ["하이라이트", "멀티 플레이", "추천"]
 cover: ./01.png
 spoiler: true

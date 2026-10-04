@@ -498,6 +498,8 @@ def build():
                 'id': f'{g["id"]}/{md.parent.name}',
                 't': meta.get('title', md.parent.name),
                 'd': str(meta.get('date', '')).replace('-', '.'),
+                # 같은 날 쓴 기록끼리 순서 : front matter 의 time(HH:MM, 에디터가 처음 저장할 때 넣는다). 없으면 그날 00:00
+                'at': str(meta.get('date', '')).replace('-', '.') + ' ' + (str(meta.get('time') or '').strip() or '00:00'),
                 'min': reading_min(blocks),
                 'tags': meta.get('tags') or [],
                 'cover': resolve(cover, folder_url, md) if cover else None,
@@ -509,7 +511,7 @@ def build():
                 'draft': bool(meta.get('draft', False)),
             })
         posts = [p for p in posts if not p.pop('draft')]
-        posts.sort(key=lambda p: p['d'], reverse=True)          # 최신 글이 위
+        posts.sort(key=lambda p: p['at'], reverse=True)         # 최신 기록이 위 (날짜 → 시각)
         img = g.get('art')
         games.append({'id': g['id'], 'name': g['name'], 'aliases': g.get('aliases') or [],
                       'skin': g.get('skin', 'base'),

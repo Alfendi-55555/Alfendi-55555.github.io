@@ -8,6 +8,7 @@
 이 폴더(tools/)는 사이트로 배포되지 않는다.
 """
 import contextlib, io, json, mimetypes, re, shutil, subprocess, sys, threading, uuid, webbrowser
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs, unquote
@@ -56,8 +57,8 @@ def list_posts():
         out.append({'path': md.parent.relative_to(ROOT).as_posix(), 'game': md.parent.parent.name,
                     'gameName': names.get(md.parent.parent.name, md.parent.parent.name),
                     'title': str(meta.get('title', md.parent.name)), 'date': str(meta.get('date', '')),
-                    'draft': bool(meta.get('draft'))})
-    out.sort(key=lambda p: p['date'], reverse=True)
+                    'draft': bool(meta.get('draft')), 'time': str(meta.get('time') or '')})
+    out.sort(key=lambda p: (p['date'], p['time']), reverse=True)
     return out, [t for t, _ in sorted(tags.items(), key=lambda x: -x[1])]
 
 
@@ -134,6 +135,9 @@ def save(data):
     try:
         body = MD_IMG.sub(take, md).strip() + '\n'
         fm = {'title': meta['title'].strip(), 'date': date}
+        # 같은 날 기록끼리 순서를 정하는 시각 — 처음 저장할 때 지금 시각, 고칠 때는 원래 시각 그대로
+        old_meta = quiet(build.read_post, old / 'index.md')[0] if old and (old / 'index.md').exists() else None
+        fm['time'] = str((old_meta or {}).get('time') or '').strip() or datetime.now().strftime('%H:%M')
         tags = [t.strip() for t in meta.get('tags') or [] if t.strip()]
         if tags: fm['tags'] = tags
         cover = data.get('cover')
@@ -143,7 +147,7 @@ def save(data):
         sp = meta.get('spoiler')
         if sp is True or (isinstance(sp, str) and sp.strip()): fm['spoiler'] = sp if sp is True else sp.strip()
         if meta.get('draft'): fm['draft'] = True
-        lines = ['---'] + [f'{k}: ' + (v if k in ('date', 'cover') else fm_value(v)) for k, v in fm.items()] + ['---', '']
+        lines = ['---'] + [f'{k}: ' + (v if k in ('date', 'time', 'cover') else fm_value(v)) for k, v in fm.items()] + ['---', '']
         (stage / 'index.md').write_text('\n'.join(lines) + body, encoding='utf-8', newline='\n')
         if old and old.exists():
             shutil.rmtree(old)
