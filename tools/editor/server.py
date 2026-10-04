@@ -313,7 +313,9 @@ def status():
 def publish(message):
     if not status()['changes']:
         raise ValueError('올릴 변경이 없어요.')
-    steps = [('add', '-A', '--', *MANAGED), ('commit', '-m', message or '기록 업데이트', '--', *MANAGED), ('push',)]
+    # GitHub 웹에서 README 등을 고쳐 두었어도 올라가게 — 올리기 전에 받아 와서 위에 얹는다
+    steps = [('add', '-A', '--', *MANAGED), ('commit', '-m', message or '기록 업데이트', '--', *MANAGED),
+             ('pull', '--rebase', '--autostash'), ('push',)]
     log = []
     for s in steps:
         code, out = git(*s)
