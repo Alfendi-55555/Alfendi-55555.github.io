@@ -10,7 +10,7 @@ const listeners = new Set();
 export const settings = {
   get auto() { return get(K.auto, '0') === '1'; },
   set auto(v) { put(K.auto, v ? '1' : '0'); listeners.forEach(f => f()); },
-  get intro() { return get(K.intro, 'always'); },     /* always(기본) · once · off */
+  get intro() { return get(K.intro, 'once'); },     /* always · once(기본) · off */
   set intro(v) { put(K.intro, v); listeners.forEach(f => f()); },
   get theme() { return get(K.theme, 'system'); },     /* system(기본) · light · dark */
   set theme(v) { put(K.theme, v); applyTheme(); listeners.forEach(f => f()); },

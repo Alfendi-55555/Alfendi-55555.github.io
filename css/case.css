@@ -28,7 +28,7 @@
 .sticker b{font-family:var(--font-display);font-weight:700;font-size:14px;line-height:1}
 .sticker span{font-size:7px;letter-spacing:1px;line-height:1.4}
 /* 별점만큼 채우고 나머지는 흐리게 (3.5 → 별 3개 반) */
-.sticker .st{background:linear-gradient(90deg,#1A1208 var(--p),rgba(26,18,8,.25) var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sticker .st{background:linear-gradient(90deg,#1A1208 var(--p),rgba(255,255,255,.5) var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
 .case .gloss{position:absolute;inset:0;border-radius:11px;pointer-events:none;
   background:linear-gradient(115deg,rgba(255,255,255,.34) 0%,rgba(255,255,255,.08) 30%,rgba(255,255,255,0) 42%)}
 .case-meta{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;
