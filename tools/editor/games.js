@@ -88,7 +88,10 @@ const slug = s => s.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').
 function setColor(c) { $('#gColor').value = c.toUpperCase(); if (/^#[0-9a-f]{6}$/i.test(c)) $('#gColorPick').value = c; }
 $('#gColorPick').addEventListener('input', e => { $('#gColor').value = e.target.value.toUpperCase(); gChanged(); });
 $('#gColor').addEventListener('input', e => { if (/^#[0-9a-f]{6}$/i.test(e.target.value)) $('#gColorPick').value = e.target.value; gChanged(); });
-$('#gName').addEventListener('input', () => { if (G && !G.idTouched && !G.orig) $('#gId').value = slug($('#gName').value); gChanged(); });
+/* id 는 영문이어야 해서 — 이름이 한국어면 다른 이름 중 영문(보통 맨 앞의 영문 제목)에서 만든다 */
+const idSource = () => [$('#gName').value, ...(G ? G.aliases : [])].find(x => /[a-z0-9]/i.test(x)) || '';
+function autoId() { if (G && !G.idTouched && !G.orig) $('#gId').value = slug(idSource()); }
+$('#gName').addEventListener('input', () => { autoId(); gChanged(); });
 $('#gId').addEventListener('input', () => { if (G) G.idTouched = true; gChanged(); });
 ['#gRelease', '#gGenre', '#gSkin'].forEach(s => $(s).addEventListener('input', gChanged));
 $('#gSteam').addEventListener('change', e => {        // 상점 주소를 붙여 넣으면 앱 번호만
@@ -121,7 +124,7 @@ function fillChips() {
 function chipInput(input, key) {
   input.addEventListener('keydown', e => {
     const v = input.value.trim();
-    if ((e.key === 'Enter' || (e.key === ',' && key === 'aliases')) && v) { e.preventDefault(); if (!G[key].includes(v)) G[key].push(v); input.value = ''; fillChips(); gChanged(); }
+    if ((e.key === 'Enter' || (e.key === ',' && key === 'aliases')) && v) { e.preventDefault(); if (!G[key].includes(v)) G[key].push(v); input.value = ''; fillChips(); autoId(); gChanged(); }
     else if (e.key === 'Backspace' && !input.value && G[key].length) { G[key].pop(); fillChips(); gChanged(); }
   });
 }
@@ -179,7 +182,8 @@ async function saveGame() {
   if (!G) return;
   const d = draft();
   if (!d.name) { $('#gName').focus(); return say('게임 이름을 적어 주세요.', 'err'); }
-  if (!d.id) d.id = slug(d.name);
+  if (!d.id) d.id = slug(idSource());
+  if (!d.id) { $('#gId').focus(); return say('id를 영문으로 적어 주세요. (다른 이름에 영문 제목을 넣으면 자동으로 만들어져요)', 'err'); }
   try {
     const r = await api('/api/game/save', { orig: G.orig, game: d, art: G.art });
     gDirty = false;
