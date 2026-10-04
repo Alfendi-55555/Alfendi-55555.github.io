@@ -113,7 +113,7 @@
       "괴혼"
     ],
     "color": "#5CFF85",
-    "release": "2025-10-24",
+    "release": "2025-10-23",
     "genre": "액션 퍼즐",
     "platforms": [
       "Windows",
@@ -273,13 +273,13 @@
   },
   {
     "id": "splatoon-2",
-    "name": "스플래툰 2",
+    "name": "Splatoon 2",
     "aliases": [
-      "Splatoon 2",
-      "스플래툰2"
+      "스플래툰2",
+      "스플래툰 2"
     ],
     "color": "#E83E8C",
-    "release": "2017-12-01",
+    "release": "2019-05-02",
     "genre": "3인칭 슈팅",
     "platforms": [
       "Nintendo Switch"
@@ -595,12 +595,13 @@
   },
   {
     "id": "we-love-katamari-reroll",
-    "name": "아바마마와 돌아온 데굴데굴쫀득쫀득 괴혼",
+    "name": "아바마마와 돌아온 데굴데굴~ 쫀득쫀득~ 괴혼",
     "aliases": [
-      "We Love Katamari REROLL+ Royal Reverie"
+      "We Love Katamari REROLL+ Royal Reverie",
+      "아바마마와 돌아온 데굴데굴쫀득쫀득 괴혼"
     ],
     "color": "#E85B9C",
-    "release": "2023-06-02",
+    "release": "2023-06-01",
     "genre": "액션 퍼즐",
     "platforms": [
       "Nintendo Switch",
@@ -614,12 +615,13 @@
   },
   {
     "id": "katamari-damacy-reroll",
-    "name": "괴혼 굴려라 돌아온 왕자님",
+    "name": "괴혼 ~굴려라 돌아온 왕자님~",
     "aliases": [
-      "Katamari Damacy REROLL"
+      "Katamari Damacy REROLL",
+      "괴혼 굴려라 돌아온 왕자님"
     ],
     "color": "#F2A33A",
-    "release": "2018-12-07",
+    "release": "2021-01-21",
     "genre": "액션 퍼즐",
     "platforms": [
       "Nintendo Switch",
@@ -749,7 +751,7 @@
       "테트리스 99"
     ],
     "color": "#3B4FB8",
-    "release": "2019-02-13",
+    "release": "2019-04-23",
     "genre": "배틀로얄 퍼즐",
     "platforms": [
       "Nintendo Switch"
@@ -769,5 +771,20 @@
       "Nintendo Switch"
     ],
     "art": "assets/games/super-kirby-clash/art.jpg"
+  },
+  {
+    "id": "yo-kai-watch",
+    "name": "요괴워치",
+    "aliases": [
+      "Yo-kai Watch",
+      "요괴 워치"
+    ],
+    "color": "#E5452E",
+    "release": "2015-11-26",
+    "genre": "RPG",
+    "platforms": [
+      "Nintendo 3DS",
+      "Nintendo Switch"
+    ]
   }
 ]
