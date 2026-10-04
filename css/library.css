@@ -26,6 +26,7 @@
 .save:focus-visible{outline:3px solid var(--focus,var(--sky));outline-offset:4px}
 /* 게임별 기록 찾기 · 태그 — 테마의 글자색(currentColor)에서 색을 뽑아 모든 테마에 그대로 어울리게 */
 .g-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 18px}
+.g-tools[hidden]{display:none}
 .g-q{display:flex;align-items:center;gap:8px;flex:0 1 320px;min-width:200px;height:40px;padding:0 14px;border-radius:12px;
   border:1.5px solid color-mix(in srgb,currentColor 30%,transparent);background:color-mix(in srgb,currentColor 5%,transparent)}
 .g-q svg{flex-shrink:0;opacity:.6}
