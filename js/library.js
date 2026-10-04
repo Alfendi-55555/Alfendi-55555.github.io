@@ -61,7 +61,7 @@ export function caseHTML(g) {
     <div class="band"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
     <div class="cover${g.img ? ' img' : ''}" style="${artStyle(g, true)}">
       ${n ? `<span class="saves">${CART_SVG}${n} SAVES</span>` : ''}
-      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
+      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <span class="title">${esc(g.name)}</span>
     </div>
     <span class="gloss"></span>
@@ -145,7 +145,7 @@ export function openCase(g, opener) {
   if (n) stats.push(['SAVES', n + '편'], ['LAST SAVE', lastDate(g)]);
   const left = `<div class="co-left">
     <div class="co-cover${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
-      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
+      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <div class="cap"><h2 id="caseName">${esc(g.name)}</h2>${info(g)}</div>
     </div>
     <div class="co-body">
@@ -177,7 +177,7 @@ export function openCase(g, opener) {
   const front = `<div class="co-front shell" aria-hidden="true"><span class="ridge"></span>
     <div class="fband"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
     <div class="fcov${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
-      ${n ? `<span class="saves">${n} SAVES</span>` : ''}${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
+      ${n ? `<span class="saves">${n} SAVES</span>` : ''}${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <b>${esc(g.name)}</b></div><span class="gloss"></span></div>`;
   open.innerHTML = `<div class="co-flip"><div class="co-in shell">${left}</div>${front}</div>`
     + `<div class="co-tray shell"><div class="co-hinge" aria-hidden="true"><i></i><i></i><i></i><i></i></div>${right}</div>`;

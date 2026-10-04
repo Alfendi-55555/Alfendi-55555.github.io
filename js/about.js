@@ -93,7 +93,7 @@ const style = (P.likes && P.likes.length) || (P.dislikes && P.dislikes.length) ?
 
 /* ---------- 별점 분포 · 태그 ---------- */
 const bucket = [0, 0, 0, 0, 0];
-REVIEWED.forEach(g => bucket[Math.min(4, Math.max(0, Math.round(g.review.rating) - 1))]++);
+REVIEWED.forEach(g => bucket[Math.min(4, Math.max(0, Math.floor(g.review.rating) - 1))]++);
 const bmax = Math.max(1, ...bucket);
 const hi = REVIEWED.filter(g => g.review.rating >= 4).length;
 const tagCount = {};
