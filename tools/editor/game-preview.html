@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>케이스 미리보기</title>
+<style>
+  /* 라이브러리의 케이스 카드와 펼친 케이스를 사이트 CSS 그대로 보여 준다 */
+  html,body{margin:0}
+  body{padding:24px;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  .pv-h{font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#7A8794}
+  .pv-card{width:190px} .pv-card .case-card{width:100%}
+  .case-open{width:min(960px,calc(100vw - 48px))!important;min-height:520px}
+  .pv-empty{font:14px/1.6 'IBM Plex Sans KR',sans-serif;color:#7A8794}
+</style>
+</head>
+<body>
+<p class="pv-empty" id="empty">왼쪽에서 게임을 고르거나 새 게임을 만들면 여기에 보여요.</p>
+<span class="pv-h" hidden>LIBRARY · 케이스</span>
+<div class="pv-card" id="card"></div>
+<span class="pv-h" hidden>펼친 케이스</span>
+<div class="case-open" id="caseOpen" hidden></div>
+<script type="module">
+/* 사이트 js/library.js 의 caseHTML · openCase 와 같은 마크업 (바꾸면 같이 바꿀 것) */
+import { esc, cart, artStyle, darken, stars, md, CART_SVG } from '/site/js/util.js';
+const $ = s => document.querySelector(s);
+const HOLE = '<svg width="30" height="36" viewBox="0 0 11 13" fill="none" aria-hidden="true"><path d="M1 1.6C1 1.27 1.27 1 1.6 1h7.8c.33 0 .6.27.6.6v8.2c0 .2-.1.38-.26.49l-1.6 1.06a.6.6 0 0 1-.33.1H1.6a.6.6 0 0 1-.6-.6V1.6Z" stroke="currentColor" stroke-width=".8" stroke-linejoin="round"/></svg>';
+let styled = false;
+function addStyles(list) {
+  if (styled || !list.length) return; styled = true;
+  list.forEach(h => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = h; document.head.appendChild(l); });
+}
+const lastDate = g => (g.posts[0] ? g.posts[0].d : '');
+const info = g => {
+  const top = [g.release, g.genre].filter(Boolean).join(' · ');
+  return (top ? `<span class="co-meta">${esc(top)}</span>` : '')
+    + (g.platforms && g.platforms.length ? `<span class="co-plat">${g.platforms.map(esc).join(' · ')}</span>` : '');
+};
+function caseHTML(g) {
+  const r = g.review, n = g.posts.length;
+  const metaL = n ? lastDate(g).slice(0, 4) : (r && r.year ? r.year : '');
+  const metaR = n ? '기록 ' + n : (r && r.hours ? r.hours + 'H' : '');
+  return `<button type="button" class="case-card ch" tabindex="-1">
+  <div class="case"><span class="hinge"></span>
+    <div class="band"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
+    <div class="cover${g.img ? ' img' : ''}" style="${artStyle(g, true)}">
+      ${n ? `<span class="saves">${CART_SVG}${n} SAVES</span>` : ''}
+      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
+      <span class="title">${esc(g.name)}</span>
+    </div><span class="gloss"></span>
+  </div>
+  <span class="case-meta"><span>${esc(metaL)}</span><span>${esc(metaR)}</span></span></button>`;
+}
+function openHTML(g, songs) {
+  const r = g.review, n = g.posts.length;
+  const stats = [];
+  if (r && r.year) stats.push(['PLAYED', r.year]);
+  if (r && r.hours) stats.push(['TIME', r.hours + 'H']);
+  if (n) stats.push(['SAVES', n + '편'], ['LAST SAVE', lastDate(g)]);
+  const left = `<div class="co-left">
+    <div class="co-cover${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
+      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span>★★★★★</span></span>` : ''}
+      <div class="cap"><h2>${esc(g.name)}</h2>${info(g)}</div>
+    </div>
+    <div class="co-body">
+      ${stats.length || r ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
+        ${r ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
+      ${r ? `<div class="co-review"><span class="sys">ONE-LINE REVIEW</span><p>${esc(r.text)}</p></div>`
+          : '<div class="co-empty"><span class="sys">ONE-LINE REVIEW</span><span>아직 한줄 리뷰가 없어요</span></div>'}
+    </div></div>`;
+  const posts = g.posts.slice(0, 3);
+  const seat = n
+    ? `<div class="seat"><button type="button" class="lift" tabindex="-1">${cart(g, 150)}</button></div><p class="seat-hint">카트리지를 누르면 꽂혀서 이 게임의 기록을 모두 볼 수 있어요.</p>`
+    : `<div class="seat"><div class="hole">${HOLE}</div></div><p class="seat-hint">기록을 남기면 이곳에 카트리지가 생겨요.</p>`;
+  const right = `<div class="co-right"><div class="seat-row">
+    <div class="seat-col">${seat}
+      ${songs ? `<button type="button" class="co-music" tabindex="-1"><span class="sys">MUSIC</span><b>추천곡 ${songs}곡</b><span class="go">음악에서 보기 →</span></button>` : ''}</div>
+    <div class="co-saves"><span class="sys">SAVES</span>
+      ${n ? posts.map(p => `<button type="button" class="co-post" tabindex="-1"><span>${esc(p.t)}</span><span>${md(p.d)}</span></button>`).join('')
+          : `<div class="co-saves-empty"><b>아직 기록이 없어요</b><span>${r ? '이 게임은 한줄 리뷰만 남겨 두었어요.' : '기록을 준비하고 있어요.'}</span></div>`}
+      ${n > 3 ? `<span class="co-more">외 ${n - 3}편 더 — 카트리지를 꽂으면 모두 보여요</span>` : ''}
+    </div></div></div>`;
+  return `<div class="co-flip"><div class="co-in shell">${left}</div></div>`
+    + `<div class="co-tray shell"><div class="co-hinge" aria-hidden="true"><i></i><i></i><i></i><i></i></div>${right}</div>`;
+}
+function render(d) {
+  addStyles(d.styles || []);
+  if (!d.game) return;
+  const g = { ...d.game, release: (d.game.release || '').replace(/-/g, '.'), review: d.live.review || null, posts: d.live.posts || [] };
+  $('#empty').hidden = true;
+  document.querySelectorAll('.pv-h').forEach(h => { h.hidden = false; });
+  $('#card').innerHTML = caseHTML(g);
+  const o = $('#caseOpen'); o.hidden = false; o.innerHTML = openHTML(g, d.live.songs || 0);
+}
+addEventListener('message', e => { if (e.origin === location.origin && e.data && e.data.type === 'render') render(e.data); });
+parent.postMessage({ type: 'gpv-ready' }, location.origin);
+</script>
+</body>
+</html>

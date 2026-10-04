@@ -273,7 +273,7 @@ ed.addEventListener('drop', e => {
 /* 단축키 */
 addEventListener('keydown', e => {
   const k = e.key.toLowerCase(), mod = e.ctrlKey || e.metaKey;
-  if (mod && k === 's') { e.preventDefault(); save(); return; }
+  if (mod && k === 's') { e.preventDefault(); (document.body.dataset.mode === 'games' ? window.saveGame : save)(); return; }
   if (!ed.contains(e.target) || e.target.closest('input')) return;
   if (mod && k === 'k') { e.preventDefault(); cmd('link'); }
   else if (mod && e.shiftKey && k === 'x') { e.preventDefault(); cmd('strike'); }
@@ -488,6 +488,6 @@ async function refresh() {
     if (saved && saved.html && await ask('이어서 쓸까요?', `<p>저장하지 않고 닫은 내용이 있어요${saved.title ? ` (「${esc(saved.title)}」)` : ''}.</p>`, '이어서 쓰기')) {
       restore(saved); state.dirty = true; renderPreview();
     } else { try { localStorage.removeItem(DRAFT_KEY); } catch { /* 무시 */ } }
-    say('준비됐어요. 게임을 고르고 쓰기 시작하세요.');
+    say('준비됐어요.');
   } catch (e) { say('서버에 연결하지 못했어요: ' + e.message, 'err'); }
 })();

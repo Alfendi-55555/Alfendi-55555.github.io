@@ -16,7 +16,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent.resolve()
 POSTS = ROOT / 'posts'
 TMP = HERE / '.tmp'
-PORT = 8770
+PORT = int(sys.argv[sys.argv.index('--port') + 1]) if '--port' in sys.argv else 8770
 sys.path.insert(0, str(ROOT / 'scripts'))
 import build  # noqa: E402  — 변환 규칙(to_blocks · read_post · reading_min)을 같이 쓴다
 
@@ -166,13 +166,142 @@ def delete(rel):
     return {'ok': True}
 
 
+# ---------------- 게임 관리 (content/games.json + assets/games/<id>/) ----------------
+GAMES_JSON = ROOT / 'content' / 'games.json'
+CONFIG = HERE / 'config.json'           # 이 컴퓨터에만 두는 설정 (리뷰 시트 주소 등) — 저장소에 올리지 않는다
+KEY_ORDER = ['id', 'name', 'aliases', 'color', 'release', 'genre', 'platforms', 'skin', 'art', 'steam']
+
+
+def skins():
+    return sorted(f.stem for f in (ROOT / 'css' / 'skins').glob('*.css') if f.stem != 'focus')
+
+
+def games_meta():
+    gs = games()
+    counts = {d.name: len(list(d.glob('*/index.md'))) for d in POSTS.iterdir() if d.is_dir()}
+    genres = sorted({g.get('genre') for g in gs if g.get('genre')})
+    plats = []
+    for g in gs:
+        for x in g.get('platforms') or []:
+            base = re.sub(r'\s*\(.*\)$', '', x)
+            if base not in plats:
+                plats.append(base)
+    return {'games': gs, 'skins': skins(), 'posts': counts, 'genres': genres, 'platforms': plats}
+
+
+def write_games(gs):
+    ordered = [{**{k: g[k] for k in KEY_ORDER if k in g}, **{k: v for k, v in g.items() if k not in KEY_ORDER}} for g in gs]
+    GAMES_JSON.write_text(json.dumps(ordered, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
+
+
+def save_game(data):
+    g, orig, art = data.get('game') or {}, data.get('orig'), data.get('art')
+    gs = games()
+    gid = str(g.get('id', '')).strip()
+    if not re.fullmatch(r'[a-z0-9][a-z0-9-]*', gid):
+        raise ValueError('게임 id는 영문 소문자 · 숫자 · - 만 쓸 수 있어요.')
+    if not str(g.get('name', '')).strip():
+        raise ValueError('게임 이름을 적어 주세요.')
+    if not re.fullmatch(r'#[0-9A-Fa-f]{6}', str(g.get('color', ''))):
+        raise ValueError('대표 색은 #RRGGBB 형식이어야 해요.')
+    if g.get('release') and not re.fullmatch(r'\d{4}-\d{2}-\d{2}', g['release']):
+        raise ValueError('출시일 형식이 맞지 않아요.')
+    if g.get('steam') and not re.fullmatch(r'\d+', str(g['steam'])):
+        raise ValueError('Steam 앱 번호는 숫자여야 해요.')
+    if g.get('skin') and g['skin'] not in skins():
+        raise ValueError('없는 테마예요.')
+    ids = [x['id'] for x in gs]
+    if orig and orig != gid and (POSTS / orig).exists() and any((POSTS / orig).glob('*/index.md')):
+        raise ValueError('기록이 있는 게임은 id를 바꿀 수 없어요.')
+    if gid in ids and gid != orig:
+        raise ValueError('같은 id의 게임이 이미 있어요.')
+    new = {'id': gid, 'name': g['name'].strip(),
+           'aliases': [a.strip() for a in g.get('aliases') or [] if a.strip()],
+           'color': g['color'].upper()}
+    for k in ('release', 'genre'):
+        if str(g.get(k, '')).strip():
+            new[k] = str(g[k]).strip()
+    pl = [x.strip() for x in g.get('platforms') or [] if x.strip()]
+    if pl:
+        new['platforms'] = pl
+    if g.get('skin') and g['skin'] != 'base':
+        new['skin'] = g['skin']
+    if g.get('steam'):
+        new['steam'] = str(g['steam'])
+    # 게임 아트 : 새로 올린 것(.tmp) · 그대로 · 지움
+    adir = ROOT / 'assets' / 'games' / gid
+    odir = ROOT / 'assets' / 'games' / (orig or gid)
+    old_art = next((x.get('art') for x in gs if x['id'] == (orig or gid)), None)
+    if art and art.startswith('/tmp/'):
+        src = TMP / Path(art).name
+        if not src.exists():
+            raise ValueError('게임 아트 파일을 찾을 수 없어요.')
+        for d in {adir, odir}:
+            if d.exists():
+                shutil.rmtree(d)
+        adir.mkdir(parents=True)
+        dst = adir / ('art' + src.suffix.lower())
+        shutil.copy2(src, dst)
+        new['art'] = dst.relative_to(ROOT).as_posix()
+    elif art and old_art and (ROOT / old_art).exists():
+        if odir != adir:                       # id 가 바뀌면 아트 폴더도 같이 옮긴다
+            adir.mkdir(parents=True, exist_ok=True)
+            dst = adir / Path(old_art).name
+            shutil.move(str(ROOT / old_art), str(dst))
+            shutil.rmtree(odir, ignore_errors=True)
+            new['art'] = dst.relative_to(ROOT).as_posix()
+        else:
+            new['art'] = old_art
+    else:
+        for d in {adir, odir}:
+            if d.exists():
+                shutil.rmtree(d)
+    if orig and orig in ids:
+        gs[ids.index(orig)] = new
+    else:
+        gs.append(new)
+    write_games(gs)
+    return {'game': new}
+
+
+def delete_game(gid):
+    gs = games()
+    if gid not in [x['id'] for x in gs]:
+        raise ValueError('없는 게임이에요.')
+    if (POSTS / gid).exists() and any((POSTS / gid).glob('*/index.md')):
+        raise ValueError('기록이 있는 게임은 지울 수 없어요. 기록을 먼저 지워 주세요.')
+    write_games([x for x in gs if x['id'] != gid])
+    shutil.rmtree(ROOT / 'assets' / 'games' / gid, ignore_errors=True)
+    return {'ok': True}
+
+
+def load_config():
+    try:
+        return json.loads(CONFIG.read_text(encoding='utf-8'))
+    except Exception:
+        return {}
+
+
+def save_config(data):
+    c = load_config()
+    url = str(data.get('reviewSheet', '')).strip()
+    if url and not url.startswith('https://docs.google.com/'):
+        raise ValueError('구글 시트 주소(https://docs.google.com/…)를 넣어 주세요.')
+    c['reviewSheet'] = url
+    CONFIG.write_text(json.dumps(c, ensure_ascii=False, indent=2), encoding='utf-8')
+    return c
+
+
 def git(*args):
     r = subprocess.run(['git', *args], cwd=ROOT, capture_output=True, text=True, encoding='utf-8', errors='replace')
     return r.returncode, (r.stdout + r.stderr).strip()
 
 
+MANAGED = ['posts', 'content/games.json', 'assets/games']   # 에디터가 다루는 곳 — 올리기도 여기만
+
+
 def status():
-    _, out = git('status', '--porcelain', '--untracked-files=all', '--', 'posts')
+    _, out = git('status', '--porcelain', '--untracked-files=all', '--', *MANAGED)
     rows = [l for l in out.splitlines() if l.strip()]
     return {'changes': rows}
 
@@ -180,7 +309,7 @@ def status():
 def publish(message):
     if not status()['changes']:
         raise ValueError('올릴 변경이 없어요.')
-    steps = [('add', '-A', '--', 'posts'), ('commit', '-m', message or '기록 업데이트', '--', 'posts'), ('push',)]
+    steps = [('add', '-A', '--', *MANAGED), ('commit', '-m', message or '기록 업데이트', '--', *MANAGED), ('push',)]
     log = []
     for s in steps:
         code, out = git(*s)
@@ -221,13 +350,13 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path in ('/', '/index.html'):
                 return self.file(HERE / 'editor.html')
-            if path in ('/editor.js', '/editor.css', '/preview.html'):
+            if path in ('/editor.js', '/editor.css', '/preview.html', '/games.js', '/game-preview.html'):
                 return self.file(HERE / path[1:])
             if path.startswith('/tmp/'):
                 return self.file(TMP / Path(path).name)
             if path.startswith('/site/'):
                 p = (ROOT / path[len('/site/'):]).resolve()
-                if not str(p).startswith(str(ROOT.resolve())) or p.parts[len(ROOT.parts)] not in ('css', 'assets', 'posts'):
+                if not str(p).startswith(str(ROOT.resolve())) or p.parts[len(ROOT.parts)] not in ('css', 'assets', 'posts', 'js'):
                     return self.send(403, {'error': '열 수 없는 파일'})
                 return self.file(p)
             if path == '/api/meta':
@@ -236,6 +365,10 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, {'games': gs, 'posts': posts, 'tags': tags, 'styles': styles()})
             if path == '/api/post':
                 return self.send(200, load_post(parse_qs(u.query)['path'][0]))
+            if path == '/api/games':
+                return self.send(200, games_meta())
+            if path == '/api/config':
+                return self.send(200, load_config())
             if path == '/api/status':
                 return self.send(200, status())
             self.send(404, {'error': '없는 주소'})
@@ -262,6 +395,12 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, save(data))
             if path == '/api/delete':
                 return self.send(200, delete(data['path']))
+            if path == '/api/game/save':
+                return self.send(200, save_game(data))
+            if path == '/api/game/delete':
+                return self.send(200, delete_game(data['id']))
+            if path == '/api/config':
+                return self.send(200, save_config(data))
             if path == '/api/publish':
                 return self.send(200, publish(data.get('message', '')))
             self.send(404, {'error': '없는 주소'})

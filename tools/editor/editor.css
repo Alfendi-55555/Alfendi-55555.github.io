@@ -122,3 +122,57 @@ dialog h2{margin:0 0 10px;font-size:18px}
   .form{grid-template-columns:repeat(2,minmax(0,1fr))}
   .f-game,.f-date,.f-spoil,.f-slug,.f-draft{grid-column:span 1} .f-title,.f-tags,.f-spoiltext{grid-column:span 2}
 }
+
+/* ---------- 처음 화면 · 탭 ---------- */
+a.brand{text-decoration:none;color:inherit}
+.tabs{display:flex;gap:2px;padding:3px;border-radius:12px;background:#E8EEF3}
+.tabs a{padding:6px 14px;border-radius:9px;font-size:14px;font-weight:600;color:var(--soft);text-decoration:none}
+.tabs a[aria-current="page"]{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(13,22,29,.12)}
+body[data-mode="games"] .m-posts,body[data-mode="home"] .m-posts{display:none}
+.home{flex-grow:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:40px 20px}
+.home h1{margin:0;font-family:'Space Grotesk','IBM Plex Sans KR',sans-serif;font-size:32px;letter-spacing:-.02em}
+.home-cards{display:grid;grid-template-columns:repeat(2,minmax(0,320px));gap:20px}
+.home-card{display:flex;flex-direction:column;gap:10px;padding:28px;border-radius:22px;background:var(--surface);border:1px solid var(--line);
+  color:inherit;text-decoration:none;box-shadow:0 12px 24px -18px rgba(13,22,29,.4);transition:transform 160ms,box-shadow 160ms}
+.home-card:hover,.home-card:focus-visible{transform:translateY(-3px);box-shadow:0 0 0 3px var(--sky),0 16px 28px -18px rgba(13,22,29,.45)}
+.home-card b{font-size:21px}
+.home-card span{font-size:14.5px;line-height:1.7;color:var(--soft)}
+.home-note{margin:0;font-size:13px;color:var(--mut)}
+
+/* ---------- 게임 관리 ---------- */
+.g-wrap{flex-grow:1;min-height:0;display:grid;grid-template-columns:230px minmax(0,1fr)}
+.g-list{border-right:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;min-height:0}
+.g-list-hd{display:flex;gap:6px;padding:12px;border-bottom:1px solid var(--line)}
+.g-list-hd input{flex-grow:1;min-width:0;height:34px;padding:0 10px;border-radius:9px;border:1px solid var(--line)}
+.g-list-hd .btn{height:34px;padding:0 12px;font-size:13px}
+#gList{overflow:auto;padding:6px}
+.g-item{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border:0;border-radius:10px;background:transparent;text-align:left;cursor:pointer}
+.g-item:hover{background:#EEF3F7}
+.g-item[aria-current="true"]{background:#DCEBF7}
+.g-item .sw{width:12px;height:30px;border-radius:4px;flex-shrink:0}
+.g-item b{display:block;font-size:13.5px;line-height:1.3}
+.g-item span{font-size:12px;color:var(--mut)}
+.g-form{display:flex;flex-direction:column;min-height:0}
+.g-form .form{overflow:auto;flex-grow:1;align-content:start;border-bottom:0}
+.form.g .g-name{grid-column:span 4} .form.g .g-id{grid-column:span 2} .form.g .g-alias,.form.g .g-plat,.form.g .g-steam,.form.g .g-art{grid-column:span 6}
+.form.g .g-color,.form.g .g-release,.form.g .g-genre{grid-column:span 2} .form.g .g-skin{grid-column:span 3}
+.color{display:flex;gap:6px} .color input[type=color]{width:44px;height:36px;padding:2px;border-radius:9px;border:1px solid var(--line);background:#fff}
+.color input:not([type=color]){flex-grow:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.chips button{height:28px;padding:0 10px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:12.5px;font-weight:600;color:var(--soft);cursor:pointer}
+.chips button:hover{border-color:#B9C6D2}
+.chips button[aria-pressed="true"]{background:#DCEBF7;border-color:#9CC6E6;color:#155E93}
+.art-drop{height:150px;border-radius:12px;border:1.5px dashed #B6C3CF;background:#F7FAFC center/cover no-repeat;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.art-drop span{font-size:13px;color:var(--mut);background:rgba(255,255,255,.85);padding:4px 10px;border-radius:8px}
+.art-drop.has span{display:none}
+.art-drop.drag{border-color:var(--sky);box-shadow:inset 0 0 0 3px var(--sky)}
+.art-act{display:flex;gap:8px;margin-top:6px}
+.art-act .btn{height:30px;font-size:12.5px}
+.g-foot{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--line);background:var(--surface)}
+.g-sp{flex-grow:1}
+.pv-note{font-weight:500;color:#A0ABB5}
+#gpv{flex-grow:1;width:100%;border:0;background:var(--ground)}
+@media (max-width:1000px){
+  .g-wrap{grid-template-columns:1fr} .g-list{border-right:0;border-bottom:1px solid var(--line);max-height:220px}
+  .home-cards{grid-template-columns:1fr}
+}

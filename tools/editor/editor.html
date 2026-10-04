@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PLAYLOG 글쓰기</title>
+<title>PLAYLOG 에디터</title>
 <link rel="icon" type="image/svg+xml" href="/site/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,19 +12,32 @@
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="wm">PLAY<i>LOG</i></span><span class="sub">글쓰기</span></div>
-  <div class="top-btns">
+  <a class="brand" href="#/"><span class="wm">PLAY<i>LOG</i></span><span class="sub">에디터</span></a>
+  <nav class="tabs" aria-label="편집할 것">
+    <a href="#/posts" id="tabPosts">기록</a><a href="#/games" id="tabGames">게임</a>
+  </nav>
+  <div class="top-btns m-posts">
     <button type="button" class="btn ghost" id="bNew">새 기록</button>
     <button type="button" class="btn ghost" id="bList">기록 목록</button>
   </div>
   <span class="msg" id="msg" role="status" aria-live="polite"></span>
   <div class="top-btns">
-    <button type="button" class="btn" id="bSave" title="Ctrl+S">저장</button>
+    <button type="button" class="btn m-posts" id="bSave" title="Ctrl+S">저장</button>
     <button type="button" class="btn dark" id="bPublish">사이트에 올리기 <span class="badge" id="chg" hidden></span></button>
   </div>
 </header>
 
-<main class="split">
+<!-- 처음 화면 : 무엇을 편집할지 고른다 -->
+<section class="home" id="home" hidden>
+  <h1>무엇을 편집할까요?</h1>
+  <div class="home-cards">
+    <a class="home-card" href="#/posts"><b>기록 쓰기</b><span>게임별 기록을 쓰고 고치고 지워요.<br>사진 · 영상 · 스포일러까지, 사이트와 같은 모양으로 미리 봐요.</span></a>
+    <a class="home-card" href="#/games"><b>게임 관리</b><span>라이브러리에 게임을 더하거나 정보를 고쳐요.<br>출시일 · 장르 · 플랫폼 · 게임 아트 · 테마.</span></a>
+  </div>
+  <p class="home-note">한줄 리뷰와 오늘의 게임 음악은 구글 시트에서 관리해요.</p>
+</section>
+
+<main class="split" id="postsView">
   <section class="left" aria-label="기록 쓰기">
     <div class="form">
       <label class="f f-game"><span>게임</span><select id="fGame"></select></label>
@@ -78,6 +91,48 @@
   </section>
 </main>
 
+<!-- 게임 관리 -->
+<main class="split games" id="gamesView" hidden>
+  <section class="left" aria-label="게임 정보">
+    <div class="g-wrap">
+      <div class="g-list">
+        <div class="g-list-hd"><input id="gSearch" placeholder="게임 찾기" autocomplete="off"><button type="button" class="btn" id="gNew">새 게임</button></div>
+        <div id="gList"></div>
+      </div>
+      <div class="g-form" id="gForm">
+        <div class="form g">
+          <label class="f g-name"><span>게임 이름 <em>영문 · 공식 표기</em></span><input id="gName" placeholder="예: Hades" autocomplete="off"></label>
+          <label class="f g-id"><span>id <em>주소 · 기록 폴더 이름</em></span><input id="gId" placeholder="이름에서 자동" autocomplete="off" spellcheck="false"></label>
+          <div class="f g-alias"><span>다른 이름 <em>한국어 이름 · 줄임말 — 검색과 닌텐도 소식 연결에 써요</em></span>
+            <div class="tags" id="gAliases"><input id="gAlias" placeholder="입력하고 Enter" autocomplete="off"></div></div>
+          <label class="f g-color"><span>대표 색</span><span class="color"><input type="color" id="gColorPick"><input id="gColor" placeholder="#RRGGBB" spellcheck="false"></span></label>
+          <label class="f g-release"><span>출시일 <em>한국 기준</em></span><input type="date" id="gRelease"></label>
+          <label class="f g-genre"><span>장르</span><input id="gGenre" list="genreList" placeholder="예: 로그라이크 액션" autocomplete="off"><datalist id="genreList"></datalist></label>
+          <div class="f g-plat"><span>공식 플랫폼 <em>누르면 더해져요 · 직접 적어도 돼요</em></span>
+            <div class="chips" id="gPlatPick"></div>
+            <div class="tags" id="gPlats"><input id="gPlat" placeholder="예: Nintendo Switch 2 (2026.11.12 예정)" autocomplete="off"></div></div>
+          <label class="f g-skin"><span>테마</span><select id="gSkin"></select></label>
+          <label class="f g-steam"><span>Steam <em>상점 주소를 붙여 넣으면 번호만 남겨요 — 공식 공지가 소식에 들어와요</em></span><input id="gSteam" placeholder="https://store.steampowered.com/app/…" autocomplete="off"></label>
+          <div class="f g-art"><span>게임 아트 <em>케이스 표지 · 가로 사진 권장, 1000px로 줄여요</em></span>
+            <div class="art-drop" id="gArtDrop" tabindex="0" role="button" aria-label="게임 아트 고르기"><span>사진을 끌어다 놓거나 눌러서 고르세요</span></div>
+            <div class="art-act"><button type="button" class="btn ghost" id="gArtDel">아트 빼기</button></div>
+            <input type="file" id="gArtIn" accept="image/jpeg,image/png,image/webp" hidden></div>
+        </div>
+        <div class="g-foot">
+          <button type="button" class="btn ghost" id="gReview">한줄 리뷰 시트 열기 ↗</button>
+          <span class="g-sp"></span>
+          <button type="button" class="btn ghost danger" id="gDel">게임 삭제</button>
+          <button type="button" class="btn dark" id="gSave" title="Ctrl+S">게임 저장</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="right" aria-label="케이스 미리보기">
+    <div class="pv-bar"><span>라이브러리 · 케이스 미리보기</span><span class="pv-note">별점 · 리뷰 · 기록 수는 지금 사이트 기준</span></div>
+    <iframe id="gpv" src="/game-preview.html" title="케이스 미리보기"></iframe>
+  </section>
+</main>
+
 <aside class="drawer" id="drawer" hidden aria-label="기록 목록">
   <div class="dr-hd"><b>기록 목록</b><button type="button" class="btn ghost" id="drClose">닫기</button></div>
   <div class="dr-list" id="drList"></div>
@@ -89,5 +144,6 @@
 </form></dialog>
 
 <script src="/editor.js"></script>
+<script src="/games.js"></script>
 </body>
 </html>
