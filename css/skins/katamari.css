@@ -63,7 +63,7 @@
   text-shadow:3px 3px 0 #fff}
 [data-skin="katamari"] .rd .rmeta{font-family:var(--km-font);font-size:13px;color:var(--km-purple)}
 [data-skin="katamari"] .rd p,[data-skin="katamari"] .rd :is(ul,ol){font-size:16.5px;line-height:1.9;color:#3A2E4B}
-[data-skin="katamari"] .rd h2,[data-skin="katamari"] .rd h3{font-family:var(--km-font);font-weight:400;color:var(--km-pink)}
+[data-skin="katamari"] .rd h2,[data-skin="katamari"] .rd h3{font-family:var(--km-font);font-weight:400;color:#D61F5C}   /* 크림 배경에서 읽히게 분홍을 한 단계 진하게 */
 [data-skin="katamari"] .rd a{text-decoration-color:var(--km-blue);text-decoration-thickness:3px}
 [data-skin="katamari"] .rd blockquote{background:#fff;border:3px solid var(--km-ink);border-radius:22px;box-shadow:4px 4px 0 var(--km-green)}
 [data-skin="katamari"] .rd figure img,[data-skin="katamari"] .rd-yt{border-radius:24px;border:3px solid var(--km-ink);box-shadow:6px 6px 0 var(--km-yellow),6px 6px 0 3px var(--km-ink)}

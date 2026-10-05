@@ -57,6 +57,7 @@
 [data-skin="rhythm"] .rd .rmeta{font-family:var(--rh-font);font-size:13px;letter-spacing:.06em;color:var(--rh-red)}
 [data-skin="rhythm"] .rd p,[data-skin="rhythm"] .rd :is(ul,ol){font-family:'Noto Sans KR',sans-serif;font-size:16.5px;line-height:1.9;color:#2B261D}
 [data-skin="rhythm"] .rd h2,[data-skin="rhythm"] .rd h3{font-family:'Jua','Noto Sans KR',sans-serif;font-weight:400;color:var(--rh-blue)}
+[data-skin="rhythm"] .rd h2,[data-skin="rhythm"] .rd h3{color:#2B6FE0}   /* 밝은 종이에서 읽히게 */
 [data-skin="rhythm"] .rd li{font-family:'Noto Sans KR',sans-serif}
 [data-skin="rhythm"] .rd a{text-decoration-color:var(--rh-pink);text-decoration-thickness:2px}
 [data-skin="rhythm"] .rd blockquote{font-family:'Jua','Noto Sans KR',sans-serif;font-size:17px;background:#FFF4B8;border:3px solid var(--rh-ink);border-radius:18px}
