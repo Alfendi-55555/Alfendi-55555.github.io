@@ -65,7 +65,7 @@
 [data-skin="splatoon"] .rd h1{font-family:'Black Han Sans','Titan One','Noto Sans KR',sans-serif;font-weight:400;font-size:34px;
   line-height:1.25;color:#fff;text-shadow:3px 3px 0 var(--sp-ink)}
 [data-skin="splatoon"] .rd .rmeta{font-family:var(--sp-font);font-size:12px;letter-spacing:.1em;color:var(--sp-yellow)}
-[data-skin="splatoon"] .rd p{font-size:16.5px;line-height:1.9;color:#E7E3F5}
+[data-skin="splatoon"] .rd p,[data-skin="splatoon"] .rd :is(ul,ol){font-size:16.5px;line-height:1.9;color:#E7E3F5}
 [data-skin="splatoon"] .rd h2,[data-skin="splatoon"] .rd h3{font-family:'Black Han Sans','Noto Sans KR',sans-serif;font-weight:400;color:var(--sp-yellow)}
 [data-skin="splatoon"] .rd a{text-decoration-color:var(--sp-yellow);text-decoration-thickness:2px}
 [data-skin="splatoon"] .rd blockquote{background:rgba(234,255,61,.10);border:2px dashed rgba(234,255,61,.5)}

@@ -67,7 +67,7 @@
 [data-skin="robobot"] .rd h1{font-family:'Do Hyeon','Fredoka','Noto Sans KR',sans-serif;font-weight:400;font-size:36px;line-height:1.25;color:#FFC2DA;
   text-shadow:0 0 14px rgba(255,111,168,.55)}
 [data-skin="robobot"] .rd .rmeta{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--rb-cyan)}
-[data-skin="robobot"] .rd p{font-size:16.5px;line-height:1.9;color:#E4EAFF}
+[data-skin="robobot"] .rd p,[data-skin="robobot"] .rd :is(ul,ol){font-size:16.5px;line-height:1.9;color:#E4EAFF}
 [data-skin="robobot"] .rd h2,[data-skin="robobot"] .rd h3{font-family:'Do Hyeon','Noto Sans KR',sans-serif;font-weight:400;color:#FF9CC4}
 [data-skin="robobot"] .rd a{color:#fff;text-decoration-color:var(--rb-pink);text-decoration-thickness:2px}
 [data-skin="robobot"] .rd blockquote{background:rgba(10,16,70,.5);border:2px solid rgba(95,216,255,.45);border-left:6px solid var(--rb-pink)}

@@ -62,7 +62,7 @@
 [data-skin="katamari"] .rd h1{font-family:var(--km-font);font-weight:400;font-size:36px;line-height:1.25;color:var(--km-ink);
   text-shadow:3px 3px 0 #fff}
 [data-skin="katamari"] .rd .rmeta{font-family:var(--km-font);font-size:13px;color:var(--km-purple)}
-[data-skin="katamari"] .rd p{font-size:16.5px;line-height:1.9;color:#3A2E4B}
+[data-skin="katamari"] .rd p,[data-skin="katamari"] .rd :is(ul,ol){font-size:16.5px;line-height:1.9;color:#3A2E4B}
 [data-skin="katamari"] .rd h2,[data-skin="katamari"] .rd h3{font-family:var(--km-font);font-weight:400;color:var(--km-pink)}
 [data-skin="katamari"] .rd a{text-decoration-color:var(--km-blue);text-decoration-thickness:3px}
 [data-skin="katamari"] .rd blockquote{background:#fff;border:3px solid var(--km-ink);border-radius:22px;box-shadow:4px 4px 0 var(--km-green)}

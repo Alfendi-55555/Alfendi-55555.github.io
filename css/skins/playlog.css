@@ -38,7 +38,7 @@
 [data-skin="playlog"] .rd h1{font-weight:900;font-size:32px;line-height:1.28;letter-spacing:-.025em}
 [data-skin="playlog"] .rd .rmeta{font-family:var(--font-mono);font-weight:600;font-size:12px;
   letter-spacing:.2em;color:rgba(20,19,16,.62)}
-[data-skin="playlog"] .rd p{font-size:16.5px;line-height:1.9;color:rgba(20,19,16,.88)}
+[data-skin="playlog"] .rd p,[data-skin="playlog"] .rd :is(ul,ol){font-size:16.5px;line-height:1.9;color:rgba(20,19,16,.88)}
 [data-skin="playlog"] .rd figure img{outline:3px solid var(--pl-ink);outline-offset:-3px}
 [data-skin="playlog"] .rd figcaption{font-size:14px;color:rgba(20,19,16,.6)}
 [data-skin="playlog"] .rd .end{box-shadow:inset 0 3px 0 var(--pl-ink);font-family:var(--font-mono);

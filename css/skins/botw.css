@@ -64,7 +64,7 @@
 [data-skin="botw"] .hero .brk.br{border-right:1px solid var(--bw-cyan);border-bottom:1px solid var(--bw-cyan)}
 [data-skin="botw"] .rd h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:32px;line-height:1.35;color:var(--bw-cream)}
 [data-skin="botw"] .rd .rmeta{font-family:var(--bw-font);font-size:12px;letter-spacing:.18em;color:var(--bw-cyan)}
-[data-skin="botw"] .rd p{font-size:16.5px;line-height:1.95;color:rgba(237,230,211,.92)}
+[data-skin="botw"] .rd p,[data-skin="botw"] .rd :is(ul,ol){font-size:16.5px;line-height:1.95;color:rgba(237,230,211,.92)}
 [data-skin="botw"] .rd h2,[data-skin="botw"] .rd h3{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--bw-amber)}
 [data-skin="botw"] .rd a{color:var(--bw-cream);text-decoration-color:var(--bw-cyan);text-decoration-thickness:1px;text-underline-offset:4px}
 [data-skin="botw"] .rd blockquote{background:rgba(111,220,239,.06);border:1px solid rgba(111,220,239,.3);border-left:3px solid var(--bw-cyan)}

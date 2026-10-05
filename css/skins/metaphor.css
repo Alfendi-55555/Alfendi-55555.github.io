@@ -67,7 +67,7 @@
 [data-skin="metaphor"] .rd h1{font-family:var(--mf-serif);font-weight:900;font-size:34px;line-height:1.3;letter-spacing:-.01em;color:#fff;
   text-shadow:2px 2px 0 rgba(0,0,0,.6)}
 [data-skin="metaphor"] .rd .rmeta{font-family:var(--mf-display);font-weight:600;font-size:12px;letter-spacing:.2em;color:var(--mf-gold)}
-[data-skin="metaphor"] .rd p{font-size:17px;line-height:1.95;color:rgba(241,238,230,.92)}
+[data-skin="metaphor"] .rd p,[data-skin="metaphor"] .rd :is(ul,ol){font-size:17px;line-height:1.95;color:rgba(241,238,230,.92)}
 [data-skin="metaphor"] .rd h2,[data-skin="metaphor"] .rd h3{font-family:var(--mf-serif);font-weight:900;color:var(--mf-gold-2)}
 [data-skin="metaphor"] .rd a{color:#fff;text-decoration-color:var(--mf-red);text-decoration-thickness:2px}
 [data-skin="metaphor"] .rd blockquote{background:rgba(9,20,20,.5);border:0;border-left:3px solid var(--mf-gold);border-radius:0}

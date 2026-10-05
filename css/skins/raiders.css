@@ -69,7 +69,7 @@
 [data-skin="raiders"] .rd h1{font-family:'Black Han Sans','Noto Sans KR',sans-serif;font-weight:400;font-size:34px;line-height:1.25;color:#fff;
   text-shadow:2px 3px 0 var(--rd-ink)}
 [data-skin="raiders"] .rd .rmeta{font-family:var(--rd-font);font-size:12px;letter-spacing:.1em;color:var(--rd-orange)}
-[data-skin="raiders"] .rd p{font-size:16.5px;line-height:1.9;color:var(--rd-text)}
+[data-skin="raiders"] .rd p,[data-skin="raiders"] .rd :is(ul,ol){font-size:16.5px;line-height:1.9;color:var(--rd-text)}
 [data-skin="raiders"] .rd h2,[data-skin="raiders"] .rd h3{font-family:'Black Han Sans','Noto Sans KR',sans-serif;font-weight:400;color:var(--rd-gold)}
 [data-skin="raiders"] .rd a{text-decoration-color:var(--rd-teal);text-decoration-thickness:2px}
 [data-skin="raiders"] .rd blockquote{background:rgba(25,211,197,.10);border:2px dashed rgba(25,211,197,.55)}
