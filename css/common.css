@@ -2,6 +2,8 @@
 /* 한글을 단어 중간에서 끊지 않고 어절(띄어쓰기) 단위로 줄을 바꾼다 — 사이트 전체 (한글 기본값은 글자마다 끊김).
    너무 긴 한 단어(주소 등)는 넘치지 않게 그 안에서 끊는다 */
 body{word-break:keep-all;overflow-wrap:anywhere}
+/* hidden 을 준 요소는 버튼 · 칩처럼 display 를 따로 정한 것도 확실히 숨긴다 */
+[hidden]{display:none!important}
 /* 제목 · 게임 이름은 줄 길이도 고르게 */
 :is(h1,h2,h3,h4,.save .t,.post-row .t,.tr-card b,.fav-info h2,.co-cover h2,.case .title,.fcov b){text-wrap:balance}
 /* 글 읽기 본문은 줄 끝이 너무 들쭉날쭉하지 않게 고르게만 */

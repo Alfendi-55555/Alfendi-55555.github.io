@@ -77,7 +77,7 @@ function renderList() {
   $$('.chip', c).forEach(b => b.addEventListener('click', () => { tag = b.dataset.v || null; renderList(); }));
   const nq = norm(q);
   const list = rotated.filter(m => (!tag || m.tags.includes(tag))
-    && (!nq || norm([m.title, m.gameName, m.composer, ...m.tags].join(' ')).includes(nq)));
+    && (!nq || norm([m.title, m.gameName, ...(BY_ID.get(m.game)?.aliases || []), m.composer, ...m.tags].join(' ')).includes(nq)));
   $('#trackCount').textContent = list.length + ' TRACKS';
   const host = $('#tracks'); host.innerHTML = '';
   if (!list.length) host.appendChild(h(`<p class="empty-note">${nq ? `‘${esc(q.trim())}’와 맞는 곡이 없어요. 곡 제목, 게임 이름, 작곡가로 찾아보세요.` : '조건에 맞는 곡이 없어요.'}</p>`));

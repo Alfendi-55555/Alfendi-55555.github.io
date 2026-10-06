@@ -78,7 +78,7 @@ function render() {
   const nq = norm(state.q);
   const list = NEWS.filter(n => (state.scope === 'all' || n.game)
     && (!state.src || n.srcName === state.src) && (!state.game || n.game === state.game)
-    && (!nq || norm([n.t, n.sub, n.gameName, n.srcName].join(' ')).includes(nq)));
+    && (!nq || norm([n.t, n.sub, n.gameName, ...(BY_ID.get(n.game)?.aliases || []), n.srcName].join(' ')).includes(nq)));
   $('#newsCount').textContent = list.length + '건';
   const host = $('#newsList'); host.innerHTML = '';
   if (!list.length) host.appendChild(h(`<p class="empty-note">${nq ? `‘${esc(state.q.trim())}’가 들어간 소식이 없어요.` : '조건에 맞는 소식이 없어요.'}</p>`));
