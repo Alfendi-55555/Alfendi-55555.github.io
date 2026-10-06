@@ -53,7 +53,7 @@ function stopHold() { clearTimeout(holdT); cancelAnimationFrame(raf); }
 /* ---------- 케이스 ---------- */
 export function caseHTML(g) {
   const r = g.review, n = g.posts.length;
-  const label = `${g.name} — ${r ? r.rating.toFixed(1) + '점' : '리뷰 없음'}${n ? ', 기록 ' + n + '편' : ''}`;
+  const label = `${g.name} — ${r ? (r.rating != null ? r.rating.toFixed(1) + '점' : '한줄 리뷰') : '리뷰 없음'}${n ? ', 기록 ' + n + '편' : ''}`;
   const metaL = n ? lastDate(g).slice(0, 4) : (r && r.year ? r.year : '');
   const metaR = n ? '기록 ' + n : (r && r.hours ? r.hours + 'H' : '');
   return `<button type="button" class="case-card ch" data-id="${esc(g.id)}" aria-label="${esc(label)}">
@@ -61,7 +61,7 @@ export function caseHTML(g) {
     <div class="band"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
     <div class="cover${g.img ? ' img' : ''}" style="${artStyle(g, true)}">
       ${n ? `<span class="saves">${CART_SVG}${n} SAVES</span>` : ''}
-      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
+      ${r && r.rating != null ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <span class="title">${esc(g.name)}</span>
     </div>
     <span class="gloss"></span>
@@ -78,7 +78,7 @@ const PAGE = 12;
 const recency = g => lastAt(g) || (g.review && g.review.year ? String(g.review.year) : '');
 const SORTS = {
   recent: (a, b) => recency(b).localeCompare(recency(a)),
-  rating: (a, b) => (b.review ? b.review.rating : -1) - (a.review ? a.review.rating : -1),
+  rating: (a, b) => (b.review?.rating ?? -1) - (a.review?.rating ?? -1),   // 별점 없는 리뷰는 맨 뒤
   name: (a, b) => a.name.localeCompare(b.name, 'ko')
 };
 const nRec = GAMES.filter(g => g.posts.length).length;
@@ -145,12 +145,12 @@ export function openCase(g, opener) {
   if (n) stats.push(['SAVES', n + '편'], ['LAST SAVE', lastDate(g)]);
   const left = `<div class="co-left">
     <div class="co-cover${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
-      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
+      ${r && r.rating != null ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <div class="cap"><h2 id="caseName">${esc(g.name)}</h2>${info(g)}</div>
     </div>
     <div class="co-body">
-      ${stats.length || r ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
-        ${r ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
+      ${stats.length || r && r.rating != null ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
+        ${r && r.rating != null ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
       ${r ? `<div class="co-review"><span class="sys">ONE-LINE REVIEW</span><p>${esc(r.text)}</p></div>`
           : '<div class="co-empty"><span class="sys">ONE-LINE REVIEW</span><span>아직 한줄 리뷰가 없어요</span></div>'}
       ${siteLink(g)}
@@ -177,7 +177,7 @@ export function openCase(g, opener) {
   const front = `<div class="co-front shell" aria-hidden="true"><span class="ridge"></span>
     <div class="fband"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
     <div class="fcov${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
-      ${n ? `<span class="saves">${n} SAVES</span>` : ''}${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
+      ${n ? `<span class="saves">${n} SAVES</span>` : ''}${r && r.rating != null ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <b>${esc(g.name)}</b></div><span class="gloss"></span></div>`;
   open.innerHTML = `<div class="co-flip"><div class="co-in shell">${left}</div>${front}</div>`
     + `<div class="co-tray shell"><div class="co-hinge" aria-hidden="true"><i></i><i></i><i></i><i></i></div>${right}</div>`;

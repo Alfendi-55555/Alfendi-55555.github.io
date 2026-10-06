@@ -81,7 +81,7 @@ if (playing) {
 const rv = pickOfDay(REVIEWED);
 if (rv) {
   const b = h(`<button type="button" class="chan review ch"><span class="scr">
-    <span class="row-sb"><span class="lbl">ONE-LINE REVIEW</span>${stars(rv.review.rating)}</span>
+    <span class="row-sb"><span class="lbl">ONE-LINE REVIEW</span>${rv.review.rating != null ? stars(rv.review.rating) : ''}</span>
     <q>${esc(rv.review.text)}</q>
     <span class="nm">${esc(rv.name)}</span></span></button>`);
   b.addEventListener('click', () => openCase(rv, b));

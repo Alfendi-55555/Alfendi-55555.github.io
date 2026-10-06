@@ -45,7 +45,7 @@ function caseHTML(g) {
     <div class="band"><span class="wm">PLAY<i>LOG</i></span><span class="sw" style="background:${g.color}"></span></div>
     <div class="cover${g.img ? ' img' : ''}" style="${artStyle(g, true)}">
       ${n ? `<span class="saves">${CART_SVG}${n} SAVES</span>` : ''}
-      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
+      ${r && r.rating != null ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <span class="title">${esc(g.name)}</span>
     </div><span class="gloss"></span>
   </div>
@@ -59,12 +59,12 @@ function openHTML(g, songs) {
   if (n) stats.push(['SAVES', n + '편'], ['LAST SAVE', lastDate(g)]);
   const left = `<div class="co-left">
     <div class="co-cover${g.img ? ' img' : ''}" style="${g.img ? artStyle(g) : 'background:' + darken(g.color)}">
-      ${r ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
+      ${r && r.rating != null ? `<span class="sticker"><b>${r.rating.toFixed(1)}</b><span class="st" style="--p:${r.rating * 20}%" aria-hidden="true">★★★★★</span></span>` : ''}
       <div class="cap"><h2>${esc(g.name)}</h2>${info(g)}</div>
     </div>
     <div class="co-body">
-      ${stats.length || r ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
-        ${r ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
+      ${stats.length || r && r.rating != null ? `<div class="co-stats">${stats.map(([k, v]) => `<div><span class="sys">${k}</span><b>${esc(v)}</b></div>`).join('')}
+        ${r && r.rating != null ? `<div><span class="sys">RATING</span><span style="padding-top:4px">${stars(r.rating, 16)}</span></div>` : ''}</div>` : ''}
       ${r ? `<div class="co-review"><span class="sys">ONE-LINE REVIEW</span><p>${esc(r.text)}</p></div>`
           : '<div class="co-empty"><span class="sys">ONE-LINE REVIEW</span><span>아직 한줄 리뷰가 없어요</span></div>'}
       ${g.site ? `<a class="co-site" href="${esc(g.site)}" target="_blank" rel="noopener">${/github\.com/.test(g.site) ? 'GitHub 저장소에서 보기' : '공식 사이트에서 더 보기'}<span aria-hidden="true">↗</span></a>` : ''}

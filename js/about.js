@@ -1,10 +1,10 @@
 /* 소개 : 랜딩 페이지처럼. 글은 content/profile.json, 숫자는 실제 기록에서 계산 */
 import { $, $$, h, esc, cart, artStyle, darken, reduced } from './util.js';
-import { GAMES, POSTS, RECENT, REVIEWED, PROFILE, BY_ID } from './store.js';
+import { GAMES, POSTS, RECENT, REVIEWED, RATED, PROFILE, BY_ID } from './store.js';
 import { openCase } from './library.js';
 
 const P = PROFILE;
-const avg = REVIEWED.length ? REVIEWED.reduce((n, g) => n + g.review.rating, 0) / REVIEWED.length : 0;
+const avg = RATED.length ? RATED.reduce((n, g) => n + g.review.rating, 0) / RATED.length : 0;
 const hours = REVIEWED.reduce((n, g) => n + (g.review.hours || 0), 0);
 const d = ms => `style="animation-delay:${ms}ms"`;
 /* 칸 제목 : 작은 영문 표시 + 굵고 큰 한글 제목 (캐치프레이즈보다 한 단계 작게) */
@@ -95,16 +95,16 @@ const style = (P.likes && P.likes.length) || (P.dislikes && P.dislikes.length) ?
 
 /* ---------- 별점 분포 · 태그 ---------- */
 const bucket = [0, 0, 0, 0, 0];
-REVIEWED.forEach(g => bucket[Math.min(4, Math.max(0, Math.floor(g.review.rating) - 1))]++);
+RATED.forEach(g => bucket[Math.min(4, Math.max(0, Math.floor(g.review.rating) - 1))]++);
 const bmax = Math.max(1, ...bucket);
-const hi = REVIEWED.filter(g => g.review.rating >= 4).length;
+const hi = RATED.filter(g => g.review.rating >= 4).length;
 const tagCount = {};
 POSTS.forEach(p => p.tags.forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
 const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 12);
 const rating = `<section class="ab-sec">${sec('STATS', '기록 현황')}${stats}<div class="two-col wide" style="margin-top:24px">
   <div><h3 class="sub-h">별점을 이렇게 줍니다</h3>${bez(`<div class="dist2">${[4, 3, 2, 1, 0].map((i, k) =>
     `<div class="row"><span>${i + 1}★</span><span class="tr"><i class="grow" style="width:${bucket[i] / bmax * 100}%;animation-delay:${200 + k * 90}ms"></i></span><span>${bucket[i]}</span></div>`).join('')}</div>
-    ${REVIEWED.length ? `<p class="dist-note">${REVIEWED.length}개 리뷰 중 4점 이상이 ${hi}개${hi / REVIEWED.length >= 0.6 ? '. 후한 편이에요.' : hi / REVIEWED.length <= 0.3 ? '. 짠 편이에요.' : '.'}</p>` : ''}`)}</div>
+    ${RATED.length ? `<p class="dist-note">${RATED.length}개 리뷰 중 4점 이상이 ${hi}개${hi / RATED.length >= 0.6 ? '. 후한 편이에요.' : hi / RATED.length <= 0.3 ? '. 짠 편이에요.' : '.'}</p>` : ''}`)}</div>
   <div><h3 class="sub-h">자주 쓰는 태그</h3>${bez(`<div class="tagcloud">${tags.map(([t, n]) => `<span>#${esc(t)}${n > 1 ? `<i>${n}</i>` : ''}</span>`).join('')}</div>`)}</div>
 </div></section>`;
 

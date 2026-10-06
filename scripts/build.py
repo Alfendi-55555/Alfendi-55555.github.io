@@ -350,11 +350,12 @@ def apply_reviews(games):
         if gid in seen:
             errors.append(f'{where}: {by_id[gid]["name"]} 리뷰가 시트에 두 번 있습니다')
             continue
+        # 별점은 비워 둘 수 있다 (PLAYLOG 처럼 별점이 어울리지 않는 것) — 그러면 한줄 리뷰만 보인다
         try:
-            rating = float(r['별점'])
+            rating = float(r['별점']) if r.get('별점', '').strip() else None
         except ValueError:
             rating = -1
-        if not (0.5 <= rating <= 5 and rating * 2 == int(rating * 2)):
+        if rating is not None and not (0.5 <= rating <= 5 and rating * 2 == int(rating * 2)):
             errors.append(f'{where}: 별점은 0.5 ~ 5, 0.5 단위로 → {r["별점"]}')
             continue
         if not r.get('한줄 리뷰'):

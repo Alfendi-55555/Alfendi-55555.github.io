@@ -34,6 +34,8 @@ export const lastAt = g => (g.posts[0] ? at(g.posts[0]) : '');
 export const RECENT = GAMES.filter(g => g.posts.length)
   .sort((a, b) => lastAt(b).localeCompare(lastAt(a)));
 export const REVIEWED = GAMES.filter(g => g.review);
+/* 별점까지 매긴 리뷰 — 평균 · 분포는 이것만 (PLAYLOG 처럼 별점 없이 한줄 리뷰만 둔 것은 빠진다) */
+export const RATED = REVIEWED.filter(g => g.review.rating != null);
 
 /* 날짜마다 하나씩 도는 선택 — 모든 방문자에게 같은 결과 */
 export const dayIndex = (d = new Date()) =>
