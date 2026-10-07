@@ -258,7 +258,8 @@
       "Nintendo Switch 2"
     ],
     "site": "https://www.hollowknight.com/",
-    "art": "assets/games/hollow-knight/art.jpg"
+    "art": "assets/games/hollow-knight/art.jpg",
+    "steam": "367520"
   },
   {
     "id": "hollow-knight-silksong",
@@ -283,7 +284,8 @@
       "Xbox Series X|S"
     ],
     "site": "https://hollowknightsilksong.com/",
-    "art": "assets/games/hollow-knight-silksong/art.jpg"
+    "art": "assets/games/hollow-knight-silksong/art.jpg",
+    "steam": "1030300"
   },
   {
     "id": "splatoon-2",
@@ -436,7 +438,8 @@
       "Xbox One"
     ],
     "site": "https://store.steampowered.com/app/1072420/?l=koreana",
-    "art": "assets/games/dragon-quest-builders-2/art.jpg"
+    "art": "assets/games/dragon-quest-builders-2/art.jpg",
+    "steam": "1072420"
   },
   {
     "id": "pokemon-legends-z-a",
@@ -549,7 +552,8 @@
       "Android"
     ],
     "site": "https://hempuli.com/baba/",
-    "art": "assets/games/baba-is-you/art.jpg"
+    "art": "assets/games/baba-is-you/art.jpg",
+    "steam": "736260"
   },
   {
     "id": "monster-hunter-rise",
@@ -570,7 +574,8 @@
       "Xbox Series X|S"
     ],
     "site": "https://www.monsterhunter.com/rise/kr/",
-    "art": "assets/games/monster-hunter-rise/art.jpg"
+    "art": "assets/games/monster-hunter-rise/art.jpg",
+    "steam": "1446780"
   },
   {
     "id": "ring-fit-adventure",
@@ -625,7 +630,8 @@
       "Nintendo Switch 2 (2026.10.08 예정)"
     ],
     "site": "https://store.steampowered.com/app/1868140/?l=koreana",
-    "art": "assets/games/dave-the-diver/art.jpg"
+    "art": "assets/games/dave-the-diver/art.jpg",
+    "steam": "1868140"
   },
   {
     "id": "we-love-katamari-reroll",
@@ -646,7 +652,8 @@
       "Xbox Series X|S"
     ],
     "site": "https://store.nintendo.co.kr/70010000055863",
-    "art": "assets/games/we-love-katamari-reroll/art.jpg"
+    "art": "assets/games/we-love-katamari-reroll/art.jpg",
+    "steam": "1730700"
   },
   {
     "id": "katamari-damacy-reroll",
@@ -665,7 +672,8 @@
       "Xbox One"
     ],
     "site": "https://store.nintendo.co.kr/70010000035378",
-    "art": "assets/games/katamari-damacy-reroll/art.jpg"
+    "art": "assets/games/katamari-damacy-reroll/art.jpg",
+    "steam": "848350"
   },
   {
     "id": "persona-3-portable",
@@ -686,7 +694,8 @@
       "Windows"
     ],
     "site": "https://asia.sega.com/persona-remaster/p3p/kr/",
-    "art": "assets/games/persona-3-portable/art.jpg"
+    "art": "assets/games/persona-3-portable/art.jpg",
+    "steam": "1809700"
   },
   {
     "id": "persona-4-golden",
@@ -707,7 +716,8 @@
       "Xbox Series X|S"
     ],
     "site": "https://asia.sega.com/persona-remaster/p4g/kr/",
-    "art": "assets/games/persona-4-golden/art.jpg"
+    "art": "assets/games/persona-4-golden/art.jpg",
+    "steam": "1113000"
   },
   {
     "id": "persona-5-royal",
@@ -728,7 +738,8 @@
       "Windows"
     ],
     "site": "https://asia.sega.com/p5r/kr/",
-    "art": "assets/games/persona-5-royal/art.jpg"
+    "art": "assets/games/persona-5-royal/art.jpg",
+    "steam": "1687950"
   },
   {
     "id": "potion-craft",
@@ -748,7 +759,8 @@
       "PS5"
     ],
     "site": "https://store.nintendo.co.kr/70010000054957",
-    "art": "assets/games/potion-craft/art.jpg"
+    "art": "assets/games/potion-craft/art.jpg",
+    "steam": "1210320"
   },
   {
     "id": "pokemon-pokopia",
@@ -782,7 +794,8 @@
       "Xbox Series X|S"
     ],
     "site": "https://store.steampowered.com/app/2644470/PICO_PARK_2/?l=koreana",
-    "art": "assets/games/pico-park-2/art.jpg"
+    "art": "assets/games/pico-park-2/art.jpg",
+    "steam": "2644470"
   },
   {
     "id": "tetris-99",

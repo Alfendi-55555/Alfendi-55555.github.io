@@ -17,6 +17,11 @@ const token = n => Array.from(crypto.getRandomValues(new Uint8Array(n)),
 const keys = store.get('keys', {});
 const cid = store.get('cid', null) || (() => { const c = token(20); store.set('cid', c); return c; })();
 const isMine = id => !!keys[id];
+/* 새 글 : 방명록 화면에서 마지막으로 본 첫 페이지 글 id 와 비교한다 (처음 온 브라우저는 0개) */
+const seenIds = () => store.get('seen', null);
+const onGuest = () => location.hash.startsWith('#/guest');
+const countNew = items => { const s = seenIds(); return s ? items.filter(e => !s.includes(e.id) && !isMine(e.id)).length : 0; };
+const markSeen = items => store.set('seen', [...new Set([...(seenIds() || []), ...items.map(e => e.id)])].slice(-200));
 
 /* ---------- 서버 ---------- */
 const TIMEOUT_MS = 25000;          /* Apps Script는 가끔 느리다 — 그래도 화면이 '…중'에 멈춰 있지 않게 */
@@ -55,8 +60,9 @@ async function load(page = S.page) {
     const res = GUEST_API ? await apiGet(page) : localPage(page);
     if (!res.ok) throw new Error(res.error || '불러오지 못했어요');
     Object.assign(S, { page: res.page, pages: res.pages, total: res.total, items: res.items, loading: false });
+    if (res.page === 1 && (onGuest() || !seenIds())) markSeen(res.items);
     dispatchEvent(new CustomEvent('guestdata', { detail: res.page === 1
-      ? { total: res.total, latest: res.items[0] || null } : { total: res.total } }));
+      ? { total: res.total, latest: res.items[0] || null, fresh: countNew(res.items) } : { total: res.total } }));
   } catch {
     S.loading = false; S.error = '방명록을 불러오지 못했어요.';
   }

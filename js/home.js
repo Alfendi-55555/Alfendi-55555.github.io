@@ -91,10 +91,11 @@ if (rv) {
 /* MESSAGE BOARD : 가장 최근 방명록 — guest.js 가 불러오면 'guestdata' 로 알려 준다 */
 const guestChan = h('<a href="#/guest" class="chan guest ch"><span class="scr"></span></a>');
 chans.push(guestChan);
-let guestLatest;
+let guestLatest, guestNew = 0;   /* 주황 배지는 새 글이 있을 때만 — 평소엔 전체 개수를 회색 글자로 */
 function renderGuestChan(total, m) {
   guestChan.querySelector('.scr').innerHTML = `
-    <span class="row-sb"><span class="lbl">MESSAGE BOARD</span>${total ? `<span class="cnt-b" aria-label="방명록 ${total}개">${total}</span>` : ''}</span>
+    <span class="row-sb"><span class="lbl">MESSAGE BOARD</span>${guestNew ? `<span class="cnt-b" aria-label="새 방명록 ${guestNew}개">${guestNew} NEW</span>`
+      : total ? `<span class="meta-line">${total}개</span>` : ''}</span>
     <span class="msg">${m === undefined ? '<p>방명록을 불러오는 중…</p>'
       : m ? `<b>${esc(m.n)}<span>${esc(m.d.slice(5))}</span></b><p>${esc(m.m)}</p>` : '<p>아직 남겨진 글이 없어요. 첫 번째로 남겨 주세요.</p>'}</span>
     <span class="go">방명록 남기기 →</span>`;
@@ -102,6 +103,7 @@ function renderGuestChan(total, m) {
 renderGuestChan(0, undefined);
 addEventListener('guestdata', e => {
   if ('latest' in e.detail) guestLatest = e.detail.latest;
+  if ('fresh' in e.detail) guestNew = e.detail.fresh;
   renderGuestChan(e.detail.total, guestLatest);
 });
 

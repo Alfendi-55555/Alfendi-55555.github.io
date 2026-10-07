@@ -376,6 +376,7 @@ def apply_reviews(games):
 
 # ---------------- 게임 소식 ----------------
 NEWS_MAX = 50
+STEAM_PER_GAME = 5
 KST = timezone(timedelta(hours=9))
 NINTENDO_NEWS = 'https://www.nintendo.com/kr/news'
 STEAM_RSS = 'https://store.steampowered.com/feeds/news/app/{appid}/?l=koreana'
@@ -460,8 +461,13 @@ def build_news(games, games_meta):
             got = [n for n in prev if mine(n)]
             print(f'경고: {label} 소식을 모으지 못해 지난 결과 {len(got)}건을 씁니다 → {e}')
         news += got
-    seen, uniq = set(), []
+    # 모든 출처를 합쳐 최신순 NEWS_MAX 건. 업데이트가 잦은 Steam 게임 하나가 목록을 덮지 않게 게임당 STEAM_PER_GAME 건까지
+    seen, uniq, per = set(), [], {}
     for n in sorted(news, key=lambda n: (n['d'], n.get('ts', '')), reverse=True):
+        if n['src'] == 'steam':
+            if per.get(n['game'], 0) >= STEAM_PER_GAME:
+                continue
+            per[n['game']] = per.get(n['game'], 0) + 1
         if n['url'] and n['url'] not in seen:
             seen.add(n['url'])
             n['gameName'] = by_id[n['game']]['name'] if n.get('game') in by_id else ''
